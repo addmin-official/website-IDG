@@ -68,7 +68,7 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" suppressHydrationWarning>
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-800 bg-blue-50 px-2.5 py-1 rounded border border-blue-200 mb-2">
                 <ShieldCheck className="w-3.5 h-3.5" />
@@ -91,6 +91,7 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
                   id="contact-name"
                   type="text"
                   required
+                  suppressHydrationWarning
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-blue-600 text-slate-900 text-sm"
@@ -106,6 +107,7 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
                   id="contact-entity"
                   type="text"
                   required
+                  suppressHydrationWarning
                   value={entity}
                   onChange={(e) => setEntity(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-blue-600 text-slate-900 text-sm"
@@ -120,6 +122,7 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
                   </label>
                   <select
                     id="contact-sector"
+                    suppressHydrationWarning
                     value={sector}
                     onChange={(e) => setSector(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-blue-600 text-slate-900 text-xs sm:text-sm bg-white"
@@ -138,6 +141,7 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
                   </label>
                   <select
                     id="contact-inquiry"
+                    suppressHydrationWarning
                     value={inquiryType}
                     onChange={(e) => setInquiryType(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-blue-600 text-slate-900 text-xs sm:text-sm bg-white"
@@ -159,6 +163,7 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
                   id="contact-message"
                   required
                   rows={4}
+                  suppressHydrationWarning
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-blue-600 text-slate-900 text-sm"

@@ -31,22 +31,21 @@ export default function Footer({ t, onOpenContact }: FooterProps) {
           </div>
 
           <div className="flex flex-wrap gap-4 text-xs font-medium text-slate-300">
-            <a href="#purpose" className="hover:text-white transition-colors" id="footer-link-principles">
-              {t.footer.links.principles}
+            <a href="#about" className="hover:text-white transition-colors" id="footer-link-about">
+              {t.footer.links.about}
+            </a>
+            <a href="#portfolio" className="hover:text-white transition-colors" id="footer-link-portfolio">
+              {t.nav.portfolio}
             </a>
             <a href="#governance" className="hover:text-white transition-colors" id="footer-link-governance">
               {t.footer.links.governance}
             </a>
-            <a href="#governance" className="hover:text-white transition-colors" id="footer-link-security">
-              {t.footer.links.security}
+            <a href="#careers" className="hover:text-white transition-colors" id="footer-link-careers">
+              {t.footer.links.careers}
             </a>
-            <button
-              onClick={onOpenContact}
-              className="hover:text-white transition-colors cursor-pointer text-blue-400 font-semibold"
-              id="footer-btn-contact"
-            >
+            <a href="#contact" className="hover:text-white transition-colors text-blue-400 font-semibold" id="footer-link-contact">
               {t.footer.links.contact}
-            </button>
+            </a>
           </div>
         </div>
 

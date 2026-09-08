@@ -38,12 +38,12 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-700" id="desktop-nav-menu">
+          <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-slate-700" id="desktop-nav-menu">
             <a href="#hero" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-home">
               {t.nav.home}
             </a>
-            <a href="#purpose" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-purpose">
-              {lang === 'ku' ? 'ئامانجی دامەزراوەیی' : lang === 'ar' ? 'الهدف المؤسسي' : 'Purpose'}
+            <a href="#about" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-about">
+              {t.nav.about}
             </a>
             <a href="#portfolio" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-portfolio">
               {t.nav.portfolio}
@@ -56,6 +56,12 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </a>
             <a href="#vision" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-vision">
               {t.nav.vision}
+            </a>
+            <a href="#careers" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-careers">
+              {t.nav.careers}
+            </a>
+            <a href="#contact" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-contact-scroll">
+              {t.nav.contact}
             </a>
           </nav>
 
@@ -175,12 +181,12 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               {t.nav.home}
             </a>
             <a
-              href="#purpose"
+              href="#about"
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
-              id="mobile-link-purpose"
+              id="mobile-link-about"
             >
-              {lang === 'ku' ? 'ئامانجی دامەزراوەیی' : lang === 'ar' ? 'الهدف المؤسسي' : 'Purpose'}
+              {t.nav.about}
             </a>
             <a
               href="#portfolio"
@@ -213,6 +219,22 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               id="mobile-link-vision"
             >
               {t.nav.vision}
+            </a>
+            <a
+              href="#careers"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
+              id="mobile-link-careers"
+            >
+              {t.nav.careers}
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
+              id="mobile-link-contact-scroll"
+            >
+              {t.nav.contact}
             </a>
           </nav>
 

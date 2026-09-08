@@ -4,11 +4,14 @@ import React, { useState } from 'react';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import AboutUs from '@/components/AboutUs';
 import Purpose from '@/components/Purpose';
 import Portfolio from '@/components/Portfolio';
 import Governance from '@/components/Governance';
 import Stakeholders from '@/components/Stakeholders';
 import Vision2035 from '@/components/Vision2035';
+import Careers from '@/components/Careers';
+import ContactSection from '@/components/ContactSection';
 import ProductModal from '@/components/ProductModal';
 import ContactModal from '@/components/ContactModal';
 import Footer from '@/components/Footer';
@@ -58,10 +61,17 @@ export default function Home() {
         {/* 1. Sovereign Hero Section */}
         <Hero t={t} isRtl={isRtl} />
 
-        {/* 2. Core Purpose (4 Pillars: هاوسەنگی، توانا، متمانە، بەردەوامی) */}
+        {/* 2. About Us: Mission, Vision, Core Values, & Complexity Transformation */}
+        <AboutUs
+          t={t}
+          isRtl={isRtl}
+          onOpenContact={() => setIsContactOpen(true)}
+        />
+
+        {/* 3. Core Purpose (4 Pillars: هاوسەنگی، توانا، متمانە، بەردەوامی) */}
         <Purpose t={t} />
 
-        {/* 3. Governed Portfolio & Architecture (with Header, Product Philosophy, Portfolio Assets & Strategic Initiative) */}
+        {/* 4. Governed Portfolio & Architecture */}
         <Portfolio
           t={t}
           isRtl={isRtl}
@@ -69,14 +79,24 @@ export default function Home() {
           onSelectNSW={handleOpenNSW}
         />
 
-        {/* 5. Corporate Governance Chain (Context -> Evidence -> Decision -> Impact -> Risk -> Next Step) */}
+        {/* 5. Corporate Governance Chain */}
         <Governance t={t} isRtl={isRtl} />
 
-        {/* 6. Target Stakeholders & Mandates */}
-        <Stakeholders t={t} />
+        {/* 6. Target Stakeholders & Partnerships */}
+        <Stakeholders
+          t={t}
+          isRtl={isRtl}
+          onOpenContact={() => setIsContactOpen(true)}
+        />
 
         {/* 7. Vision 2035 Strategic Horizon */}
         <Vision2035 t={t} />
+
+        {/* 8. Careers & Talent Acquisition */}
+        <Careers t={t} isRtl={isRtl} />
+
+        {/* 9. Contact Us Form & Inquiries Section */}
+        <ContactSection t={t} isRtl={isRtl} />
       </main>
 
       {/* Corporate Footer */}
