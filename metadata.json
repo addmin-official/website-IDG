@@ -1,0 +1,6 @@
+{
+  "name": "Iraq Digital Gateway (IDG)",
+  "description": "دەروازەی دیجیتاڵیی عێراق (IDG) - کۆمپانیای دایکی سەربەخۆ بۆ حوکمڕانی، داتا، ژیریی دەستکردی کارپێکراو و ژێرخانی پارێزراوی دامەزراوەیی لە عێراق.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
