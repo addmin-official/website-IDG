@@ -53,7 +53,7 @@ export default function AboutUs({ t, isRtl = true, onOpenContact }: AboutUsProps
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20 md:mb-28" id="about-vision-mission-values-grid">
           <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100" id="about-vision-mission-card">
             <h3 className="text-2xl font-bold text-slate-800 mb-4">{a.visionTitle}</h3>
-            <p className="text-slate-600 mb-6 leading-relaxed">
+            <p className="text-slate-600 mb-6 leading-relaxed" id="about-vision-description">
               {a.visionDesc}
             </p>
             <h3 className="text-2xl font-bold text-slate-800 mb-4">{a.missionTitle}</h3>

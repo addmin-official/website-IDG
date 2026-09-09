@@ -3,286 +3,281 @@
 import React, { useState } from 'react';
 import { TranslationData } from '@/lib/translations';
 import { useIsMounted } from '@/lib/useIsMounted';
-import {
-  Mail,
-  MapPin,
-  Clock,
-  Send,
-  CheckCircle2,
-  Building2,
-  ShieldCheck,
-  ArrowRight,
-  ArrowLeft,
-  Sparkles,
-} from 'lucide-react';
+import { CheckCircle2, AlertCircle } from 'lucide-react';
+import { submitContactInquiry } from '@/infrastructure/actions/contact';
 
 interface ContactSectionProps {
-  t: TranslationData;
+  t?: TranslationData;
   isRtl?: boolean;
 }
 
 export default function ContactSection({ t, isRtl = true }: ContactSectionProps) {
-  const cs = t.contactSection;
-  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
-
   const isMounted = useIsMounted();
 
-  const [name, setName] = useState('');
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
+  const [provenProblem, setProvenProblem] = useState('');
   const [message, setMessage] = useState('');
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [confirmationCode, setConfirmationCode] = useState('');
+  const [referenceId, setReferenceId] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Determine language content (defaults strictly to Kurdish user request)
+  const isKurdish = !t || t.contactSection?.form?.submitBtn === 'ناردنی پەیام';
+  const isArabic = t?.contactSection?.form?.submitBtn === 'إرسال الرسالة';
+
+  const content = {
+    title: isArabic
+      ? 'التواصل الرسمي ✉️'
+      : !isKurdish
+      ? 'Official Communication ✉️'
+      : 'پەیوەندیی فەرمی ✉️',
+    desc: isArabic
+      ? 'نرحب بالوزارات، الشركات، والمؤسسات البحثية لبدء حوار استراتيجي مدعوم بالأدلة والمشكلات الواقعية.'
+      : !isKurdish
+      ? 'We welcome ministries, enterprises, and research institutions to initiate an evidence-grounded dialogue based on proven operational challenges.'
+      : 'پێشوازی لە وەزارەتەکان، کۆمپانیاکان، و دامەزراوەکانی توێژینەوە دەکەین بۆ دەستپێکردنی گفتوگۆیەک کە پشتئەستوور بێت بە بەڵگە و کێشەی ڕاستەقینە.',
+    namePlaceholder: isArabic
+      ? 'الاسم الكامل / اسم المؤسسة'
+      : !isKurdish
+      ? 'Full Name / Institution Name'
+      : 'ناوی تەواو / ناوی دامەزراوە',
+    emailPlaceholder: isArabic
+      ? 'البريد الإلكتروني الرسمي'
+      : !isKurdish
+      ? 'Official Email Address'
+      : 'ئیمەیڵی فەرمی',
+    subjectPlaceholder: isArabic
+      ? 'موضوع التواصل (الهدف الاستراتيجي)'
+      : !isKurdish
+      ? 'Subject of Inquiry (Strategic Purpose)'
+      : 'بابەتی پەیوەندی (مەبەستی ستراتیژی)',
+    strategicLabel: isArabic
+      ? 'المشكلة المثبتة أو النتيجة المقاسة 📊'
+      : !isKurdish
+      ? 'Proven Problem or Measurable Outcome 📊'
+      : 'کێشەی سەلمێنراو یان ئەنجامی پێوانەکراو 📊',
+    strategicPlaceholder: isArabic
+      ? 'ما هي المشكلة التشغيلية التي تسعى لحلها معنا؟'
+      : !isKurdish
+      ? 'What operational bottleneck do you intend to resolve together?'
+      : 'چ کێشەیەکی کارپێکردن هەیە کە دەتەوێت پێکەوە چارەسەری بکەین؟',
+    messagePlaceholder: isArabic
+      ? 'مزيد من التفاصيل حول طلبك...'
+      : !isKurdish
+      ? 'Additional operational details regarding your inquiry...'
+      : 'وردەکاریی زیاتر سەبارەت بە داواکارییەکەت...',
+    submitBtn: isArabic
+      ? 'إرسال الرسالة'
+      : !isKurdish
+      ? 'Send Message'
+      : 'ناردنی پەیام',
+    successTitle: isArabic
+      ? 'تم استلام رسالتكم الرسمية'
+      : !isKurdish
+      ? 'Message Successfully Received'
+      : 'پەیامەکەت بە سەرکەوتوویی گەیشت',
+    successDesc: isArabic
+      ? 'شكراً لتواصلكم. سيقوم فريق الحوكمة المؤسسية في IDG بدراسة المشكلة المثبتة والتواصل معكم.'
+      : !isKurdish
+      ? 'Thank you for contacting IDG. Our institutional governance desk will review your inquiry.'
+      : 'سوپاس بۆ پەیوەندیکردنت. تیمی حوکمڕانیی IDG بە پشتبەستن بە بەڵگە و کێشەی دیاریکراو وەڵامتان دەداتەوە.',
+    resetBtn: isArabic
+      ? 'إرسال رسالة أخرى'
+      : !isKurdish
+      ? 'Send Another Message'
+      : 'ناردنی پەیامێکی تر',
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim() || !message.trim()) return;
+    if (!fullName.trim() || !email.trim()) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
+    setErrorMessage('');
+
+    try {
+      const formData = new FormData();
+      formData.append('name', fullName.trim());
+      formData.append('email', email.trim());
+      formData.append('subject', subject.trim());
+      formData.append('problem', provenProblem.trim());
+      formData.append('message', message.trim());
+
+      const result = await submitContactInquiry(formData);
+      if (result.success && result.referenceId) {
+        setReferenceId(result.referenceId);
+        setIsSubmitted(true);
+      } else if (result.error) {
+        setErrorMessage(result.error);
+      }
+    } catch {
+      setErrorMessage(
+        isKurdish
+          ? 'هەڵەیەک لە پەیوەندیکردن بە ڕاژەکار ڕوویدا، تکایە دووبارە هەوڵبدەرەوە.'
+          : 'Failed to send inquiry to server. Please try again.'
+      );
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setConfirmationCode(`IDG-INQ-${Math.floor(100000 + Math.random() * 900000)}`);
-    }, 1000);
+    }
   };
 
   const handleReset = () => {
-    setName('');
+    setFullName('');
     setEmail('');
     setSubject('');
+    setProvenProblem('');
     setMessage('');
+    setErrorMessage('');
     setIsSubmitted(false);
   };
 
   return (
-    <section className="py-20 md:py-28 bg-white border-b border-slate-200" id="contact">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <div
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-800 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-200 mb-4"
-            id="contact-badge"
-          >
-            <ShieldCheck className="w-3.5 h-3.5 text-blue-700" />
-            <span>{cs.badge}</span>
-          </div>
-          <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4"
-            id="contact-heading"
-          >
-            {cs.heading}
+    <section
+      className="py-20 bg-slate-50"
+      dir={isRtl ? 'rtl' : 'ltr'}
+      id="contact"
+    >
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4" id="contact-heading">
+            {content.title}
           </h2>
-          <p
-            className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
-            id="contact-subheading"
-          >
-            {cs.subheading}
+          <p className="text-slate-600 leading-relaxed max-w-2xl mx-auto" id="contact-desc">
+            {content.desc}
           </p>
         </div>
 
-        {/* 2-Column Layout: Left (Introductory Context & Channels) + Right (The Form) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start max-w-6xl mx-auto">
-          
-          {/* Institutional Info & Brief Introductory Text */}
-          <div className="lg:col-span-5 space-y-6" id="contact-info-panel">
-            <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-10 border border-slate-800 shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-blue-600/10 rounded-full blur-2xl pointer-events-none" />
-              
-              <span className="text-xs font-bold text-blue-400 uppercase tracking-widest block mb-2">
-                Official Engagement
-              </span>
-              <h3 className="text-2xl font-bold text-white mb-4 leading-snug">
-                {cs.channelsTitle}
-              </h3>
-              
-              {/* Introductory text explaining that users can reach out for inquiries or partnership opportunities */}
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6" id="contact-intro-text">
-                {cs.introText}
-              </p>
-
-              <div className="p-4 bg-slate-800/80 rounded-xl border border-slate-700/80 text-xs text-slate-300 mb-8" id="contact-partnership-note">
-                <span className="font-bold text-blue-300 block mb-1">Partnership Criterion:</span>
-                {cs.partnershipNote}
-              </div>
-
-              {/* Direct Details */}
-              <div className="space-y-4 pt-4 border-t border-slate-800 text-xs">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-blue-900/50 text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
-                    <Building2 className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block font-medium">{cs.hqLabel}</span>
-                    <span className="font-semibold text-slate-100">{cs.hqValue}</span>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-blue-900/50 text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block font-medium">{cs.emailLabel}</span>
-                    <a href="mailto:contact@idg.iq" className="font-semibold text-blue-300 hover:text-blue-200 transition font-mono">
-                      {cs.emailValue}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-blue-900/50 text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
-                    <Clock className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block font-medium">{cs.hoursLabel}</span>
-                    <span className="font-semibold text-slate-100">{cs.hoursValue}</span>
-                  </div>
-                </div>
-              </div>
+        {!isMounted ? (
+          <div className="bg-white p-8 rounded-2xl shadow-xs border border-slate-200 space-y-6" id="contact-skeleton">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
+              <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
+            </div>
+            <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
+            <div className="h-20 bg-blue-50/70 rounded-lg animate-pulse" />
+            <div className="h-32 bg-slate-100 rounded-lg animate-pulse" />
+            <div className="h-12 w-36 bg-slate-800/80 rounded-lg animate-pulse" />
+          </div>
+        ) : isSubmitted ? (
+          <div className="bg-white p-10 rounded-2xl shadow-xs border border-emerald-200 text-center" id="contact-submit-success">
+            <div className="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle2 className="w-8 h-8" />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">{content.successTitle}</h3>
+            <p className="text-slate-600 text-sm mb-4 max-w-lg mx-auto">{content.successDesc}</p>
+            <div className="inline-block bg-slate-50 border border-slate-200 text-slate-700 px-4 py-2 rounded-lg font-mono text-xs mb-6">
+              Reference: {referenceId}
+            </div>
+            <div>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="px-6 py-2.5 bg-slate-900 text-white font-bold rounded-lg text-xs hover:bg-slate-800 transition cursor-pointer"
+                id="btn-contact-reset"
+              >
+                {content.resetBtn}
+              </button>
             </div>
           </div>
-
-          {/* The Contact Us Form */}
-          <div className="lg:col-span-7" id="contact-form-panel">
-            <div className="bg-slate-50 rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm">
-              
-              {!isMounted ? (
-                <div className="space-y-5 py-4" id="contact-form-skeleton">
-                  <div className="h-12 bg-slate-200/70 rounded-xl animate-pulse" />
-                  <div className="h-12 bg-slate-200/70 rounded-xl animate-pulse" />
-                  <div className="h-12 bg-slate-200/70 rounded-xl animate-pulse" />
-                  <div className="h-28 bg-slate-200/70 rounded-xl animate-pulse" />
-                  <div className="h-12 bg-blue-200/60 rounded-xl animate-pulse" />
-                </div>
-              ) : isSubmitted ? (
-                <div className="bg-white rounded-2xl p-8 border border-emerald-200 text-center" id="contact-submit-success">
-                  <div className="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2" id="contact-success-title">
-                    {cs.form.successTitle}
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed max-w-md mx-auto mb-4" id="contact-success-msg">
-                    {cs.form.successMsg}
-                  </p>
-                  <div className="inline-block bg-slate-100 border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-mono text-slate-800 font-bold mb-6">
-                    Inquiry Reference: {confirmationCode}
-                  </div>
-                  <div>
-                    <button
-                      type="button"
-                      onClick={handleReset}
-                      className="px-6 py-2.5 bg-blue-800 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition cursor-pointer"
-                      id="btn-contact-reset"
-                    >
-                      {cs.form.resetBtn}
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5" id="form-contact-inquiry" suppressHydrationWarning>
-                  
-                  {/* Name Field */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1.5" htmlFor="input-contact-name">
-                      {cs.form.nameLabel} <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      id="input-contact-name"
-                      type="text"
-                      required
-                      suppressHydrationWarning
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder={cs.form.namePlaceholder}
-                      className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                    />
-                  </div>
-
-                  {/* Email Field */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1.5" htmlFor="input-contact-email">
-                      {cs.form.emailLabel} <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      id="input-contact-email"
-                      type="email"
-                      required
-                      suppressHydrationWarning
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder={cs.form.emailPlaceholder}
-                      className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                    />
-                  </div>
-
-                  {/* Subject Field */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1.5" htmlFor="input-contact-subject">
-                      {cs.form.subjectLabel} <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      id="input-contact-subject"
-                      type="text"
-                      required
-                      suppressHydrationWarning
-                      value={subject}
-                      onChange={(e) => setSubject(e.target.value)}
-                      placeholder={cs.form.subjectPlaceholder}
-                      className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600 transition"
-                    />
-                  </div>
-
-                  {/* Message Field */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1.5" htmlFor="textarea-contact-message">
-                      {cs.form.messageLabel} <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      id="textarea-contact-message"
-                      rows={5}
-                      required
-                      suppressHydrationWarning
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      placeholder={cs.form.messagePlaceholder}
-                      className="w-full bg-white border border-slate-300 rounded-xl p-4 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600 transition resize-none"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <div className="pt-2">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      suppressHydrationWarning
-                      className="w-full py-3.5 px-6 bg-blue-800 hover:bg-blue-700 text-white rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
-                      id="btn-submit-contact-form"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          <span>{cs.form.submittingBtn}</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>{cs.form.submitBtn}</span>
-                          <ArrowIcon className="w-4 h-4" />
-                        </>
-                      )}
-                    </button>
-                  </div>
-
-                </form>
-              )}
-
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-8 rounded-2xl shadow-xs border border-slate-200 space-y-6"
+            id="contact-form"
+            suppressHydrationWarning
+          >
+            <div className="grid md:grid-cols-2 gap-6">
+              <input
+                type="text"
+                name="name"
+                required
+                suppressHydrationWarning
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder={content.namePlaceholder}
+                className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-hidden text-sm"
+                id="contact-input-fullname"
+              />
+              <input
+                type="email"
+                name="email"
+                required
+                suppressHydrationWarning
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={content.emailPlaceholder}
+                className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-hidden text-sm"
+                id="contact-input-email"
+              />
             </div>
-          </div>
 
-        </div>
+            <input
+              type="text"
+              name="subject"
+              required
+              suppressHydrationWarning
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              placeholder={content.subjectPlaceholder}
+              className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-hidden text-sm"
+              id="contact-input-subject"
+            />
 
+            {/* The Strategic Field */}
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-100" id="contact-strategic-field">
+              <label
+                htmlFor="contact-input-proven-problem"
+                className="block text-sm font-bold text-blue-900 mb-2"
+              >
+                {content.strategicLabel}
+              </label>
+              <input
+                type="text"
+                name="problem"
+                required
+                suppressHydrationWarning
+                id="contact-input-proven-problem"
+                value={provenProblem}
+                onChange={(e) => setProvenProblem(e.target.value)}
+                placeholder={content.strategicPlaceholder}
+                className="w-full p-3 rounded-lg border border-slate-200 bg-white text-slate-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-hidden text-sm"
+              />
+            </div>
+
+            <textarea
+              name="message"
+              required
+              rows={5}
+              suppressHydrationWarning
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder={content.messagePlaceholder}
+              className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-hidden text-sm leading-relaxed"
+              id="contact-textarea-message"
+            />
+
+            {errorMessage && (
+              <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg" id="contact-error-alert">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              suppressHydrationWarning
+              className="bg-slate-900 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition w-full md:w-auto cursor-pointer disabled:opacity-50 text-sm shadow-sm"
+              id="btn-submit-contact"
+            >
+              {isSubmitting ? '...' : content.submitBtn}
+            </button>
+          </form>
+        )}
       </div>
     </section>
   );
