@@ -91,6 +91,8 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
                   id="contact-name"
                   type="text"
                   required
+                  autoComplete="name"
+                  spellCheck={false}
                   suppressHydrationWarning
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -107,6 +109,8 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
                   id="contact-entity"
                   type="text"
                   required
+                  autoComplete="organization"
+                  spellCheck={false}
                   suppressHydrationWarning
                   value={entity}
                   onChange={(e) => setEntity(e.target.value)}
@@ -163,6 +167,7 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
                   id="contact-message"
                   required
                   rows={4}
+                  spellCheck={false}
                   suppressHydrationWarning
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}

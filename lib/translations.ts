@@ -14,6 +14,7 @@ export interface TranslationData {
     vision: string;
     careers: string;
     contact: string;
+    faq: string;
   };
   hero: {
     headline: string;
@@ -287,6 +288,30 @@ export interface TranslationData {
       resetBtn: string;
     };
   };
+  faq: {
+    badge: string;
+    heading: string;
+    subheading: string;
+    searchPlaceholder: string;
+    allCategory: string;
+    categories: {
+      governance: string;
+      infrastructure: string;
+      products: string;
+      partnerships: string;
+    };
+    items: Array<{
+      id: string;
+      category: 'governance' | 'infrastructure' | 'products' | 'partnerships';
+      question: string;
+      answer: string;
+      highlights?: string[];
+    }>;
+    stillHaveQuestions: string;
+    supportDesc: string;
+    contactBtn: string;
+  };
+  backToTop: string;
   footer: {
     rights: string;
     parentDesc: string;
@@ -297,6 +322,18 @@ export interface TranslationData {
       careers: string;
       contact: string;
       security: string;
+      faq: string;
+    };
+    newsletter: {
+      title: string;
+      description: string;
+      placeholder: string;
+      submitBtn: string;
+      submittingBtn: string;
+      successTitle: string;
+      successMsg: string;
+      notice: string;
+      invalidEmail: string;
     };
   };
 }
@@ -316,6 +353,7 @@ export const translations: Record<Language, TranslationData> = {
       vision: 'دیدگای ٢٠٣٥',
       careers: 'هەلی کار',
       contact: 'پەیوەندیی فەرمی',
+      faq: 'پرسیارە باوەکان',
     },
     hero: {
       headline: 'ئاڵۆزی دەگۆڕین بۆ توانایەکی کارپێکردنی متمانەپێکراو.',
@@ -1049,6 +1087,74 @@ export const translations: Record<Language, TranslationData> = {
         resetBtn: 'ناردنی پەیامێکی تر',
       },
     },
+    faq: {
+      badge: 'پرسیارە باوەکان و ڕوونکردنەوەی حوکمڕانی',
+      heading: 'پرسیارە باوەکانی لایەنە پەیوەندیدارەکان',
+      subheading:
+        'ڕوونکردنەوەی فەرمی و بەڵگەدار دەربارەی حوکمڕانی، ژێرخانی دیجیتاڵی، سەروەریی داتا، و تەلارسازیی پۆرتفۆلیۆی بەرهەمەکانی دەروازەی دیجیتاڵیی عێراق (IDG).',
+      searchPlaceholder: 'گەڕان لە پرسەکانی حوکمڕانی، داتا، بەرهەمەکان یان هاوبەشییەکان...',
+      allCategory: 'هەموو پرسەکان',
+      categories: {
+        governance: 'حوکمڕانی و کۆمپانیای دایک',
+        infrastructure: 'ژێرخان و سەروەریی داتا',
+        products: 'پۆرتفۆلیۆ و بەرهەمەکان (NSW)',
+        partnerships: 'مۆدێلی هاوبەشی و جێبەجێکردن',
+      },
+      items: [
+        {
+          id: 'faq-1',
+          category: 'governance',
+          question: 'ڕۆڵی IDG وەک کۆمپانیای دایک چییە بەراورد بە بەرهەمەکانی وەک AI Gate Iraq و ZaNa Acadime؟',
+          answer:
+            'IDG کۆمپانیای دایک و ستۆدیۆی سەروەریی وەبەرهێنانی تەکنەلۆژییە. بەرهەمەکانی وەک "AI Gate Iraq" (بەرهەمی ٠٠١)، "ZaNa Acadime"، و "Green Belt" بەرهەمی تایبەتمەندن لەژێر بەڕێوەبردن و حوکمڕانیی ڕاستەوخۆی IDG. بەرهەمەکان قەوارەی سەربەخۆ نین، بەڵکو میکانیزمی تەکنەلۆژین بۆ جێبەجێکردنی ئەرکە ستراتیژییەکان لەژێر ستانداردە یەکگرتووەکانی IDG.',
+          highlights: ['کۆمپانیای دایک و ستۆدیۆی وەبەرهێنان', 'حوکمڕانیی یەکگرتوو', 'یەکپارچەیی تەلارسازی'],
+        },
+        {
+          id: 'faq-2',
+          category: 'infrastructure',
+          question: 'چۆن IDG ئاسایش و سەروەریی داتای دامەزراوەیی لە ناوخۆی عێراق مسۆگەر دەکات؟',
+          answer:
+            'تەواوی کۆگاکردن، پڕۆسێسکردن و شیتاڵکردنی داتای هەستیار لەناو سەنتەرەکانی داتای سەروەر لە ناوخۆی عێراق ئەنجام دەدرێت. ئێمە ڕێگریی تەواو لە هەناردەکردنی داتا بۆ دەرەوە دەکەین لە ڕێگەی تەلارسازیی Zero-Trust، کۆدکردنی دوولایەنەی پێشکەوتوو (AES-256)، و تۆماری audit trailـی نەگۆڕ. هیچ داتایەکی دامەزراوەیی عێراقی ناخرێتە بەردەست سێرڤەری گشتیی بیانی.',
+          highlights: ['سەروەریی ناوخۆیی داتا', 'پرۆتۆکۆڵی Zero-Trust', 'کۆدکردنی بەرزترین ئاست'],
+        },
+        {
+          id: 'faq-3',
+          category: 'products',
+          question: 'پەنجەرەی نیشتمانی عێراق بۆ بازرگانی (Iraq NSW) چییە و چۆن کارکردنی دەروازە سنورییەکان دەگۆڕێت؟',
+          answer:
+            'Iraq NSW دەستپێشخەرییەکی ستراتیژیی حوکمڕانیکراوە لەلایەن IDG بۆ یەکخستنی تەواوی بەستەرەکانی گومرگ، بەندەرەکان، وەزارەتە پەیوەندیدارەکان و بانکی ناوەندی لە یەک پلاتفۆرمی کارپێکردندا. ئەم سیستەمە کاتی ترانزێت و پاکتاوی کاڵا لە چەندین هەفتەوە کەم دەکاتەوە بۆ خوار ٤٨ کاتژمێر و شەفافیەتی تەواو بۆ داهاتی گشتی دەستەبەر دەکات.',
+          highlights: ['یەکخستنی دەروازە سنورییەکان', 'کەمکردنەوەی کات بۆ خوار ٤٨ کاتژمێر', 'شەفافیەتی داهاتی گشتی'],
+        },
+        {
+          id: 'faq-4',
+          category: 'infrastructure',
+          question: 'فەلسەفەی IDG بۆ جێبەجێکردنی ژیریی دەستکرد (Applied AI) لە کەرتی دامەزراوەییدا چییە؟',
+          answer:
+            'ئێمە ژیریی دەستکرد وەک ترێند یان بانگەشەی کاتی بەکارناهێنین؛ بەڵکو وەک ژیریی دەستکردی کارپێکراو (Applied AI) لەسەر کێشەی حەقیقی و سەلمێنراو دایدەمەزرێنین. مۆدێلەکانمان تایبەتمەندن بە شیتاڵکردنی وردی زمانەکانی کوردی و عەرەبی لە بەڵگەنامە یاسایی و کارگێڕییەکان و دۆزینەوەی ئۆتۆماتیکیی ناتەبایییە دارایییەکان.',
+          highlights: ['چارەسەری کێشەی سەلمێنراو', 'تایبەتمەند بە زمانی کوردی و عەرەبی', 'ڕەتکردنەوەی ترێندی کاتی'],
+        },
+        {
+          id: 'faq-5',
+          category: 'governance',
+          question: 'میکانیزمی "خاوەنی بەرپرسیار" (Accountable Owner) لە پڕۆژەکانی IDG چۆن پیادە دەکرێت؟',
+          answer:
+            'هیچ چارەسەرێکی تەکنەلۆژی دەستپێناکرێت تاوەکو کێشەی سەلمێنراو و خاوەنی بەرپرسیار دیاری نەکرێت. هەر پڕۆژەیەک دەبێت خاوەنێکی ڕوونی هەبێت کە بەرپرسیار بێت لە دەرئەنجام، ئاسایشی زانیاری، و بەردەوامیی کارپێکردن بەپێی ستانداردە دامەزراوەیییەکان.',
+          highlights: ['بەرپرسیارێتیی ڕوون', 'کێشەی سەلمێنراو پێش تەکنەلۆژیا', 'پێوەری پێوانەکراوی سەرکەوتن'],
+        },
+        {
+          id: 'faq-6',
+          category: 'partnerships',
+          question: 'چۆن دەزگاکانی حکومەت یان کەرتی تایبەت دەتوانن هاوبەشی لەگەڵ IDG دەستپێبکەن؟',
+          answer:
+            'هاوبەشی لەگەڵ IDG لە ڕێگەی شیکاریی کەلێنە دامەزراوەییەکان و داواکاریی فەرمی دەستپێدەکات. ئێمە کار لەسەر بنەمای هاوبەشیی ستراتیژی (PPP) و بنیاتنانی توانای درێژخایەن دەکەین بە مەرجی گواستنەوەی تەواوی مەعریفە و زانست بۆ کادیر و تیمە ناوخۆیییەکان، نەک بەستنەوەیان بە سیستەمی دەرەکی.',
+          highlights: ['گواستنەوەی تەواوی مەعریفە', 'هاوبەشیی درێژخایەن (PPP)', 'سەروەریی کادیری نیشتمانی'],
+        },
+      ],
+      stillHaveQuestions: 'پرسیاری زیاترت هەیە دەربارەی حوکمڕانی یان پۆرتفۆلیۆ؟',
+      supportDesc: 'تیمی پەیوەندییە فەرمییەکانی IDG ئامادەیە بۆ وەڵامدانەوەی پێداویستییە دامەزراوەیییەکان.',
+      contactBtn: 'پەیوەندیی فەرمی لەگەڵ تیمی حوکمڕانی',
+    },
+    backToTop: 'گەڕانەوە بۆ سەرەوە',
     footer: {
       rights: '© ٢٠٢٦ دەروازەی دیجیتاڵیی عێراق (IDG). مافی خاوەندارێتیی پۆرتفۆلیۆ پارێزراوە.',
       parentDesc:
@@ -1060,6 +1166,19 @@ export const translations: Record<Language, TranslationData> = {
         careers: 'هەلی کار',
         contact: 'پەیوەندیی فەرمی',
         security: 'سەروەریی زانیاری و ئاسایش',
+        faq: 'پرسیارە باوەکان',
+      },
+      newsletter: {
+        title: 'ناوەندی زانیاری و نوێکارییە خولییەکان',
+        description:
+          'ئیمەیڵی دامەزراوەیی خۆت تۆمار بکە بۆ وەرگرتنی ڕاپۆرتە فەرمییەکان، شیارییە ستراتیژییەکان، و پێشکەوتنەکانی ژێرخانی دیجیتاڵیی IDG.',
+        placeholder: 'ئیمەیڵی فەرمیی دامەزراوەکەت (نموونە: name@institution.gov.iq)',
+        submitBtn: 'بەشداریکردن لە نوێکارییەکان',
+        submittingBtn: 'تۆمارکردنی ئیمەیڵ...',
+        successTitle: 'بە سەرکەوتوویی تۆمار کرا',
+        successMsg: 'سوپاس، ئیمەیڵی دامەزراوەییەکەت تۆمار کرا. پوختەی ڕاپۆرتە ستراتیژییەکان و نوێکارییە خولییەکان دەنێردرێنە ناونیشانەکەت.',
+        notice: 'تێبینی: ئەم کەناڵە تەنها بۆ ئیمەیڵە فەرمی و دامەزراوەیییەکان بەردەستە و بە تەواوی پارێزراوە.',
+        invalidEmail: 'تکایە ئیمەیڵێکی دامەزراوەیی دروست بنووسە.',
       },
     },
   },
@@ -1077,6 +1196,7 @@ export const translations: Record<Language, TranslationData> = {
       vision: 'رؤية ٢٠٣٥',
       careers: 'الوظائف',
       contact: 'التواصل الرسمي',
+      faq: 'الأسئلة الشائعة',
     },
     hero: {
       headline: 'نحوّل التعقيد إلى قدرة تشغيلية موثوقة.',
@@ -1810,6 +1930,74 @@ export const translations: Record<Language, TranslationData> = {
         resetBtn: 'إرسال رسالة أخرى',
       },
     },
+    faq: {
+      badge: 'الأسئلة الشائعة وتوضيحات الحوكمة',
+      heading: 'الأسئلة الشائعة للجهات المعنية',
+      subheading:
+        'توضيحات رسمية قائمة على الأدلة حول الحوكمة، البنية التحتية الرقمية، سيادة البيانات، وهندسة محفظة مشاريع بوابة العراق الرقمية (IDG).',
+      searchPlaceholder: 'البحث في مواضيع الحوكمة، البيانات، المنتجات أو الشراكات...',
+      allCategory: 'جميع الأسئلة',
+      categories: {
+        governance: 'الحوكمة والشركة الأم',
+        infrastructure: 'البنية التحتية وسيادة البيانات',
+        products: 'المحفظة والمنتجات (NSW)',
+        partnerships: 'نموذج الشراكات والتنفيذ',
+      },
+      items: [
+        {
+          id: 'faq-1',
+          category: 'governance',
+          question: 'ما هو دور IDG كشركة أم مقارنة بمنتجات مثل AI Gate Iraq و ZaNa Acadime؟',
+          answer:
+            'IDG هي الشركة الأم السيادية واستوديو المشاريع التكنولوجية. المنتجات مثل "AI Gate Iraq" (المنتج 001)، و"ZaNa Acadime"، و"Green Belt" هي منتجات متخصصة خاضعة لحوكمة وإشراف IDG المباشر. المنتجات ليست كيانات مستقلة بل أدوات تقنية لتنفيذ أهداف المحفظة وفق معايير الحوكمة الموحدة لـ IDG.',
+          highlights: ['الشركة الأم واستوديو المشاريع', 'حوكمة مؤسسية موحدة', 'تكامل معماري سيادي'],
+        },
+        {
+          id: 'faq-2',
+          category: 'infrastructure',
+          question: 'كيف تضمن IDG أمن وسيادة البيانات المؤسسية داخل العراق؟',
+          answer:
+            'يتم تخزين ومعالجة وتحليل جميع البيانات الحساسة داخل مراكز بيانات سيادية ضمن الحدود الجغرافية للعراق. نمنع تسريب البيانات خارجياً عبر معمارية Zero-Trust والتشفير المزدوج المتقدم (AES-256) وسجلات التدقيق غير القابلة للتعديل. لا تتم مشاركة أي بيانات مؤسسية عراقية مع خوادم عامة خارجية.',
+          highlights: ['سيادة البيانات محلياً', 'بروتوكول Zero-Trust', 'تشفير بمستويات سيادية'],
+        },
+        {
+          id: 'faq-3',
+          category: 'products',
+          question: 'ما هي نافذة العراق الموحدة للتجارة (Iraq NSW) وكيف تغير كفاءة المنافذ الحدودية؟',
+          answer:
+            'Iraq NSW هي مبادرة استراتيجية خاضعة لحوكمة IDG لربط وتوحيد الجمارك، الموانئ، الوزارات المعنية، والبنك المركزي في منصة تشغيلية واحدة. تعمل على تقليص زمن التخليص الجمركي ونقل البضائع من أسابيع إلى أقل من 48 ساعة مع ضمان الشفافية الكاملة للإيرادات العامة.',
+          highlights: ['توحيد المنافذ الحدودية', 'تقليص الزمن لأقل من 48 ساعة', 'شفافية الإيرادات العامة'],
+        },
+        {
+          id: 'faq-4',
+          category: 'infrastructure',
+          question: 'ما هي فلسفة IDG لتطبيق الذكاء الاصطناعي (Applied AI) في القطاع المؤسسي؟',
+          answer:
+            'نرفض استخدام الذكاء الاصطناعي كشعارات تسويقية عابرة؛ بل نطبقه كذكاء اصطناعي تطبيقي (Applied AI) موجه لحل مشكلات حقيقية ومثبتة. تتميز نماذجنا بالمعالجة اللغوية الدقيقة للغتين الكردية والعربية في الوثائق القانونية والتنظيمية، والكشف الآلي عن التناقضات المالية في المنافذ.',
+          highlights: ['حلول لمشكلات مثبتة', 'معالجة دقيقة للغتين الكردية والعربية', 'رفض الموضة التقنية العابرة'],
+        },
+        {
+          id: 'faq-5',
+          category: 'governance',
+          question: 'كيف يتم تطبيق آلية "المالك المسؤول" (Accountable Owner) في مشاريع IDG؟',
+          answer:
+            'لا يُطلق أي حل تقني قبل تحديد المشكلة المثبتة والمالك المسؤول عنها بدقة داخل الهيكل التنظيمي. كل مشروع له مسؤول محدد يضمن تحقيق النتائج والأمن والاستمرارية التشغيلية وفق مؤشرات أداء موثقة ومعتمدة.',
+          highlights: ['مسؤولية واضحة ومباشرة', 'المشكلة المثبتة قبل التقنية', 'معايير أداء قابلة للقياس'],
+        },
+        {
+          id: 'faq-6',
+          category: 'partnerships',
+          question: 'كيف يمكن للمؤسسات الحكومية والخاصة بدء شراكة استراتيجية مع IDG؟',
+          answer:
+            'تبدأ الشراكة مع IDG عبر دراسة الفجوات المؤسسية والطلب الرسمي. نعمل على نموذج الشراكات الاستراتيجية (PPP) وبناء القدرات طويلة الأجل مع اشتراط النقل الكامل للمعرفة والتكنولوجيا إلى الكوادر والفرق الوطنية.',
+          highlights: ['نقل كامل للمعرفة', 'شراكات استراتيجية طويلة الأجل', 'سيادة الكفاءات الوطنية'],
+        },
+      ],
+      stillHaveQuestions: 'هل لديك استفسارات إضافية حول الحوكمة أو المحفظة؟',
+      supportDesc: 'فريق التواصل المؤسسي في IDG جاهز للإجابة وتلبية المتطلبات الاستراتيجية.',
+      contactBtn: 'التواصل الرسمي مع فريق الحوكمة',
+    },
+    backToTop: 'العودة للأعلى',
     footer: {
       rights: '© ٢٠٢٦ بوابة العراق الرقمية (IDG). جميع حقوق المحفظة محفوظة.',
       parentDesc:
@@ -1821,6 +2009,19 @@ export const translations: Record<Language, TranslationData> = {
         careers: 'الوظائف',
         contact: 'التواصل الرسمي',
         security: 'سيادة البيانات والأمن',
+        faq: 'الأسئلة الشائعة',
+      },
+      newsletter: {
+        title: 'مركز المعلومات والتحديثات الدورية',
+        description:
+          'سجّل بريدك الإلكتروني المؤسسي لتلقي أحدث التقارير الاستراتيجية والتحليلات وتحديثات البنية التحتية الرقمية من IDG.',
+        placeholder: 'البريد الإلكتروني المؤسسي (مثال: name@institution.gov.iq)',
+        submitBtn: 'الاشتراك في التحديثات',
+        submittingBtn: 'جارٍ تسجيل البريد...',
+        successTitle: 'تم التسجيل بنجاح',
+        successMsg: 'شكراً لك، تم تسجيل بريدك المؤسسي بنجاح. سيتم إرسال التقارير الاستراتيجية والتحديثات الدورية إلى عنوانك.',
+        notice: 'ملاحظة: هذه القناة مخصصة للجهات المؤسسية والرسمية ومحمية وفق أعلى معايير الخصوصية.',
+        invalidEmail: 'يرجى إدخال عنوان بريد إلكتروني مؤسسي صالح.',
       },
     },
   },
@@ -1838,6 +2039,7 @@ export const translations: Record<Language, TranslationData> = {
       vision: 'Vision 2035',
       careers: 'Careers',
       contact: 'Contact Us',
+      faq: 'FAQ',
     },
     hero: {
       headline: 'Transforming complexity into reliable operational capability.',
@@ -2571,6 +2773,74 @@ export const translations: Record<Language, TranslationData> = {
         resetBtn: 'Send Another Message',
       },
     },
+    faq: {
+      badge: 'Frequently Asked Questions & Governance Briefs',
+      heading: 'Stakeholder Frequently Asked Questions',
+      subheading:
+        'Official, evidence-led clarifications on corporate governance, sovereign digital infrastructure, data privacy, and portfolio architecture at Iraq Digital Gateway (IDG).',
+      searchPlaceholder: 'Search governance, infrastructure, products, or partnership inquiries...',
+      allCategory: 'All Inquiries',
+      categories: {
+        governance: 'Governance & Parent Company',
+        infrastructure: 'Infrastructure & Data Sovereignty',
+        products: 'Portfolio & Products (NSW)',
+        partnerships: 'Partnership Models & Delivery',
+      },
+      items: [
+        {
+          id: 'faq-1',
+          category: 'governance',
+          question: 'What is IDG’s role as the sovereign parent company relative to products like AI Gate Iraq and ZaNa Acadime?',
+          answer:
+            'IDG is the sovereign parent technology company and venture studio. Portfolio products such as "AI Gate Iraq" (Product 001), "ZaNa Acadime", and "Green Belt" are dedicated portfolio assets governed directly by IDG. Products are never standalone parent entities; they operate as specialized technical platforms advancing national institutional capability under IDG’s unified architecture and sovereign oversight.',
+          highlights: ['Sovereign Parent & Venture Studio', 'Governed Portfolio Assets', 'Unified Architecture'],
+        },
+        {
+          id: 'faq-2',
+          category: 'infrastructure',
+          question: 'How does IDG guarantee institutional cybersecurity and data sovereignty within Iraq?',
+          answer:
+            'All sensitive institutional data is hosted, processed, and maintained inside sovereign data centers within Iraq’s national borders. Cross-border data leakage is strictly barred using Zero-Trust network architecture, AES-256 dual encryption, and immutable audit trails compliant with ISO 27001 standards. No national institutional records are ever exposed to external public clouds.',
+          highlights: ['In-Country Data Hosting', 'Zero-Trust Protocol', 'Sovereign Cryptographic Standards'],
+        },
+        {
+          id: 'faq-3',
+          category: 'products',
+          question: 'What is the Iraq National Single Window (Iraq NSW) and how does it transform trade corridors?',
+          answer:
+            'Iraq NSW is a strategic digital initiative governed by IDG to interconnect customs, maritime ports, land border terminals, regulatory ministries, and the Central Bank within a single interoperable environment. It compresses container clearance cycles from weeks to under 48 hours while enforcing total revenue transparency and eliminating paper tampering.',
+          highlights: ['Unified Border Corridors', 'Under 48-Hour Clearance', 'Public Revenue Transparency'],
+        },
+        {
+          id: 'faq-4',
+          category: 'infrastructure',
+          question: 'What is IDG’s philosophy on deploying Applied AI in Iraqi institutional sectors?',
+          answer:
+            'IDG explicitly rejects speculative AI hype and short-term marketing trends. We deploy Applied AI engineered around verified problems: fine-tuned Kurdish (Sorani) and Arabic natural language models for complex regulatory records, and automated algorithmic auditing of manifest discrepancies across border corridors.',
+          highlights: ['Proven Problem Formulation', 'Kurdish & Arabic Natural Language Tuning', 'No Speculative Hype'],
+        },
+        {
+          id: 'faq-5',
+          category: 'governance',
+          question: 'How is the "Accountable Owner" principle enforced across IDG initiatives?',
+          answer:
+            'No technical solution is authorized without first identifying a documented problem and a designated accountable owner. Every initiative has a named executive responsible for operational impact, security enforcement, and long-term continuity measured against quantifiable governance KPIs.',
+          highlights: ['Designated Accountable Owner', 'Evidence Precedes Solutions', 'Measurable Impact Metrics'],
+        },
+        {
+          id: 'faq-6',
+          category: 'partnerships',
+          question: 'How can governmental and private entities initiate a strategic partnership with IDG?',
+          answer:
+            'Partnerships initiate through rigorous institutional gap assessments and formal inter-agency protocols. We structure public-private partnerships (PPP) focused on long-term capacity building, with mandatory knowledge transfer ensuring national talent retains full operational sovereignty without external vendor lock-in.',
+          highlights: ['Full Knowledge Transfer', 'Long-Term Public-Private Partnerships', 'Sovereign National Talent'],
+        },
+      ],
+      stillHaveQuestions: 'Have further questions on governance or digital infrastructure?',
+      supportDesc: 'IDG’s Governance and Institutional Relations taskforce is available to address formal stakeholder inquiries.',
+      contactBtn: 'Contact Governance Taskforce',
+    },
+    backToTop: 'Back to Top',
     footer: {
       rights: '© 2026 Iraq Digital Gateway (IDG). All portfolio rights reserved.',
       parentDesc:
@@ -2582,6 +2852,19 @@ export const translations: Record<Language, TranslationData> = {
         careers: 'Careers',
         contact: 'Contact Us',
         security: 'Data Sovereignty & Security',
+        faq: 'FAQ',
+      },
+      newsletter: {
+        title: 'Institutional Briefs & Periodic Updates',
+        description:
+          'Subscribe your institutional email to receive periodic IDG governance reports, strategic briefs, and digital infrastructure milestones.',
+        placeholder: 'Institutional email address (e.g. name@entity.gov.iq)',
+        submitBtn: 'Subscribe to Updates',
+        submittingBtn: 'Registering Email...',
+        successTitle: 'Successfully Registered',
+        successMsg: 'Thank you. Your institutional address has been recorded. Periodic executive briefs will be dispatched to this inbox.',
+        notice: 'Note: Exclusively intended for official and institutional stakeholders under strict privacy governance.',
+        invalidEmail: 'Please enter a valid institutional email address.',
       },
     },
   },

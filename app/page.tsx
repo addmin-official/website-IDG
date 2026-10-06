@@ -12,6 +12,9 @@ import Stakeholders from '@/components/Stakeholders';
 import Vision2035 from '@/components/Vision2035';
 import Careers from '@/components/Careers';
 import ContactSection from '@/components/ContactSection';
+import FAQ from '@/components/FAQ';
+import ScrollProgressBar from '@/components/ScrollProgressBar';
+import BackToTop from '@/components/BackToTop';
 import ProductModal from '@/components/ProductModal';
 import ContactModal from '@/components/ContactModal';
 import Footer from '@/components/Footer';
@@ -48,6 +51,9 @@ export default function Home() {
       className={`min-h-screen bg-slate-50 text-slate-900 ${isRtl ? 'text-right' : 'text-left'} transition-all`}
       id="idg-app-root"
     >
+      {/* Viewport Scroll Progress Bar */}
+      <ScrollProgressBar isRtl={isRtl} />
+
       {/* Official Corporate Navigation */}
       <Navbar
         lang={lang}
@@ -97,10 +103,20 @@ export default function Home() {
 
         {/* 9. Contact Us Form & Inquiries Section */}
         <ContactSection t={t} isRtl={isRtl} />
+
+        {/* 10. Frequently Asked Questions (FAQ) & Governance Briefs */}
+        <FAQ
+          t={t}
+          isRtl={isRtl}
+          onOpenContact={() => setIsContactOpen(true)}
+        />
       </main>
 
-      {/* Corporate Footer */}
-      <Footer t={t} onOpenContact={() => setIsContactOpen(true)} />
+      {/* Corporate Footer with Institutional Newsletter */}
+      <Footer t={t} isRtl={isRtl} onOpenContact={() => setIsContactOpen(true)} />
+
+      {/* Floating Back to Top Navigation Button */}
+      <BackToTop label={t.backToTop} />
 
       {/* Deep Dossier Modal for Governed Portfolio Assets & Iraq NSW */}
       <ProductModal

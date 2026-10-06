@@ -195,6 +195,8 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
                 type="text"
                 name="name"
                 required
+                autoComplete="name"
+                spellCheck={false}
                 suppressHydrationWarning
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
@@ -206,6 +208,8 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
                 type="email"
                 name="email"
                 required
+                autoComplete="email"
+                spellCheck={false}
                 suppressHydrationWarning
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -219,6 +223,8 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               type="text"
               name="subject"
               required
+              autoComplete="off"
+              spellCheck={false}
               suppressHydrationWarning
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
@@ -239,6 +245,8 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
                 type="text"
                 name="problem"
                 required
+                autoComplete="off"
+                spellCheck={false}
                 suppressHydrationWarning
                 id="contact-input-proven-problem"
                 value={provenProblem}
@@ -252,6 +260,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               name="message"
               required
               rows={5}
+              spellCheck={false}
               suppressHydrationWarning
               value={message}
               onChange={(e) => setMessage(e.target.value)}

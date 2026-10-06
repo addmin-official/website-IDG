@@ -3,109 +3,260 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { TranslationData } from '@/lib/translations';
+import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface FooterProps {
   t?: TranslationData;
+  isRtl?: boolean;
   onOpenContact?: () => void;
 }
 
-export default function Footer({ t, onOpenContact }: FooterProps = {}) {
+export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps = {}) {
   const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newsletterEmail.trim()) return;
+    const cleanEmail = newsletterEmail.trim();
+    if (!cleanEmail) return;
+
+    // Simple email regex validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      setErrorMsg(
+        t?.footer?.newsletter?.invalidEmail || 'تکایە ئیمەیڵێکی فەرمی و دروست بنووسە.'
+      );
+      return;
+    }
+
+    setErrorMsg('');
+    setIsSubmitting(true);
+
+    // Simulate reliable capture of institutional email
+    await new Promise((resolve) => setTimeout(resolve, 600));
+
+    setIsSubmitting(false);
     setIsSubscribed(true);
   };
 
+  const resetForm = () => {
+    setNewsletterEmail('');
+    setIsSubscribed(false);
+    setErrorMsg('');
+  };
+
+  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
+
   return (
-    <footer className="bg-slate-900 text-slate-300 py-12 md:py-16 border-t border-slate-800" dir="rtl" id="corporate-footer">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+    <footer
+      className="bg-slate-950 text-slate-300 py-14 md:py-18 border-t border-slate-800 relative"
+      dir={isRtl ? 'rtl' : 'ltr'}
+      id="corporate-footer"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-14">
           
-          {/* Brand & Vision */}
-          <div className="lg:col-span-1" id="footer-brand-section">
-            <h3 className="text-2xl font-bold text-white mb-4">IDG</h3>
-            <p className="text-sm text-slate-400 leading-relaxed mb-6">
-              دەروازەی دیجیتاڵیی عێراق (Iraq Digital Gateway). ستۆدیۆیەکی بنیاتنانی دامەزراوەیی بۆ گۆڕینی ئاڵۆزییەکان بۆ توانای دیجیتاڵیی پارێزراو.
+          {/* Brand & Vision (4 cols) */}
+          <div className="lg:col-span-4" id="footer-brand-section">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-2xl font-black text-white tracking-tight">IDG</span>
+              <span className="px-2 py-0.5 text-[11px] font-semibold bg-blue-950 text-blue-400 border border-blue-800/80 rounded-md">
+                {t?.parentBadge || 'کۆمپانیای دایک'}
+              </span>
+            </div>
+            <p className="text-sm text-slate-400 leading-relaxed mb-6 font-normal">
+              {t?.footer?.parentDesc ||
+                'دەروازەی دیجیتاڵیی عێراق (IDG). ستۆدیۆیەکی سەروەریی تەکنەلۆژی بۆ گۆڕینی ئاڵۆزییەکان بۆ توانای دیجیتاڵیی دامەزراوەیی لەسەر بنەمای حوکمڕانی و ئاسایشی زانیاری.'}
             </p>
+            <div className="flex items-center gap-2 text-xs text-slate-400">
+              <Shield className="w-4 h-4 text-blue-400" />
+              <span>{t?.footer?.links?.security || 'سەروەریی زانیاری و ئاسایش'}</span>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div id="footer-quick-links">
-            <h4 className="text-lg font-bold text-white mb-4">بەستەرە سەرەکییەکان</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/" className="hover:text-blue-400 transition" id="footer-link-home">سەرەکی</Link></li>
-              <li><Link href="/#portfolio" className="hover:text-blue-400 transition" id="footer-link-portfolio">پۆرتفۆلیۆ</Link></li>
-              <li><Link href="/#governance" className="hover:text-blue-400 transition" id="footer-link-governance">حوکمڕانی</Link></li>
-              <li><Link href="/#stakeholders" className="hover:text-blue-400 transition" id="footer-link-stakeholders">لایەنە ئامانجدارەکان</Link></li>
-            </ul>
-          </div>
-
-          {/* Corporate Links */}
-          <div id="footer-corporate-links">
-            <h4 className="text-lg font-bold text-white mb-4">کۆمپانیا</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/#about" className="hover:text-blue-400 transition" id="footer-link-about">دەربارەی ئێمە</Link></li>
-              <li><Link href="/#careers" className="hover:text-blue-400 transition" id="footer-link-careers">کارکردن (Careers)</Link></li>
+          {/* Quick Links (2 cols) */}
+          <div className="lg:col-span-2" id="footer-quick-links">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-slate-800 pb-2">
+              {isRtl ? 'بەستەرە سەرەکییەکان' : 'Navigation'}
+            </h4>
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <Link
-                  href="/#contact"
-                  onClick={() => {
-                    if (onOpenContact) onOpenContact();
-                  }}
-                  className="hover:text-blue-400 transition"
-                  id="footer-link-contact"
-                >
-                  پەیوەندیی فەرمی
+                <Link href="/" className="hover:text-blue-400 transition" id="footer-link-home">
+                  {t?.nav?.home || 'سەرەکی'}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#portfolio" className="hover:text-blue-400 transition" id="footer-link-portfolio">
+                  {t?.nav?.portfolio || 'پۆرتفۆلیۆ'}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#governance" className="hover:text-blue-400 transition" id="footer-link-governance">
+                  {t?.nav?.governance || 'حوکمڕانی'}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#faq" className="hover:text-blue-400 transition text-blue-300 font-medium" id="footer-link-faq">
+                  {t?.footer?.links?.faq || t?.nav?.faq || 'پرسیارە باوەکان (FAQ)'}
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div id="footer-newsletter-section">
-            <h4 className="text-lg font-bold text-white mb-4">ناوەندی زانیاری</h4>
-            <p className="text-xs text-slate-400 mb-4">
-              ئاگاداری دوایین ڕاپۆرتە ستراتیژی و پێشڤەچوونەکانی IDG بە.
-            </p>
-            {/* لێرەشدا suppressHydrationWarning مان داناوە بۆ ڕێگریکردن لە کێشەی وەرگێڕ */}
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2" suppressHydrationWarning id="footer-newsletter-form">
-              <input 
-                type="email" 
-                required
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="ئیمەیڵی فەرمی..." 
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
-                id="footer-newsletter-email"
-                suppressHydrationWarning
-              />
-              <button 
-                type="submit" 
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2 rounded-lg transition cursor-pointer"
-                id="footer-newsletter-submit"
-              >
-                {isSubscribed ? 'تۆمار کرا ✓' : 'بەشداریکردن'}
-              </button>
-            </form>
+          {/* Corporate Links (2 cols) */}
+          <div className="lg:col-span-2" id="footer-corporate-links">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-slate-800 pb-2">
+              {isRtl ? 'دامەزراوەیی' : 'Institutional'}
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link href="/#about" className="hover:text-blue-400 transition" id="footer-link-about">
+                  {t?.footer?.links?.about || 'دەربارەی ئێمە'}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#principles" className="hover:text-blue-400 transition" id="footer-link-principles">
+                  {t?.footer?.links?.principles || 'بنەماکانی کۆمپانیا'}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#careers" className="hover:text-blue-400 transition" id="footer-link-careers">
+                  {t?.footer?.links?.careers || 'هەلی کار'}
+                </Link>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (onOpenContact) onOpenContact();
+                  }}
+                  className="hover:text-blue-400 transition text-start cursor-pointer"
+                  id="footer-link-contact"
+                >
+                  {t?.footer?.links?.contact || 'پەیوەندیی فەرمی'}
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Newsletter Subscription (4 cols) */}
+          <div className="lg:col-span-4" id="footer-newsletter-section">
+            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <Mail className="w-4 h-4 text-blue-400" />
+                <h4 className="text-sm font-bold text-white tracking-wide">
+                  {t?.footer?.newsletter?.title || 'ناوەندی زانیاری و نوێکارییە خولییەکان'}
+                </h4>
+              </div>
+              
+              <p className="text-xs text-slate-400 mb-4 leading-relaxed">
+                {t?.footer?.newsletter?.description ||
+                  'ئیمەیڵی دامەزراوەیی خۆت تۆمار بکە بۆ وەرگرتنی ڕاپۆرتە فەرمییەکان، شیارییە ستراتیژییەکان، و پێشکەوتنەکانی ژێرخانی دیجیتاڵیی IDG.'}
+              </p>
+
+              {isSubscribed ? (
+                <div
+                  className="bg-blue-950/70 border border-blue-800/80 rounded-xl p-4 text-start animate-in fade-in duration-300"
+                  id="footer-newsletter-success"
+                >
+                  <div className="flex items-center gap-2 text-blue-400 font-bold text-xs mb-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
+                    <span>{t?.footer?.newsletter?.successTitle || 'بە سەرکەوتوویی تۆمار کرا'}</span>
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                    {t?.footer?.newsletter?.successMsg ||
+                      'سوپاس، ئیمەیڵی دامەزراوەییەکەت تۆمار کرا. پوختەی ڕاپۆرتەکان بۆ ناونیشانەکەت دەنێردرێن.'}
+                  </p>
+                  <button
+                    onClick={resetForm}
+                    className="text-[11px] font-semibold text-blue-400 hover:text-blue-300 underline underline-offset-2 cursor-pointer"
+                    id="footer-newsletter-reset"
+                  >
+                    {isRtl ? 'تۆمارکردنی ئیمەیڵێکی تر' : 'Register another email'}
+                  </button>
+                </div>
+              ) : (
+                <form
+                  onSubmit={handleNewsletterSubmit}
+                  className="space-y-2.5"
+                  suppressHydrationWarning
+                  id="footer-newsletter-form"
+                >
+                  <div className="relative">
+                    <input
+                      type="email"
+                      required
+                      autoComplete="off"
+                      spellCheck={false}
+                      value={newsletterEmail}
+                      onChange={(e) => {
+                        setNewsletterEmail(e.target.value);
+                        if (errorMsg) setErrorMsg('');
+                      }}
+                      placeholder={
+                        t?.footer?.newsletter?.placeholder ||
+                        'ئیمەیڵی دامەزراوەیی (name@institution.gov.iq)'
+                      }
+                      className={`w-full bg-slate-950 border rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
+                        errorMsg ? 'border-red-500' : 'border-slate-700 focus:border-blue-500'
+                      }`}
+                      id="footer-newsletter-email"
+                      suppressHydrationWarning
+                    />
+                  </div>
+
+                  {errorMsg && (
+                    <p className="text-[11px] text-red-400 font-medium" id="footer-newsletter-error">
+                      {errorMsg}
+                    </p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800/60 text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-md hover:shadow-blue-900/30 cursor-pointer"
+                    id="footer-newsletter-submit"
+                  >
+                    <span>
+                      {isSubmitting
+                        ? t?.footer?.newsletter?.submittingBtn || 'تۆمارکردنی ئیمەیڵ...'
+                        : t?.footer?.newsletter?.submitBtn || 'بەشداریکردن لە نوێکارییەکان'}
+                    </span>
+                    {!isSubmitting && <ArrowIcon className="w-3.5 h-3.5" />}
+                  </button>
+
+                  <p className="text-[10px] text-slate-400 pt-1 leading-normal">
+                    {t?.footer?.newsletter?.notice ||
+                      'تێبینی: ئەم کەناڵە تەنها بۆ ئیمەیڵە فەرمی و دامەزراوەیییەکان بەردەستە و پارێزراوە.'}
+                  </p>
+                </form>
+              )}
+            </div>
           </div>
 
         </div>
 
-        {/* Copyright */}
-        <div className="pt-8 border-t border-slate-800 text-center md:text-right flex flex-col md:flex-row justify-between items-center gap-4" id="footer-copyright-section">
-          <p className="text-xs text-slate-500" suppressHydrationWarning id="footer-copyright-text">
-            © {new Date().getFullYear()} دەروازەی دیجیتاڵیی عێراق (IDG). هەموو مافەکان پارێزراون.
+        {/* Copyright & Sub-links */}
+        <div
+          className="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400"
+          id="footer-copyright-section"
+        >
+          <p suppressHydrationWarning id="footer-copyright-text">
+            {t?.footer?.rights ||
+              '© ٢٠٢٦ دەروازەی دیجیتاڵیی عێراق (IDG). مافی خاوەندارێتیی پۆرتفۆلیۆ پارێزراوە.'}
           </p>
-          <div className="flex gap-4 text-xs text-slate-500">
-            <span className="cursor-pointer hover:text-white transition" id="footer-link-terms">مەرجەکانی بەکارهێنان</span>
-            <span className="cursor-pointer hover:text-white transition" id="footer-link-privacy">سیاسەتی تایبەتمەندی</span>
+          <div className="flex gap-6">
+            <span className="cursor-pointer hover:text-slate-300 transition" id="footer-link-terms">
+              {isRtl ? 'مەرجەکانی بەکارهێنان' : 'Terms of Service'}
+            </span>
+            <span className="cursor-pointer hover:text-slate-300 transition" id="footer-link-privacy">
+              {isRtl ? 'سیاسەتی پاراستنی زانیاری' : 'Data Privacy Policy'}
+            </span>
           </div>
         </div>
       </div>
     </footer>
   );
 }
-

@@ -60,6 +60,9 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             <a href="#careers" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-careers">
               {t.nav.careers}
             </a>
+            <a href="#faq" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-faq">
+              {t.nav.faq}
+            </a>
             <a href="#contact" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-contact-scroll">
               {t.nav.contact}
             </a>
@@ -227,6 +230,14 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               id="mobile-link-careers"
             >
               {t.nav.careers}
+            </a>
+            <a
+              href="#faq"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition font-medium text-blue-700"
+              id="mobile-link-faq"
+            >
+              {t.nav.faq}
             </a>
             <a
               href="#contact"
