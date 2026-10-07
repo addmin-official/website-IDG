@@ -11,10 +11,6 @@ export default function GovernancePage() {
 
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-slate-50">
-      <title>{pageTitle}</title>
-      <meta name="description" content={pageDescription} />
-      <meta property="og:title" content={pageTitle} />
-      <meta property="og:description" content={pageDescription} />
       <Navbar lang={lang} onLanguageChange={() => {}} t={t} onOpenContact={() => {}} />
       <main id="main-content" className="pt-20">
         <Governance t={t} isRtl={isRtl} />
