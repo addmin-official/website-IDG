@@ -195,144 +195,217 @@ export default function ProductMockups({ type, lang }: MockupProps) {
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
             <span className="font-mono text-slate-400 ms-2 text-[11px]">
-              zana.iq/enterprise-learning [IDG-SOV-02]
+              zana.iq/student-app [K12-SORANI]
             </span>
           </div>
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1 bg-purple-950 text-purple-400 border border-purple-800 px-2.5 py-0.5 rounded text-[11px] font-mono">
               <GraduationCap className="w-3 h-3" />
-              <span>{lang === 'ku' ? 'مامۆستای ژیر بە زمانی دایک' : lang === 'ar' ? 'معلم ذكي باللغة الأم' : 'Native Language AI Tutor'}</span>
+              <span>
+                {lang === 'ku'
+                  ? 'زانا — هاوڕێی زیرەکی فێربوونی تۆ'
+                  : lang === 'ar'
+                  ? 'زانا — رفيقك الذكي للتعلم'
+                  : 'ZaNa — Your Smart Learning Companion'}
+              </span>
             </span>
-            <span className="inline-flex items-center gap-1 bg-blue-950 text-blue-400 border border-blue-800 px-2 py-0.5 rounded text-[11px] font-mono">
-              <span>ACTIVE</span>
+            <span className="inline-flex items-center gap-1 bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded text-[11px] font-mono">
+              <ShieldCheck className="w-3 h-3" />
+              <span>{lang === 'ku' ? '٣ چینی پاراستن' : lang === 'ar' ? '٣ طبقات حماية' : '3-Layer Protected'}</span>
             </span>
           </div>
         </div>
 
-        {/* Learning Console Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-          {/* Main Course & Simulation Track */}
-          <div className="md:col-span-2 bg-slate-900/90 rounded-lg p-4 border border-slate-800 flex flex-col justify-between">
+        {/* Key Metrics Bar */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 my-4">
+          <div className="bg-slate-900/90 border border-slate-800 p-2.5 rounded-lg text-center">
+            <span className="text-[10px] text-slate-400 block font-medium">
+              {lang === 'ku' ? 'لاپەڕەی کتێبی فەرمی' : lang === 'ar' ? 'صفحات الكتاب المعتمد' : 'Textbook Pages'}
+            </span>
+            <span className="text-base sm:text-lg font-extrabold text-blue-400 font-mono">
+              {lang === 'ku' ? '٣٧١ لاپەڕە' : lang === 'ar' ? '٣٧١ صفحة' : '371 Pages'}
+            </span>
+            <span className="text-[9px] text-slate-500 block">
+              {lang === 'ku' ? 'کیمیای پۆلی ١٢' : lang === 'ar' ? 'كيمياء الصف ١٢' : 'Grade 12 Chemistry'}
+            </span>
+          </div>
+          <div className="bg-slate-900/90 border border-slate-800 p-2.5 rounded-lg text-center">
+            <span className="text-[10px] text-slate-400 block font-medium">
+              {lang === 'ku' ? 'بەندەکانی پرۆگرام' : lang === 'ar' ? 'فصول المنهج' : 'Curriculum Chapters'}
+            </span>
+            <span className="text-base sm:text-lg font-extrabold text-purple-400 font-mono">
+              {lang === 'ku' ? '١٢ بەند' : lang === 'ar' ? '١٢ فصلاً' : '12 Chapters'}
+            </span>
+            <span className="text-[9px] text-slate-500 block">
+              {lang === 'ku' ? 'بە کوردیی سۆرانی' : lang === 'ar' ? 'بالكردية السورانية' : 'Sorani Kurdish'}
+            </span>
+          </div>
+          <div className="bg-slate-900/90 border border-slate-800 p-2.5 rounded-lg text-center">
+            <span className="text-[10px] text-slate-400 block font-medium">
+              {lang === 'ku' ? 'تاقیکردنەوە و ڕاهێنان' : lang === 'ar' ? 'الاختبارات التفاعلية' : 'Adaptive Quizzes'}
+            </span>
+            <span className="text-base sm:text-lg font-extrabold text-emerald-400 font-mono">
+              {lang === 'ku' ? '١٦٣ تاقیکردنەوە' : lang === 'ar' ? '١٦٣ اختباراً' : '163 Tests'}
+            </span>
+            <span className="text-[9px] text-slate-500 block">
+              {lang === 'ku' ? 'تۆمارکراو لە D1' : lang === 'ar' ? 'محفوظ في D1' : 'Synced to D1'}
+            </span>
+          </div>
+          <div className="bg-slate-900/90 border border-slate-800 p-2.5 rounded-lg text-center">
+            <span className="text-[10px] text-slate-400 block font-medium">
+              {lang === 'ku' ? 'سیستەمی پاراستن' : lang === 'ar' ? 'طبقات الحماية' : 'Security Defense'}
+            </span>
+            <span className="text-base sm:text-lg font-extrabold text-cyan-400 font-mono">
+              {lang === 'ku' ? '٣ چین' : lang === 'ar' ? '٣ طبقات' : '3-Layer'}
+            </span>
+            <span className="text-[9px] text-slate-500 block">
+              UI + Route + Server
+            </span>
+          </div>
+        </div>
+
+        {/* Learning Console Grid: Student Q&A Demo + Parent Report & Progress */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {/* Main: Student asking AI Demo */}
+          <div className="lg:col-span-2 bg-slate-900/90 rounded-lg p-4 border border-slate-800 flex flex-col justify-between space-y-3">
             <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+              <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-800/80">
+                <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
                   <BookOpen className="w-4 h-4 text-purple-400" />
                   <span>
                     {lang === 'ku'
-                      ? 'بەرنامەی ڕاهێنانی دامەزراوەیی: بەڕێوەبردنی ژێرخانی سەربەخۆ'
+                      ? 'دیالۆگی قوتابی لەگەڵ مامۆستای زیرەکی زانا (وەڵامدانەوە لە کتێبی فەرمی)'
                       : lang === 'ar'
-                      ? 'المسار التدريبي المؤسسي: إدارة البنى التحتية السيادية'
-                      : 'Institutional Track: Sovereign Infrastructure & Systems Architecture'}
+                      ? 'حوار الطالب مع معلم زانا الذكي (إجابة حصرية من الكتاب المدرسي)'
+                      : 'Student Q&A with ZaNa AI Tutor (Grounded in Official Textbook)'}
                   </span>
                 </span>
-                <span className="text-[10px] font-mono bg-purple-900/50 text-purple-300 px-2 py-0.5 rounded">
-                  MOD-04/12
+                <span className="text-[10px] font-mono bg-blue-900/50 text-blue-300 px-2 py-0.5 rounded">
+                  {lang === 'ku' ? 'کیمیا - بەندی ٤' : lang === 'ar' ? 'الكيمياء - الفصل ٤' : 'Chemistry - Ch 4'}
                 </span>
               </div>
 
-              {/* Interactive Module Window */}
-              <div className="p-3 rounded bg-slate-950/90 border border-slate-800 space-y-2 text-xs mb-3">
-                <div className="flex justify-between items-center text-[11px] text-slate-400 border-b border-slate-800 pb-1.5">
-                  <span className="font-bold text-slate-200">
-                    {lang === 'ku' ? 'وانەی ڕۆژ: دیزاینی بنکەدراوەی مۆڵەتپێدراو (PostgreSQL Cluster HA)' : lang === 'ar' ? 'الدرس النشط: تصميم العناقيد المقاومة للأعطال (High Availability)' : 'Active Lab: High Availability Sovereign Clusters'}
-                  </span>
-                  <span className="text-emerald-400 font-mono">٨٥٪ تەواوکراوە</span>
+              {/* Chat Demo Interaction */}
+              <div className="space-y-3 text-xs">
+                {/* Student Question */}
+                <div className="flex items-start gap-2.5">
+                  <div className="w-6 h-6 rounded-full bg-slate-800 text-slate-300 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+                    {lang === 'ku' ? 'ق' : lang === 'ar' ? 'ط' : 'S'}
+                  </div>
+                  <div className="bg-slate-800/80 p-2.5 rounded-2xl rounded-tr-none text-slate-200 max-w-[85%] border border-slate-700/60 leading-relaxed text-[11px]">
+                    <span className="font-bold text-slate-400 block text-[10px] mb-0.5">
+                      {lang === 'ku' ? 'قوتابی (شەرم نەکردن لە پرسیار):' : lang === 'ar' ? 'الطالب (بدون تردد أو إحراج):' : 'Student inquiry:'}
+                    </span>
+                    {lang === 'ku'
+                      ? 'مامۆستا زانا، جیاوازی چییە لە نێوان هاوسەنگیی هاوجنس و ناهۆجنس بەپێی یاسای لۆشاتلییە؟ کەمێک بە سادەیی بۆم ڕوون بکەرەوە.'
+                      : lang === 'ar'
+                      ? 'أستاذ زانا، ما هو الفرق بين الاتزان المتجانس وغير المتجانس وفق قاعدة لوشاتيليه؟ وضحها لي بأسلوب مبسط من الكتاب.'
+                      : 'Teacher ZaNa, what is the exact difference between homogeneous and heterogeneous equilibria under Le Chatelier’s principle from our textbook? Please explain simply.'}
+                  </div>
                 </div>
-                <div className="p-2 bg-slate-900 rounded font-mono text-[11px] text-emerald-300 dir-ltr text-left">
-                  <code>
-                    $ idg-cluster deploy --region=iq-central-01 --redundancy=3<br />
-                    ✔ Provisioning localized nodes: verified.<br />
-                    ✔ Zero egress data leakage detected. Status: SECURE.
-                  </code>
-                </div>
-              </div>
 
-              {/* Intelligent Tutor Feedback */}
-              <div className="p-2.5 rounded bg-blue-950/40 border border-blue-800/60 text-blue-200 text-xs flex items-start gap-2">
-                <Sparkles className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                <div className="text-[11px] leading-relaxed">
-                  <span className="font-bold block text-blue-300 mb-0.5">
-                    {lang === 'ku' ? 'ڕاوێژکاری ژیری دەستکردی زانا:' : lang === 'ar' ? 'ملاحظة المعلم الذكي لـ زانا:' : 'ZaNa AI Tutor Guidance:'}
-                  </span>
-                  {lang === 'ku'
-                    ? 'ڕێکخستنەکانت سەرکەوتووانە ئەنجامدران. تەلارسازییەکە ڕێگری دەکات لە تێپەڕبوونی داتای فەرمانگە بە سێرڤەری نافەرمیدا. ئامادەیت بۆ تاقیکردنەوەی دەستپێشخەریی خێرایی.'
-                    : lang === 'ar'
-                    ? 'اكتمل تهيئة الإعداد بنجاح. البنية المعمارية تضمن عدم خروج البيانات الحساسة خارج الشبكة الوطنية. يمكنك الانتقال للاختبار العملي.'
-                    : 'Cluster deployment validated. All parameters satisfy institutional data residency guidelines with zero cross-border telemetry.'}
+                {/* AI Tutor Answer Grounded in Textbook */}
+                <div className="flex items-start gap-2.5">
+                  <div className="w-6 h-6 rounded-full bg-purple-700 text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5 shadow-sm">
+                    <Sparkles className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="bg-purple-950/40 p-3 rounded-2xl rounded-tl-none text-slate-100 max-w-[90%] border border-purple-800/60 leading-relaxed text-[11px] space-y-1.5">
+                    <div className="flex items-center justify-between text-[10px] text-purple-300 font-medium">
+                      <span>{lang === 'ku' ? 'وەڵامی زانا (دەرهێنراو لە لاپەڕە ١١٤ی کتێب):' : lang === 'ar' ? 'إجابة زانا (مقتبسة من الصفحة ١١٤ بالكتاب):' : 'ZaNa AI Tutor (Sourced from Textbook p. 114):'}</span>
+                      <span className="font-mono text-emerald-400 text-[9px]">✔ مۆڵەتپێدراو لە پرۆگرام</span>
+                    </div>
+                    <p className="text-slate-200 text-[11px]">
+                      {lang === 'ku'
+                        ? 'لە هاوسەنگیی هاوجنسدا هەموو ماددە کارلێککردوو و بەرهەمهاتووەکان لە یەک دۆخی فیزیکیدان (بۆ نموونە هەموویان گازن)، بەڵام لە ناهۆجنسدا زیاتر لە دۆخێک هەیە. لە یاسای لۆشاتلییەدا ماددە ڕەق و شلە پەتییەکان لە هاوکێشەی هاوسەنگیدا ناژمێردرێن چون خەستییان نەگۆڕە.'
+                        : lang === 'ar'
+                        ? 'في الاتزان المتجانس تكون جميع المواد المتفاعلة والناتجة في حالة فيزيائية واحدة (كالغازات)، بينما في غير المتجانس توجد أكثر من حالة. ووفق قاعدة لوشاتيليه لا تُحسب المواد الصلبة والسائلة النقية لثبات تركيزها.'
+                        : 'In homogeneous equilibrium, all reactants and products share the same physical phase (e.g. all gases). In heterogeneous equilibrium, multiple phases coexist. Under Le Chatelier’s principle, pure solids and liquids are omitted because their concentrations remain constant.'}
+                    </p>
+                    <div className="p-1.5 bg-slate-950/70 rounded border border-purple-900/60 flex items-center justify-between text-[10px] font-mono text-purple-300">
+                      <span>{lang === 'ku' ? 'تاقیکردنەوەی خێرا: ئایا ئامادەیت بۆ پرسیارێک دەربارەی پەستان؟' : lang === 'ar' ? 'اختبار سريع: هل أنت جاهز لسؤال تطبيقي عن تأثير الضغط؟' : 'Quick Check: Ready for an adaptive question on pressure?'}</span>
+                      <span className="text-emerald-400 cursor-pointer font-bold">بەڵێ / Yes</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Skill metrics bottom bar */}
-            <div className="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-slate-800 text-[11px] font-mono text-center">
-              <div className="bg-slate-950 p-2 rounded border border-slate-800/60">
-                <span className="text-slate-400 block text-[10px]">{lang === 'ku' ? 'کادیرانی ڕاهێنراو' : lang === 'ar' ? 'الكوادر المؤهلة' : 'Trained Staff'}</span>
-                <span className="text-purple-400 font-bold">1,840+</span>
+            {/* Differentiators vs generic AI */}
+            <div className="pt-3 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] font-mono text-slate-300">
+              <div className="flex items-center gap-1 bg-slate-950 p-1.5 rounded border border-slate-800">
+                <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                <span>{lang === 'ku' ? 'قوتابی دەناسێت' : lang === 'ar' ? 'يفهم مستوى الطالب' : 'Knows Student'}</span>
               </div>
-              <div className="bg-slate-950 p-2 rounded border border-slate-800/60">
-                <span className="text-slate-400 block text-[10px]">{lang === 'ku' ? 'ڕێژەی دەرچوون' : lang === 'ar' ? 'نسبة الإنجاز' : 'Pass Rate'}</span>
-                <span className="text-emerald-400 font-bold">92.6%</span>
+              <div className="flex items-center gap-1 bg-slate-950 p-1.5 rounded border border-slate-800">
+                <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                <span>{lang === 'ku' ? 'دۆزینەوەی هەڵەکان' : lang === 'ar' ? 'رصد أخطاء التعلم' : 'Error Detection'}</span>
               </div>
-              <div className="bg-slate-950 p-2 rounded border border-slate-800/60">
-                <span className="text-slate-400 block text-[10px]">{lang === 'ku' ? 'زمانی سەرەکی' : lang === 'ar' ? 'لغة التدريب' : 'Primary Lang'}</span>
-                <span className="text-blue-400 font-bold">Sorani / Arabic</span>
+              <div className="flex items-center gap-1 bg-slate-950 p-1.5 rounded border border-slate-800">
+                <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                <span>{lang === 'ku' ? 'گونجاندنی قورسی' : lang === 'ar' ? 'تكييف الصعوبة' : 'Adaptive Difficulty'}</span>
+              </div>
+              <div className="flex items-center gap-1 bg-slate-950 p-1.5 rounded border border-slate-800">
+                <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                <span>{lang === 'ku' ? 'پاراستنی مافی ناوەڕۆک' : lang === 'ar' ? 'حفظ حقوق المناهج' : 'Curriculum Grounded'}</span>
               </div>
             </div>
           </div>
 
-          {/* Competency Matrix Panel */}
-          <div className="bg-slate-900/90 rounded-lg p-4 border border-slate-800 flex flex-col justify-between space-y-3">
-            <div>
-              <div className="flex items-center justify-between mb-3 text-xs font-bold text-slate-300">
+          {/* Right Column: Parent Report & Progress Tracking Widget */}
+          <div className="space-y-4 flex flex-col justify-between">
+            {/* Parent Report Widget */}
+            <div className="bg-slate-900/90 rounded-lg p-3.5 border border-slate-800 space-y-2.5">
+              <div className="flex items-center justify-between text-xs font-bold text-slate-200 pb-2 border-b border-slate-800">
                 <span className="flex items-center gap-1.5">
-                  <BadgeCheck className="w-4 h-4 text-purple-400" />
-                  <span>{lang === 'ku' ? 'پێوانەی توانای دامەزراوە' : lang === 'ar' ? 'مصفوفة الكفاءات' : 'Competency Matrix'}</span>
+                  <BadgeCheck className="w-4 h-4 text-blue-400" />
+                  <span>{lang === 'ku' ? 'ڕاپۆرتی دایک و باوک (هەفتانە)' : lang === 'ar' ? 'تقرير أولياء الأمور (الأسبوعي)' : 'Parent Progress Report'}</span>
                 </span>
-                <span className="text-[10px] text-purple-400 font-mono">VERIFIED</span>
+                <span className="text-[10px] text-emerald-400 font-mono bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800">
+                  {lang === 'ku' ? 'ئاگاداریی نوێ' : lang === 'ar' ? 'إشعار فوري' : 'Live Sync'}
+                </span>
               </div>
 
-              <div className="space-y-2.5 text-xs">
-                <div>
-                  <div className="flex justify-between text-[11px] text-slate-400 mb-1">
-                    <span>{lang === 'ku' ? 'ئاسایشی سایبەریی نیشتمانی' : lang === 'ar' ? 'الأمن السيبراني المؤسسي' : 'Cybersecurity'}</span>
-                    <span className="font-mono text-emerald-400">96%</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
-                    <div className="h-full bg-emerald-500 rounded-full w-[96%]" />
-                  </div>
+              <div className="space-y-2 text-[11px]">
+                <div className="flex justify-between text-slate-300">
+                  <span>{lang === 'ku' ? 'ئاستی تێگەیشتنی گشتی:' : lang === 'ar' ? 'معدل الاستيعاب العام:' : 'Overall Comprehension:'}</span>
+                  <span className="font-mono text-emerald-400 font-bold">٨٨٪ (نایاب)</span>
+                </div>
+                <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                  <div className="h-full bg-emerald-500 rounded-full w-[88%]" />
                 </div>
 
-                <div>
-                  <div className="flex justify-between text-[11px] text-slate-400 mb-1">
-                    <span>{lang === 'ku' ? 'حوکمڕانی و بەڵگەی داتا' : lang === 'ar' ? 'حوكمة وإدارة البيانات' : 'Data Governance'}</span>
-                    <span className="font-mono text-purple-400">89%</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
-                    <div className="h-full bg-purple-500 rounded-full w-[89%]" />
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between text-[11px] text-slate-400 mb-1">
-                    <span>{lang === 'ku' ? 'ژێرخانی کارپێکردن (DevOps)' : lang === 'ar' ? 'البنى التحتية والتطوير' : 'DevOps & Infra'}</span>
-                    <span className="font-mono text-blue-400">84%</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500 rounded-full w-[84%]" />
-                  </div>
+                <div className="p-2 bg-slate-950 rounded border border-slate-800/80 text-[10px] space-y-1 text-slate-300">
+                  <div className="text-slate-400 font-semibold">{lang === 'ku' ? 'خاڵی بەهێز:' : lang === 'ar' ? 'نقاط القوة:' : 'Strengths:'}</div>
+                  <div className="text-emerald-300">✔ {lang === 'ku' ? 'یاسای گازەکان و هاوسەنگیی کیمیایی (١٠٠٪)' : lang === 'ar' ? 'قوانين الغازات والاتزان الكيميائي (١٠٠٪)' : 'Gas Laws & Equilibrium (100%)'}</div>
+                  <div className="text-slate-400 font-semibold pt-1">{lang === 'ku' ? 'پێویستی بە پێداچوونەوە:' : lang === 'ar' ? 'بحاجة لمراجعة:' : 'Needs Review:'}</div>
+                  <div className="text-amber-300">⚠ {lang === 'ku' ? 'هاوکێشەی کاتالیست لە گەرمیی بەرزدا' : lang === 'ar' ? 'معادلات الحفازات في الحرارة العالية' : 'Catalyst kinetics at high temp'}</div>
                 </div>
               </div>
             </div>
 
-            <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1">
-              <span className="text-slate-400 block font-bold">{lang === 'ku' ? 'کاریگەریی ستراتیژی:' : lang === 'ar' ? 'الأثر الاستراتيجي:' : 'Strategic Impact:'}</span>
-              <span className="text-slate-200 leading-snug block">
-                {lang === 'ku'
-                  ? 'بنیاتنانی سەربەخۆیی تەکنیکی و ڕزگارکردنی دامەزراوەکان لە پشتبەستن بە شارەزای بیانی لە پڕۆژە گرنگەکاندا.'
-                  : lang === 'ar'
-                  ? 'تأهيل كوادر وطنية مستقلة قادرة على صيانة وإدارة أعتى المنظومات التكنولوجية داخلياً.'
-                  : 'Fostering technological sovereignty by transforming local teams into certified system architects.'}
-              </span>
+            {/* Architecture & Storage Widget */}
+            <div className="bg-slate-900/90 rounded-lg p-3.5 border border-slate-800 space-y-2 text-[11px]">
+              <div className="flex items-center justify-between text-xs font-bold text-slate-300">
+                <span className="flex items-center gap-1.5">
+                  <Database className="w-3.5 h-3.5 text-purple-400" />
+                  <span>{lang === 'ku' ? 'ژێرخانی تۆمارکردن و ئاسایش' : lang === 'ar' ? 'البنية التقنية والحماية' : 'Platform Architecture'}</span>
+                </span>
+                <span className="font-mono text-[10px] text-purple-400">D1 + FIREBASE</span>
+              </div>
+              <div className="space-y-1.5 text-[10px] font-mono text-slate-400">
+                <div className="flex justify-between bg-slate-950 p-1.5 rounded border border-slate-800/60">
+                  <span>Authentication</span>
+                  <span className="text-blue-400 font-semibold">Firebase Auth (Role-based)</span>
+                </div>
+                <div className="flex justify-between bg-slate-950 p-1.5 rounded border border-slate-800/60">
+                  <span>Textbook AI Grounding</span>
+                  <span className="text-purple-400 font-semibold">Gemini File API (371 pp)</span>
+                </div>
+                <div className="flex justify-between bg-slate-950 p-1.5 rounded border border-slate-800/60">
+                  <span>Quiz Storage & Sync</span>
+                  <span className="text-emerald-400 font-semibold">Cloudflare D1 SQL</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,18 +1,34 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { Language, TranslationData } from '@/lib/translations';
 import { Globe, Menu, X, ShieldCheck, Mail } from 'lucide-react';
 
 interface NavbarProps {
   lang: Language;
-  onLanguageChange: (newLang: Language) => void;
+  onLanguageChange?: (newLang: Language) => void;
   t: TranslationData;
   onOpenContact: () => void;
 }
 
 export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLanguageChange = (newLang: Language) => {
+    if (onLanguageChange) {
+      onLanguageChange(newLang);
+    }
+    const segments = pathname.split('/').filter(Boolean);
+    if (segments.length > 0 && ['ku', 'ar', 'en'].includes(segments[0])) {
+      segments.shift();
+    }
+    const newPath = `/${newLang}${segments.length ? '/' + segments.join('/') : ''}`;
+    router.push(newPath);
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs" id="corporate-header">
@@ -21,7 +37,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
           
           {/* Brand & Sovereign Parent Mark */}
           <div className="flex items-center gap-3">
-            <a href="#hero" className="flex items-center gap-3 group" id="brand-logo-link">
+            <Link href={`/${lang}`} className="flex items-center gap-3 group" id="brand-logo-link">
               <div className="w-11 h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center font-extrabold text-xl tracking-wider shadow-sm group-hover:bg-blue-900 transition-colors border border-slate-800">
                 IDG
               </div>
@@ -34,38 +50,38 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                   {t.parentBadge}
                 </span>
               </div>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-slate-700" id="desktop-nav-menu">
-            <a href="#hero" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-home">
+            <Link href={`/${lang}`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-home">
               {t.nav.home}
-            </a>
-            <a href="#about" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-about">
+            </Link>
+            <Link href={`/${lang}/about`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-about">
               {t.nav.about}
-            </a>
-            <a href="#portfolio" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-portfolio">
+            </Link>
+            <Link href={`/${lang}/portfolio`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-portfolio">
               {t.nav.portfolio}
-            </a>
-            <a href="#governance" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-governance">
+            </Link>
+            <Link href={`/${lang}/governance`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-governance">
               {t.nav.governance}
-            </a>
-            <a href="#stakeholders" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-stakeholders">
+            </Link>
+            <Link href={`/${lang}/stakeholders`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-stakeholders">
               {t.nav.stakeholders}
-            </a>
-            <a href="#vision" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-vision">
+            </Link>
+            <Link href={`/${lang}/vision`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-vision">
               {t.nav.vision}
-            </a>
-            <a href="#careers" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-careers">
+            </Link>
+            <Link href={`/${lang}/careers`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-careers">
               {t.nav.careers}
-            </a>
-            <a href="#faq" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-faq">
+            </Link>
+            <Link href={`/${lang}/faq`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-faq">
               {t.nav.faq}
-            </a>
-            <a href="#contact" className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-contact-scroll">
+            </Link>
+            <Link href={`/${lang}/contact`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-contact-scroll">
               {t.nav.contact}
-            </a>
+            </Link>
           </nav>
 
           {/* Right Actions: Language Switcher & Contact Button */}
@@ -77,7 +93,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                 <Globe className="w-3.5 h-3.5" />
               </span>
               <button
-                onClick={() => onLanguageChange('ku')}
+                onClick={() => handleLanguageChange('ku')}
                 className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${
                   lang === 'ku'
                     ? 'bg-slate-900 text-white shadow-xs'
@@ -89,7 +105,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                 کوردی
               </button>
               <button
-                onClick={() => onLanguageChange('ar')}
+                onClick={() => handleLanguageChange('ar')}
                 className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${
                   lang === 'ar'
                     ? 'bg-slate-900 text-white shadow-xs'
@@ -101,7 +117,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                 العربية
               </button>
               <button
-                onClick={() => onLanguageChange('en')}
+                onClick={() => handleLanguageChange('en')}
                 className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${
                   lang === 'en'
                     ? 'bg-slate-900 text-white shadow-xs'
@@ -148,7 +164,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </span>
             <div className="flex items-center bg-slate-100 rounded-lg p-1 border border-slate-200">
               <button
-                onClick={() => onLanguageChange('ku')}
+                onClick={() => handleLanguageChange('ku')}
                 className={`px-3 py-1 text-xs font-bold rounded-md ${
                   lang === 'ku' ? 'bg-slate-900 text-white' : 'text-slate-600'
                 }`}
@@ -156,7 +172,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                 کوردی
               </button>
               <button
-                onClick={() => onLanguageChange('ar')}
+                onClick={() => handleLanguageChange('ar')}
                 className={`px-3 py-1 text-xs font-bold rounded-md ${
                   lang === 'ar' ? 'bg-slate-900 text-white' : 'text-slate-600'
                 }`}
@@ -164,7 +180,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                 العربية
               </button>
               <button
-                onClick={() => onLanguageChange('en')}
+                onClick={() => handleLanguageChange('en')}
                 className={`px-3 py-1 text-xs font-bold rounded-md ${
                   lang === 'en' ? 'bg-slate-900 text-white' : 'text-slate-600'
                 }`}
@@ -175,78 +191,78 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
           </div>
 
           <nav className="flex flex-col space-y-1 text-sm font-medium text-slate-700">
-            <a
-              href="#hero"
+            <Link
+              href={`/${lang}`}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
               id="mobile-link-home"
             >
               {t.nav.home}
-            </a>
-            <a
-              href="#about"
+            </Link>
+            <Link
+              href={`/${lang}/about`}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
               id="mobile-link-about"
             >
               {t.nav.about}
-            </a>
-            <a
-              href="#portfolio"
+            </Link>
+            <Link
+              href={`/${lang}/portfolio`}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
               id="mobile-link-portfolio"
             >
               {t.nav.portfolio}
-            </a>
-            <a
-              href="#governance"
+            </Link>
+            <Link
+              href={`/${lang}/governance`}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
               id="mobile-link-governance"
             >
               {t.nav.governance}
-            </a>
-            <a
-              href="#stakeholders"
+            </Link>
+            <Link
+              href={`/${lang}/stakeholders`}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
               id="mobile-link-stakeholders"
             >
               {t.nav.stakeholders}
-            </a>
-            <a
-              href="#vision"
+            </Link>
+            <Link
+              href={`/${lang}/vision`}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
               id="mobile-link-vision"
             >
               {t.nav.vision}
-            </a>
-            <a
-              href="#careers"
+            </Link>
+            <Link
+              href={`/${lang}/careers`}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
               id="mobile-link-careers"
             >
               {t.nav.careers}
-            </a>
-            <a
-              href="#faq"
+            </Link>
+            <Link
+              href={`/${lang}/faq`}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition font-medium text-blue-700"
               id="mobile-link-faq"
             >
               {t.nav.faq}
-            </a>
-            <a
-              href="#contact"
+            </Link>
+            <Link
+              href={`/${lang}/contact`}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-slate-50 transition"
               id="mobile-link-contact-scroll"
             >
               {t.nav.contact}
-            </a>
+            </Link>
           </nav>
 
           <div className="pt-2 border-t border-slate-100">
