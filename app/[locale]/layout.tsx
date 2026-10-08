@@ -9,20 +9,13 @@ interface LocaleLayoutProps {
   params: Promise<{ locale: string }>;
 }
 
-export async function generateStaticParams() {
-  return LOCALES.map((locale) => ({ locale }));
-}
-
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-
-  if (!isValidLocale(locale)) {
-    return {};
-  }
+  if (!isValidLocale(locale)) return {};
 
   const titles: Record<Language, string> = {
     ku: 'دەروازەی دیجیتاڵیی عێراق (IDG)',
@@ -31,9 +24,9 @@ export async function generateMetadata({
   };
 
   const descriptions: Record<Language, string> = {
-    ku: 'دەروازەی دیجیتاڵیی عێراق (IDG) - کۆمپانیای دایکی سەربەخۆ بۆ حوکمڕانی، داتا، ژیریی دەستکردی کارپێکراو و ژێرخانی پارێزراوی دامەزراوەیی لە عێراق.',
-    ar: 'بوابة العراق الرقمية (IDG) - الشركة الأم السيادية للحوكمة، البيانات، الذكاء الاصطناعي التطبيقي، والبنية التحتية الرقمية الآمنة في العراق.',
-    en: 'Iraq Digital Gateway (IDG) - Sovereign parent company for governance, data, applied AI, and secure institutional infrastructure in Iraq.',
+    ku: 'دەروازەی دیجیتاڵیی عێراق (IDG) — کۆمپانیای دایکی سەربەخۆ بۆ حوکمڕانی، داتا و ژیریی دەستکرد.',
+    ar: 'بوابة العراق الرقمية (IDG) — الشركة الأم السيادية للحوكمة والبيانات.',
+    en: 'Iraq Digital Gateway (IDG) — Sovereign parent company.',
   };
 
   const baseUrl = 'https://idg.iq';
@@ -53,14 +46,8 @@ export async function generateMetadata({
       title: titles[locale],
       description: descriptions[locale],
       type: 'website',
-      locale:
-        locale === 'ku' ? 'ckb_IQ' : locale === 'ar' ? 'ar_IQ' : 'en_US',
+      locale: locale === 'ku' ? 'ckb_IQ' : locale === 'ar' ? 'ar_IQ' : 'en_US',
       url: `${baseUrl}/${locale}`,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: titles[locale],
-      description: descriptions[locale],
     },
   };
 }
@@ -70,10 +57,7 @@ export default async function LocaleLayout({
   params,
 }: LocaleLayoutProps) {
   const { locale } = await params;
+  if (!isValidLocale(locale)) notFound();
 
-  if (!isValidLocale(locale)) {
-    notFound();
-  }
-
-  return <LocaleProvider initialLang={locale} {...{ lang: locale }}>{children}</LocaleProvider>;
+  return <LocaleProvider lang={locale as Language}>{children}</LocaleProvider>;
 }

@@ -15,12 +15,14 @@ const LocaleContext = createContext<LocaleContextType | null>(null);
 export function LocaleProvider({
   children,
   initialLang = 'ku',
+  lang: propLang,
 }: {
   children: React.ReactNode;
   initialLang?: Language;
+  lang?: Language;
 }) {
   const params = useParams();
-  const rawLocale = (params?.locale as string) || initialLang;
+  const rawLocale = propLang || (params?.locale as string) || initialLang;
   const lang: Language = rawLocale === 'ar' || rawLocale === 'en' ? rawLocale : 'ku';
   const isRtl = lang === 'ku' || lang === 'ar';
   const t = translations[lang] || translations.ku;
