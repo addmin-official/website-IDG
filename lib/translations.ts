@@ -2177,7 +2177,7 @@ export const translations: Record<Language, TranslationData> = {
           title: 'ZaNa Acadime',
           subtitle: 'ZaNa Academy',
           problem:
-            'Students often avoid asking questions out of shyness. Parents cannot help with lessons. Teachers cannot track every student individually. Questions remain unanswered.',
+            'Students avoid asking questions out of shyness. Parents cannot help with lessons. Teachers cannot track every student individually. Questions remain unanswered.',
           owner: 'IDG Human Capital Division',
           description:
             'Smart learning platform for Kurdish students — fair, secure, and adaptive learning for every student.',
@@ -2193,7 +2193,7 @@ export const translations: Record<Language, TranslationData> = {
           ],
           targetAudience: [
             'Students — can ask anytime',
-            'Parents — simple clear reports',
+            'Parents — simple, clear reports',
             'Teachers — identify who needs help',
           ],
           technologies: [
