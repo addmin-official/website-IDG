@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '@/lib/locale-context';
-import type { Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import AboutUs from '@/components/AboutUs';
@@ -20,9 +19,8 @@ import ProductModal from '@/components/ProductModal';
 import ContactModal from '@/components/ContactModal';
 import Footer from '@/components/Footer';
 
-export default function HomePage() {
+export default function LocaleHomePage() {
   const { lang, isRtl, t } = useLocale();
-
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [isNSWSelected, setIsNSWSelected] = useState<boolean>(false);
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
@@ -46,46 +44,65 @@ export default function HomePage() {
     <div
       dir={isRtl ? 'rtl' : 'ltr'}
       lang={lang}
-      className={`min-h-screen bg-slate-50 text-slate-900 ${
-        isRtl ? 'text-right' : 'text-left'
-      } transition-all`}
+      className={`min-h-screen bg-slate-50 text-slate-900 ${isRtl ? 'text-right' : 'text-left'} transition-all`}
       id="idg-app-root"
     >
       <ScrollProgressBar isRtl={isRtl} />
 
       <Navbar
-        lang={lang as Language}
-        onLanguageChange={() => {
-          // Navigation بە URL لە Step 5 دێت
-        }}
+        lang={lang}
+        onLanguageChange={() => {}}
         t={t}
         onOpenContact={() => setIsContactOpen(true)}
       />
 
       <main id="main-content">
-        <Hero t={t} isRtl={isRtl} />
-        <AboutUs t={t} isRtl={isRtl} onOpenContact={() => setIsContactOpen(true)} />
+        <Hero
+          t={t}
+          isRtl={isRtl}
+        />
+
+        <AboutUs
+          t={t}
+          isRtl={isRtl}
+          onOpenContact={() => setIsContactOpen(true)}
+        />
+
         <Purpose t={t} />
+
         <Portfolio
           t={t}
           isRtl={isRtl}
           onSelectProduct={handleOpenProduct}
           onSelectNSW={handleOpenNSW}
         />
+
         <Governance t={t} isRtl={isRtl} />
+
         <Stakeholders
           t={t}
           isRtl={isRtl}
           onOpenContact={() => setIsContactOpen(true)}
         />
+
         <Vision2035 t={t} />
+
         <Careers t={t} isRtl={isRtl} />
+
         <ContactSection t={t} isRtl={isRtl} />
-        <FAQ t={t} isRtl={isRtl} onOpenContact={() => setIsContactOpen(true)} />
+
+        <FAQ
+          t={t}
+          isRtl={isRtl}
+          onOpenContact={() => setIsContactOpen(true)}
+        />
       </main>
 
-      <Footer t={t} isRtl={isRtl} onOpenContact={() => setIsContactOpen(true)} />
-      <BackToTop label={t.backToTop} />
+      <Footer
+        t={t}
+        isRtl={isRtl}
+        onOpenContact={() => setIsContactOpen(true)}
+      />
 
       <ProductModal
         productId={selectedProductId}
@@ -101,6 +118,8 @@ export default function HomePage() {
         onClose={() => setIsContactOpen(false)}
         t={t}
       />
+
+      <BackToTop label={t.backToTop} />
     </div>
   );
 }

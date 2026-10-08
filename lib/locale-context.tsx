@@ -1,38 +1,50 @@
 'use client';
 
-import { createContext, useContext, ReactNode } from 'react';
-import { Language, translations, TranslationData } from '@/lib/translations';
+import React, { createContext, useContext } from 'react';
+import { useParams } from 'next/navigation';
+import { translations, Language, TranslationData } from '@/lib/translations';
 
-export interface LocaleContextValue {
+export interface LocaleContextType {
   lang: Language;
   isRtl: boolean;
   t: TranslationData;
 }
 
-const LocaleContext = createContext<LocaleContextValue | null>(null);
+const LocaleContext = createContext<LocaleContextType | null>(null);
 
 export function LocaleProvider({
-  lang,
   children,
+  initialLang = 'ku',
 }: {
-  lang: Language;
-  children: ReactNode;
+  children: React.ReactNode;
+  initialLang?: Language;
 }) {
-  const value: LocaleContextValue = {
-    lang,
-    isRtl: lang === 'ku' || lang === 'ar',
-    t: translations[lang],
-  };
+  const params = useParams();
+  const rawLocale = (params?.locale as string) || initialLang;
+  const lang: Language = rawLocale === 'ar' || rawLocale === 'en' ? rawLocale : 'ku';
+  const isRtl = lang === 'ku' || lang === 'ar';
+  const t = translations[lang] || translations.ku;
 
   return (
-    <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>
+    <LocaleContext.Provider value={{ lang, isRtl, t }}>
+      {children}
+    </LocaleContext.Provider>
   );
 }
 
-export function useLocale(): LocaleContextValue {
-  const ctx = useContext(LocaleContext);
-  if (!ctx) {
-    throw new Error('useLocale must be used within a LocaleProvider');
+export function useLocale(): LocaleContextType {
+  const context = useContext(LocaleContext);
+  const params = useParams();
+
+  if (context) {
+    return context;
   }
-  return ctx;
+
+  // Graceful fallback when rendered directly without a provider
+  const rawLocale = (params?.locale as string) || 'ku';
+  const lang: Language = rawLocale === 'ar' || rawLocale === 'en' ? rawLocale : 'ku';
+  const isRtl = lang === 'ku' || lang === 'ar';
+  const t = translations[lang] || translations.ku;
+
+  return { lang, isRtl, t };
 }

@@ -1,16 +1,12 @@
-import { Language } from '@/lib/translations';
+import { Language } from './translations';
 
-export const LOCALES: readonly Language[] = ['ku', 'ar', 'en'] as const;
+export const LOCALES: Language[] = ['ku', 'ar', 'en'];
 export const DEFAULT_LOCALE: Language = 'ku';
 
-export function isValidLocale(value: string | undefined): value is Language {
-  return value === 'ku' || value === 'ar' || value === 'en';
+export function isValidLocale(locale: string): locale is Language {
+  return LOCALES.includes(locale as Language);
 }
 
-export function getDirection(locale: Language): 'rtl' | 'ltr' {
+export function getLocaleDirection(locale: Language): 'rtl' | 'ltr' {
   return locale === 'ku' || locale === 'ar' ? 'rtl' : 'ltr';
-}
-
-export function isRtlLocale(locale: Language): boolean {
-  return locale === 'ku' || locale === 'ar';
 }
