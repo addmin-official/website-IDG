@@ -45,3 +45,6 @@ pnpm-lock.yaml
 # backup files
 *.backup
 _backup_untracked/
+
+# IMPORTANT: package-lock.json must NOT be ignored
+# (it's tracked and required for reproducible installs)
