@@ -535,11 +535,11 @@ export const translations: Record<Language, TranslationData> = {
           title: 'Green Belt',
           subtitle: 'کەمەربەندی سەوز',
           problem: 'بەفیڕۆچوونی زۆری پاشماوەی خۆراک، کەمیی داتای چاودێریی ژینگەیی و نەبوونی ژێرخانی ئابووری بازنەیی.',
-          owner: 'کۆنسۆڵخانەی ژینگە و تەلارسازیی بازنەیی (IDG Circular Economy Core)',
+          owner: 'ئابوری بازنەی ناوخۆ',
           description:
             'پلاتفۆرمی ئابووری بازنەیی زیرەک بۆ کۆکردنەوەی پاشماوەی خۆراک، کۆمپۆستکردن، چاودێریکردنی ژینگە، و بەدواداچوونی کاریگەرییەکانی دارەکان.',
           detailedDescription:
-            'پڕۆژەی کەمەربەندی سەوز (Green Belt) پلاتفۆرمێکی ئابووریی بازنەیی زیرەکە کە شێوازی مامەڵەکردن لەگەڵ پاشماوەی خۆراک و سامانی ژینگەیی لە عێراق دەگۆڕێت. لە ڕێگەی تۆڕێکی سەروەری هەستەوەری لۆکاڵی (IoT)، بەستەرە جوگرافییەکان، و چاودێریی مانگی دەستکردەوە، سیستەمەکە بەردەوام چاودێریی ڕێژەی کۆکردنەوەی زبڵی ئەندامی، قۆناغەکانی گۆڕینی بۆ کۆمپۆستی بەپیت، و تەندروستیی سەدان هەزار درەختی چێنراوی پشتێنی سەوزی بەغدا و شارەکان دەکات.',
+            'پڕۆژەی کەمەربەندی سەوز (Green Belt) پلاتفۆرمێکی ئابووریی بازنەیی زیرەکە کە شێوازی مامەڵەکردن لەگەڵ پاشماوەی خۆراک و سامانی ژینگەیی لە عێراق دەگۆڕێت. لە ڕێگەی تۆڕێکی سەروەری هەستەوەری لۆکاڵی (IoT)، بەستەرە جوگرافییەکان، و چاودێریی مانگی دەستکردەوە، سیستەمەکە بەردەوام چاودێریی ڕێژەی کۆکردنەوەی زبڵی ئەندامی، قۆناغەکانی گۆڕینی بۆ کۆمپۆستی بەپیت، و تەندروستیی سەدان هەزار درەختی چێنراوی پشتێنی سەوزی هەولێر و شارەکان دەکات.',
           keyFeatures: [
             'بەدواداچوونی ئۆتۆماتیکی سووڕی کۆکردنەوەی پاشماوەی خۆراک و بەفیڕۆچوون',
             'سیستەمی هەستەوەری IoT بۆ چاودێریی گەرمی، شێداری و خێرایی کۆمپۆست',
@@ -559,7 +559,8 @@ export const translations: Record<Language, TranslationData> = {
             'Satellite Vegetation Analysis',
             'REST API Integration Gateway',
           ],
-          impact: 'گۆڕینی تەنەها پاشماوە بۆ سەرچاوەی بەسوود، چاندنی زیاتر لە ١٢٠،٠٠٠ درەخت و دۆکیومێنتکردنی داتای سەوزی نیشتمانی.',
+          impact:
+            'گۆڕینی تەنەها پاشماوە بۆ سەرچاوەی بەسوود، چاندنی زیاتر لە ١٢٠،٠٠٠ درەخت و دۆکیومێنتکردنی داتای سەوزی نیشتمانی — ئامادە بۆ سەلماندن.',
           status: 'جێبەجێکردنی مەیدانیی بەردەوام',
           url: 'https://greenbelt.iq',
           mockupType: 'greenbelt',
@@ -1393,11 +1394,11 @@ export const translations: Record<Language, TranslationData> = {
           title: 'Green Belt',
           subtitle: 'الحزام الأخضر',
           problem: 'هدر كميات هائلة من مخلفات الطعام وغياب الرصد البيئي الدقيق وضعف بنية الاقتصاد الدائري.',
-          owner: 'نواة الاقتصاد الدائري والاستدامة (IDG Circular Economy Core)',
+          owner: 'الاقتصاد الدائري المحلي',
           description:
             'منصة ذكية للاقتصاد الدائري لجمع مخلفات الطعام، والتحويل إلى سماد، والمراقبة البيئية، وتتبع آثار التشجير بالبيانات الحية.',
           detailedDescription:
-            'مشروع الحزام الأخضر (Green Belt) هو منصة متكاملة للاقتصاد الدائري والحلول البيئية الذكية في العراق. توظف المنظومة أجهزة استشعار إنترنت الأشياء (IoT) والخرائط الجغرافية والتحليل الفضائي لتتبع عمليات فرز وجمع المخلفات العضوية، وتحويلها إلى سماد عضوي معتمد، ومراقبة مؤشرات الرطوبة والحيوية لأكثر من ١٢٠ ألف شجرة في أحزمة المدن الخضراء للحد من التصحر والعواصف الترابية.',
+            'مشروع الحزام الأخضر (Green Belt) هو منصة متكاملة للاقتصاد الدائري والحلول البيئية الذكية في العراق. توظف المنظومة أجهزة استشعار إنترنت الأشياء (IoT) والخرائط الجغرافية والتحليل الفضائي لتتبع عمليات فرز وجمع المخلفات العضوية، وتحويلها إلى سماد عضوي معتمد، ومراقبة مؤشرات الرطوبة والحيوية لأكثر من ١٢٠ ألف شجرة في أحزمة مدينة أربيل والمدن الخضراء للحد من التصحر والعواصف الترابية.',
           keyFeatures: [
             'نظام تتبع لوجستي آلي لدورات جمع المخلفات العضوية من المؤسسات والمطاعم',
             'شبكة مجسات بيئية (IoT) لقياس درجات الحرارة والرطوبة في مراحل التخمير',
@@ -1405,7 +1406,7 @@ export const translations: Record<Language, TranslationData> = {
             'حساب دقيق لنسب عزل الكربون (CO2 Offset) وإنتاج الأسمدة الحيوية',
           ],
           targetAudience: [
-            'أمانة بغداد والبلديات ومجالس المحافظات في عموم العراق',
+            'بلدية أربيل والبلديات ومجالس المحافظات في عموم العراق',
             'وزارة البيئة، وزارة الزراعة، والمشاتل والمزارع الإنتاجية',
             'المؤسسات الدولية الداعمة لمشاريع مواجهة التغير المناخي',
           ],
@@ -1417,7 +1418,8 @@ export const translations: Record<Language, TranslationData> = {
             'Satellite Vegetation Analysis',
             'REST API Integration Gateway',
           ],
-          impact: 'تحويل أطنان النفايات إلى موارد حيوية وتوثيق البيانات البيئية الوطنية وزراعة ١٢٠ ألف شجرة.',
+          impact:
+            'تحويل النفايات إلى موارد حيوية، وزراعة أكثر من ١٢٠،٠٠٠ شجرة، وتوثيق البيانات البيئية الوطنية — جاهز للتحقق.',
           status: 'تنفيذ ميداني مستمر',
           url: 'https://greenbelt.iq',
           mockupType: 'greenbelt',
@@ -2251,11 +2253,11 @@ export const translations: Record<Language, TranslationData> = {
           title: 'Green Belt',
           subtitle: 'Smart Circular Economy & Eco-Sovereignty',
           problem: 'High municipal organic waste volume, insufficient environmental monitoring data, and lack of circular economy infrastructure.',
-          owner: 'Circular Economy & Environmental Systems Core (IDG Sustainability Unit)',
+          owner: 'Local Circular Economy (IDG Division)',
           description:
             'Smart circular economy platform for organic food waste diversion, localized composting, environmental sensing, and verified real-time tree monitoring.',
           detailedDescription:
-            'Green Belt is a circular economy and eco-sovereignty telemetry system structured to transform organic food waste management and environmental monitoring in Iraq. By deploying IoT sensor networks, spatial GIS analysis, and satellite remote sensing, Green Belt orchestrates localized waste collection pipelines, tracks biological composting maturation, and monitors the vitality of over 120,000 trees across Baghdad’s protective green belts to combat desertification and dust storms.',
+            "Green Belt is a smart circular economy and eco-sovereignty telemetry system structured to transform organic food waste management and environmental monitoring in Iraq. By deploying IoT sensor networks, spatial GIS analysis, and satellite remote sensing, Green Belt orchestrates localized waste collection pipelines, tracks biological composting maturation, and monitors the vitality of over 120,000 trees across Erbil's protective green belts and urban zones to combat desertification and dust storms.",
           keyFeatures: [
             'Automated logistics tracking for organic food waste pickup from enterprises and institutions',
             'Real-time IoT telemetry monitoring compost core temperatures, aeration, and moisture',
@@ -2263,7 +2265,7 @@ export const translations: Record<Language, TranslationData> = {
             'Auditable metric tracking for metric tons diverted, compost produced, and CO2 offset',
           ],
           targetAudience: [
-            'Baghdad Municipality (Amanat Baghdad) and provincial municipal councils',
+            'Erbil Municipality and provincial municipal councils',
             'Ministry of Environment, Ministry of Agriculture, and agricultural cooperatives',
             'International environmental partners and sustainable development funds',
           ],
@@ -2275,7 +2277,8 @@ export const translations: Record<Language, TranslationData> = {
             'Satellite Vegetation Analysis',
             'REST API Integration Gateway',
           ],
-          impact: 'Diverts tons of organic waste into sovereign compost resources with auditable environmental data and 120,000+ trees tracked.',
+          impact:
+            'Diverts waste into valuable resources, plants more than 120,000 trees, and documents national environmental data — ready for verification.',
           status: 'Active Field Operations',
           url: 'https://greenbelt.iq',
           mockupType: 'greenbelt',

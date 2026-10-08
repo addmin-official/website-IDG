@@ -688,14 +688,14 @@ export default function ProductMockups({ type, lang }: MockupProps) {
                   <Recycle className="w-4 h-4 text-emerald-400" />
                   <span>
                     {lang === 'ku'
-                      ? 'سووڕی کۆکردنەوە و بەرهەمهێنانی کۆمپۆستی بەغدا'
+                      ? 'سووڕی کۆکردنەوە و بەرهەمهێنانی کۆمپۆستی هەولێر'
                       : lang === 'ar'
-                      ? 'دورة تدوير المخلفات العضوية وإنتاج السماد لمدينة بغداد'
-                      : 'Baghdad Organic Diversion & Composting Pipeline'}
+                      ? 'دورة تدوير المخلفات العضوية وإنتاج السماد لمدينة أربيل'
+                      : 'Erbil Organic Diversion & Composting Pipeline'}
                   </span>
                 </span>
                 <span className="text-[10px] font-mono bg-emerald-900/50 text-emerald-300 px-2 py-0.5 rounded">
-                  ZONE-BG-EAST
+                  ZONE-ERB-EAST
                 </span>
               </div>
 
@@ -718,8 +718,16 @@ export default function ProductMockups({ type, lang }: MockupProps) {
               {/* Real-time telemetry map / route note */}
               <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1.5">
                 <div className="flex justify-between items-center text-slate-400 border-b border-slate-800/80 pb-1">
-                  <span>{lang === 'ku' ? 'ناوچەی چاودێری:' : lang === 'ar' ? 'منطقة الرصد:' : 'Monitored Sector:'} کەرتی کەمەربەندی سەوزی شاری بەغدا</span>
-                  <span className="text-emerald-400 font-mono">٩٤.٢٪ ڕێژەی ژیانی نەمامەکان</span>
+                  <span>
+                    {lang === 'ku'
+                      ? 'ناوچەی چاودێری: کەرتی کەمەربەندی سەوزی شاری هەولێر'
+                      : lang === 'ar'
+                      ? 'منطقة الرصد: قطاع الحزام الأخضر لمدينة أربيل'
+                      : 'Monitored Sector: Erbil Green Belt Perimeter'}
+                  </span>
+                  <span className="text-emerald-400 font-mono">
+                    {lang === 'ku' ? '٩٤.٢٪ ڕێژەی ژیانی نەمامەکان' : lang === 'ar' ? '٩٤.٢٪ نسبة بقاء الشتلات' : '94.2% Sapling Vitality'}
+                  </span>
                 </div>
                 <p className="text-slate-300 leading-relaxed">
                   {lang === 'ku'
@@ -792,15 +800,33 @@ export default function ProductMockups({ type, lang }: MockupProps) {
               </div>
             </div>
 
-            <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1">
-              <span className="text-slate-400 block font-bold">{lang === 'ku' ? 'کێشەی چارەسەرکراو:' : lang === 'ar' ? 'المشكلة المعالجة:' : 'Problem Solved:'}</span>
-              <span className="text-slate-200 leading-snug block">
-                {lang === 'ku'
-                  ? 'وەستاندنی بەفیڕۆچوونی مەترسیداری زبڵی ئەندامی و کەمکردنەوەی گازی میسان لە ڕێگەی داتای وردی ژینگەییەوە.'
-                  : lang === 'ar'
-                  ? 'القضاء على التخلص العشوائي من المخلفات وبناء درع بيئي ذكي يوثق جهود مكافحة التصحر.'
-                  : 'Transforming urban organic waste into restorative carbon sinks backed by sovereign telemetry.'}
-              </span>
+            <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-2">
+              <div>
+                <span className="text-slate-400 block font-bold mb-0.5">{lang === 'ku' ? 'کێشەی چارەسەرکراو:' : lang === 'ar' ? 'المشكلة المعالجة:' : 'Problem Solved:'}</span>
+                <span className="text-slate-200 leading-snug block">
+                  {lang === 'ku'
+                    ? 'وەستاندنی بەفیڕۆچوونی مەترسیداری زبڵی ئەندامی و کەمکردنەوەی گازی میسان لە ڕێگەی داتای وردی ژینگەییەوە.'
+                    : lang === 'ar'
+                    ? 'القضاء على التخلص العشوائي من المخلفات وبناء درع بيئي ذكي يوثق جهود مكافحة التصحر.'
+                    : 'Transforming urban organic waste into restorative carbon sinks backed by sovereign telemetry.'}
+                </span>
+              </div>
+              <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-1 text-[10px]">
+                <span className="text-slate-400 font-medium">
+                  {lang === 'ku' ? 'دەستە و خاوەنی بەرپرسیار:' : lang === 'ar' ? 'الجهة المسؤولة:' : 'Accountable Authority:'}
+                </span>
+                <span className="text-emerald-400 font-semibold">
+                  {lang === 'ku' ? 'ئابوری بازنەی ناوخۆ' : lang === 'ar' ? 'الاقتصاد الدائري المحلي' : 'Local Circular Economy'}
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-1 text-[10px]">
+                <span className="text-slate-400 font-medium">
+                  {lang === 'ku' ? 'باری کاریگەری:' : lang === 'ar' ? 'حالة الأثر:' : 'Impact Status:'}
+                </span>
+                <span className="text-amber-300 font-mono text-[9px] bg-amber-950/60 border border-amber-800/60 px-1.5 py-0.5 rounded">
+                  {lang === 'ku' ? 'کاریگەریی نیشتمانیی ئامادە بۆ سەلماندن' : lang === 'ar' ? 'أثر وطني — جاهز للتحقق' : 'Ready for Verification'}
+                </span>
+              </div>
             </div>
           </div>
         </div>
