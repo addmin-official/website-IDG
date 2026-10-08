@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Language } from '@/lib/translations';
+import StudentDashboard from '@/components/StudentDashboard';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -34,6 +35,7 @@ interface MockupProps {
 export default function ProductMockups({ type, lang }: MockupProps) {
   const isRtl = lang === 'ku' || lang === 'ar';
   const Arrow = isRtl ? ArrowLeft : ArrowRight;
+  const [zanaTab, setZanaTab] = useState<'dashboard' | 'tutor'>('dashboard');
 
   if (type === 'aigate') {
     return (
@@ -187,198 +189,247 @@ export default function ProductMockups({ type, lang }: MockupProps) {
 
   if (type === 'zana') {
     return (
-      <div className="rounded-xl bg-slate-950 border border-slate-800 text-slate-100 p-4 sm:p-6 shadow-inner font-sans overflow-hidden">
-        {/* Mockup Topbar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800 text-xs">
+      <div className="space-y-3 font-sans">
+        {/* ZaNa View Mode Switcher */}
+        <div className="flex flex-wrap items-center justify-between gap-2 p-2.5 rounded-xl bg-slate-900 border border-slate-800">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500/80" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-            <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-            <span className="font-mono text-slate-400 ms-2 text-[11px]">
-              zana.iq/student-console [IDG-SOV-02]
+            <span className="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse" />
+            <span className="text-xs font-mono font-bold text-purple-300">
+              {lang === 'ku' ? 'ئەکادیمیای زانا — پلاتفۆرمی زیرەکی خوێندن' : lang === 'ar' ? 'أكاديمية زانا — المنصة التعليمية الذكية' : 'ZaNa Academy — Smart Learning Platform'}
             </span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 bg-purple-950 text-purple-400 border border-purple-800 px-2.5 py-0.5 rounded text-[11px] font-mono">
-              <GraduationCap className="w-3 h-3" />
-              <span>
-                {lang === 'ku'
-                  ? 'هۆکاری ژیریی دەستکرد — AI Tutor'
-                  : lang === 'ar'
-                  ? 'المعلم الذكي — AI Tutor'
-                  : 'AI Tutor — Smart Companion'}
-              </span>
-            </span>
-            <span className="inline-flex items-center gap-1 bg-blue-950 text-blue-400 border border-blue-800 px-2 py-0.5 rounded text-[11px] font-mono">
-              <span>ACTIVE</span>
-            </span>
+
+          <div className="inline-flex p-1 bg-slate-950 rounded-lg border border-slate-800 text-xs font-medium">
+            <button
+              type="button"
+              onClick={() => setZanaTab('dashboard')}
+              className={`px-3 py-1.5 rounded-md transition flex items-center gap-1.5 ${
+                zanaTab === 'dashboard'
+                  ? 'bg-purple-600 text-white font-bold shadow-xs'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <span>📊</span>
+              <span>{lang === 'ku' ? 'داشبۆردی قوتابی' : lang === 'ar' ? 'لوحة متابعة الطالب' : 'Student Dashboard'}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setZanaTab('tutor')}
+              className={`px-3 py-1.5 rounded-md transition flex items-center gap-1.5 ${
+                zanaTab === 'tutor'
+                  ? 'bg-purple-600 text-white font-bold shadow-xs'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <span>🎓</span>
+              <span>{lang === 'ku' ? 'هۆکاری زیرەک' : lang === 'ar' ? 'المعلم الذكي' : 'AI Tutor Workspace'}</span>
+            </button>
           </div>
         </div>
 
-        {/* Metrics row */}
-        <div className="grid grid-cols-3 gap-2 my-4 text-center font-mono text-xs">
-          <div className="bg-slate-900/90 border border-slate-800 p-2.5 rounded-lg">
-            <span className="text-[10px] text-slate-400 block font-sans">
-              {lang === 'ku' ? 'لاپەڕەی کتێب' : lang === 'ar' ? 'صفحات الكتاب' : 'Textbook Pages'}
-            </span>
-            <span className="text-base font-extrabold text-blue-400">
-              {lang === 'ku' ? '٣٧١ لاپەڕە' : lang === 'ar' ? '٣٧١ صفحة' : '371 Pages'}
-            </span>
-          </div>
-          <div className="bg-slate-900/90 border border-slate-800 p-2.5 rounded-lg">
-            <span className="text-[10px] text-slate-400 block font-sans">
-              {lang === 'ku' ? 'بەندی کیمیا' : lang === 'ar' ? 'فصول الكيمياء' : 'Chemistry Chapters'}
-            </span>
-            <span className="text-base font-extrabold text-purple-400">
-              {lang === 'ku' ? '١٢ بەند' : lang === 'ar' ? '١٢ فصلاً' : '12 Chapters'}
-            </span>
-          </div>
-          <div className="bg-slate-900/90 border border-slate-800 p-2.5 rounded-lg">
-            <span className="text-[10px] text-slate-400 block font-sans">
-              {lang === 'ku' ? 'تاقیکردنەوە' : lang === 'ar' ? 'الاختبارات' : 'Assessments'}
-            </span>
-            <span className="text-base font-extrabold text-emerald-400">
-              {lang === 'ku' ? '١٦٣ تاقیکردنەوە' : lang === 'ar' ? '١٦٣ اختباراً' : '163 Tests'}
-            </span>
-          </div>
-        </div>
-
-        {/* Main Panel & Side Panel Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Main Panel: Student Q&A */}
-          <div className="md:col-span-2 bg-slate-900/90 rounded-lg p-4 border border-slate-800 flex flex-col justify-between space-y-3">
-            <div>
-              <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-800/80">
-                <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
-                  <BookOpen className="w-4 h-4 text-purple-400" />
+        {zanaTab === 'dashboard' ? (
+          <StudentDashboard lang={lang} onBackToTutor={() => setZanaTab('tutor')} />
+        ) : (
+          <div className="rounded-xl bg-slate-950 border border-slate-800 text-slate-100 p-4 sm:p-6 shadow-inner font-sans overflow-hidden">
+            {/* Mockup Topbar */}
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800 text-xs">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                <span className="font-mono text-slate-400 ms-2 text-[11px]">
+                  zana.iq/student-console [IDG-SOV-02]
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1 bg-purple-950 text-purple-400 border border-purple-800 px-2.5 py-0.5 rounded text-[11px] font-mono">
+                  <GraduationCap className="w-3 h-3" />
                   <span>
                     {lang === 'ku'
-                      ? 'قوتابی پرسیار دەکات'
+                      ? 'هۆکاری ژیریی دەستکرد — AI Tutor'
                       : lang === 'ar'
-                      ? 'سؤال الطالب'
-                      : 'Student Asks AI'}
+                      ? 'المعلم الذكي — AI Tutor'
+                      : 'AI Tutor — Smart Companion'}
                   </span>
                 </span>
-                <span className="text-[10px] font-mono bg-purple-900/50 text-purple-300 px-2 py-0.5 rounded">
-                  {lang === 'ku' ? 'پۆلی ١٢ زانستی' : lang === 'ar' ? 'الصف ١٢ العلمي' : 'Grade 12 Science'}
+                <span className="inline-flex items-center gap-1 bg-blue-950 text-blue-400 border border-blue-800 px-2 py-0.5 rounded text-[11px] font-mono">
+                  <span>ACTIVE</span>
                 </span>
-              </div>
-
-              {/* Sample Q&A */}
-              <div className="space-y-3 text-xs">
-                {/* Question */}
-                <div className="p-3 rounded bg-slate-950/90 border border-slate-800 space-y-1">
-                  <div className="flex justify-between items-center text-[10px] text-slate-400">
-                    <span className="font-semibold text-blue-400">
-                      {lang === 'ku' ? 'پرسیاری قوتابی:' : lang === 'ar' ? 'استفسار الطالب:' : 'Student Inquiry:'}
-                    </span>
-                    <span className="font-mono text-slate-500">
-                      {lang === 'ku' ? 'کیمیا — بەندی ٣، پرسیارەکانی ٥' : lang === 'ar' ? 'الكيمياء — الفصل ٣، أسئلة ٥' : 'Chemistry — Chapter 3, Question 5'}
-                    </span>
-                  </div>
-                  <p className="text-slate-200 text-[11px] leading-relaxed pt-1">
-                    {lang === 'ku'
-                      ? 'چۆن خێراییی کارلێکی کیمیایی بە بەکارهێنانی کاتالیست دەگۆڕێت و کاریگەریی چییە لەسەر وزەی چالاککردن؟'
-                      : lang === 'ar'
-                      ? 'كيف تتغير سرعة التفاعل الكيميائي باستخدام العامل الحفاز وما هو أثره على طاقة التنشيط؟'
-                      : 'How does a catalyst alter the rate of a chemical reaction and what is its specific effect on activation energy?'}
-                  </p>
-                </div>
-
-                {/* Answer */}
-                <div className="p-3 rounded bg-purple-950/30 border border-purple-800/60 space-y-1.5">
-                  <div className="flex justify-between items-center text-[10px]">
-                    <span className="font-bold text-purple-300 flex items-center gap-1">
-                      <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-                      <span>{lang === 'ku' ? 'وەڵام لە کتێبی فەرمی' : lang === 'ar' ? 'الإجابة من الكتاب الرسمي' : 'Answer from Official Textbook'}</span>
-                    </span>
-                    <span className="font-mono text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/80 text-[10px]">
-                      {lang === 'ku' ? 'سەرچاوە: لاپەڕە ٤٧' : lang === 'ar' ? 'المصدر: صفحة ٤٧' : 'Source: Page 47'}
-                    </span>
-                  </div>
-                  <p className="text-slate-200 text-[11px] leading-relaxed">
-                    {lang === 'ku'
-                      ? 'کاتالیست خێراییی کارلێک زیاد دەکات بە دابینکردنی ڕێڕەوێکی جێگرەوە کە پێویستی بە وزەی چالاککردنی کەمترە، بەبێ ئەوەی کاتالیستەکە لە کارلێکەکەدا بەکارببرێت یان بڕی بەرهەم بگۆڕێت.'
-                      : lang === 'ar'
-                      ? 'يزيد العامل الحفاز من سرعة التفاعل عن طريق توفير مسار بديل بطاقة تنشيط أقل، دون أن يُستهلك الحفاز أثناء التفاعل أو يغير من كمية النواتج.'
-                      : 'A catalyst accelerates the reaction by providing an alternative mechanism with a lower activation energy, without being consumed or altering total product yield.'}
-                  </p>
-                </div>
               </div>
             </div>
 
-            {/* Bottom: Progress Bar */}
-            <div className="pt-3 border-t border-slate-800">
-              <div className="flex justify-between items-center text-[11px] text-slate-300 mb-1.5">
-                <span className="font-semibold flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>{lang === 'ku' ? 'پێشکەوتنی قوتابی' : lang === 'ar' ? 'تقدم الطالب' : 'Student Progress'}</span>
+            {/* Metrics row */}
+            <div className="grid grid-cols-3 gap-2 my-4 text-center font-mono text-xs">
+              <div className="bg-slate-900/90 border border-slate-800 p-2.5 rounded-lg">
+                <span className="text-[10px] text-slate-400 block font-sans">
+                  {lang === 'ku' ? 'لاپەڕەی کتێب' : lang === 'ar' ? 'صفحات الكتاب' : 'Textbook Pages'}
                 </span>
-                <span className="font-mono text-emerald-400 font-bold">٦٥٪</span>
+                <span className="text-base font-extrabold text-blue-400">
+                  {lang === 'ku' ? '٣٧١ لاپەڕە' : lang === 'ar' ? '٣٧١ صفحة' : '371 Pages'}
+                </span>
               </div>
-              <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
-                <div className="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full w-[65%]" />
+              <div className="bg-slate-900/90 border border-slate-800 p-2.5 rounded-lg">
+                <span className="text-[10px] text-slate-400 block font-sans">
+                  {lang === 'ku' ? 'بەندی کیمیا' : lang === 'ar' ? 'فصول الكيمياء' : 'Chemistry Chapters'}
+                </span>
+                <span className="text-base font-extrabold text-purple-400">
+                  {lang === 'ku' ? '١٢ بەند' : lang === 'ar' ? '١٢ فصلاً' : '12 Chapters'}
+                </span>
+              </div>
+              <div className="bg-slate-900/90 border border-slate-800 p-2.5 rounded-lg">
+                <span className="text-[10px] text-slate-400 block font-sans">
+                  {lang === 'ku' ? 'تاقیکردنەوە' : lang === 'ar' ? 'الاختبارات' : 'Assessments'}
+                </span>
+                <span className="text-base font-extrabold text-emerald-400">
+                  {lang === 'ku' ? '١٦٣ تاقیکردنەوە' : lang === 'ar' ? '١٦٣ اختباراً' : '163 Tests'}
+                </span>
+              </div>
+            </div>
+
+            {/* Main Panel & Side Panel Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Main Panel: Student Q&A */}
+              <div className="md:col-span-2 bg-slate-900/90 rounded-lg p-4 border border-slate-800 flex flex-col justify-between space-y-3">
+                <div>
+                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-800/80">
+                    <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                      <BookOpen className="w-4 h-4 text-purple-400" />
+                      <span>
+                        {lang === 'ku'
+                          ? 'قوتابی پرسیار دەکات'
+                          : lang === 'ar'
+                          ? 'سؤال الطالب'
+                          : 'Student Asks AI'}
+                      </span>
+                    </span>
+                    <span className="text-[10px] font-mono bg-purple-900/50 text-purple-300 px-2 py-0.5 rounded">
+                      {lang === 'ku' ? 'پۆلی ١٢ زانستی' : lang === 'ar' ? 'الصف ١٢ العلمي' : 'Grade 12 Science'}
+                    </span>
+                  </div>
+
+                  {/* Sample Q&A */}
+                  <div className="space-y-3 text-xs">
+                    {/* Question */}
+                    <div className="p-3 rounded bg-slate-950/90 border border-slate-800 space-y-1">
+                      <div className="flex justify-between items-center text-[10px] text-slate-400">
+                        <span className="font-semibold text-blue-400">
+                          {lang === 'ku' ? 'پرسیاری قوتابی:' : lang === 'ar' ? 'استفسار الطالب:' : 'Student Inquiry:'}
+                        </span>
+                        <span className="font-mono text-slate-500">
+                          {lang === 'ku' ? 'کیمیا — بەندی ٣، پرسیارەکانی ٥' : lang === 'ar' ? 'الكيمياء — الفصل ٣، أسئلة ٥' : 'Chemistry — Chapter 3, Question 5'}
+                        </span>
+                      </div>
+                      <p className="text-slate-200 text-[11px] leading-relaxed pt-1">
+                        {lang === 'ku'
+                          ? 'چۆن خێراییی کارلێکی کیمیایی بە بەکارهێنانی کاتالیست دەگۆڕێت و کاریگەریی چییە لەسەر وزەی چالاککردن؟'
+                          : lang === 'ar'
+                          ? 'كيف تتغير سرعة التفاعل الكيميائي باستخدام العامل الحفاز وما هو أثره على طاقة التنشيط؟'
+                          : 'How does a catalyst alter the rate of a chemical reaction and what is its specific effect on activation energy?'}
+                      </p>
+                    </div>
+
+                    {/* Answer */}
+                    <div className="p-3 rounded bg-purple-950/30 border border-purple-800/60 space-y-1.5">
+                      <div className="flex justify-between items-center text-[10px]">
+                        <span className="font-bold text-purple-300 flex items-center gap-1">
+                          <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+                          <span>{lang === 'ku' ? 'وەڵام لە کتێبی فەرمی' : lang === 'ar' ? 'الإجابة من الكتاب الرسمي' : 'Answer from Official Textbook'}</span>
+                        </span>
+                        <span className="font-mono text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/80 text-[10px]">
+                          {lang === 'ku' ? 'سەرچاوە: لاپەڕە ٤٧' : lang === 'ar' ? 'المصدر: صفحة ٤٧' : 'Source: Page 47'}
+                        </span>
+                      </div>
+                      <p className="text-slate-200 text-[11px] leading-relaxed">
+                        {lang === 'ku'
+                          ? 'کاتالیست خێراییی کارلێک زیاد دەکات بە دابینکردنی ڕێڕەوێکی جێگرەوە کە پێویستی بە وزەی چالاککردنی کەمترە، بەبێ ئەوەی کاتالیستەکە لە کارلێکەکەدا بەکارببرێت یان بڕی بەرهەم بگۆڕێت.'
+                          : lang === 'ar'
+                          ? 'يزيد العامل الحفاز من سرعة التفاعل عن طريق توفير مسار بديل بطاقة تنشيط أقل، دون أن يُستهلك الحفاز أثناء التفاعل أو يغير من كمية النواتج.'
+                          : 'A catalyst accelerates the reaction by providing an alternative mechanism with a lower activation energy, without being consumed or altering total product yield.'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom: Progress Bar */}
+                <div className="pt-3 border-t border-slate-800">
+                  <div className="flex justify-between items-center text-[11px] text-slate-300 mb-1.5">
+                    <span className="font-semibold flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>{lang === 'ku' ? 'پێشکەوتنی گشتی' : lang === 'ar' ? 'التقدم الإجمالي' : 'Overall Progress'}</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setZanaTab('dashboard')}
+                      className="font-mono text-purple-400 hover:text-purple-300 font-bold underline text-[11px]"
+                    >
+                      {lang === 'ku' ? 'کردنەوەی داشبۆردی تەواو ↗' : lang === 'ar' ? 'فتح لوحة المتابعة الكاملة ↗' : 'Open Full Dashboard ↗'}
+                    </button>
+                  </div>
+                  <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+                    <div className="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full w-[65%]" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Side Panel: Parent Report */}
+              <div className="bg-slate-900/90 rounded-lg p-4 border border-slate-800 flex flex-col justify-between space-y-3">
+                <div>
+                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-800/80 text-xs font-bold text-slate-200">
+                    <span className="flex items-center gap-1.5">
+                      <BadgeCheck className="w-4 h-4 text-blue-400" />
+                      <span>{lang === 'ku' ? 'ڕاپۆرتی دایک و باوک' : lang === 'ar' ? 'تقرير أولياء الأمور' : 'Parent Report'}</span>
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800">
+                      {lang === 'ku' ? 'ئەمڕۆ' : lang === 'ar' ? 'اليوم' : 'Today'}
+                    </span>
+                  </div>
+
+                  <div className="space-y-2.5 text-xs">
+                    <div className="flex justify-between items-center p-2 rounded bg-slate-950 border border-slate-800/60">
+                      <span className="text-slate-400 text-[11px]">
+                        {lang === 'ku' ? 'کاتی خوێندن:' : lang === 'ar' ? 'وقت المذاكرة:' : 'Study Time:'}
+                      </span>
+                      <span className="font-mono text-blue-400 font-bold text-[11px]">
+                        {lang === 'ku' ? '٤٥ خولەک ئەمڕۆ' : lang === 'ar' ? '٤٥ دقيقة اليوم' : '45 mins today'}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between items-center p-2 rounded bg-slate-950 border border-slate-800/60">
+                      <span className="text-slate-400 text-[11px]">
+                        {lang === 'ku' ? 'وانەی تەواوکراو:' : lang === 'ar' ? 'الدروس المكتملة:' : 'Lessons Completed:'}
+                      </span>
+                      <span className="font-mono text-purple-400 font-bold text-[11px]">
+                        {lang === 'ku' ? '٣ وانە' : lang === 'ar' ? '٣ دروس' : '3 lessons'}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between items-center p-2 rounded bg-slate-950 border border-slate-800/60">
+                      <span className="text-slate-400 text-[11px]">
+                        {lang === 'ku' ? 'ئاست:' : lang === 'ar' ? 'المستوى:' : 'Overall Rating:'}
+                      </span>
+                      <span className="font-semibold text-emerald-400 text-[11px] bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-800/60">
+                        {lang === 'ku' ? 'باش' : lang === 'ar' ? 'جيد' : 'Good'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1">
+                  <span className="text-slate-400 block font-bold">
+                    {lang === 'ku' ? 'تێبینیی سیستەم:' : lang === 'ar' ? 'ملاحظة المنظومة:' : 'System Note:'}
+                  </span>
+                  <span className="text-slate-300 leading-snug block text-[10px]">
+                    {lang === 'ku'
+                      ? 'قوتابی لە کاتی خۆیدا وانەکانی بەندەکە تەواو دەکات و پرسیارە وردەکان دەپرسێت.'
+                      : lang === 'ar'
+                      ? 'يكمل الطالب الدروس بالوقت المحدد ويطرح الأسئلة المنهجية بدقة.'
+                      : 'Student is finishing chapter assignments on schedule and asking targeted curriculum questions.'}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-
-          {/* Side Panel: Parent Report */}
-          <div className="bg-slate-900/90 rounded-lg p-4 border border-slate-800 flex flex-col justify-between space-y-3">
-            <div>
-              <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-800/80 text-xs font-bold text-slate-200">
-                <span className="flex items-center gap-1.5">
-                  <BadgeCheck className="w-4 h-4 text-blue-400" />
-                  <span>{lang === 'ku' ? 'ڕاپۆرتی دایک و باوک' : lang === 'ar' ? 'تقرير أولياء الأمور' : 'Parent Report'}</span>
-                </span>
-                <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800">
-                  {lang === 'ku' ? 'ئەمڕۆ' : lang === 'ar' ? 'اليوم' : 'Today'}
-                </span>
-              </div>
-
-              <div className="space-y-2.5 text-xs">
-                <div className="flex justify-between items-center p-2 rounded bg-slate-950 border border-slate-800/60">
-                  <span className="text-slate-400 text-[11px]">
-                    {lang === 'ku' ? 'کاتی خوێندن:' : lang === 'ar' ? 'وقت المذاكرة:' : 'Study Time:'}
-                  </span>
-                  <span className="font-mono text-blue-400 font-bold text-[11px]">
-                    {lang === 'ku' ? '٤٥ خولەک ئەمڕۆ' : lang === 'ar' ? '٤٥ دقيقة اليوم' : '45 mins today'}
-                  </span>
-                </div>
-
-                <div className="flex justify-between items-center p-2 rounded bg-slate-950 border border-slate-800/60">
-                  <span className="text-slate-400 text-[11px]">
-                    {lang === 'ku' ? 'وانەی تەواوکراو:' : lang === 'ar' ? 'الدروس المكتملة:' : 'Lessons Completed:'}
-                  </span>
-                  <span className="font-mono text-purple-400 font-bold text-[11px]">
-                    {lang === 'ku' ? '٣ وانە' : lang === 'ar' ? '٣ دروس' : '3 lessons'}
-                  </span>
-                </div>
-
-                <div className="flex justify-between items-center p-2 rounded bg-slate-950 border border-slate-800/60">
-                  <span className="text-slate-400 text-[11px]">
-                    {lang === 'ku' ? 'ئاست:' : lang === 'ar' ? 'المستوى:' : 'Overall Rating:'}
-                  </span>
-                  <span className="font-semibold text-emerald-400 text-[11px] bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-800/60">
-                    {lang === 'ku' ? 'باش' : lang === 'ar' ? 'جيد' : 'Good'}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1">
-              <span className="text-slate-400 block font-bold">
-                {lang === 'ku' ? 'تێبینیی سیستەم:' : lang === 'ar' ? 'ملاحظة المنظومة:' : 'System Note:'}
-              </span>
-              <span className="text-slate-300 leading-snug block text-[10px]">
-                {lang === 'ku'
-                  ? 'قوتابی لە کاتی خۆیدا وانەکانی بەندەکە تەواو دەکات و پرسیارە وردەکان دەپرسێت.'
-                  : lang === 'ar'
-                  ? 'يكمل الطالب الدروس بالوقت المحدد ويطرح الأسئلة المنهجية بدقة.'
-                  : 'Student is finishing chapter assignments on schedule and asking targeted curriculum questions.'}
-              </span>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     );
   }
