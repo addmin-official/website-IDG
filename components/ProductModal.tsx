@@ -207,7 +207,7 @@ export default function ProductModal({
                 <span className="font-bold text-emerald-900">
                   {labels.provenImpact}:
                 </span>
-                <EvidenceBadge status="verified" lang={lang} />
+                <EvidenceBadge status="verified" lang={lang} className="mt-2" />
               </div>
               <p className="text-emerald-800 leading-relaxed font-medium">{nsw.impact}</p>
             </div>
@@ -384,7 +384,7 @@ export default function ProductModal({
               <span className="font-bold text-emerald-900">
                 {labels.provenImpact}:
               </span>
-              <EvidenceBadge status="verified" lang={lang} />
+              <EvidenceBadge status="verified" lang={lang} className="mt-2" />
             </div>
             <p className="text-emerald-800 leading-relaxed font-medium">{product.impact}</p>
           </div>

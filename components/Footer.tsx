@@ -239,25 +239,17 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
         </div>
 
         {/* Governance Status Bar */}
-        <div
-          className="governance-bar pt-8 pb-3 border-t border-slate-800/80 flex flex-wrap items-center justify-center md:justify-between gap-2.5 text-slate-500 font-mono text-[12px]"
-          id="footer-governance-bar"
-        >
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            <span>Build IDG-2026.10-PROD</span>
-            <span className="text-slate-600">·</span>
-            <span>ISO-27001 Verified</span>
-            <span className="text-slate-600">·</span>
-            <span>Erbil Node 01</span>
-          </div>
-          <div className="text-[11px] text-slate-600">
-            <span>IDG-SOV-OS-V4</span>
-          </div>
+        <div className="py-3 border-t border-slate-800/60 flex items-center justify-center gap-3 text-[10px] font-mono text-slate-500" id="footer-governance-bar">
+          <span>Build IDG-2026.10-PROD</span>
+          <span className="text-slate-700">·</span>
+          <span>ISO-27001 Verified</span>
+          <span className="text-slate-700">·</span>
+          <span>Erbil Node 01</span>
         </div>
 
         {/* Copyright & Sub-links */}
         <div
-          className="pt-4 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400"
+          className="pt-4 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400"
           id="footer-copyright-section"
         >
           <p suppressHydrationWarning id="footer-copyright-text">

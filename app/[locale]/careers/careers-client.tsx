@@ -17,10 +17,8 @@ export default function CareersClient({ locale }: { locale: string }) {
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-slate-50">
       <Navbar lang={lang} onLanguageChange={() => {}} t={t} onOpenContact={() => setIsContactOpen(true)} />
-      <main id="main-content" className="pt-20">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 pt-6 pb-2">
-          <AIUseDisclosure lang={lang} />
-        </div>
+      <main id="main-content" className="pt-24 max-w-7xl mx-auto px-4 md:px-6">
+        <AIUseDisclosure lang={lang} className="mb-6 max-w-4xl mx-auto" />
         <Careers t={t} isRtl={isRtl} />
       </main>
       <Footer t={t} isRtl={isRtl} onOpenContact={() => setIsContactOpen(true)} />
