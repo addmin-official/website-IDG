@@ -1,7 +1,47 @@
+# dependencies
 node_modules/
-.next/
+.pnp
+.pnp.js
+
+# testing
 coverage/
+
+# next.js
+.next/
+out/
+build/
+dist/
+
+# misc
 .DS_Store
-*.log
-.env*
-!.env.example
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# alternative package managers
+bun.lock
+bun.lockb
+yarn.lock
+pnpm-lock.yaml
+
+# backup files
+*.backup
+_backup_untracked/
