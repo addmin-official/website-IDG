@@ -12,6 +12,10 @@ const ROUTES = [
   '/careers',
   '/contact',
   '/faq',
+  '/legal/privacy',
+  '/legal/terms',
+  '/legal/sovereign-data',
+  '/legal/accessibility',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
