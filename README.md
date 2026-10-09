@@ -74,9 +74,31 @@ pnpm start # or npm start
 
 ---
 
-## 🚢 Deployment
+## Deployment to Vercel
 
-Detailed deployment procedures for cloud and on-premise environments are specified in **[DEPLOYMENT.md](DEPLOYMENT.md)**.
+### Prerequisites
+1. Vercel account
+2. GitHub repo connected
+3. Environment variables ready
+
+### Steps
+1. Go to https://vercel.com/new
+2. Import: addmin-official/website-IDG
+3. Framework: Next.js (auto-detected)
+4. Add Environment Variables:
+   - APP_URL = https://your-domain.com
+   - GEMINI_API_KEY = (your key)
+   - DATABASE_URL = (optional, PostgreSQL URL)
+5. Click Deploy
+6. After deploy: Add custom domain in Vercel settings
+
+### Database Setup (Optional)
+If using PostgreSQL:
+1. Create DB on Neon, Supabase, or self-hosted
+2. Set DATABASE_URL in Vercel env vars
+3. Run migrations: npx prisma migrate deploy
+
+Detailed deployment procedures for cloud and on-premise environments are also specified in **[DEPLOYMENT.md](DEPLOYMENT.md)**.
 
 ---
 

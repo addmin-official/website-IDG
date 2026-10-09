@@ -5,6 +5,7 @@ coverage/
 *.log
 .env*
 !.env.example
+!.env.local.example
 bun.lock
 bun.lockb
 yarn.lock
