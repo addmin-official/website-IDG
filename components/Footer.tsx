@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { TranslationData } from '@/lib/translations';
+import { useLocale } from '@/lib/locale-context';
 import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface FooterProps {
@@ -12,6 +13,7 @@ interface FooterProps {
 }
 
 export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps = {}) {
+  const { lang: currentLang } = useLocale();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -256,13 +258,35 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
             {t?.footer?.rights ||
               '© ٢٠٢٦ دەروازەی دیجیتاڵیی عێراق (IDG). مافی خاوەندارێتیی پۆرتفۆلیۆ پارێزراوە.'}
           </p>
-          <div className="flex gap-6">
-            <span className="cursor-pointer hover:text-slate-300 transition" id="footer-link-terms">
-              {isRtl ? 'مەرجەکانی بەکارهێنان' : 'Terms of Service'}
-            </span>
-            <span className="cursor-pointer hover:text-slate-300 transition" id="footer-link-privacy">
-              {isRtl ? 'سیاسەتی پاراستنی زانیاری' : 'Data Privacy Policy'}
-            </span>
+          <div className="flex flex-wrap gap-4 sm:gap-6 text-xs text-slate-400">
+            <Link
+              href={`/${currentLang}/legal/privacy`}
+              className="hover:text-blue-400 transition"
+              id="footer-link-privacy"
+            >
+              {currentLang === 'ku' ? 'پاراستنی نهێنی' : currentLang === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}
+            </Link>
+            <Link
+              href={`/${currentLang}/legal/terms`}
+              className="hover:text-blue-400 transition"
+              id="footer-link-terms"
+            >
+              {currentLang === 'ku' ? 'مەرجەکانی بەکارهێنان' : currentLang === 'ar' ? 'شروط الخدمة' : 'Terms of Service'}
+            </Link>
+            <Link
+              href={`/${currentLang}/legal/sovereign-data`}
+              className="hover:text-blue-400 transition"
+              id="footer-link-sovereign-data"
+            >
+              {currentLang === 'ku' ? 'سەروەریی داتا' : currentLang === 'ar' ? 'سيادة البيانات' : 'Sovereign Data'}
+            </Link>
+            <Link
+              href={`/${currentLang}/legal/accessibility`}
+              className="hover:text-blue-400 transition"
+              id="footer-link-accessibility"
+            >
+              {currentLang === 'ku' ? 'دەستڕاگەیشتن' : currentLang === 'ar' ? 'إمكانية الوصول' : 'Accessibility'}
+            </Link>
           </div>
         </div>
       </div>
