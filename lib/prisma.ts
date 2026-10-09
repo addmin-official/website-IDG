@@ -1,30 +1,28 @@
-// lib/prisma.ts
-// Singleton instance of Prisma Client to prevent multiple instances in development
+import { PrismaClient } from '@prisma/client';
 
-let prismaClient: any = null;
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
 
-export async function getPrisma() {
-  if (prismaClient) return prismaClient;
-
-  try {
-    const { PrismaClient } = await import('@prisma/client');
-    const globalForPrisma = globalThis as unknown as {
-      prisma: any | undefined;
-    };
-
-    prismaClient =
-      globalForPrisma.prisma ??
-      new PrismaClient({
-        log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
-      });
-
-    if (process.env.NODE_ENV !== 'production') {
-      globalForPrisma.prisma = prismaClient;
-    }
-
-    return prismaClient;
-  } catch (error) {
-    console.warn('[Prisma] Client not yet generated or DB not available:', error);
+function createPrismaClient(): PrismaClient | null {
+  if (!process.env.DATABASE_URL) {
+    console.warn(
+      '⚠️ DATABASE_URL not set. Prisma will be disabled. ' +
+      'Forms will still work but data will not be persisted.'
+    );
     return null;
   }
+
+  return (
+    globalForPrisma.prisma ??
+    new PrismaClient({
+      log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
+    })
+  );
+}
+
+export const prisma = createPrismaClient();
+
+if (process.env.NODE_ENV !== 'production' && prisma) {
+  globalForPrisma.prisma = prisma;
 }

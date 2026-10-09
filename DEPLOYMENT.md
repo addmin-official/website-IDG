@@ -26,7 +26,32 @@ NODE_ENV="production"
 
 ---
 
-## 2. Recommended Hosting Platforms
+## 2. Database Setup (Prisma)
+
+Set `DATABASE_URL` in `.env.local` (or production environment secrets):
+```env
+DATABASE_URL="postgresql://user:password@host:5432/idg_db?schema=public"
+```
+
+### Run migrations:
+```bash
+# In production:
+npx prisma migrate deploy
+
+# In development:
+npx prisma migrate dev
+```
+
+### Generate Prisma client:
+```bash
+npx prisma generate
+```
+
+> **Note:** If `DATABASE_URL` is not set, forms will still work but data will not be persisted (graceful fallback).
+
+---
+
+## 3. Recommended Hosting Platforms
 
 Depending on institutional compliance tiers, three deployment models are certified:
 

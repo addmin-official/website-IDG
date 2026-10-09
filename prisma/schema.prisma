@@ -1,35 +1,30 @@
-// prisma/schema.prisma
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  // لێرەدا PostgreSQL بەکاردەهێنین کە گونجاوە بۆ سیستەمە دامەزراوەییەکان
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-// خشتەی یەکەم: بۆ نامە و پەیوەندییە فەرمییەکان
 model ContactInquiry {
   id          String   @id @default(cuid())
-  referenceId String   @unique
   name        String
   email       String
   subject     String?
-  problem     String   // کێشە سەلمێنراوەکە
+  problem     String?
   message     String?
+  referenceId String   @unique
   createdAt   DateTime @default(now())
 }
 
-// خشتەی دووەم: بۆ داواکارییەکانی کارکردن
 model CareerApplication {
   id            String   @id @default(cuid())
-  applicationId String   @unique
   name          String
   email         String
   position      String
   coverNote     String?
-  cvFileName    String   // ناوی ئەو فایلەی باری کردووە
+  resumeName    String?
+  applicationId String   @unique
   createdAt     DateTime @default(now())
 }
