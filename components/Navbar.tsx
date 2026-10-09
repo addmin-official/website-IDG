@@ -36,56 +36,56 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
         <div className="flex justify-between items-center h-20">
           
           {/* Brand & Sovereign Parent Mark */}
-          <div className="flex items-center gap-3">
-            <Link href={`/${lang}`} className="flex items-center gap-3 group" id="brand-logo-link">
-              <div className="w-11 h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center font-extrabold text-xl tracking-wider shadow-sm group-hover:bg-blue-900 transition-colors border border-slate-800">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0">
+            <Link href={`/${lang}`} className="flex items-center gap-2.5 sm:gap-3 group min-w-0" id="brand-logo-link">
+              <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-slate-900 text-white flex items-center justify-center font-extrabold text-lg md:text-xl tracking-wider shadow-sm group-hover:bg-blue-900 transition-colors border border-slate-800 shrink-0">
                 IDG
               </div>
-              <div className="flex flex-col">
-                <span className="font-extrabold text-slate-900 text-base sm:text-lg leading-tight tracking-tight">
+              <div className="flex flex-col max-w-[200px] sm:max-w-[240px] md:max-w-none min-w-0">
+                <span className="font-extrabold text-slate-900 text-sm md:text-base leading-tight tracking-tight whitespace-nowrap truncate">
                   {lang === 'ku' ? 'دەروازەی دیجیتاڵیی عێراق' : lang === 'ar' ? 'بوابة العراق الرقمية' : 'Iraq Digital Gateway'}
                 </span>
-                <span className="text-xs font-medium text-slate-500 flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-blue-700 inline" />
-                  {t.parentBadge}
+                <span className="hidden sm:flex items-center gap-1 text-[10px] font-medium text-slate-500 whitespace-nowrap truncate">
+                  <ShieldCheck className="w-3 h-3 text-blue-700 inline shrink-0" />
+                  <span className="truncate">{t.parentBadge}</span>
                 </span>
               </div>
             </Link>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-slate-700" id="desktop-nav-menu">
-            <Link href={`/${lang}`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-home">
+          <nav className="hidden lg:flex items-center gap-3 xl:gap-5 text-[13px] xl:text-sm font-medium text-slate-700 shrink-0" id="desktop-nav-menu">
+            <Link href={`/${lang}`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600 whitespace-nowrap" id="nav-link-home">
               {t.nav.home}
             </Link>
-            <Link href={`/${lang}/about`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-about">
+            <Link href={`/${lang}/about`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600 whitespace-nowrap" id="nav-link-about">
               {t.nav.about}
             </Link>
-            <Link href={`/${lang}/portfolio`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-portfolio">
+            <Link href={`/${lang}/portfolio`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600 whitespace-nowrap" id="nav-link-portfolio">
               {t.nav.portfolio}
             </Link>
-            <Link href={`/${lang}/governance`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-governance">
+            <Link href={`/${lang}/governance`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600 whitespace-nowrap" id="nav-link-governance">
               {t.nav.governance}
             </Link>
-            <Link href={`/${lang}/stakeholders`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-stakeholders">
+            <Link href={`/${lang}/stakeholders`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600 whitespace-nowrap" id="nav-link-stakeholders">
               {t.nav.stakeholders}
             </Link>
-            <Link href={`/${lang}/vision`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-vision">
+            <Link href={`/${lang}/vision`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600 whitespace-nowrap" id="nav-link-vision">
               {t.nav.vision}
             </Link>
-            <Link href={`/${lang}/careers`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-careers">
+            <Link href={`/${lang}/careers`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600 whitespace-nowrap" id="nav-link-careers">
               {t.nav.careers}
             </Link>
-            <Link href={`/${lang}/faq`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-faq">
+            <Link href={`/${lang}/faq`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600 whitespace-nowrap" id="nav-link-faq">
               {t.nav.faq}
             </Link>
-            <Link href={`/${lang}/contact`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600" id="nav-link-contact-scroll">
+            <Link href={`/${lang}/contact`} className="hover:text-blue-700 transition-colors py-2 px-1 border-b-2 border-transparent hover:border-blue-600 whitespace-nowrap" id="nav-link-contact-scroll">
               {t.nav.contact}
             </Link>
           </nav>
 
           {/* Right Actions: Language Switcher & Contact Button */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
             {/* Language Selector (Kurdish default, Arabic & English available) */}
             <div className="flex items-center bg-slate-100 rounded-xl p-1 border border-slate-200 shadow-2xs" id="language-switcher-group">
