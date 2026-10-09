@@ -3,6 +3,8 @@
 import React, { useEffect } from 'react';
 import { TranslationData, Language } from '@/lib/translations';
 import ProductMockups from '@/components/ProductMockups';
+import EvidenceBadge from '@/components/EvidenceBadge';
+import DocumentClassification from '@/components/DocumentClassification';
 import {
   X,
   ShieldCheck,
@@ -92,9 +94,12 @@ export default function ProductModal({
           </div>
 
           {/* Title and Subtitle */}
-          <h2 id="modal-nsw-title" className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-1 tracking-tight">
-            {nsw.title}
-          </h2>
+          <div className="flex flex-wrap items-center gap-2 mb-1">
+            <h2 id="modal-nsw-title" className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              {nsw.title}
+            </h2>
+            <DocumentClassification level="public" lang={lang} />
+          </div>
           <p className="text-xs sm:text-sm font-mono text-slate-500 mb-5">
             {nsw.subtitle}
           </p>
@@ -198,9 +203,12 @@ export default function ProductModal({
             </div>
 
             <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200/80 text-xs sm:text-sm">
-              <span className="font-bold text-emerald-900 block mb-1">
-                {labels.provenImpact}:
-              </span>
+              <div className="flex items-center justify-between mb-1">
+                <span className="font-bold text-emerald-900">
+                  {labels.provenImpact}:
+                </span>
+                <EvidenceBadge status="verified" lang={lang} className="mt-2" />
+              </div>
               <p className="text-emerald-800 leading-relaxed font-medium">{nsw.impact}</p>
             </div>
           </div>
@@ -263,9 +271,12 @@ export default function ProductModal({
         </div>
 
         {/* Title and Subtitle */}
-        <h2 id="modal-product-title" className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-1 tracking-tight">
-          {product.title}
-        </h2>
+        <div className="flex flex-wrap items-center gap-2 mb-1">
+          <h2 id="modal-product-title" className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            {product.title}
+          </h2>
+          <DocumentClassification level="public" lang={lang} />
+        </div>
         <p className="text-xs sm:text-sm font-mono text-slate-500 mb-5">
           {product.subtitle}
         </p>
@@ -369,9 +380,12 @@ export default function ProductModal({
           </div>
 
           <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200/80 text-xs sm:text-sm">
-            <span className="font-bold text-emerald-900 block mb-1">
-              {labels.provenImpact}:
-            </span>
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-bold text-emerald-900">
+                {labels.provenImpact}:
+              </span>
+              <EvidenceBadge status="verified" lang={lang} className="mt-2" />
+            </div>
             <p className="text-emerald-800 leading-relaxed font-medium">{product.impact}</p>
           </div>
         </div>
