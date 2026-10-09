@@ -13,11 +13,17 @@ import Vision2035 from '@/components/Vision2035';
 import Careers from '@/components/Careers';
 import ContactSection from '@/components/ContactSection';
 import FAQ from '@/components/FAQ';
+import dynamic from 'next/dynamic';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import BackToTop from '@/components/BackToTop';
-import ProductModal from '@/components/ProductModal';
-import ContactModal from '@/components/ContactModal';
 import Footer from '@/components/Footer';
+
+const ProductModal = dynamic(() => import('@/components/ProductModal'), {
+  ssr: false,
+});
+const ContactModal = dynamic(() => import('@/components/ContactModal'), {
+  ssr: false,
+});
 
 export default function LocaleHomePage() {
   const { lang, isRtl, t } = useLocale();

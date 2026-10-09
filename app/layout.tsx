@@ -1,5 +1,20 @@
 import type { Metadata } from 'next';
+import { Noto_Kufi_Arabic, Inter } from 'next/font/google';
 import './globals.css';
+
+const notoKufi = Noto_Kufi_Arabic({
+  subsets: ['arabic'],
+  weight: ['400', '600', '700', '900'],
+  display: 'swap',
+  variable: '--font-ku',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['500', '700', '900'],
+  display: 'swap',
+  variable: '--font-en',
+});
 
 export const metadata: Metadata = {
   title: 'Iraq Digital Gateway (IDG)',
@@ -13,7 +28,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ku" dir="rtl" suppressHydrationWarning>
+    <html
+      lang="ku"
+      dir="rtl"
+      className={`${notoKufi.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <body
         className="antialiased bg-slate-50 text-slate-900 selection:bg-blue-600 selection:text-white"
         suppressHydrationWarning

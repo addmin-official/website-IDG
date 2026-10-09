@@ -31,6 +31,18 @@ try {
     fs.writeFileSync(esmPath, esmContent, 'utf8');
     console.log('Successfully patched ESM segment-explorer-node.js');
   }
+  const fontLoaderPath = path.join(__dirname, '..', 'node_modules', 'next', 'dist', 'compiled', '@next', 'font', 'dist', 'google', 'loader.js');
+  if (fs.existsSync(fontLoaderPath)) {
+    let fontLoaderCode = fs.readFileSync(fontLoaderPath, 'utf8');
+    if (fontLoaderCode.includes('const ext = /\\.(woff|woff2|eot|ttf|otf)$/.exec(googleFontFileUrl)[1];')) {
+      fontLoaderCode = fontLoaderCode.replace(
+        'const ext = /\\.(woff|woff2|eot|ttf|otf)$/.exec(googleFontFileUrl)[1];',
+        'const extMatch = /\\.(woff|woff2|eot|ttf|otf)$/.exec(googleFontFileUrl); const ext = extMatch ? extMatch[1] : "woff2";'
+      );
+      fs.writeFileSync(fontLoaderPath, fontLoaderCode, 'utf8');
+      console.log('Successfully patched Google font loader.js');
+    }
+  }
 } catch (err) {
   console.error('Error patching next-devtools:', err);
 }

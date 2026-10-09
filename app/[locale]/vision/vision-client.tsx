@@ -1,11 +1,15 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Vision2035 from '@/components/Vision2035';
-import ContactModal from '@/components/ContactModal';
 import Footer from '@/components/Footer';
+
+const ContactModal = dynamic(() => import('@/components/ContactModal'), {
+  ssr: false,
+});
 
 export default function VisionClient({ locale }: { locale: string }) {
   const [isContactOpen, setIsContactOpen] = useState(false);

@@ -1,12 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Portfolio from '@/components/Portfolio';
-import ProductModal from '@/components/ProductModal';
-import ContactModal from '@/components/ContactModal';
 import Footer from '@/components/Footer';
+
+const ProductModal = dynamic(() => import('@/components/ProductModal'), {
+  ssr: false,
+});
+const ContactModal = dynamic(() => import('@/components/ContactModal'), {
+  ssr: false,
+});
 
 export default function PortfolioClient({ locale }: { locale: string }) {
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);

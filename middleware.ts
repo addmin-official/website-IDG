@@ -34,6 +34,6 @@ export const config = {
      * - static folder
      * - files with extensions (e.g. favicon.ico, .png, .css, .js)
      */
-    '/((?!api|_next/static|_next/image|static|favicon.ico|.*\\.[\\w]+$).*)',
+    '/((?!api|_next/static|_next/image|static|.*\\..*).*)',
   ],
 };

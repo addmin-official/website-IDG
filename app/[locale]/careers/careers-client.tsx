@@ -1,12 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Careers from '@/components/Careers';
-import ContactModal from '@/components/ContactModal';
 import Footer from '@/components/Footer';
 import AIUseDisclosure from '@/components/AIUseDisclosure';
+
+const ContactModal = dynamic(() => import('@/components/ContactModal'), {
+  ssr: false,
+});
 
 export default function CareersClient({ locale }: { locale: string }) {
   const [isContactOpen, setIsContactOpen] = useState(false);
