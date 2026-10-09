@@ -25,12 +25,6 @@ import {
   ArrowLeft,
   Search,
   BadgeCheck,
-  Package,
-  Bot,
-  DollarSign,
-  TrendingUp,
-  Clock,
-  ArrowUpRight,
 } from 'lucide-react';
 
 interface MockupProps {
@@ -53,19 +47,13 @@ export default function ProductMockups({ type, lang }: MockupProps) {
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
             <span className="font-mono text-slate-400 ms-2 text-[11px]">
-              app.aigateiraq.com/dashboard [AI GATE IRAQ]
+              aigate.iq/institutional-console [IDG-SOV-01]
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 bg-blue-950 text-blue-400 border border-blue-800 px-2.5 py-0.5 rounded text-[11px] font-mono">
-              <Bot className="w-3 h-3" />
-              <span>
-                {lang === 'ku'
-                  ? 'یاریدەدەری زیرەکی بازرگانی'
-                  : lang === 'ar'
-                  ? 'المساعد التجاري الذكي'
-                  : 'AI Trade Assistant'}
-              </span>
+            <span className="inline-flex items-center gap-1 bg-blue-950 text-blue-400 border border-blue-800 px-2.5 py-0.5 rounded text-[11px] font-mono">
+              <ShieldCheck className="w-3 h-3" />
+              <span>{lang === 'ku' ? 'داتای سێرڤەری ناوخۆیی عێراق' : lang === 'ar' ? 'بيانات سيادية داخل العراق' : 'Sovereign On-Premise'}</span>
             </span>
             <span className="inline-flex items-center gap-1 bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded text-[11px] font-mono">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -74,334 +62,126 @@ export default function ProductMockups({ type, lang }: MockupProps) {
           </div>
         </div>
 
-        {/* Metrics Row: 3 Shipments | 5 Containers | 2 Currencies */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-4">
-          <div className="bg-slate-900/90 rounded-lg p-2.5 sm:p-3 border border-slate-800 flex items-center gap-3">
-            <div className="p-2 rounded-md bg-blue-950/80 text-blue-400 border border-blue-800/60 shrink-0">
-              <Truck className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-sm sm:text-base font-bold font-mono text-white">
-                {lang === 'ku' ? '٣' : lang === 'ar' ? '٣' : '3'}
-              </div>
-              <div className="text-[10px] text-slate-400 leading-tight">
-                {lang === 'ku' ? 'بارنامەی چالاک' : lang === 'ar' ? 'بوالص شحن نشطة' : 'Active Shipments'}
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-900/90 rounded-lg p-2.5 sm:p-3 border border-slate-800 flex items-center gap-3">
-            <div className="p-2 rounded-md bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 shrink-0">
-              <Package className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-sm sm:text-base font-bold font-mono text-white">
-                {lang === 'ku' ? '٥' : lang === 'ar' ? '٥' : '5'}
-              </div>
-              <div className="text-[10px] text-slate-400 leading-tight">
-                {lang === 'ku' ? 'کۆنتەینەری چاودێریکراو' : lang === 'ar' ? 'حاويات قيد النقل' : 'Tracked Containers'}
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-900/90 rounded-lg p-2.5 sm:p-3 border border-slate-800 flex items-center gap-3">
-            <div className="p-2 rounded-md bg-amber-950/80 text-amber-400 border border-amber-800/60 shrink-0">
-              <DollarSign className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-sm sm:text-base font-bold font-mono text-white">
-                {lang === 'ku' ? '٢ دراو' : lang === 'ar' ? 'عملتان' : '2 Rates'}
-              </div>
-              <div className="text-[10px] text-slate-400 leading-tight">
-                USD / IQD · EUR
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-slate-900/90 rounded-lg p-2.5 sm:p-3 border border-slate-800 flex items-center gap-3">
-            <div className="p-2 rounded-md bg-purple-950/80 text-purple-400 border border-purple-800/60 shrink-0">
-              <ShieldCheck className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-sm sm:text-base font-bold font-mono text-white">
-                99.4%
-              </div>
-              <div className="text-[10px] text-slate-400 leading-tight">
-                {lang === 'ku' ? 'دڵنیایی بەدواداچوون' : lang === 'ar' ? 'دقة التتبع والمطابقة' : 'Tracking Precision'}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Dashboard Grid: Main Operations + Side AI Trade Assistant */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
-          {/* Main Panel: Active Shipments (بارنامەی چالاک) */}
-          <div className="lg:col-span-2 bg-slate-900/90 rounded-lg p-4 border border-slate-800 flex flex-col justify-between">
+        {/* Dashboard Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+          {/* Main Document & Decision Reasoning Panel */}
+          <div className="md:col-span-2 bg-slate-900/90 rounded-lg p-4 border border-slate-800 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
-                  <Truck className="w-4 h-4 text-blue-400" />
-                  <span>
-                    {lang === 'ku'
-                      ? 'بارنامەی چالاک و بەدواداچوونی بار'
-                      : lang === 'ar'
-                      ? 'بوالص الشحن وتتبع الحاويات النشطة'
-                      : 'Active Shipment & Container Tracking'}
-                  </span>
+                <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                  <FileCheck className="w-4 h-4 text-blue-400" />
+                  <span>{lang === 'ku' ? 'شیکاریی بەڵگەی دەستپێشخەریی کارگێڕی' : lang === 'ar' ? 'تحليل أدلة القرار الإداري' : 'Administrative Decision Evidence Analysis'}</span>
                 </span>
-                <span className="text-[10px] font-mono bg-blue-900/50 text-blue-300 px-2 py-0.5 rounded border border-blue-800/60">
-                  BILL-IQ-2026-094
+                <span className="text-[10px] font-mono bg-blue-900/50 text-blue-300 px-2 py-0.5 rounded">
+                  DOC-IQ-2026-884
                 </span>
               </div>
 
-              {/* Shipment Tracking Card 1 */}
-              <div className="p-3 rounded bg-slate-950/90 border border-slate-800/80 mb-3 space-y-2 text-xs">
-                <div className="flex justify-between items-center text-[11px] text-slate-400 border-b border-slate-800 pb-1.5 flex-wrap gap-1">
-                  <span className="font-medium text-slate-300">
-                    {lang === 'ku' ? 'بارنامە: ' : lang === 'ar' ? 'البوليصة: ' : 'Bill: '}
-                    <span className="font-mono text-blue-400">IQG-7742</span> ·{' '}
-                    {lang === 'ku'
-                      ? 'بەندەری ئوم قەسر ➔ مەڵبەندی لۆجیستیی هەولێر'
-                      : lang === 'ar'
-                      ? 'ميناء أم قصر ➔ مركز أربيل اللوجستي الجاف'
-                      : 'Umm Qasr Port ➔ Erbil Dry Port'}
-                  </span>
-                  <span className="inline-flex items-center gap-1 text-emerald-400 font-mono font-bold text-[10px] bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    {lang === 'ku' ? 'لە ڕێگادایە' : lang === 'ar' ? 'قيد النقل' : 'In Transit'}
-                  </span>
+              {/* Document verification card */}
+              <div className="p-3 rounded bg-slate-950/80 border border-slate-800/80 mb-3 space-y-2 text-xs">
+                <div className="flex justify-between items-center text-[11px] text-slate-400 border-b border-slate-800 pb-1.5">
+                  <span>{lang === 'ku' ? 'ناوەڕۆکی دۆسیە:' : lang === 'ar' ? 'محتوى المعاملة:' : 'Case Context:'} {lang === 'ku' ? 'ڕاپۆرتی خەرجی و پێداویستیی کەرتی تەندروستی' : lang === 'ar' ? 'تقرير التوريد والمطابقة لقطاع الصحة' : 'Health Procurement Compliance Report'}</span>
+                  <span className="text-emerald-400 font-mono font-bold">OCR: 99.4% (KRD/ARA)</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] text-slate-300 pt-1">
-                  <div>
-                    <span className="text-slate-500 block text-[10px]">
-                      {lang === 'ku' ? 'جۆری کۆنتەینەر' : lang === 'ar' ? 'نوع الحاوية' : 'Container'}
-                    </span>
-                    <span className="font-mono">40ft High-Cube</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-500 block text-[10px]">
-                      {lang === 'ku' ? 'کێش و قەبارە' : lang === 'ar' ? 'الوزن والحمولة' : 'Gross Weight'}
-                    </span>
-                    <span className="font-mono">22.4 Tonnes</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-500 block text-[10px]">
-                      {lang === 'ku' ? 'دۆخی گومرگ' : lang === 'ar' ? 'الحالة الجمركية' : 'Customs'}
-                    </span>
-                    <span className="text-emerald-400">
-                      {lang === 'ku' ? 'پشکنین تەواو بوو' : lang === 'ar' ? 'تم الفحص والمطابقة' : 'Cleared'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Tracking Progress Bar */}
-                <div className="pt-2">
-                  <div className="flex justify-between text-[10px] text-slate-400 mb-1">
-                    <span>
-                      {lang === 'ku'
-                        ? 'قۆناغ: بەسرە ➔ بەغدا ➔ هەولێر'
-                        : lang === 'ar'
-                        ? 'المسار: البصرة ➔ بغداد ➔ أربيل'
-                        : 'Route: Basra ➔ Baghdad ➔ Erbil'}
-                    </span>
-                    <span className="font-mono text-blue-400">75%</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500 rounded-full w-[75%]" />
-                  </div>
-                </div>
+                <p className="text-slate-300 text-xs leading-relaxed">
+                  {lang === 'ku'
+                    ? 'پشکنینی بەراوردکاری: بەڵگەکان پیشانی دەدەن کە هاوسەنگیی خەرجییەکان ٩٤٪ لەگەڵ ڕێنماییەکانی بودجەی پەسەندکراو دەگونجێت. پێویست بە پەسەندکردنی دەستەی چاودێری هەیە.'
+                    : lang === 'ar'
+                    ? 'المطابقة التحليلية: تشير الأدلة الموثقة إلى تطابق الإنفاق بنسبة ٩٤٪ مع معايير التدقيق المالي المعتمدة. يتطلب مصادقة المشرف البشري.'
+                    : 'Evidence Cross-Check: Verified 94% alignment with approved institutional procurement guidelines. Requires final human supervisor sign-off.'}
+                </p>
               </div>
 
-              {/* Shipment Tracking Card 2 */}
-              <div className="p-3 rounded bg-slate-950/70 border border-slate-800/80 mb-2 space-y-2 text-xs">
-                <div className="flex justify-between items-center text-[11px] text-slate-400 border-b border-slate-800 pb-1.5 flex-wrap gap-1">
-                  <span className="font-medium text-slate-300">
-                    {lang === 'ku' ? 'بارنامە: ' : lang === 'ar' ? 'البوليصة: ' : 'Bill: '}
-                    <span className="font-mono text-blue-400">IQG-8109</span> ·{' '}
+              {/* Human-in-the-Loop decision lock */}
+              <div className="p-2.5 rounded bg-amber-950/30 border border-amber-800/50 text-amber-200 text-xs flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Lock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span className="text-[11px]">
                     {lang === 'ku'
-                      ? 'مێرسین (تورکیا) ➔ دەروازەی ئیبراهیم خەلیل'
+                      ? 'مەرجی حوکمڕانیی IDG: بڕیاری کۆتایی لە دەسەڵاتی بەڕێوەبەری مرۆییدایە.'
                       : lang === 'ar'
-                      ? 'مرسين (تركيا) ➔ منفذ إبراهيم الخليل'
-                      : 'Mersin (Turkey) ➔ Ibrahim Khalil Post'}
-                  </span>
-                  <span className="inline-flex items-center gap-1 text-blue-400 font-mono font-bold text-[10px] bg-blue-950/70 border border-blue-800/60 px-2 py-0.5 rounded">
-                    <Clock className="w-3 h-3" />
-                    {lang === 'ku' ? 'پشکنینی دەروازە' : lang === 'ar' ? 'إجراءات المنفذ' : 'At Border Post'}
+                      ? 'شرط حوكمة IDG: القرار النهائي محصور بالصلاحية البشرية المسؤولة.'
+                      : 'IDG Governance Rule: Final executive decision strictly reserved for human authority.'}
                   </span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] text-slate-300 pt-1">
-                  <div>
-                    <span className="text-slate-500 block text-[10px]">
-                      {lang === 'ku' ? 'کۆنتەینەر' : lang === 'ar' ? 'الحاوية' : 'Container'}
-                    </span>
-                    <span className="font-mono">20ft Standard</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-500 block text-[10px]">
-                      {lang === 'ku' ? 'خەمڵاندنی تێچوو' : lang === 'ar' ? 'تقدير التكلفة' : 'Est. Shipping Cost'}
-                    </span>
-                    <span className="font-mono text-emerald-400">$2,850 USD</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-500 block text-[10px]">
-                      {lang === 'ku' ? 'بڕوانامەی کوالێتی' : lang === 'ar' ? 'مطابقة الجودة' : 'QC Certificate'}
-                    </span>
-                    <span className="text-emerald-400">
-                      {lang === 'ku' ? 'پەسەندکراوە' : lang === 'ar' ? 'معتمد' : 'Approved'}
-                    </span>
-                  </div>
-                </div>
+                <span className="text-[10px] bg-amber-900/60 text-amber-300 px-2 py-0.5 rounded font-mono">
+                  LOCKED
+                </span>
               </div>
             </div>
 
-            {/* Logistics Status Footer */}
-            <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-slate-800 text-[11px] font-mono text-center">
+            {/* Audit metrics bottom bar */}
+            <div className="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-slate-800 text-[11px] font-mono text-center">
               <div className="bg-slate-950 p-2 rounded border border-slate-800/60">
-                <span className="text-slate-400 block text-[10px]">
-                  {lang === 'ku' ? 'کاتی بەدەستهێنانی زانیاری' : lang === 'ar' ? 'زمن الاستجابة' : 'Search Latency'}
-                </span>
-                <span className="text-blue-400 font-bold">120ms</span>
+                <span className="text-slate-400 block text-[10px]">{lang === 'ku' ? 'کاتژمێری شیکاری' : lang === 'ar' ? 'زمن الاستجابة' : 'Latency'}</span>
+                <span className="text-blue-400 font-bold">180ms</span>
               </div>
               <div className="bg-slate-950 p-2 rounded border border-slate-800/60">
-                <span className="text-slate-400 block text-[10px]">
-                  {lang === 'ku' ? 'بەستەرەکانی API' : lang === 'ar' ? 'ربط الأنظمة اللوجستية' : 'Tracking Feeds'}
-                </span>
-                <span className="text-emerald-400 font-bold">Live Synced</span>
+                <span className="text-slate-400 block text-[10px]">{lang === 'ku' ? 'شەفافیەتی بەڵگە' : lang === 'ar' ? 'سلسلة التدقيق' : 'Audit Trail'}</span>
+                <span className="text-emerald-400 font-bold">100% Hash</span>
               </div>
               <div className="bg-slate-950 p-2 rounded border border-slate-800/60">
-                <span className="text-slate-400 block text-[10px]">
-                  {lang === 'ku' ? 'مەڵبەندە لۆجیستییەکان' : lang === 'ar' ? 'المراكز اللوجستية' : 'Hubs Covered'}
-                </span>
-                <span className="text-purple-400 font-bold">18 Provinces</span>
+                <span className="text-slate-400 block text-[10px]">{lang === 'ku' ? 'مۆدێلی ناوخۆیی' : lang === 'ar' ? 'النموذج المحلي' : 'Local Engine'}</span>
+                <span className="text-purple-400 font-bold">KurdoArabic-70B</span>
               </div>
             </div>
           </div>
 
-          {/* Side Panel: AI Trade Assistant (یاریدەدەری زیرەکی بازرگانی) */}
+          {/* Side Telemetry & Real-Time Monitoring Panel */}
           <div className="bg-slate-900/90 rounded-lg p-4 border border-slate-800 flex flex-col justify-between space-y-3">
             <div>
-              <div className="flex items-center justify-between mb-3 text-xs font-bold text-slate-200">
+              <div className="flex items-center justify-between mb-3 text-xs font-bold text-slate-300">
                 <span className="flex items-center gap-1.5">
-                  <Bot className="w-4 h-4 text-emerald-400" />
-                  <span>
-                    {lang === 'ku'
-                      ? 'یاریدەدەری زیرەک'
-                      : lang === 'ar'
-                      ? 'المساعد التجاري الذكي'
-                      : 'AI Trade Assistant'}
-                  </span>
+                  <Activity className="w-4 h-4 text-emerald-400" />
+                  <span>{lang === 'ku' ? 'چاودێریی سیستم' : lang === 'ar' ? 'مؤشرات النظام' : 'System Telemetry'}</span>
                 </span>
-                <span className="text-[10px] text-emerald-400 font-mono bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">
-                  ONLINE
-                </span>
+                <span className="text-[10px] text-emerald-400 font-mono">HEALTHY</span>
               </div>
 
-              {/* Chat Interaction Simulation */}
               <div className="space-y-2.5 text-xs">
-                {/* User merchant question */}
-                <div className="p-2.5 rounded-lg bg-blue-950/40 border border-blue-800/40 text-blue-100 text-[11px] leading-relaxed">
-                  <span className="text-blue-300 font-bold block mb-1">
-                    {lang === 'ku'
-                      ? '💬 پرسیاری بازرگان:'
-                      : lang === 'ar'
-                      ? '💬 سؤال التاجر:'
-                      : '💬 Merchant Query:'}
-                  </span>
-                  {lang === 'ku'
-                    ? 'تێچووی هاوردەکردنی ٢ کۆنتەینەری کەرەستەی ئەلیکترۆنی لە جەبەل عەلی بۆ بەغدا بە گومرگەوە چەند دەخەمڵێنرێت؟'
-                    : lang === 'ar'
-                    ? 'كم تقدير تكلفة استيراد حاويتين لمعدات إلكترونية من جبل علي إلى بغداد شاملاً الجمارك؟'
-                    : 'What is the estimated cost of importing 2 containers of electronics from Jebel Ali to Baghdad including customs?'}
-                </div>
-
-                {/* AI response */}
-                <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-[11px] leading-relaxed space-y-1.5">
-                  <div className="flex items-center justify-between text-emerald-400 text-[10px] font-bold">
-                    <span className="flex items-center gap-1">
-                      <Sparkles className="w-3 h-3" />
-                      {lang === 'ku' ? 'وەڵامی ژیریی دەستکرد:' : lang === 'ar' ? 'رد المساعد الذكي:' : 'AI Trade Engine:'}
-                    </span>
-                    <span className="font-mono text-slate-400">99.2% Conf</span>
+                <div>
+                  <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+                    <span>{lang === 'ku' ? 'دڵنیایی شیکاری' : lang === 'ar' ? 'دقة المطابقة' : 'Model Confidence'}</span>
+                    <span className="font-mono text-slate-200">98.2%</span>
                   </div>
-                  <p>
-                    {lang === 'ku'
-                      ? 'خەمڵاندنی تێچووی گواستنەوە و دەروازە: $5,200 - $5,600. گۆڕینەوە بە نرخی بازاڕ (1,518 IQD/USD).'
-                      : lang === 'ar'
-                      ? 'تقدير تكاليف النقل والجمارك: $5,200 - $5,600. سعر الصرف المعتمد: (1,518 IQD/USD).'
-                      : 'Estimated shipping & customs cost: $5,200 - $5,600. Market conversion: (1,518 IQD/USD).'}
-                  </p>
-                  <p className="text-slate-400 text-[10px] pt-1 border-t border-slate-800/80">
-                    {lang === 'ku'
-                      ? 'ڕێنمایی: بەڵگەنامەی دابینکەر و کۆدی گومرگی ئامادە بکە بۆ سوودمەندبوون لە ڕێڕەوی خێرای سەوز.'
-                      : lang === 'ar'
-                      ? 'توجيه: إرفاق شهادة المورد ورمز HS لتسريع إجراءات التخليص عبر المسار الأخضر.'
-                      : 'Guidance: Prepare supplier certificate & HS Code to qualify for expedited green clearance lane.'}
-                  </p>
+                  <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                    <div className="h-full bg-blue-500 rounded-full w-[98.2%]" />
+                  </div>
                 </div>
 
-                {/* Quick Action Shortcuts */}
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  <span className="px-2 py-1 rounded bg-slate-950 border border-slate-800 text-[10px] text-slate-300 font-mono">
-                    {lang === 'ku' ? '⚡ خەمڵاندنی تێچووی نوێ' : lang === 'ar' ? '⚡ حاسبة التكاليف' : '⚡ Cost Estimator'}
-                  </span>
-                  <span className="px-2 py-1 rounded bg-slate-950 border border-slate-800 text-[10px] text-slate-300 font-mono">
-                    {lang === 'ku' ? '📄 ڕێنمایی گومرگ' : lang === 'ar' ? '📄 دليل الجمارك' : '📄 Customs Guide'}
-                  </span>
-                  <span className="px-2 py-1 rounded bg-slate-950 border border-slate-800 text-[10px] text-slate-300 font-mono">
-                    {lang === 'ku' ? '🔍 دۆزینەوەی دابینکەر' : lang === 'ar' ? '🔍 الموردون' : '🔍 Suppliers'}
-                  </span>
+                <div>
+                  <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+                    <span>{lang === 'ku' ? 'تەلارسازیی سەروەر' : lang === 'ar' ? 'العزل السيادي' : 'Isolation Level'}</span>
+                    <span className="font-mono text-emerald-400">100% Air-Gapped</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                    <div className="h-full bg-emerald-500 rounded-full w-full" />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+                    <span>{lang === 'ku' ? 'داواکارییەکانی ئەمڕۆ' : lang === 'ar' ? 'طلبات التدقيق' : 'Daily Audits'}</span>
+                    <span className="font-mono text-slate-200">14,289</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                    <div className="h-full bg-purple-500 rounded-full w-[76%]" />
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Trial Callout in side panel */}
             <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1">
-              <span className="text-slate-400 block font-bold text-[10px]">
-                {lang === 'ku' ? 'بەرنامەی تاقیکردنەوە:' : lang === 'ar' ? 'برنامج التجربة المؤسسية:' : 'Corporate Pilot:'}
-              </span>
-              <span className="text-slate-200 leading-snug block text-[10px]">
+              <span className="text-slate-400 block font-bold">{lang === 'ku' ? 'خاوەندارێتی و ئەنجام:' : lang === 'ar' ? 'الجهة المسؤولة والنتيجة:' : 'Authority Result:'}</span>
+              <span className="text-slate-200 leading-snug block">
                 {lang === 'ku'
-                  ? '١٤ ڕۆژ تاقیکردنەوەی تەواو • ٣ تا ٥ بەکارهێنەر • ڕێنماییی سەرەتایی + پشتیوانی.'
+                  ? 'بڕیار دراوە بە کەمکردنەوەی کەلێنی داتا و دابینکردنی سەروەری لە سەرانسەری ١٨ پارێزگادا.'
                   : lang === 'ar'
-                  ? 'تجربة كاملة لمدة ١٤ يوماً • ٣-٥ مستخدمين • تدريب ودعم فني مستمر.'
-                  : '14-Day Pilot • 3-5 Team Seats • Setup onboarding & analytics report included.'}
+                  ? 'تم تقليص زمن إعداد دراسات الجدوى بنسبة ٦٥٪ مع توثيق السجلات بالكامل.'
+                  : 'Accelerated procurement analysis by 65% while enforcing 100% institutional tamper-proof audit trails.'}
               </span>
             </div>
           </div>
-        </div>
-
-        {/* Bottom Currency Rates Widget & Live App Portal Link */}
-        <div className="mt-4 pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          {/* Currency Rates Widget */}
-          <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
-            <span className="text-[11px] font-bold text-slate-400 flex items-center gap-1 font-mono">
-              <DollarSign className="w-3.5 h-3.5 text-amber-400" />
-              <span>{lang === 'ku' ? 'نرخی دراو:' : lang === 'ar' ? 'أسعار الصرف:' : 'Live Rates:'}</span>
-            </span>
-
-            <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono">
-              <span className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-200">
-                USD/IQD: <strong className="text-emerald-400 font-bold">1,518</strong>
-              </span>
-              <span className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-200">
-                EUR/IQD: <strong className="text-blue-400 font-bold">1,642</strong>
-              </span>
-              <span className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-200">
-                AED/IQD: <strong className="text-amber-400 font-bold">413.2</strong>
-              </span>
-            </div>
-          </div>
-
-          {/* Direct Launch Link */}
-          <a
-            href="https://app.aigateiraq.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition shadow-sm shrink-0"
-          >
-            <span>{lang === 'ku' ? 'چوونەژوورەوەی پلاتفۆرم' : lang === 'ar' ? 'دخول المنصة' : 'Launch App'}</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
         </div>
       </div>
     );
@@ -688,14 +468,14 @@ export default function ProductMockups({ type, lang }: MockupProps) {
                   <Recycle className="w-4 h-4 text-emerald-400" />
                   <span>
                     {lang === 'ku'
-                      ? 'سووڕی کۆکردنەوە و بەرهەمهێنانی کۆمپۆستی هەولێر'
+                      ? 'سووڕی کۆکردنەوە و بەرهەمهێنانی کۆمپۆستی بەغدا'
                       : lang === 'ar'
-                      ? 'دورة تدوير المخلفات العضوية وإنتاج السماد لمدينة أربيل'
-                      : 'Erbil Organic Diversion & Composting Pipeline'}
+                      ? 'دورة تدوير المخلفات العضوية وإنتاج السماد لمدينة بغداد'
+                      : 'Baghdad Organic Diversion & Composting Pipeline'}
                   </span>
                 </span>
                 <span className="text-[10px] font-mono bg-emerald-900/50 text-emerald-300 px-2 py-0.5 rounded">
-                  ZONE-ERB-EAST
+                  ZONE-BG-EAST
                 </span>
               </div>
 
@@ -718,16 +498,8 @@ export default function ProductMockups({ type, lang }: MockupProps) {
               {/* Real-time telemetry map / route note */}
               <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1.5">
                 <div className="flex justify-between items-center text-slate-400 border-b border-slate-800/80 pb-1">
-                  <span>
-                    {lang === 'ku'
-                      ? 'ناوچەی چاودێری: کەرتی کەمەربەندی سەوزی شاری هەولێر'
-                      : lang === 'ar'
-                      ? 'منطقة الرصد: قطاع الحزام الأخضر لمدينة أربيل'
-                      : 'Monitored Sector: Erbil Green Belt Perimeter'}
-                  </span>
-                  <span className="text-emerald-400 font-mono">
-                    {lang === 'ku' ? '٩٤.٢٪ ڕێژەی ژیانی نەمامەکان' : lang === 'ar' ? '٩٤.٢٪ نسبة بقاء الشتلات' : '94.2% Sapling Vitality'}
-                  </span>
+                  <span>{lang === 'ku' ? 'ناوچەی چاودێری:' : lang === 'ar' ? 'منطقة الرصد:' : 'Monitored Sector:'} کەرتی کەمەربەندی سەوزی شاری بەغدا</span>
+                  <span className="text-emerald-400 font-mono">٩٤.٢٪ ڕێژەی ژیانی نەمامەکان</span>
                 </div>
                 <p className="text-slate-300 leading-relaxed">
                   {lang === 'ku'
@@ -800,33 +572,15 @@ export default function ProductMockups({ type, lang }: MockupProps) {
               </div>
             </div>
 
-            <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-2">
-              <div>
-                <span className="text-slate-400 block font-bold mb-0.5">{lang === 'ku' ? 'کێشەی چارەسەرکراو:' : lang === 'ar' ? 'المشكلة المعالجة:' : 'Problem Solved:'}</span>
-                <span className="text-slate-200 leading-snug block">
-                  {lang === 'ku'
-                    ? 'وەستاندنی بەفیڕۆچوونی مەترسیداری زبڵی ئەندامی و کەمکردنەوەی گازی میسان لە ڕێگەی داتای وردی ژینگەییەوە.'
-                    : lang === 'ar'
-                    ? 'القضاء على التخلص العشوائي من المخلفات وبناء درع بيئي ذكي يوثق جهود مكافحة التصحر.'
-                    : 'Transforming urban organic waste into restorative carbon sinks backed by sovereign telemetry.'}
-                </span>
-              </div>
-              <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-1 text-[10px]">
-                <span className="text-slate-400 font-medium">
-                  {lang === 'ku' ? 'دەستە و خاوەنی بەرپرسیار:' : lang === 'ar' ? 'الجهة المسؤولة:' : 'Accountable Authority:'}
-                </span>
-                <span className="text-emerald-400 font-semibold">
-                  {lang === 'ku' ? 'ئابوری بازنەی ناوخۆ' : lang === 'ar' ? 'الاقتصاد الدائري المحلي' : 'Local Circular Economy'}
-                </span>
-              </div>
-              <div className="flex flex-wrap items-center justify-between gap-1 text-[10px]">
-                <span className="text-slate-400 font-medium">
-                  {lang === 'ku' ? 'باری کاریگەری:' : lang === 'ar' ? 'حالة الأثر:' : 'Impact Status:'}
-                </span>
-                <span className="text-amber-300 font-mono text-[9px] bg-amber-950/60 border border-amber-800/60 px-1.5 py-0.5 rounded">
-                  {lang === 'ku' ? 'کاریگەریی نیشتمانیی ئامادە بۆ سەلماندن' : lang === 'ar' ? 'أثر وطني — جاهز للتحقق' : 'Ready for Verification'}
-                </span>
-              </div>
+            <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1">
+              <span className="text-slate-400 block font-bold">{lang === 'ku' ? 'کێشەی چارەسەرکراو:' : lang === 'ar' ? 'المشكلة المعالجة:' : 'Problem Solved:'}</span>
+              <span className="text-slate-200 leading-snug block">
+                {lang === 'ku'
+                  ? 'وەستاندنی بەفیڕۆچوونی مەترسیداری زبڵی ئەندامی و کەمکردنەوەی گازی میسان لە ڕێگەی داتای وردی ژینگەییەوە.'
+                  : lang === 'ar'
+                  ? 'القضاء على التخلص العشوائي من المخلفات وبناء درع بيئي ذكي يوثق جهود مكافحة التصحر.'
+                  : 'Transforming urban organic waste into restorative carbon sinks backed by sovereign telemetry.'}
+              </span>
             </div>
           </div>
         </div>
@@ -844,7 +598,7 @@ export default function ProductMockups({ type, lang }: MockupProps) {
           <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
           <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
           <span className="font-mono text-slate-400 ms-2 text-[11px]">
-            nsw.iq/customs-trade-gateway [IDG-STRAT-NSW]
+            nsw.iq/trade-gateway [IRAQ NSW]
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -853,8 +607,40 @@ export default function ProductMockups({ type, lang }: MockupProps) {
             <span>WCO Data Model v3.10 Compliant</span>
           </span>
           <span className="inline-flex items-center gap-1 bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded text-[11px] font-mono">
-            <span>PORTAL READY</span>
+            <span>Zero-Trust Enabled</span>
           </span>
+        </div>
+      </div>
+
+      {/* Metrics Row (4 Cards) */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 mt-4 text-[11px] font-mono text-center">
+        <div className="bg-slate-900/90 p-2.5 rounded-lg border border-slate-800">
+          <span className="text-slate-400 block text-[10px]">
+            {lang === 'ku' ? 'کاتی پاکتاو' : lang === 'ar' ? 'زمن التخليص' : 'Clearance Time'}
+          </span>
+          <span className="text-emerald-400 font-bold text-xs block mt-0.5">7h (was 48h)</span>
+          <span className="text-emerald-500 text-[10px] font-bold">↓85%</span>
+        </div>
+        <div className="bg-slate-900/90 p-2.5 rounded-lg border border-slate-800">
+          <span className="text-slate-400 block text-[10px]">
+            {lang === 'ku' ? 'تێچووی ڕاگەیاندن' : lang === 'ar' ? 'تكلفة البيان' : 'Cost/Declaration'}
+          </span>
+          <span className="text-blue-400 font-bold text-xs block mt-0.5">$400 (was $1k)</span>
+          <span className="text-blue-500 text-[10px] font-bold">↓60%</span>
+        </div>
+        <div className="bg-slate-900/90 p-2.5 rounded-lg border border-slate-800">
+          <span className="text-slate-400 block text-[10px]">
+            {lang === 'ku' ? 'شەفافیەت' : lang === 'ar' ? 'الشفافية' : 'Transparency'}
+          </span>
+          <span className="text-purple-400 font-bold text-xs block mt-0.5">90%+ (was 10%)</span>
+          <span className="text-purple-500 text-[10px] font-bold">↑9x</span>
+        </div>
+        <div className="bg-slate-900/90 p-2.5 rounded-lg border border-slate-800">
+          <span className="text-slate-400 block text-[10px]">
+            {lang === 'ku' ? 'کەمکردنەوەی گەندەڵی' : lang === 'ar' ? 'مكافحة الفساد' : 'Corruption'}
+          </span>
+          <span className="text-emerald-400 font-bold text-xs block mt-0.5">0% (was 40%)</span>
+          <span className="text-emerald-500 text-[10px] font-bold">↓100%</span>
         </div>
       </div>
 
@@ -868,9 +654,9 @@ export default function ProductMockups({ type, lang }: MockupProps) {
                 <Truck className="w-4 h-4 text-blue-400" />
                 <span>
                   {lang === 'ku'
-                    ? 'ڕێڕەوی پاکتاوی یەکگرتووی سنوری (گومرگ + تەندروستی + بانک)'
+                    ? 'ڕێڕەوی پاکتاوی یەکگرتووی سنوری (گومرگ + ستاندارد + بانک)'
                     : lang === 'ar'
-                    ? 'مسار التخليص الجمركي الموحد (الجمارك + الرقابة + التسوية البنكية)'
+                    ? 'مسار التخليص الجمركي الموحد (الجمارك + المعايير + التسوية البنكية)'
                     : 'Unified Border Clearance Pipeline (Customs + Standards + Banking)'}
                 </span>
               </span>
@@ -883,12 +669,12 @@ export default function ProductMockups({ type, lang }: MockupProps) {
             <div className="grid grid-cols-4 gap-2 mb-3 text-center text-xs font-mono">
               <div className="p-2 rounded bg-emerald-950/60 border border-emerald-800 text-emerald-300">
                 <CheckCircle2 className="w-3.5 h-3.5 mx-auto mb-1 text-emerald-400" />
-                <span className="block text-[10px]">{lang === 'ku' ? 'مانفێستی ئەلیکترۆنی' : lang === 'ar' ? 'البيان الجمركي' : 'E-Manifest'}</span>
+                <span className="block text-[10px]">{lang === 'ku' ? 'مانیفێستی ئەلیکترۆنی' : lang === 'ar' ? 'البيان الجمركي' : 'E-Manifest'}</span>
                 <span className="text-[9px] text-emerald-400 font-bold">VERIFIED</span>
               </div>
               <div className="p-2 rounded bg-emerald-950/60 border border-emerald-800 text-emerald-300">
                 <CheckCircle2 className="w-3.5 h-3.5 mx-auto mb-1 text-emerald-400" />
-                <span className="block text-[10px]">{lang === 'ku' ? 'پشکنینی پێوانە' : lang === 'ar' ? 'السيطرة النوعية' : 'Standards'}</span>
+                <span className="block text-[10px]">{lang === 'ku' ? 'پشکنینی ستاندارد' : lang === 'ar' ? 'فحص المعايير' : 'Standards Check'}</span>
                 <span className="text-[9px] text-emerald-400 font-bold">APPROVED</span>
               </div>
               <div className="p-2 rounded bg-blue-950/60 border border-blue-800 text-blue-300">
@@ -898,7 +684,7 @@ export default function ProductMockups({ type, lang }: MockupProps) {
               </div>
               <div className="p-2 rounded bg-emerald-950/60 border border-emerald-800 text-emerald-300">
                 <CheckCircle2 className="w-3.5 h-3.5 mx-auto mb-1 text-emerald-400" />
-                <span className="block text-[10px]">{lang === 'ku' ? 'پارەدانی بانکی' : lang === 'ar' ? 'الدفع الإلكتروني' : 'RTGS Settlement'}</span>
+                <span className="block text-[10px]">{lang === 'ku' ? 'پارەدانی RTGS' : lang === 'ar' ? 'تسوية RTGS' : 'RTGS Settlement'}</span>
                 <span className="text-[9px] text-emerald-400 font-bold">SETTLED</span>
               </div>
             </div>
@@ -906,32 +692,37 @@ export default function ProductMockups({ type, lang }: MockupProps) {
             {/* Declaration Content Sample */}
             <div className="p-3 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1.5">
               <div className="flex justify-between items-center text-slate-400 border-b border-slate-800 pb-1">
-                <span>{lang === 'ku' ? 'بەندەری دەستپێک:' : lang === 'ar' ? 'ميناء الدخول:' : 'Port of Entry:'} بەندەری ئوم قەسر (Umm Qasr South)</span>
-                <span className="text-emerald-400 font-mono">زەمانەتی ئەلیکترۆنی: کارا</span>
+                <span>{lang === 'ku' ? 'دەروازەی تاقیکاری:' : lang === 'ar' ? 'منفذ التشغيل التجريبي:' : 'Pilot Border:'} بەندەری ئوم قەسر (Umm Qasr South)</span>
+                <span className="text-emerald-400 font-mono">Zero-Trust: ACTIVE</span>
               </div>
               <p className="text-slate-300 leading-relaxed">
                 {lang === 'ku'
-                  ? 'سیستەمی NSW کاتی پاکتاوی بار لە ٩ ڕۆژەوە کەم دەکاتەوە بۆ کەمتر لە ٦ کاتژمێر بە یەکخستنی داتا بەبێ پێویستی بە دۆکیومێنتی کاغەزی و دەستێوەردانی چەندبارە.'
+                  ? 'کەمکردنەوەی کاتی پاکتاوی گومرگی لە ٤٨ کاتژمێرەوە بۆ ٧ کاتژمێر، کەمکردنەوەی تێچوو لە $١،٠٠٠ بۆ $٤٠٠، و بەرزکردنەوەی شەفافیەت لە ١٠٪ بۆ ٩٠٪+ بە یەکخستنی ١٠ دەروازەی سنوری لەگەڵ هەرێمی کوردستان.'
                   : lang === 'ar'
-                  ? 'تعمل المنصة على تقليص زمن الإفراج الجمركي من ٩ أيام إلى أقل من ٦ ساعات من خلال الربط الإلكتروني المباشر بين هيئة المنافذ والجمارك والبنك المركزي.'
-                  : 'Harmonizes disparate regulatory declarations into an encrypted single-window flow, preventing tariff leakages and expediting freight release.'}
+                  ? 'تقليص زمن التخليص الجمركي من ٤٨ ساعة إلى ٧ ساعات، وتخفيض التكلفة من ١,٠٠٠$ إلى ٤٠٠$، ورفع الشفافية من ١٠٪ إلى ٩٠٪+ عبر توحيد ١٠ منافذ حدودية مع إقليم كردستان.'
+                  : 'Slashes clearance time from 48h to 7h (85% faster), cuts costs from $1,000 to $400, and elevates transparency from 10% to 90%+ across 10 unified borders plus KRG.'}
               </p>
             </div>
           </div>
 
-          {/* National Gateway Metrics */}
-          <div className="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-slate-800 text-[11px] font-mono text-center">
-            <div className="bg-slate-950 p-2 rounded border border-slate-800/60">
-              <span className="text-slate-400 block text-[10px]">{lang === 'ku' ? 'کاتی پاکتاو' : lang === 'ar' ? 'زمن التخليص' : 'Clearance Time'}</span>
-              <span className="text-emerald-400 font-bold">-75% Time</span>
+          {/* Implementation Status Section */}
+          <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] space-y-2">
+            <div className="flex justify-between items-center text-xs">
+              <span className="font-bold text-slate-300">
+                {lang === 'ku'
+                  ? 'قۆناغی ٨/٩: جێبەجێکردنی تاقیکاری (ئوم قەسر) — مانگی ١١-١٢'
+                  : lang === 'ar'
+                  ? 'المرحلة ٨/٩: التشغيل التجريبي (أم قصر) — الشهر ١١-١٢'
+                  : 'Phase 8/9: Pilot Deployment (Umm Qasr) — Month 11-12'}
+              </span>
+              <span className="font-mono text-emerald-400 font-bold">70%</span>
             </div>
-            <div className="bg-slate-950 p-2 rounded border border-slate-800/60">
-              <span className="text-slate-400 block text-[10px]">{lang === 'ku' ? 'دەروازە بەستراوەکان' : lang === 'ar' ? 'المنافذ المستهدفة' : 'Connected Ports'}</span>
-              <span className="text-blue-400 font-bold">22 Border Points</span>
+            <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+              <div className="h-full bg-emerald-500 rounded-full w-[70%]" />
             </div>
-            <div className="bg-slate-950 p-2 rounded border border-slate-800/60">
-              <span className="text-slate-400 block text-[10px]">{lang === 'ku' ? 'سەروەریی داتا' : lang === 'ar' ? 'سيادة البيانات' : 'Sovereignty'}</span>
-              <span className="text-purple-400 font-bold">100% National</span>
+            <div className="flex justify-between items-center text-[10px] text-slate-400 font-mono">
+              <span>{lang === 'ku' ? 'داهاتوو: فراوانکردن بۆ هەموو دەروازەکان (مانگی ١٣-١٨)' : lang === 'ar' ? 'التالي: التوسع لكافة المنافذ (الشهر ١٣-١٨)' : 'Next: Scaling to All Borders (Month 13-18)'}</span>
+              <span className="text-purple-400 font-bold">Budget: $180M | ROI: 420%</span>
             </div>
           </div>
         </div>
@@ -977,17 +768,27 @@ export default function ProductMockups({ type, lang }: MockupProps) {
                   <div className="h-full bg-purple-500 rounded-full w-full" />
                 </div>
               </div>
+
+              <div>
+                <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+                  <span>{lang === 'ku' ? 'گومرگی هەرێمی کوردستان (KRG)' : lang === 'ar' ? 'جمارك إقليم كردستان (KRG)' : 'KRG Customs'}</span>
+                  <span className="font-mono text-emerald-400">Connected</span>
+                </div>
+                <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                  <div className="h-full bg-emerald-500 rounded-full w-full" />
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1">
-            <span className="text-slate-400 block font-bold">{lang === 'ku' ? 'سەروەری و دیسپلین:' : lang === 'ar' ? 'الانضباط والسيادة:' : 'Sovereign Protocol:'}</span>
+            <span className="text-slate-400 block font-bold">{lang === 'ku' ? 'ئامانجە داراییەکان:' : lang === 'ar' ? 'المؤشرات المالية:' : 'Financial Targets:'}</span>
             <span className="text-slate-200 leading-snug block">
               {lang === 'ku'
-                ? 'کۆتاییهێنان بە بەفیڕۆچوونی داهاتی نیشتمانی لە ڕێگەی شیکاری و چاودێریی تۆکمەی دیجیتاڵییەوە.'
+                ? 'بودجەی گشتی: $١٨٠ ملیۆن | ماوە: ١٨ مانگ | قۆناغی بێ‌قازانج‌وزەرەر: مانگی ١٨ | قازانجی ساڵی ٣: $٣٩ ملیۆن/ساڵ | ROI: ٤٢٠٪.'
                 : lang === 'ar'
-                ? 'منع الهدر المالي وحماية المنافذ الحدودية بنظام موحد يراعي متطلبات الأمن القومي.'
-                : 'Guarantees end-to-end auditability across national import/export corridors.'}
+                ? 'الميزانية الإجمالية: ١٨٠ مليون دولار | المدة: ١٨ شهراً | نقطة التعادل: الشهر ١٨ | أرباح السنة الثالثة: ٣٩ مليون دولار/سنوياً | العائد: ٤٢٠٪.'
+                : 'Total Budget: $180M | Timeline: 18 Months | Break-even: Month 18 | Year 3 Profit: $39M/yr | ROI: 420%.'}
             </span>
           </div>
         </div>
