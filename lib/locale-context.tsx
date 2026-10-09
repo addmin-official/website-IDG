@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { translations, Language, TranslationData } from '@/lib/translations';
 
@@ -26,6 +26,13 @@ export function LocaleProvider({
   const lang: Language = rawLocale === 'ar' || rawLocale === 'en' ? rawLocale : 'ku';
   const isRtl = lang === 'ku' || lang === 'ar';
   const t = translations[lang] || translations.ku;
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+    }
+  }, [lang, isRtl]);
 
   return (
     <LocaleContext.Provider value={{ lang, isRtl, t }}>

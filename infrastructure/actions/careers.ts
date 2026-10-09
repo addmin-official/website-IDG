@@ -1,11 +1,13 @@
 'use server';
 
+import { getPrisma } from '@/lib/prisma';
+
 export async function submitCareerApplication(formData: FormData) {
   // ١. وەرگرتنی زانیارییەکان
-  const name = formData.get('name');
-  const email = formData.get('email');
-  const position = formData.get('position');
-  const coverNote = formData.get('coverNote');
+  const name = formData.get('name') as string | null;
+  const email = formData.get('email') as string | null;
+  const position = formData.get('position') as string | null;
+  const coverNote = formData.get('coverNote') as string | null;
   const cvFile = formData.get('cv') as File | null;
 
   // ٢. پشکنینی پڕکردنەوەی خانەکان
@@ -23,11 +25,36 @@ export async function submitCareerApplication(formData: FormData) {
     return { success: false, error: "قەبارەی فایلەکە نابێت لە 5MB زیاتر بێت." };
   }
 
-  // ٤. لێرەدا لە داهاتوودا داتاکە دەچێتە داتابەیس
-  console.log("New Job Application:", { name, email, position, fileName: cvFile.name });
-
-  // ٥. دروستکردنی ژمارەی داواکاری
+  // ٤. دروستکردنی ژمارەی داواکاری
   const applicationId = `IDG-APP-${Math.floor(1000 + Math.random() * 9000)}`;
 
-  return { success: true, applicationId: applicationId };
+  // ٥. پاشەکەوتکردن لە داتابەیس (PostgreSQL / Prisma)
+  try {
+    const prisma = await getPrisma();
+    if (prisma?.careerApplication) {
+      await prisma.careerApplication.create({
+        data: {
+          applicationId,
+          name,
+          email,
+          position,
+          coverNote: coverNote || null,
+          cvFileName: cvFile.name,
+        },
+      });
+      console.log(`[DB] Successfully stored career application ${applicationId}`);
+    } else {
+      console.log(`[Log Only] New Job Application received (DB offline):`, {
+        applicationId,
+        name,
+        email,
+        position,
+        fileName: cvFile.name,
+      });
+    }
+  } catch (dbError) {
+    console.error(`[DB Error] Failed to persist career application to database:`, dbError);
+  }
+
+  return { success: true, applicationId };
 }
