@@ -1,50 +1,7 @@
-# dependencies
 node_modules/
-.pnp
-.pnp.js
-
-# testing
-coverage/
-
-# next.js
 .next/
-out/
-build/
-dist/
-
-# misc
+coverage/
 .DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env*.local
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# alternative package managers
-bun.lock
-bun.lockb
-yarn.lock
-pnpm-lock.yaml
-
-# backup files
-*.backup
-_backup_untracked/
-
-# IMPORTANT: package-lock.json must NOT be ignored
-# (it's tracked and required for reproducible installs)
+*.log
+.env*
+!.env.example

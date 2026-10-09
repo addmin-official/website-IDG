@@ -238,18 +238,9 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
 
         </div>
 
-        {/* Governance Status Bar */}
-        <div className="py-3 border-t border-slate-800/60 flex items-center justify-center gap-3 text-[10px] font-mono text-slate-500" id="footer-governance-bar">
-          <span>Build IDG-2026.10-PROD</span>
-          <span className="text-slate-700">·</span>
-          <span>ISO-27001 Verified</span>
-          <span className="text-slate-700">·</span>
-          <span>Erbil Node 01</span>
-        </div>
-
         {/* Copyright & Sub-links */}
         <div
-          className="pt-4 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400"
+          className="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400"
           id="footer-copyright-section"
         >
           <p suppressHydrationWarning id="footer-copyright-text">
