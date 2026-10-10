@@ -1,14 +1,50 @@
 @import "tailwindcss";
- 
+
+@theme {
+  /* ── Sovereign Brand ── */
+  --color-primary-950: #060D1A;
+  --color-primary-900: #0B172E;
+  --color-primary-800: #102447;
+  --color-primary-700: #193B73;
+  --color-accent-600:  #1D5BD8;
+  --color-accent-500:  #2563EB;
+  --color-accent-400:  #60A5FA;
+  /* ── Status ── */
+  --color-status-gold:    #D97706;
+  --color-status-emerald: #059669;
+  --color-status-crimson: #DC2626;
+  /* ── Borders ── */
+  --color-border-default: #102447;
+  --color-border-subtle:  #0B172E;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: var(--color-primary-950);
+    color-scheme: dark;
   }
   body {
-    font-family: var(--font-ku), var(--font-en), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #060D1A;
+    font-family: var(--font-ku), var(--font-en), system-ui, -apple-system, sans-serif;
+    background-color: var(--color-primary-950);
     color: #CBD5E1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+  :focus-visible {
+    outline: 2px solid var(--color-accent-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background-color: var(--color-accent-600);
+    color: #ffffff;
+  }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-primary-950); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary-800);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-accent-600); }
 }
-
-
