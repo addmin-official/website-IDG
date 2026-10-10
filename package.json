@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -p 3000",
-    "build": "NODE_ENV=production next build",
+    "build": "prisma generate && next build",
     "start": "next start -p 3000",
     "lint": "eslint .",
     "clean": "rm -rf .next node_modules/.cache .turbo",
-    "postinstall": "node scripts/patch-next-devtools.js || true",
+    "postinstall": "prisma generate && node scripts/patch-next-devtools.js || true",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev"
   },

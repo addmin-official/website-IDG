@@ -19,10 +19,12 @@ export function SegmentViewStateNode() { return null; }
 export function useSegmentState() { return { boundaryType: null, setBoundaryType: () => {} }; }
 `;
 
-const cjsPath = path.join(__dirname, '..', 'node_modules', 'next', 'dist', 'next-devtools', 'userspace', 'app', 'segment-explorer-node.js');
-const esmPath = path.join(__dirname, '..', 'node_modules', 'next', 'dist', 'esm', 'next-devtools', 'userspace', 'app', 'segment-explorer-node.js');
+const rootNodeModules = path.join(__dirname, '..', 'node_modules');
 
 try {
+  const cjsPath = path.join(rootNodeModules, 'next', 'dist', 'next-devtools', 'userspace', 'app', 'segment-explorer-node.js');
+  const esmPath = path.join(rootNodeModules, 'next', 'dist', 'esm', 'next-devtools', 'userspace', 'app', 'segment-explorer-node.js');
+
   if (fs.existsSync(cjsPath)) {
     fs.writeFileSync(cjsPath, cjsContent, 'utf8');
     console.log('Successfully patched CJS segment-explorer-node.js');
@@ -31,18 +33,32 @@ try {
     fs.writeFileSync(esmPath, esmContent, 'utf8');
     console.log('Successfully patched ESM segment-explorer-node.js');
   }
-  const fontLoaderPath = path.join(__dirname, '..', 'node_modules', 'next', 'dist', 'compiled', '@next', 'font', 'dist', 'google', 'loader.js');
-  if (fs.existsSync(fontLoaderPath)) {
-    let fontLoaderCode = fs.readFileSync(fontLoaderPath, 'utf8');
-    if (fontLoaderCode.includes('const ext = /\\.(woff|woff2|eot|ttf|otf)$/.exec(googleFontFileUrl)[1];')) {
-      fontLoaderCode = fontLoaderCode.replace(
-        'const ext = /\\.(woff|woff2|eot|ttf|otf)$/.exec(googleFontFileUrl)[1];',
-        'const extMatch = /\\.(woff|woff2|eot|ttf|otf)$/.exec(googleFontFileUrl); const ext = extMatch ? extMatch[1] : "woff2";'
-      );
-      fs.writeFileSync(fontLoaderPath, fontLoaderCode, 'utf8');
-      console.log('Successfully patched Google font loader.js');
+
+  // Recursive patch for Google font loader null safety
+  function patchFontLoaders(dir) {
+    if (!fs.existsSync(dir)) return;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        patchFontLoaders(fullPath);
+      } else if (entry.name.endsWith('.js')) {
+        try {
+          let code = fs.readFileSync(fullPath, 'utf8');
+          if (code.includes('googleFontFileUrl') && code.includes('exec(googleFontFileUrl)[1]')) {
+            code = code.replace(
+              /const ext\s*=\s*[^;]*exec\(googleFontFileUrl\)\[1\];?/g,
+              'const extMatch = /\\.(woff|woff2|eot|ttf|otf)$/.exec(googleFontFileUrl); const ext = extMatch ? extMatch[1] : "woff2";'
+            );
+            fs.writeFileSync(fullPath, code, 'utf8');
+            console.log(`Successfully patched Google font loader: ${fullPath}`);
+          }
+        } catch (_) {}
+      }
     }
   }
+
+  patchFontLoaders(path.join(rootNodeModules, 'next', 'dist', 'compiled', '@next', 'font'));
 } catch (err) {
-  console.error('Error patching next-devtools:', err);
+  console.error('Error in patch script:', err);
 }

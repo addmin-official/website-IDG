@@ -10,3 +10,4 @@ bun.lock
 bun.lockb
 yarn.lock
 pnpm-lock.yaml
+*.tsbuildinfo
