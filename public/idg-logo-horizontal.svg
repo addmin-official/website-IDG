@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 120" 
+     width="460" height="120" role="img" aria-label="Iraq Digital Gateway">
+  <defs>
+    <linearGradient id="idgArcH" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#19C7FF"/>
+      <stop offset="100%" stop-color="#087BFF"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="460" height="120" rx="18" fill="#06172B"/>
+  
+  <!-- Icon -->
+  <g transform="translate(24 20)">
+    <path d="M 6 74 L 6 42 Q 6 6 40 6 Q 74 6 74 42 L 74 74"
+          fill="none" stroke="url(#idgArcH)" 
+          stroke-width="8" stroke-linecap="round"/>
+    <circle cx="40" cy="6" r="5" fill="#19C7FF"/>
+  </g>
+  
+  <!-- Wordmark -->
+  <text x="130" y="62" text-anchor="start"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-size="52" font-weight="900" letter-spacing="3"
+        fill="#FFFFFF">IDG</text>
+  
+  <rect x="132" y="72" width="70" height="3" rx="1.5" fill="url(#idgArcH)"/>
+  
+  <text x="132" y="95" text-anchor="start"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-size="9.5" font-weight="600" letter-spacing="2.8"
+        fill="#D7E8F8">IRAQ DIGITAL GATEWAY</text>
+</svg>

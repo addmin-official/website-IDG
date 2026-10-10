@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Language, TranslationData } from '@/lib/translations';
 import { Globe, Menu, X, ShieldCheck, Mail, ChevronDown } from 'lucide-react';
+import IDGLogo from '@/components/IDGLogo';
 
 interface NavbarProps {
   lang: Language;
@@ -125,8 +126,8 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
           {/* Brand & Sovereign Parent Mark */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0">
             <Link href={`/${lang}`} className="flex items-center gap-2.5 sm:gap-3 group min-w-0" id="brand-logo-link">
-              <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-[#1D5BD8] text-white flex items-center justify-center font-extrabold text-lg md:text-xl tracking-wider shadow-sm group-hover:bg-[#193B73] transition-colors border border-[#193B73] ring-1 ring-[#1D5BD8]/40 shrink-0">
-                IDG
+              <div className="shrink-0">
+                <IDGLogo variant="icon" size={44} />
               </div>
               <div className="flex flex-col max-w-[200px] sm:max-w-[240px] md:max-w-none min-w-0">
                 <span className="font-extrabold text-white text-sm md:text-base leading-tight tracking-tight whitespace-nowrap truncate">

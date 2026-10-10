@@ -1,18 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg"
-     width="100" height="100" viewBox="0 0 100 100"
-     role="img" aria-label="Iraq Digital Gateway Icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" 
+     width="100" height="100" role="img" aria-label="IDG">
   <defs>
-    <linearGradient id="icon-bp-grad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#60A5FA"/>
-      <stop offset="100%" stop-color="#1D5BD8"/>
+    <linearGradient id="idgArcIcon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#19C7FF"/>
+      <stop offset="100%" stop-color="#087BFF"/>
     </linearGradient>
   </defs>
-  <rect x="2" y="2" width="96" height="96" rx="20" fill="#0B172E"/>
-  <path d="M18 82 V46 C18 27 31 17 50 17 C69 17 82 27 82 46 V82"
-        fill="none" stroke="url(#icon-bp-grad)"
-        stroke-width="8" stroke-linecap="round"/>
-  <path d="M34 82 V51 C34 39 41 31 50 31 C59 31 66 39 66 51 V82"
-        fill="none" stroke="#FFFFFF"
-        stroke-width="5" stroke-linecap="round"/>
-  <circle cx="50" cy="17" r="5.5" fill="#FFFFFF"/>
+  <rect width="100" height="100" rx="22" fill="#06172B"/>
+  <path d="M 22 76 L 22 48 Q 22 22 50 22 Q 78 22 78 48 L 78 76"
+        fill="none" stroke="url(#idgArcIcon)" 
+        stroke-width="9" stroke-linecap="round"/>
+  <circle cx="50" cy="22" r="5.5" fill="#19C7FF"/>
 </svg>
