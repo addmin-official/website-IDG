@@ -137,11 +137,11 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
 
   return (
     <section
-      className="py-20 bg-slate-50"
+      className="py-20 bg-slate-50 w-full overflow-hidden"
       dir={isRtl ? 'rtl' : 'ltr'}
       id="contact"
     >
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4" id="contact-heading">
             {content.title}
@@ -152,7 +152,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
         </div>
 
         {!isMounted ? (
-          <div className="bg-white p-8 rounded-2xl shadow-xs border border-slate-200 space-y-6" id="contact-skeleton">
+          <div className="bg-white p-5 sm:p-8 rounded-2xl shadow-xs border border-slate-200 space-y-6 w-full max-w-full overflow-hidden" id="contact-skeleton">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
               <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
@@ -163,7 +163,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
             <div className="h-12 w-36 bg-slate-800/80 rounded-lg animate-pulse" />
           </div>
         ) : isSubmitted ? (
-          <div className="bg-white p-10 rounded-2xl shadow-xs border border-emerald-200 text-center" id="contact-submit-success">
+          <div className="bg-white p-6 sm:p-10 rounded-2xl shadow-xs border border-emerald-200 text-center w-full max-w-full overflow-hidden" id="contact-submit-success">
             <div className="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle2 className="w-8 h-8" />
             </div>
@@ -186,7 +186,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-8 rounded-2xl shadow-xs border border-slate-200 space-y-6"
+            className="bg-white p-5 sm:p-8 rounded-2xl shadow-xs border border-slate-200 space-y-6 w-full max-w-full overflow-hidden"
             id="contact-form"
             suppressHydrationWarning
           >

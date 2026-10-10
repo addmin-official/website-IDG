@@ -59,7 +59,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-3 xl:gap-5 text-[13px] xl:text-sm font-medium text-slate-300 shrink-0" id="desktop-nav-menu">
+          <nav className="hidden xl:flex items-center gap-3 xl:gap-5 text-[13px] xl:text-sm font-medium text-slate-300 shrink-0" id="desktop-nav-menu">
             <Link
               href={`/${lang}`}
               aria-current={isActive(`/${lang}`) ? 'page' : undefined}
@@ -229,7 +229,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             {/* Mobile Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-slate-200 hover:bg-[#102447] transition-colors"
+              className="xl:hidden p-2 rounded-xl text-slate-200 hover:bg-[#102447] transition-colors"
               aria-label="Toggle Navigation"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-panel"
@@ -243,7 +243,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0B172E] border-b border-[#102447] px-4 pt-3 pb-6 space-y-4" id="mobile-nav-panel">
+        <div className="xl:hidden bg-[#0B172E] border-b border-[#102447] px-4 pt-3 pb-6 space-y-4 max-w-full overflow-x-hidden" id="mobile-nav-panel">
           {/* Mobile Language Switcher */}
           <div className="flex items-center justify-between pb-3 border-b border-[#102447]">
             <span className="text-xs font-bold text-slate-400 flex items-center gap-1.5">

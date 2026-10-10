@@ -53,7 +53,7 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
 
   return (
     <footer
-      className="bg-slate-950 text-slate-300 py-14 md:py-18 border-t border-slate-800 relative"
+      className="bg-slate-950 text-slate-300 py-14 md:py-18 border-t border-slate-800 relative w-full overflow-hidden"
       dir={isRtl ? 'rtl' : 'ltr'}
       id="corporate-footer"
     >

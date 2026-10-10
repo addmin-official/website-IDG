@@ -39,7 +39,7 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
       <div className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 border border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
         <button
           onClick={handleReset}
-          className="absolute top-5 left-5 text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition"
+          className="absolute top-5 end-5 text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition"
           aria-label="Close"
           id="btn-close-contact-modal"
         >

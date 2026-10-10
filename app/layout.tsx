@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Noto_Kufi_Arabic, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -17,6 +17,11 @@ const inter = Inter({
   display: 'swap',
   variable: '--font-en',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: 'Iraq Digital Gateway (IDG)',
@@ -37,7 +42,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className="antialiased"
+        className="antialiased overflow-x-hidden w-full max-w-full"
         suppressHydrationWarning
       >
         <script
