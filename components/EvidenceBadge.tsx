@@ -20,9 +20,9 @@ const LABELS: Record<EvidenceStatus, Record<string, string>> = {
 };
 
 const STYLES: Record<EvidenceStatus, string> = {
-  verified: 'bg-emerald-50 text-emerald-800 border-emerald-300',
-  pending: 'bg-amber-50 text-amber-800 border-amber-300',
-  'source-required': 'bg-red-50 text-red-800 border-red-300',
+  verified: 'bg-[#052e16] text-[#059669] border-[#059669]/40',
+  pending: 'bg-[#451a03] text-[#D97706] border-[#D97706]/40',
+  'source-required': 'bg-[#450a0a] text-[#DC2626] border-[#DC2626]/40',
 };
 
 export default function EvidenceBadge({

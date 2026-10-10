@@ -14,11 +14,11 @@ export default function ContactClient({ locale }: { locale: string }) {
   const t = translations[lang] || translations.ku;
 
   return (
-    <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-slate-50">
+    <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-[#060D1A] text-slate-100 overflow-x-hidden w-full max-w-full">
       <Navbar lang={lang} onLanguageChange={() => {}} t={t} onOpenContact={() => {}} />
       <main id="main-content" className="pt-24 max-w-7xl mx-auto px-4 md:px-6">
         <AIUseDisclosure lang={lang} className="mb-6" />
-        <div className="mb-6 flex items-center justify-between flex-wrap gap-2 text-xs text-slate-500 font-mono bg-white p-3 rounded-xl border border-slate-200">
+        <div className="mb-6 flex items-center justify-between flex-wrap gap-2 text-xs text-slate-400 font-mono bg-[#0B172E] p-3 rounded-xl border border-[#102447]">
           <span>
             {lang === 'ku'
               ? 'کاتی وەڵامدانەوەی فەرمی: ٢٤ - ٤٨ کاتژمێری کارکردن'

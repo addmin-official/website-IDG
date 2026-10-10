@@ -19,7 +19,7 @@ export default function CareersClient({ locale }: { locale: string }) {
   const t = translations[lang] || translations.ku;
 
   return (
-    <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-slate-50">
+    <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-[#060D1A] text-slate-100 overflow-x-hidden w-full max-w-full">
       <Navbar lang={lang} onLanguageChange={() => {}} t={t} onOpenContact={() => setIsContactOpen(true)} />
       <main id="main-content" className="pt-24 max-w-7xl mx-auto px-4 md:px-6">
         <AIUseDisclosure lang={lang} className="mb-6 max-w-4xl mx-auto" />

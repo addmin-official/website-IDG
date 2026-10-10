@@ -26,11 +26,11 @@ const TEXT = {
 export default function AIUseDisclosure({ lang = 'ku', className = '' }: AIUseDisclosureProps) {
   const t = TEXT[lang];
   return (
-    <div className={`flex items-start gap-3 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 ${className}`}>
-      <Sparkles className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+    <div className={`flex items-start gap-3 p-3 rounded-xl bg-[#451a03] border border-[#D97706]/40 text-[#D97706] ${className}`}>
+      <Sparkles className="w-4 h-4 text-[#D97706] shrink-0 mt-0.5" />
       <div className="text-xs leading-relaxed">
-        <strong className="block mb-1 font-bold">{t.title}</strong>
-        <span>{t.body}</span>
+        <strong className="block mb-1 font-bold text-amber-200">{t.title}</strong>
+        <span className="text-amber-300/90">{t.body}</span>
       </div>
     </div>
   );

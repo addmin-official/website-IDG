@@ -137,46 +137,46 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
 
   return (
     <section
-      className="py-20 bg-slate-50 w-full overflow-hidden"
+      className="py-20 bg-[#060D1A] w-full overflow-hidden text-slate-100"
       dir={isRtl ? 'rtl' : 'ltr'}
       id="contact"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4" id="contact-heading">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4" id="contact-heading">
             {content.title}
           </h2>
-          <p className="text-slate-600 leading-relaxed max-w-2xl mx-auto" id="contact-desc">
+          <p className="text-slate-400 leading-relaxed max-w-2xl mx-auto" id="contact-desc">
             {content.desc}
           </p>
         </div>
 
         {!isMounted ? (
-          <div className="bg-white p-5 sm:p-8 rounded-2xl shadow-xs border border-slate-200 space-y-6 w-full max-w-full overflow-hidden" id="contact-skeleton">
+          <div className="bg-[#0B172E] p-5 sm:p-8 rounded-2xl shadow-xs border border-[#102447] space-y-6 w-full max-w-full overflow-hidden" id="contact-skeleton">
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
-              <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
+              <div className="h-12 bg-[#102447] rounded-lg animate-pulse" />
+              <div className="h-12 bg-[#102447] rounded-lg animate-pulse" />
             </div>
-            <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
-            <div className="h-20 bg-blue-50/70 rounded-lg animate-pulse" />
-            <div className="h-32 bg-slate-100 rounded-lg animate-pulse" />
-            <div className="h-12 w-36 bg-slate-800/80 rounded-lg animate-pulse" />
+            <div className="h-12 bg-[#102447] rounded-lg animate-pulse" />
+            <div className="h-20 bg-[#102447]/70 rounded-lg animate-pulse" />
+            <div className="h-32 bg-[#102447] rounded-lg animate-pulse" />
+            <div className="h-12 w-36 bg-[#193B73] rounded-lg animate-pulse" />
           </div>
         ) : isSubmitted ? (
-          <div className="bg-white p-6 sm:p-10 rounded-2xl shadow-xs border border-emerald-200 text-center w-full max-w-full overflow-hidden" id="contact-submit-success">
-            <div className="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="bg-[#0B172E] p-6 sm:p-10 rounded-2xl shadow-xs border border-[#059669]/40 text-center w-full max-w-full overflow-hidden" id="contact-submit-success">
+            <div className="w-14 h-14 bg-[#052e16] border border-[#059669]/40 text-[#059669] rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-2">{content.successTitle}</h3>
-            <p className="text-slate-600 text-sm mb-4 max-w-lg mx-auto">{content.successDesc}</p>
-            <div className="inline-block bg-slate-50 border border-slate-200 text-slate-700 px-4 py-2 rounded-lg font-mono text-xs mb-6">
+            <h3 className="text-xl font-bold text-slate-100 mb-2">{content.successTitle}</h3>
+            <p className="text-slate-400 text-sm mb-4 max-w-lg mx-auto">{content.successDesc}</p>
+            <div className="inline-block bg-[#060D1A] border border-[#102447] text-slate-300 px-4 py-2 rounded-lg font-mono text-xs mb-6">
               Reference: {referenceId}
             </div>
             <div>
               <button
                 type="button"
                 onClick={handleReset}
-                className="px-6 py-2.5 bg-slate-900 text-white font-bold rounded-lg text-xs hover:bg-slate-800 transition cursor-pointer"
+                className="px-6 py-2.5 bg-[#1D5BD8] hover:bg-blue-600 text-white font-bold rounded-lg text-xs transition cursor-pointer"
                 id="btn-contact-reset"
               >
                 {content.resetBtn}
@@ -186,7 +186,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-5 sm:p-8 rounded-2xl shadow-xs border border-slate-200 space-y-6 w-full max-w-full overflow-hidden"
+            className="bg-[#0B172E] p-5 sm:p-8 rounded-2xl shadow-xs border border-[#102447] space-y-6 w-full max-w-full overflow-hidden"
             id="contact-form"
             suppressHydrationWarning
           >
@@ -201,7 +201,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder={content.namePlaceholder}
-                className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-hidden text-sm"
+                className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] focus:ring-1 focus:ring-[#1D5BD8] outline-hidden text-sm"
                 id="contact-input-fullname"
               />
               <input
@@ -214,7 +214,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={content.emailPlaceholder}
-                className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-hidden text-sm"
+                className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] focus:ring-1 focus:ring-[#1D5BD8] outline-hidden text-sm"
                 id="contact-input-email"
               />
             </div>
@@ -229,15 +229,15 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               placeholder={content.subjectPlaceholder}
-              className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-hidden text-sm"
+              className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] focus:ring-1 focus:ring-[#1D5BD8] outline-hidden text-sm"
               id="contact-input-subject"
             />
 
             {/* The Strategic Field */}
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-100" id="contact-strategic-field">
+            <div className="bg-[#102447]/60 p-4 rounded-lg border border-[#193B73]" id="contact-strategic-field">
               <label
                 htmlFor="contact-input-proven-problem"
-                className="block text-sm font-bold text-blue-900 mb-2"
+                className="block text-sm font-bold text-blue-300 mb-2"
               >
                 {content.strategicLabel}
               </label>
@@ -252,7 +252,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
                 value={provenProblem}
                 onChange={(e) => setProvenProblem(e.target.value)}
                 placeholder={content.strategicPlaceholder}
-                className="w-full p-3 rounded-lg border border-slate-200 bg-white text-slate-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-hidden text-sm"
+                className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] focus:ring-1 focus:ring-[#1D5BD8] outline-hidden text-sm"
               />
             </div>
 
@@ -265,12 +265,12 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder={content.messagePlaceholder}
-              className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-hidden text-sm leading-relaxed"
+              className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] focus:ring-1 focus:ring-[#1D5BD8] outline-hidden text-sm leading-relaxed"
               id="contact-textarea-message"
             />
 
             {errorMessage && (
-              <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg" id="contact-error-alert">
+              <div className="flex items-center gap-2 p-3 bg-[#450a0a] border border-[#DC2626]/40 text-[#DC2626] text-xs rounded-lg" id="contact-error-alert">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{errorMessage}</span>
               </div>
@@ -280,7 +280,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               type="submit"
               disabled={isSubmitting}
               suppressHydrationWarning
-              className="bg-slate-900 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition w-full md:w-auto cursor-pointer disabled:opacity-50 text-sm shadow-sm"
+              className="bg-[#1D5BD8] text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-600 transition w-full md:w-auto cursor-pointer disabled:opacity-50 text-sm shadow-sm"
               id="btn-submit-contact"
             >
               {isSubmitting ? '...' : content.submitBtn}

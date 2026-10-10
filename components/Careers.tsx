@@ -189,19 +189,19 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
 
   return (
     <section
-      className="py-20 bg-slate-900 text-white"
+      className="py-20 bg-[#060D1A] text-slate-100 w-full overflow-hidden"
       dir={isRtl ? 'rtl' : 'ltr'}
       id="careers"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6" id="careers-heading">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-100" id="careers-heading">
             {content.title}
           </h2>
           <p
             className={`text-lg text-slate-300 leading-relaxed ${
               isRtl ? 'border-r-4 pr-4' : 'border-l-4 pl-4'
-            } border-blue-500`}
+            } border-[#1D5BD8]`}
             id="careers-intro"
           >
             {content.intro}
@@ -211,17 +211,17 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
         <div className="grid md:grid-cols-2 gap-12 items-start" id="careers-grid">
           {/* Open Roles */}
           <div className="space-y-6" id="careers-roles-container">
-            <h3 className="text-2xl font-bold mb-6" id="careers-roles-title">
+            <h3 className="text-2xl font-bold mb-6 text-slate-100" id="careers-roles-title">
               {content.rolesTitle}
             </h3>
 
             {/* Role 1 */}
             <div
               onClick={() => setSelectedRole(content.role1Option)}
-              className={`bg-slate-800 p-6 rounded-xl border transition cursor-pointer ${
+              className={`p-6 rounded-xl border transition cursor-pointer ${
                 selectedRole === content.role1Option
-                  ? 'border-blue-400 bg-slate-800/90 ring-1 ring-blue-400'
-                  : 'border-transparent hover:border-blue-400'
+                  ? 'border-[#1D5BD8] bg-[#102447] ring-1 ring-[#1D5BD8]'
+                  : 'bg-[#0B172E] border-[#102447] hover:border-[#1D5BD8]'
               }`}
               id="career-role-card-1"
             >
@@ -236,10 +236,10 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
             {/* Role 2 */}
             <div
               onClick={() => setSelectedRole(content.role2Option)}
-              className={`bg-slate-800 p-6 rounded-xl border transition cursor-pointer ${
+              className={`p-6 rounded-xl border transition cursor-pointer ${
                 selectedRole === content.role2Option
-                  ? 'border-blue-400 bg-slate-800/90 ring-1 ring-blue-400'
-                  : 'border-transparent hover:border-blue-400'
+                  ? 'border-[#1D5BD8] bg-[#102447] ring-1 ring-[#1D5BD8]'
+                  : 'bg-[#0B172E] border-[#102447] hover:border-[#1D5BD8]'
               }`}
               id="career-role-card-2"
             >
@@ -253,34 +253,34 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
           </div>
 
           {/* Application Form */}
-          <div className="bg-white text-slate-900 p-8 rounded-2xl shadow-xl" id="careers-form-container">
-            <h3 className="text-2xl font-bold mb-6 text-slate-900" id="careers-form-title">
+          <div className="bg-[#0B172E] text-slate-100 p-6 sm:p-8 rounded-2xl shadow-xl border border-[#102447] w-full max-w-full overflow-hidden" id="careers-form-container">
+            <h3 className="text-2xl font-bold mb-6 text-slate-100" id="careers-form-title">
               {content.formTitle}
             </h3>
 
             {!isMounted ? (
               <div className="space-y-4 py-2" id="careers-form-skeleton">
-                <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
-                <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
-                <div className="h-12 bg-slate-100 rounded-lg animate-pulse" />
-                <div className="h-24 bg-slate-100 rounded-lg animate-pulse" />
-                <div className="h-16 bg-slate-100 rounded-lg animate-pulse" />
-                <div className="h-12 bg-blue-100 rounded-lg animate-pulse" />
+                <div className="h-12 bg-[#102447] rounded-lg animate-pulse" />
+                <div className="h-12 bg-[#102447] rounded-lg animate-pulse" />
+                <div className="h-12 bg-[#102447] rounded-lg animate-pulse" />
+                <div className="h-24 bg-[#102447] rounded-lg animate-pulse" />
+                <div className="h-16 bg-[#102447] rounded-lg animate-pulse" />
+                <div className="h-12 bg-[#193B73] rounded-lg animate-pulse" />
               </div>
             ) : isSubmitted ? (
-              <div className="bg-slate-50 p-6 rounded-xl border border-emerald-200 text-center" id="career-submit-success">
-                <div className="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="bg-[#0B172E] p-6 rounded-xl border border-[#059669]/40 text-center" id="career-submit-success">
+                <div className="w-12 h-12 bg-[#052e16] border border-[#059669]/40 text-[#059669] rounded-full flex items-center justify-center mx-auto mb-3">
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h4 className="text-lg font-bold text-slate-900 mb-1">{content.successTitle}</h4>
-                <p className="text-xs text-slate-600 mb-4">{content.successDesc}</p>
-                <div className="bg-white p-3 rounded-lg border border-slate-200 text-xs font-mono text-slate-700 mb-5">
+                <h4 className="text-lg font-bold text-slate-100 mb-1">{content.successTitle}</h4>
+                <p className="text-xs text-slate-400 mb-4">{content.successDesc}</p>
+                <div className="bg-[#060D1A] p-3 rounded-lg border border-[#102447] text-xs font-mono text-slate-300 mb-5">
                   ID: {appId}
                 </div>
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="px-5 py-2.5 bg-slate-900 text-white rounded-lg text-xs font-bold hover:bg-slate-800 transition"
+                  className="px-5 py-2.5 bg-[#1D5BD8] hover:bg-blue-600 text-white rounded-lg text-xs font-bold transition cursor-pointer"
                   id="btn-career-reset"
                 >
                   {content.resetBtn}
@@ -301,7 +301,7 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder={content.namePlaceholder}
-                  className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 outline-hidden text-sm"
+                  className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] outline-hidden text-sm"
                   id="career-input-name"
                 />
 
@@ -313,7 +313,7 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={content.emailPlaceholder}
-                  className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 outline-hidden text-sm"
+                  className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] outline-hidden text-sm"
                   id="career-input-email"
                 />
 
@@ -323,12 +323,12 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   suppressHydrationWarning
                   value={selectedRole}
                   onChange={(e) => setSelectedRole(e.target.value)}
-                  className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 focus:bg-white focus:border-blue-500 outline-hidden text-sm"
+                  className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 focus:bg-[#102447] focus:border-[#1D5BD8] outline-hidden text-sm"
                   id="career-select-role"
                 >
-                  <option value="">{content.rolePlaceholder}</option>
-                  <option value={content.role1Option}>{content.role1Option}</option>
-                  <option value={content.role2Option}>{content.role2Option}</option>
+                  <option value="" className="bg-[#0B172E] text-slate-400">{content.rolePlaceholder}</option>
+                  <option value={content.role1Option} className="bg-[#0B172E] text-slate-100">{content.role1Option}</option>
+                  <option value={content.role2Option} className="bg-[#0B172E] text-slate-100">{content.role2Option}</option>
                 </select>
 
                 <textarea
@@ -338,7 +338,7 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   onChange={(e) => setCoverNote(e.target.value)}
                   placeholder={content.coverPlaceholder}
                   rows={4}
-                  className="w-full p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 focus:bg-white focus:border-blue-500 outline-hidden text-sm leading-relaxed"
+                  className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] outline-hidden text-sm leading-relaxed"
                   id="career-textarea-cover"
                 />
 
@@ -356,11 +356,11 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   onClick={() => fileInputRef.current?.click()}
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={handleFileDrop}
-                  className="border-2 border-dashed border-slate-300 p-4 rounded-lg text-center text-sm text-slate-500 hover:border-blue-500 hover:bg-blue-50/50 transition cursor-pointer"
+                  className="border-2 border-dashed border-[#102447] hover:border-[#1D5BD8] hover:bg-[#102447]/30 p-4 rounded-lg text-center text-sm text-slate-400 transition cursor-pointer"
                   id="career-upload-dropzone"
                 >
                   {resumeFile ? (
-                    <div className="flex items-center justify-between text-xs text-blue-700 bg-blue-50 px-3 py-1.5 rounded">
+                    <div className="flex items-center justify-between text-xs text-blue-300 bg-[#102447] px-3 py-1.5 rounded border border-[#193B73]">
                       <span className="flex items-center gap-1.5 font-medium truncate">
                         <FileCheck className="w-4 h-4 shrink-0" />
                         {resumeFile.name}
@@ -371,7 +371,7 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                           e.stopPropagation();
                           setResumeFile(null);
                         }}
-                        className="text-slate-400 hover:text-slate-600 p-0.5"
+                        className="text-slate-400 hover:text-slate-200 p-0.5"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
@@ -382,7 +382,7 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                 </div>
 
                 {errorMessage && (
-                  <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg" id="career-error-alert">
+                  <div className="flex items-center gap-2 p-3 bg-[#450a0a] border border-[#DC2626]/40 text-[#DC2626] text-xs rounded-lg" id="career-error-alert">
                     <AlertCircle className="w-4 h-4 shrink-0" />
                     <span>{errorMessage}</span>
                   </div>
@@ -392,7 +392,7 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   type="submit"
                   disabled={isSubmitting}
                   suppressHydrationWarning
-                  className="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer shadow-sm disabled:opacity-50"
+                  className="w-full bg-[#1D5BD8] hover:bg-blue-600 text-white font-bold py-3 rounded-lg transition cursor-pointer shadow-sm disabled:opacity-50"
                   id="btn-submit-career-app"
                 >
                   {isSubmitting ? '...' : content.submitBtn}

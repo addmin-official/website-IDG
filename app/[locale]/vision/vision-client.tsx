@@ -18,7 +18,7 @@ export default function VisionClient({ locale }: { locale: string }) {
   const t = translations[lang] || translations.ku;
 
   return (
-    <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-slate-50">
+    <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-[#060D1A] text-slate-100 overflow-x-hidden w-full max-w-full">
       <Navbar lang={lang} onLanguageChange={() => {}} t={t} onOpenContact={() => setIsContactOpen(true)} />
       <main id="main-content" className="pt-20">
         <Vision2035 t={t} />
