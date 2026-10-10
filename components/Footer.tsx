@@ -85,22 +85,22 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/" className="hover:text-blue-400 transition" id="footer-link-home">
+                <Link href={`/${currentLang}`} className="hover:text-blue-400 transition" id="footer-link-home">
                   {t?.nav?.home || 'سەرەکی'}
                 </Link>
               </li>
               <li>
-                <Link href="/#portfolio" className="hover:text-blue-400 transition" id="footer-link-portfolio">
+                <Link href={`/${currentLang}/portfolio`} className="hover:text-blue-400 transition" id="footer-link-portfolio">
                   {t?.nav?.portfolio || 'پۆرتفۆلیۆ'}
                 </Link>
               </li>
               <li>
-                <Link href="/#governance" className="hover:text-blue-400 transition" id="footer-link-governance">
+                <Link href={`/${currentLang}/governance`} className="hover:text-blue-400 transition" id="footer-link-governance">
                   {t?.nav?.governance || 'حوکمڕانی'}
                 </Link>
               </li>
               <li>
-                <Link href="/#faq" className="hover:text-blue-400 transition text-blue-300 font-medium" id="footer-link-faq">
+                <Link href={`/${currentLang}/faq`} className="hover:text-blue-400 transition text-blue-300 font-medium" id="footer-link-faq">
                   {t?.footer?.links?.faq || t?.nav?.faq || 'پرسیارە باوەکان (FAQ)'}
                 </Link>
               </li>
@@ -114,17 +114,17 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/#about" className="hover:text-blue-400 transition" id="footer-link-about">
+                <Link href={`/${currentLang}/about`} className="hover:text-blue-400 transition" id="footer-link-about">
                   {t?.footer?.links?.about || 'دەربارەی ئێمە'}
                 </Link>
               </li>
               <li>
-                <Link href="/#principles" className="hover:text-blue-400 transition" id="footer-link-principles">
+                <Link href={`/${currentLang}/governance`} className="hover:text-blue-400 transition" id="footer-link-principles">
                   {t?.footer?.links?.principles || 'بنەماکانی کۆمپانیا'}
                 </Link>
               </li>
               <li>
-                <Link href="/#careers" className="hover:text-blue-400 transition" id="footer-link-careers">
+                <Link href={`/${currentLang}/careers`} className="hover:text-blue-400 transition" id="footer-link-careers">
                   {t?.footer?.links?.careers || 'هەلی کار'}
                 </Link>
               </li>

@@ -20,9 +20,9 @@ export default function Portfolio({
   const p = t.portfolio;
 
   return (
-    <div className="bg-gray-50 text-gray-900 min-h-screen font-sans" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className="bg-[#060D1A] text-slate-200 min-h-screen" dir={isRtl ? 'rtl' : 'ltr'}>
       {/* Header Section */}
-      <section className="bg-slate-900 text-white py-12 md:py-20" id="portfolio">
+      <section className="bg-[#0B172E] text-white py-12 md:py-20 border-b border-[#102447]" id="portfolio">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <h1
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight"
@@ -40,10 +40,10 @@ export default function Portfolio({
       </section>
 
       {/* Product Philosophy */}
-      <section className="py-12 md:py-16 bg-white border-b border-gray-200" id="philosophy">
+      <section className="py-12 md:py-16 bg-[#060D1A] border-b border-[#102447]" id="philosophy">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <h2
-            className="text-xl md:text-2xl font-bold text-gray-800 mb-6 md:mb-8"
+            className="text-xl md:text-2xl font-bold text-slate-100 mb-6 md:mb-8"
             id="philosophy-title"
           >
             {t.philosophy.heading}
@@ -52,13 +52,13 @@ export default function Portfolio({
             {t.philosophy.items.map((item, idx) => (
               <div
                 key={idx}
-                className="p-4 md:p-5 bg-slate-50 rounded-lg border border-slate-100"
+                className="p-4 md:p-5 bg-[#0B172E] rounded-lg border border-[#102447]"
                 id={`philosophy-item-${idx}`}
               >
-                <h3 className="font-bold text-slate-800 mb-1 md:mb-2 text-sm md:text-base">
+                <h3 className="font-bold text-slate-100 mb-1 md:mb-2 text-sm md:text-base">
                   {item.title}
                 </h3>
-                <p className="text-xs md:text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                <p className="text-xs md:text-sm text-slate-400 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -66,10 +66,10 @@ export default function Portfolio({
       </section>
 
       {/* The Portfolio (Hybrid Model) */}
-      <section className="py-12 md:py-20 bg-gray-50" id="portfolio-assets">
+      <section className="py-12 md:py-20 bg-[#060D1A]" id="portfolio-assets">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <h2
-            className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 md:mb-12"
+            className="text-2xl md:text-3xl font-bold text-slate-100 mb-8 md:mb-12"
             id="portfolio-governed-heading"
           >
             {p.heading}
@@ -78,11 +78,11 @@ export default function Portfolio({
           <div className="space-y-6 md:space-y-8">
             {p.products.map((prod) => {
               // Badge color variants matching the design
-              let badgeColor = 'bg-blue-100 text-blue-800';
+              let badgeColor = 'bg-[#102447] text-[#60A5FA] border border-[#1D5BD8]/40';
               if (prod.id === 'zana') {
-                badgeColor = 'bg-slate-200 text-slate-800';
+                badgeColor = 'bg-slate-800 text-slate-300 border border-slate-700';
               } else if (prod.id === 'greenbelt') {
-                badgeColor = 'bg-green-100 text-green-800';
+                badgeColor = 'bg-[#052e16] text-[#059669] border border-[#059669]/40';
               }
 
               return (
@@ -98,7 +98,7 @@ export default function Portfolio({
                   role="button"
                   tabIndex={0}
                   aria-label={`${prod.title} - ${p.cardInspectPrompt}`}
-                  className="bg-white p-5 md:p-8 rounded-xl shadow-xs border border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 hover:border-blue-300 hover:shadow-md transition cursor-pointer group"
+                  className="bg-[#0B172E] p-5 md:p-8 rounded-xl border border-[#102447] flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 hover:border-[#1D5BD8] hover:shadow-[0_0_0_1px_#1D5BD8]/20 transition cursor-pointer group"
                   id={`portfolio-card-${prod.id}`}
                 >
                   <div className="w-full md:w-auto flex-1">
@@ -107,16 +107,16 @@ export default function Portfolio({
                     >
                       {prod.numBadge}
                     </span>
-                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-900 transition-colors">
+                    <h3 className="text-xl md:text-2xl font-bold text-slate-100 mb-2 group-hover:text-[#60A5FA] transition-colors">
                       {prod.title}{' '}
-                      <span className="block md:inline text-xs md:text-sm font-normal text-gray-500 md:ml-2">
+                      <span className="block md:inline text-xs md:text-sm font-normal text-slate-400 md:ml-2">
                         — {prod.subtitle}
                       </span>
                     </h3>
-                    <p className="text-sm md:text-base text-gray-600 max-w-3xl leading-relaxed mb-3">
+                    <p className="text-sm md:text-base text-slate-400 max-w-3xl leading-relaxed mb-3">
                       {prod.description}
                     </p>
-                    <div className="inline-flex items-center gap-1.5 text-xs text-blue-700 font-medium">
+                    <div className="inline-flex items-center gap-1.5 text-xs text-[#60A5FA] font-medium">
                       <Maximize2 className="w-3.5 h-3.5" />
                       <span>{p.cardInspectPrompt}</span>
                     </div>
@@ -127,7 +127,7 @@ export default function Portfolio({
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="w-full md:w-auto text-center bg-slate-900 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg whitespace-nowrap transition shrink-0 shadow-xs"
+                    className="w-full md:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2 px-6 rounded-lg whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40"
                     id={`btn-visit-site-${prod.id}`}
                   >
                     {p.visitWebsiteBtn}
@@ -148,19 +148,19 @@ export default function Portfolio({
               role="button"
               tabIndex={0}
               aria-label={`${p.nsw.title} - ${p.cardInspectPrompt}`}
-              className="mt-8 md:mt-12 p-5 md:p-8 border-2 border-dashed border-slate-300 hover:border-blue-400 rounded-xl bg-slate-50 hover:bg-blue-50/40 transition cursor-pointer group"
+              className="mt-8 md:mt-12 p-5 md:p-8 border-2 border-dashed border-[#102447] hover:border-[#1D5BD8]/60 rounded-xl bg-[#0B172E]/50 hover:bg-[#102447]/40 transition cursor-pointer group"
               id="spotlight-iraq-nsw"
             >
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div className="flex-1">
-                  <h3 className="text-lg md:text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-900 transition-colors">
+                  <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2 group-hover:text-[#60A5FA] transition-colors">
                     {p.nsw.fullTitle}
                   </h3>
-                  <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl">
+                  <p className="text-sm md:text-base text-slate-400 leading-relaxed max-w-3xl">
                     {p.nsw.architecture}
                   </p>
                 </div>
-                <div className="w-full md:w-auto text-center bg-white hover:bg-blue-50 border border-slate-300 text-blue-700 font-medium py-2 px-5 rounded-lg whitespace-nowrap transition text-xs sm:text-sm flex items-center justify-center gap-1.5 shrink-0 shadow-2xs">
+                <div className="w-full md:w-auto text-center bg-[#0B172E] hover:bg-[#102447] border border-[#102447] text-[#60A5FA] font-medium py-2 px-5 rounded-lg whitespace-nowrap transition text-xs sm:text-sm flex items-center justify-center gap-1.5 shrink-0 shadow-2xs">
                   <Maximize2 className="w-3.5 h-3.5" />
                   <span>{p.cardInspectPrompt}</span>
                 </div>
