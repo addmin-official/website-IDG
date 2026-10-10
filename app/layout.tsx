@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Noto_Kufi_Arabic, Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 const notoKufi = Noto_Kufi_Arabic({
@@ -88,6 +89,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
