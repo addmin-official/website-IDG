@@ -46,6 +46,7 @@ export interface TranslationData {
       desc: string;
     }>;
   };
+  zaNaUrl?: string;
   portfolio: {
     headerTitle: string;
     headerDesc: string;
@@ -54,6 +55,7 @@ export interface TranslationData {
     visitWebsiteBtn: string;
     governanceNote: string;
     cardInspectPrompt: string;
+    zaNaUrl?: string;
     modalLabels: {
       overview: string;
       detailedDescription: string;
@@ -425,6 +427,7 @@ export const translations: Record<Language, TranslationData> = {
       subheading:
         'دەروازەی دیجیتاڵیی عێراق (IDG) کۆمپانیای دایکی هەمیشەیی و براندی سەرەکییە. بەرهەمەکان سامانی پۆرتفۆلیۆن کە لەلایەن IDG حوکمڕانی دەکرێن، بەڵام ناسنامەی کارپێکردنی تایبەت بە خۆیان هەیە.',
       visitWebsiteBtn: 'سەردانی وێبسایت ➔',
+      zaNaUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
       governanceNote:
         'سەرنج: هەر بەرهەمێک خاوەنی کەسایەتیی بازاڕیی خۆیەتی، بەڵام خاوەندارێتیی داتا، ئاسایش و ئاراستەی ستراتیژی ١٠٠٪ لەژێر حوکمڕانیی سەروەریی IDG دایە.',
       cardInspectPrompt: 'کلیک بکە بۆ بینینی دۆسیەی تەلارسازی و مۆک-ئەپ',
@@ -515,7 +518,7 @@ export const translations: Record<Language, TranslationData> = {
           impact:
             'یەکەم هاوڕێی ژیری خوێندنی کوردی کە فێربوون بۆ هەر قوتابییەک بە شێوەیەکی دادپەروەرانە ڕێکدەخات.',
           status: 'قۆناغی کارپێکردن و فێربوونی کارا',
-          url: 'https://zana.iq',
+          url: 'https://new-vs-zana.zana-platform.workers.dev/',
           mockupType: 'zana',
         },
         {
@@ -1278,6 +1281,7 @@ export const translations: Record<Language, TranslationData> = {
       subheading:
         'بوابة العراق الرقمية (IDG) هي الشركة الأم الدائمة والعلامة التجارية السيادية. المنتجات هي أصول المحفظة المحكومة من قبل IDG وتتمتع بهوية تشغيلية مستقلة في السوق.',
       visitWebsiteBtn: 'زيارة الموقع ➔',
+      zaNaUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
       governanceNote:
         'ملاحظة: يتمتع كل منتج بهويته السوقية الخاصة، بينما تبقى ملكية البيانات والأمن والتوجه الاستراتيجي خاضعة بنسبة ١٠٠٪ لحوكمة IDG السيادية.',
       cardInspectPrompt: 'انقر لمعاينة الملف المعماري والمجسم التفاعلي',
@@ -1368,7 +1372,7 @@ export const translations: Record<Language, TranslationData> = {
           impact:
             'أول رفيق ذكي للتعليم الكردي يضمن تعليماً عادلاً ومكيفاً لكل طالب.',
           status: 'قيد التشغيل والتعلم النشط',
-          url: 'https://zana.iq',
+          url: 'https://new-vs-zana.zana-platform.workers.dev/',
           mockupType: 'zana',
         },
         {
@@ -2131,6 +2135,7 @@ export const translations: Record<Language, TranslationData> = {
       subheading:
         'Iraq Digital Gateway (IDG) is the perpetual parent company and sovereign brand. Portfolio products are governed assets held by IDG, each with an independent market and operational identity.',
       visitWebsiteBtn: 'Visit Website ➔',
+      zaNaUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
       governanceNote:
         'Governance Notice: Each product maintains its distinct market identity, while data ownership, security architecture, and strategic direction remain 100% governed by IDG.',
       cardInspectPrompt: 'Click to inspect architectural dossier & system mock-up',
@@ -2221,7 +2226,7 @@ export const translations: Record<Language, TranslationData> = {
           impact:
             'The first Kurdish AI learning companion delivering fair, adaptive education for every student.',
           status: 'Active Learning & Deployment',
-          url: 'https://zana.iq',
+          url: 'https://new-vs-zana.zana-platform.workers.dev/',
           mockupType: 'zana',
         },
         {

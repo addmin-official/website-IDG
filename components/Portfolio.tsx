@@ -99,7 +99,7 @@ export default function Portfolio({
                   tabIndex={0}
                   aria-label={`${prod.title} - ${p.cardInspectPrompt}`}
                   className="bg-[#0B172E] p-5 md:p-8 rounded-xl border border-[#102447] flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 hover:border-[#1D5BD8] hover:shadow-[0_0_0_1px_#1D5BD8]/20 transition cursor-pointer group"
-                  id={`portfolio-card-${prod.id}`}
+                  id={prod.id}
                 >
                   <div className="w-full md:w-auto flex-1">
                     <span

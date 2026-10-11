@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Portfolio from '@/components/Portfolio';
+import ZaNaShowcase from '@/components/ZaNaShowcase';
 import Footer from '@/components/Footer';
 
 const ProductModal = dynamic(() => import('@/components/ProductModal'), {
@@ -37,6 +38,12 @@ export default function PortfolioClient({ locale }: { locale: string }) {
           onSelectNSW={() => {
             setSelectedProductId(null);
             setIsNSWSelected(true);
+          }}
+        />
+        <ZaNaShowcase
+          onInspectDossier={() => {
+            setIsNSWSelected(false);
+            setSelectedProductId('zana');
           }}
         />
       </main>

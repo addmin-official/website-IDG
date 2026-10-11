@@ -238,7 +238,7 @@ export default function ProductMockups({ type, lang }: MockupProps) {
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                 <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
                 <span className="font-mono text-slate-400 ms-2 text-[11px]">
-                  zana.iq/student-console [IDG-SOV-02]
+                  new-vs-zana.zana-platform.workers.dev [IDG-SOV-02]
                 </span>
               </div>
               <div className="flex items-center gap-2">
