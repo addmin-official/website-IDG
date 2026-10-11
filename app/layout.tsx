@@ -27,13 +27,6 @@ export const metadata: Metadata = {
   title: 'Iraq Digital Gateway (IDG)',
   description:
     'Sovereign parent company for governance, data, applied AI, and secure institutional infrastructure in Iraq.',
-  icons: {
-    icon: [
-      { url: '/idg-icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' },
-    ],
-    apple: '/idg-icon.svg',
-  },
 };
 
 export default function RootLayout({

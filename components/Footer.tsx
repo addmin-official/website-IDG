@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { TranslationData } from '@/lib/translations';
 import { useLocale } from '@/lib/locale-context';
 import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft } from 'lucide-react';
-import IDGLogo from '@/components/IDGLogo';
 
 interface FooterProps {
   t?: TranslationData;
@@ -63,9 +62,9 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
           
           {/* Brand & Vision (4 cols) */}
           <div className="lg:col-span-4" id="footer-brand-section">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
-              <IDGLogo variant="horizontal" size={40} />
-              <span className="px-2 py-0.5 text-[11px] font-semibold bg-blue-950 text-blue-400 border border-blue-800/80 rounded-md self-start sm:self-auto">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-2xl font-black text-white tracking-tight">IDG</span>
+              <span className="px-2 py-0.5 text-[11px] font-semibold bg-blue-950 text-blue-400 border border-blue-800/80 rounded-md">
                 {t?.parentBadge || 'کۆمپانیای دایک'}
               </span>
             </div>
