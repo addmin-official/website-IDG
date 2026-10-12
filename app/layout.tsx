@@ -6,14 +6,13 @@ import './globals.css';
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ['arabic'],
-  weight: ['400', '600', '700', '900'],
+  weight: ['400', '500', '600', '700', '800', '900'],
   display: 'swap',
   variable: '--font-ku',
 });
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['500', '700', '900'],
   display: 'swap',
   variable: '--font-en',
 });
