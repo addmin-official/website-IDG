@@ -71,16 +71,16 @@ export default function Governance({ t, isRtl }: GovernanceProps) {
       id="governance-container"
     >
       {/* Hero Section */}
-      <section className="bg-[#0B172E] text-white py-12 md:py-20 border-b border-[#102447]" id="governance">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <section className="bg-[#0B172E] text-white py-10 sm:py-14 md:py-20 border-b border-[#102447]" id="governance">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-slate-100"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight text-slate-100"
             id="governance-hero-title"
           >
             {gov.heroTitle}
           </h1>
           <p
-            className="text-base md:text-lg text-slate-300 max-w-3xl leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl leading-relaxed"
             id="governance-hero-desc"
           >
             {gov.heroDesc}
@@ -90,25 +90,25 @@ export default function Governance({ t, isRtl }: GovernanceProps) {
 
       {/* Core Values Section */}
       <section
-        className="py-12 md:py-20 bg-[#060D1A] border-b border-[#102447]"
+        className="py-10 sm:py-14 md:py-20 bg-[#060D1A] border-b border-[#102447]"
         id="governance-values-section"
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2
-            className="text-2xl md:text-3xl font-bold text-slate-100 mb-8 md:mb-12"
+            className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-100 mb-6 sm:mb-10 md:mb-12"
             id="governance-values-title"
           >
             {gov.valuesTitle}
           </h2>
 
           <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
             id="governance-values-grid"
           >
             {gov.values.map((val, idx) => (
               <div
                 key={idx}
-                className="p-6 bg-[#0B172E] rounded-xl border border-[#102447] hover:border-[#1D5BD8] transition"
+                className="p-5 sm:p-6 md:p-8 bg-[#0B172E] rounded-xl sm:rounded-2xl border border-[#102447] hover:border-[#1D5BD8] transition"
                 id={`gov-value-card-${idx}`}
               >
                 <h3 className="text-xl font-bold text-slate-100 mb-3">{val.title}</h3>

@@ -23,26 +23,26 @@ export default function AboutUs({ t, isRtl = true, onOpenContact }: AboutUsProps
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
-    <section className="py-20 md:py-28 bg-[#060D1A] text-slate-100 border-b border-[#102447] w-full overflow-hidden" id="about">
+    <section className="py-10 sm:py-16 md:py-20 lg:py-28 bg-[#060D1A] text-slate-100 border-b border-[#102447] w-full overflow-hidden" id="about">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Header */}
-        <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
+        <div className="max-w-4xl mx-auto text-center mb-10 sm:mb-16 md:mb-20">
           <div
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 bg-[#102447] px-3 py-1.5 rounded-full border border-[#193B73] mb-4"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 bg-[#102447] px-3 py-1.5 rounded-full border border-[#193B73] mb-3 sm:mb-4"
             id="about-badge"
           >
             <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
             <span>{a.badge}</span>
           </div>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-100 tracking-tight leading-tight mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-100 tracking-tight leading-tight mb-4 sm:mb-6"
             id="about-heading"
           >
             {a.heading}
           </h2>
           <p
-            className="text-base sm:text-lg lg:text-xl text-slate-400 leading-relaxed font-normal max-w-3xl mx-auto"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-400 leading-relaxed font-normal max-w-3xl mx-auto"
             id="about-subheading"
           >
             {a.subheading}
@@ -50,8 +50,8 @@ export default function AboutUs({ t, isRtl = true, onOpenContact }: AboutUsProps
         </div>
 
         {/* Vision 2035, Mission & Invariant Values Grid */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-20 md:mb-28" id="about-vision-mission-values-grid">
-          <div className="bg-[#0B172E] p-8 rounded-2xl border border-[#102447]" id="about-vision-mission-card">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center mb-12 sm:mb-20 md:mb-28" id="about-vision-mission-values-grid">
+          <div className="bg-[#0B172E] p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-[#102447]" id="about-vision-mission-card">
             <h3 className="text-2xl font-bold text-slate-100 mb-4">{a.visionTitle}</h3>
             <p className="text-slate-400 mb-6 leading-relaxed" id="about-vision-description">
               {a.visionDesc}

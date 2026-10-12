@@ -63,20 +63,20 @@ export default function FAQ({ t, isRtl = true, onOpenContact }: FAQProps) {
 
   return (
     <section
-      className="py-20 md:py-28 bg-slate-900 text-white relative overflow-hidden border-t border-slate-800"
+      className="py-10 sm:py-16 md:py-24 bg-[#060D1A] text-white relative overflow-hidden border-t border-[#102447]"
       id="faq"
     >
       {/* Background Accent Mesh */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none" />
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#1D5BD8_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none" />
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16">
           <div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/90 border border-slate-700 text-xs font-semibold text-blue-400 mb-4"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B172E] border border-[#102447] text-xs font-semibold text-blue-400 mb-3 sm:mb-4"
             id="faq-badge"
           >
             <HelpCircle className="w-4 h-4 text-blue-400" />
@@ -84,14 +84,14 @@ export default function FAQ({ t, isRtl = true, onOpenContact }: FAQProps) {
           </div>
 
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-3 sm:mb-4"
             id="faq-heading"
           >
             {t.faq.heading}
           </h2>
 
           <p
-            className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal"
+            className="text-xs sm:text-sm md:text-base text-slate-300 leading-relaxed font-normal"
             id="faq-subheading"
           >
             {t.faq.subheading}
@@ -99,9 +99,9 @@ export default function FAQ({ t, isRtl = true, onOpenContact }: FAQProps) {
         </div>
 
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8" id="faq-search-wrapper">
+        <div className="max-w-2xl mx-auto mb-6 sm:mb-8" id="faq-search-wrapper">
           <div className="relative flex items-center">
-            <Search className="w-5 h-5 text-slate-400 absolute start-4 pointer-events-none" />
+            <Search className="w-4 sm:w-5 h-4 sm:h-5 text-slate-400 absolute start-3.5 sm:start-4 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
@@ -110,7 +110,7 @@ export default function FAQ({ t, isRtl = true, onOpenContact }: FAQProps) {
               autoComplete="off"
               spellCheck={false}
               suppressHydrationWarning
-              className="w-full bg-slate-800/90 border border-slate-700 rounded-xl ps-12 pe-10 py-3.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-inner transition-colors"
+              className="w-full bg-[#0B172E] border border-[#102447] rounded-xl ps-10 sm:ps-12 pe-10 py-3 sm:py-3.5 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-inner transition-colors min-h-[44px]"
               id="faq-search-input"
             />
             {searchQuery && (

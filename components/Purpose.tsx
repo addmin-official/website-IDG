@@ -12,30 +12,30 @@ const pillarIcons = [Scale, Cpu, ShieldCheck, Layers];
 
 export default function Purpose({ t }: PurposeProps) {
   return (
-    <section className="py-24 bg-[#060D1A] text-slate-100 border-b border-[#102447] w-full overflow-hidden" id="purpose">
+    <section className="py-10 sm:py-16 md:py-24 bg-[#060D1A] text-slate-100 border-b border-[#102447] w-full overflow-hidden" id="purpose">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block text-xs font-bold text-blue-400 uppercase tracking-widest px-3 py-1 bg-[#102447] border border-[#193B73] rounded-md mb-4" id="badge-purpose-mission">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+          <div className="inline-block text-xs font-bold text-blue-400 uppercase tracking-widest px-3 py-1 bg-[#102447] border border-[#193B73] rounded-md mb-3 sm:mb-4" id="badge-purpose-mission">
             IDG Core Purpose
           </div>
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-100 mb-6 leading-tight" id="purpose-heading">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-100 mb-4 sm:mb-6 leading-tight" id="purpose-heading">
             {t.purpose.heading}
           </h2>
-          <p className="text-base sm:text-lg text-slate-400 leading-relaxed font-normal" id="purpose-subheading">
+          <p className="text-sm sm:text-base md:text-lg text-slate-400 leading-relaxed font-normal" id="purpose-subheading">
             {t.purpose.subheading}
           </p>
         </div>
 
         {/* 4 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="purpose-pillars-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="purpose-pillars-grid">
           {t.purpose.pillars.map((pillar, idx) => {
             const Icon = pillarIcons[idx] || ShieldCheck;
             return (
               <div
                 key={pillar.title}
-                className="p-8 bg-[#0B172E] hover:bg-[#102447]/60 rounded-xl border border-[#102447] hover:border-[#1D5BD8] transition-all shadow-xs flex flex-col justify-between"
+                className="p-5 sm:p-6 md:p-8 bg-[#0B172E] hover:bg-[#102447]/60 rounded-xl sm:rounded-2xl border border-[#102447] hover:border-[#1D5BD8] transition-all shadow-xs flex flex-col justify-between"
                 id={`purpose-card-${idx}`}
               >
                 <div>

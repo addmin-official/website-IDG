@@ -169,7 +169,7 @@ export default function AccessibilityClient({ locale }: { locale: string }) {
     <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-slate-50 text-slate-900">
       <Navbar lang={lang} t={t} onOpenContact={() => {}} />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12 pt-28">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
         {/* Breadcrumb / Back Link */}
         <div className="mb-6">
           <Link

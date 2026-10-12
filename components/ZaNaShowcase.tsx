@@ -166,7 +166,7 @@ export default function ZaNaShowcase({
   return (
     <section
       id="zana-showcase"
-      className={`py-14 md:py-24 bg-[#060D1A] text-slate-900 relative overflow-hidden ${className}`}
+      className={`py-10 sm:py-16 md:py-20 lg:py-24 bg-[#060D1A] text-slate-900 relative overflow-hidden ${className}`}
       dir={isRtl ? 'rtl' : 'ltr'}
       aria-label="ZaNa Academy Platform Showcase"
     >
@@ -176,42 +176,42 @@ export default function ZaNaShowcase({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Pre-heading */}
-        <div className="mb-6 flex items-center justify-between flex-wrap gap-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#102447] border border-[#193B73] text-[#60A5FA] text-xs font-bold tracking-wide">
+        <div className="mb-4 sm:mb-6 flex items-center justify-between flex-wrap gap-2.5 sm:gap-3">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-[#102447] border border-[#193B73] text-[#60A5FA] text-[11px] sm:text-xs font-bold tracking-wide">
             <Sparkles className="w-3.5 h-3.5 text-[#60A5FA]" />
             <span>{copy.badge}</span>
           </div>
 
-          <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800/50">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-semibold text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800/50">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>{copy.liveStatus}</span>
           </div>
         </div>
 
         {/* ── MAIN LIGHT SHOWCASE CARD (ZaNa Login Page Inspired) ── */}
-        <div className="rounded-3xl bg-gradient-to-br from-[#EFF6FF] via-white to-[#EEF2FF] border border-blue-100/90 shadow-[0_20px_60px_-15px_rgba(29,91,216,0.25)] p-6 sm:p-10 md:p-14 transition-all">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#EFF6FF] via-white to-[#EEF2FF] border border-blue-100/90 shadow-[0_20px_60px_-15px_rgba(29,91,216,0.25)] p-4 sm:p-7 md:p-10 lg:p-12 transition-all">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
             
             {/* Left Column: Brand Identity, Pitch, Features & CTAs (7 cols) */}
             <div className="lg:col-span-7 flex flex-col justify-center">
               
               {/* Brand Header */}
-              <div className="flex items-center gap-4 mb-5">
-                <div className="w-16 h-16 rounded-2xl bg-[#1D5BD8] text-white flex items-center justify-center shadow-lg shadow-blue-600/30 shrink-0 ring-4 ring-blue-100">
-                  <GraduationCap className="w-8 h-8" />
+              <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-[#1D5BD8] text-white flex items-center justify-center shadow-lg shadow-blue-600/30 shrink-0 ring-3 sm:ring-4 ring-blue-100">
+                  <GraduationCap className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
                 <div>
-                  <div className="flex items-baseline gap-2">
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                  <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
                       {copy.nameEn}
                     </h2>
                     {lang !== 'en' && (
-                      <span className="text-lg sm:text-xl font-bold text-slate-600">
+                      <span className="text-base sm:text-lg md:text-xl font-bold text-slate-600">
                         ({copy.nameLocal})
                       </span>
                     )}
                   </div>
-                  <p className="text-sm sm:text-base font-semibold text-[#1D5BD8] mt-0.5">
+                  <p className="text-xs sm:text-sm md:text-base font-semibold text-[#1D5BD8] mt-0.5">
                     {copy.tagline}
                   </p>
                 </div>

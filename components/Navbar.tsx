@@ -119,17 +119,17 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
 
   return (
     <header className="sticky top-0 z-40 bg-[#0B172E]/95 backdrop-blur-md border-b border-[#102447] shadow-xs" id="corporate-header">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           
           {/* Brand & Sovereign Parent Mark */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0">
-            <Link href={`/${lang}`} className="flex items-center gap-2.5 sm:gap-3 group min-w-0" id="brand-logo-link">
-              <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-[#1D5BD8] text-white flex items-center justify-center font-extrabold text-lg md:text-xl tracking-wider shadow-sm group-hover:bg-[#193B73] transition-colors border border-[#193B73] ring-1 ring-[#1D5BD8]/40 shrink-0">
+            <Link href={`/${lang}`} className="flex items-center gap-2 sm:gap-2.5 group min-w-0" id="brand-logo-link">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg sm:rounded-xl bg-[#1D5BD8] text-white flex items-center justify-center font-extrabold text-base sm:text-lg md:text-xl tracking-wider shadow-sm group-hover:bg-[#193B73] transition-colors border border-[#193B73] ring-1 ring-[#1D5BD8]/40 shrink-0">
                 IDG
               </div>
-              <div className="flex flex-col max-w-[200px] sm:max-w-[240px] md:max-w-none min-w-0">
-                <span className="font-extrabold text-white text-sm md:text-base leading-tight tracking-tight whitespace-nowrap truncate">
+              <div className="flex flex-col max-w-[120px] min-[370px]:max-w-[160px] sm:max-w-[240px] md:max-w-none min-w-0">
+                <span className="font-extrabold text-white text-xs sm:text-sm md:text-base leading-tight tracking-tight whitespace-nowrap truncate">
                   {lang === 'ku' ? 'دەروازەی دیجیتاڵیی عێراق' : lang === 'ar' ? 'بوابة العراق الرقمية' : 'Iraq Digital Gateway'}
                 </span>
                 <span className="hidden sm:flex items-center gap-1 text-[10px] font-medium text-slate-400 whitespace-nowrap truncate">
@@ -348,13 +348,13 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
             {/* Language Selector (Kurdish default, Arabic & English available) */}
-            <div className="flex items-center bg-[#102447]/60 rounded-xl p-1 border border-[#102447] shadow-2xs" id="language-switcher-group">
-              <span className="text-slate-400 px-1.5 hidden sm:inline" title="زمان / اللغة / Language">
+            <div className="flex items-center bg-[#102447]/60 rounded-xl p-0.5 sm:p-1 border border-[#102447] shadow-2xs" id="language-switcher-group">
+              <span className="text-slate-400 px-1.5 hidden md:inline" title="زمان / اللغة / Language">
                 <Globe className="w-3.5 h-3.5" />
               </span>
               <button
                 onClick={() => handleLanguageChange('ku')}
-                className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                className={`px-2 sm:px-3 py-1 text-[11px] sm:text-xs font-bold rounded-md sm:rounded-lg transition-all cursor-pointer ${
                   lang === 'ku'
                     ? 'bg-[#1D5BD8] text-white shadow-xs'
                     : 'text-slate-300 hover:text-white'
@@ -366,7 +366,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               </button>
               <button
                 onClick={() => handleLanguageChange('ar')}
-                className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                className={`px-2 sm:px-3 py-1 text-[11px] sm:text-xs font-bold rounded-md sm:rounded-lg transition-all cursor-pointer ${
                   lang === 'ar'
                     ? 'bg-[#1D5BD8] text-white shadow-xs'
                     : 'text-slate-300 hover:text-white'
@@ -378,7 +378,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               </button>
               <button
                 onClick={() => handleLanguageChange('en')}
-                className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                className={`px-2 sm:px-3 py-1 text-[11px] sm:text-xs font-bold rounded-md sm:rounded-lg transition-all cursor-pointer ${
                   lang === 'en'
                     ? 'bg-[#1D5BD8] text-white shadow-xs'
                     : 'text-slate-300 hover:text-white'
@@ -393,7 +393,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             {/* Official Contact CTA */}
             <button
               onClick={onOpenContact}
-              className="hidden sm:inline-flex items-center gap-2 bg-[#1D5BD8] hover:bg-[#193B73] text-white font-semibold text-xs sm:text-sm py-2 px-4 rounded-xl transition-colors shadow-xs border border-[#1D5BD8]/40 cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-2 bg-[#1D5BD8] hover:bg-[#193B73] text-white font-semibold text-xs sm:text-sm py-2 px-3.5 sm:px-4 rounded-xl transition-colors shadow-xs border border-[#1D5BD8]/40 cursor-pointer"
               id="btn-header-contact"
             >
               <Mail className="w-4 h-4" />
@@ -403,7 +403,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             {/* Mobile Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-xl text-slate-200 hover:bg-[#102447] transition-colors cursor-pointer"
+              className="xl:hidden p-2 min-w-[42px] min-h-[42px] flex items-center justify-center rounded-xl text-slate-200 hover:bg-[#102447] transition-colors cursor-pointer"
               aria-label="Toggle Navigation"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-panel"

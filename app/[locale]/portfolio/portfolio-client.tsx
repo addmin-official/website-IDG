@@ -27,7 +27,7 @@ export default function PortfolioClient({ locale }: { locale: string }) {
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-[#060D1A] text-slate-100 overflow-x-hidden w-full max-w-full">
       <Navbar lang={lang} onLanguageChange={() => {}} t={t} onOpenContact={() => setIsContactOpen(true)} />
-      <main id="main-content" className="pt-20">
+      <main id="main-content">
         <Portfolio
           t={t}
           isRtl={isRtl}

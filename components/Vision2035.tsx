@@ -12,36 +12,36 @@ export default function Vision2035({ t }: Vision2035Props) {
   const v = t.vision;
 
   return (
-    <section className="py-24 bg-slate-900 text-white border-b border-slate-800" id="vision">
+    <section className="py-10 sm:py-16 md:py-24 bg-[#060D1A] text-white border-b border-[#102447]" id="vision">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-400 uppercase tracking-widest px-3 py-1 bg-slate-800 border border-slate-700 rounded-md mb-3" id="badge-vision-era">
+        <div className="max-w-3xl mb-10 sm:mb-16">
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-400 uppercase tracking-widest px-3 py-1 bg-[#0B172E] border border-[#102447] rounded-md mb-3" id="badge-vision-era">
             IDG Strategic Horizon
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4" id="vision-heading">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4" id="vision-heading">
             {v.heading}
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal" id="vision-subheading">
+          <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed font-normal" id="vision-subheading">
             {v.subheading}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8" id="vision-phases-grid">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8" id="vision-phases-grid">
           {v.phases.map((phase, idx) => {
             const isCurrent = idx === 0;
             return (
               <div
                 key={phase.era}
-                className={`p-8 rounded-2xl border flex flex-col justify-between transition-all ${
+                className={`p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border flex flex-col justify-between transition-all ${
                   isCurrent
-                    ? 'bg-slate-800/90 border-blue-500/80 shadow-lg relative'
-                    : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
+                    ? 'bg-[#0B172E] border-[#1D5BD8] shadow-lg relative'
+                    : 'bg-[#0B172E]/70 border-[#102447] hover:border-[#193B73]'
                 }`}
                 id={`vision-phase-${idx}`}
               >
                 {isCurrent && (
-                  <span className="absolute -top-3 right-6 bg-blue-600 text-white text-[11px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
+                  <span className="absolute -top-3 start-6 bg-[#1D5BD8] text-white text-[11px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
                     قۆناغی چالاک
                   </span>
                 )}

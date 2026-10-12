@@ -37,7 +37,7 @@ export default function LogoPreviewClient({ locale }: { locale: string }) {
     >
       <Navbar lang={lang} onLanguageChange={() => {}} t={t} onOpenContact={() => setIsContactOpen(true)} />
 
-      <main id="main-content" className="pt-20">
+      <main id="main-content">
         {/* ── HEADER ────────────────────────────────────────── */}
         <section className="border-b border-[#102447] bg-[#0B172E]/80 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">

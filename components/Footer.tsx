@@ -53,22 +53,22 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
 
   return (
     <footer
-      className="bg-slate-950 text-slate-300 py-14 md:py-18 border-t border-slate-800 relative w-full overflow-hidden"
+      className="bg-[#060D1A] text-slate-300 py-10 sm:py-14 md:py-18 border-t border-[#102447] relative w-full overflow-hidden"
       dir={isRtl ? 'rtl' : 'ltr'}
       id="corporate-footer"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-10 sm:mb-14">
           
           {/* Brand & Vision (4 cols) */}
           <div className="lg:col-span-4" id="footer-brand-section">
             <div className="flex items-center gap-2 mb-4">
               <span className="text-2xl font-black text-white tracking-tight">IDG</span>
-              <span className="px-2 py-0.5 text-[11px] font-semibold bg-blue-950 text-blue-400 border border-blue-800/80 rounded-md">
+              <span className="px-2 py-0.5 text-[11px] font-semibold bg-[#102447] text-[#60A5FA] border border-[#193B73] rounded-md">
                 {t?.parentBadge || 'کۆمپانیای دایک'}
               </span>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed mb-6 font-normal">
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6 font-normal">
               {t?.footer?.parentDesc ||
                 'دەروازەی دیجیتاڵیی عێراق (IDG). ستۆدیۆیەکی سەروەریی تەکنەلۆژی بۆ گۆڕینی ئاڵۆزییەکان بۆ توانای دیجیتاڵیی دامەزراوەیی لەسەر بنەمای حوکمڕانی و ئاسایشی زانیاری.'}
             </p>
@@ -145,7 +145,7 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
 
           {/* Newsletter Subscription (4 cols) */}
           <div className="lg:col-span-4" id="footer-newsletter-section">
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg">
+            <div className="bg-[#0B172E] border border-[#102447] rounded-2xl p-4 sm:p-5 shadow-lg">
               <div className="flex items-center gap-2 mb-2">
                 <Mail className="w-4 h-4 text-blue-400" />
                 <h4 className="text-sm font-bold text-white tracking-wide">
@@ -241,7 +241,7 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
         </div>
 
         {/* Governance Status Bar */}
-        <div className="py-3 border-t border-slate-800/60 flex items-center justify-center gap-3 text-[10px] font-mono text-slate-500" id="footer-governance-bar">
+        <div className="py-3 border-t border-[#102447] flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[10px] font-mono text-slate-500 text-center" id="footer-governance-bar">
           <span>Build IDG-2026.10-PROD</span>
           <span className="text-slate-700">·</span>
           <span>ISO-27001 Verified</span>
@@ -251,7 +251,7 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
 
         {/* Copyright & Sub-links */}
         <div
-          className="pt-4 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400"
+          className="pt-4 border-t border-[#102447] flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4 text-xs text-slate-400 text-center md:text-start"
           id="footer-copyright-section"
         >
           <p suppressHydrationWarning id="footer-copyright-text">
