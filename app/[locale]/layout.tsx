@@ -4,6 +4,8 @@ import { LocaleProvider } from '@/lib/locale-context';
 import { isValidLocale, LOCALES } from '@/lib/locale-utils';
 import { Language } from '@/lib/translations';
 
+import { OfflineDetector } from '@/components/OfflineDetector';
+
 interface LocaleLayoutProps {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
@@ -60,5 +62,11 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!isValidLocale(locale)) notFound();
 
-  return <LocaleProvider lang={locale as Language}>{children}</LocaleProvider>;
+  return (
+    <LocaleProvider lang={locale as Language}>
+      {children}
+      <OfflineDetector />
+    </LocaleProvider>
+  );
 }
+
