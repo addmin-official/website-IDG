@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TranslationData } from '@/lib/translations';
 import { useIsMounted } from '@/lib/useIsMounted';
-import { CheckCircle2, AlertCircle, Loader2, Send } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Loader2, Send, RotateCcw } from 'lucide-react';
 import { InlineStatus } from '@/components/ui/LoadingStates';
+import { ValidatedInput, ValidatedTextarea } from '@/components/ui/ValidatedInput';
 import { submitContactInquiry } from '@/infrastructure/actions/contact';
 
 interface ContactSectionProps {
@@ -93,9 +94,61 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
       : 'ناردنی پەیامێکی تر',
   };
 
+  const [undoCountdown, setUndoCountdown] = useState(0);
+
+  // Restore draft from sessionStorage on mount
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem('idg-contact-draft');
+      if (saved) {
+        const data = JSON.parse(saved);
+        if (data.fullName) setFullName(data.fullName);
+        if (data.email) setEmail(data.email);
+        if (data.subject) setSubject(data.subject);
+        if (data.provenProblem) setProvenProblem(data.provenProblem);
+        if (data.message) setMessage(data.message);
+      }
+    } catch {}
+  }, []);
+
+  // Save draft to sessionStorage as user types
+  useEffect(() => {
+    if (!isSubmitted) {
+      try {
+        sessionStorage.setItem(
+          'idg-contact-draft',
+          JSON.stringify({ fullName, email, subject, provenProblem, message })
+        );
+      } catch {}
+    }
+  }, [fullName, email, subject, provenProblem, message, isSubmitted]);
+
+  // Handle undo countdown
+  useEffect(() => {
+    if (isSubmitted && undoCountdown > 0) {
+      const timer = setTimeout(() => {
+        setUndoCountdown((c) => c - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (isSubmitted && undoCountdown === 0) {
+      try {
+        sessionStorage.removeItem('idg-contact-draft');
+      } catch {}
+    }
+  }, [isSubmitted, undoCountdown]);
+
+  const isValidEmail = (val: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+
+  const isFormValid =
+    fullName.trim().length >= 2 &&
+    isValidEmail(email) &&
+    subject.trim().length >= 3 &&
+    provenProblem.trim().length >= 5 &&
+    message.trim().length >= 10;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName.trim() || !email.trim()) return;
+    if (!isFormValid || isSubmitting) return;
 
     setIsSubmitting(true);
     setErrorMessage('');
@@ -112,6 +165,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
       if (result.success && result.referenceId) {
         setReferenceId(result.referenceId);
         setIsSubmitted(true);
+        setUndoCountdown(5);
       } else if (result.error) {
         setErrorMessage(result.error);
       }
@@ -126,6 +180,12 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
     }
   };
 
+  const handleUndo = () => {
+    setIsSubmitted(false);
+    setReferenceId('');
+    setUndoCountdown(0);
+  };
+
   const handleReset = () => {
     setFullName('');
     setEmail('');
@@ -134,6 +194,10 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
     setMessage('');
     setErrorMessage('');
     setIsSubmitted(false);
+    setUndoCountdown(0);
+    try {
+      sessionStorage.removeItem('idg-contact-draft');
+    } catch {}
   };
 
   return (
@@ -173,7 +237,24 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
             <div className="inline-block bg-[#060D1A] border border-[#102447] text-slate-300 px-4 py-2 rounded-lg font-mono text-xs mb-6">
               Reference: {referenceId}
             </div>
-            <div>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {undoCountdown > 0 && (
+                <button
+                  type="button"
+                  onClick={handleUndo}
+                  className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg text-xs transition inline-flex items-center gap-2 cursor-pointer shadow-sm animate-pulse"
+                  id="btn-contact-undo"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>
+                    {isKurdish
+                      ? `پاشگەزبوونەوە لە ناردن (${undoCountdown} چرکە)`
+                      : isArabic
+                      ? `التراجع عن الإرسال (${undoCountdown} ثوانٍ)`
+                      : `Undo submission (${undoCountdown}s)`}
+                  </span>
+                </button>
+              )}
               <button
                 type="button"
                 onClick={handleReset}
@@ -207,46 +288,55 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
             )}
 
             <div className="grid md:grid-cols-2 gap-6">
-              <input
-                type="text"
-                name="name"
-                required
-                autoComplete="name"
-                spellCheck={false}
-                suppressHydrationWarning
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder={content.namePlaceholder}
-                className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] focus:ring-1 focus:ring-[#1D5BD8] outline-hidden text-sm"
+              <ValidatedInput
                 id="contact-input-fullname"
-              />
-              <input
-                type="email"
-                name="email"
-                required
-                autoComplete="email"
-                spellCheck={false}
+                name="name"
+                value={fullName}
+                onChange={setFullName}
+                placeholder={content.namePlaceholder}
+                validate={(v) =>
+                  !v.trim()
+                    ? (isKurdish ? 'ناو پێویستە' : isArabic ? 'الاسم مطلوب' : 'Name is required')
+                    : v.trim().length < 2
+                    ? (isKurdish ? 'ناو دەبێت لانیکەم ٢ پیت بێت' : isArabic ? 'الاسم يجب أن يتكون من حرفين على الأقل' : 'Name must be at least 2 characters')
+                    : null
+                }
+                autoComplete="name"
                 suppressHydrationWarning
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={content.emailPlaceholder}
-                className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] focus:ring-1 focus:ring-[#1D5BD8] outline-hidden text-sm"
+              />
+              <ValidatedInput
                 id="contact-input-email"
+                name="email"
+                type="email"
+                value={email}
+                onChange={setEmail}
+                placeholder={content.emailPlaceholder}
+                validate={(v) =>
+                  !v.trim()
+                    ? (isKurdish ? 'ئیمەیڵ پێویستە' : isArabic ? 'البريد الإلكتروني مطلوب' : 'Email is required')
+                    : !isValidEmail(v)
+                    ? (isKurdish ? 'تکایە ئیمەیڵێکی دروست بنووسە' : isArabic ? 'يرجى إدخال بريد إلكتروني صحيح' : 'Please enter a valid email address')
+                    : null
+                }
+                autoComplete="email"
+                suppressHydrationWarning
               />
             </div>
 
-            <input
-              type="text"
-              name="subject"
-              required
-              autoComplete="off"
-              spellCheck={false}
-              suppressHydrationWarning
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-              placeholder={content.subjectPlaceholder}
-              className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] focus:ring-1 focus:ring-[#1D5BD8] outline-hidden text-sm"
+            <ValidatedInput
               id="contact-input-subject"
+              name="subject"
+              value={subject}
+              onChange={setSubject}
+              placeholder={content.subjectPlaceholder}
+              validate={(v) =>
+                !v.trim()
+                  ? (isKurdish ? 'بابەت پێویستە' : isArabic ? 'الموضوع مطلوب' : 'Subject is required')
+                  : v.trim().length < 3
+                  ? (isKurdish ? 'بابەت دەبێت لانیکەم ٣ پیت بێت' : isArabic ? 'الموضوع يجب أن يتكون من ٣ أحرف على الأقل' : 'Subject must be at least 3 characters')
+                  : null
+              }
+              suppressHydrationWarning
             />
 
             {/* The Strategic Field */}
@@ -257,32 +347,40 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               >
                 {content.strategicLabel}
               </label>
-              <input
-                type="text"
-                name="problem"
-                required
-                autoComplete="off"
-                spellCheck={false}
-                suppressHydrationWarning
+              <ValidatedInput
                 id="contact-input-proven-problem"
+                name="problem"
                 value={provenProblem}
-                onChange={(e) => setProvenProblem(e.target.value)}
+                onChange={setProvenProblem}
                 placeholder={content.strategicPlaceholder}
-                className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] focus:ring-1 focus:ring-[#1D5BD8] outline-hidden text-sm"
+                validate={(v) =>
+                  !v.trim()
+                    ? (isKurdish ? 'کێشەی سەلمێنراو پێویستە' : isArabic ? 'المشكلة المثبتة مطلوبة' : 'Proven problem is required')
+                    : v.trim().length < 5
+                    ? (isKurdish ? 'دەبێت لانیکەم ٥ پیت بێت' : isArabic ? 'يجب أن يتكون من ٥ أحرف على الأقل' : 'Must be at least 5 characters')
+                    : null
+                }
+                suppressHydrationWarning
               />
             </div>
 
-            <textarea
-              name="message"
-              required
-              rows={5}
-              spellCheck={false}
-              suppressHydrationWarning
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder={content.messagePlaceholder}
-              className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] focus:ring-1 focus:ring-[#1D5BD8] outline-hidden text-sm leading-relaxed"
+            <ValidatedTextarea
               id="contact-textarea-message"
+              name="message"
+              rows={5}
+              value={message}
+              onChange={setMessage}
+              placeholder={content.messagePlaceholder}
+              maxLength={500}
+              showCharCount={true}
+              validate={(v) =>
+                !v.trim()
+                  ? (isKurdish ? 'پەیام پێویستە' : isArabic ? 'الرسالة مطلوبة' : 'Message is required')
+                  : v.trim().length < 10
+                  ? (isKurdish ? 'پەیام دەبێت لانیکەم ١٠ پیت بێت' : isArabic ? 'الرسالة يجب أن تتكون من ١٠ أحرف على الأقل' : 'Message must be at least 10 characters')
+                  : null
+              }
+              suppressHydrationWarning
             />
 
             {errorMessage && (
@@ -294,7 +392,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
 
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !isFormValid}
               suppressHydrationWarning
               className="bg-[#1D5BD8] text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-600 transition inline-flex items-center justify-center gap-2 w-full md:w-auto cursor-pointer disabled:opacity-50 text-sm shadow-sm"
               id="btn-submit-contact"

@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { TranslationData } from '@/lib/translations';
 import { useIsMounted } from '@/lib/useIsMounted';
-import { CheckCircle2, Upload, FileCheck, X, AlertCircle, Loader2, Send } from 'lucide-react';
+import { CheckCircle2, Upload, FileCheck, X, AlertCircle, Loader2, Send, HelpCircle } from 'lucide-react';
 import { InlineStatus, ProgressBar } from '@/components/ui/LoadingStates';
+import { ValidatedInput, ValidatedTextarea } from '@/components/ui/ValidatedInput';
 import { submitCareerApplication } from '@/infrastructure/actions/careers';
 
 interface CareersProps {
@@ -166,17 +167,70 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!fullName.trim() || !email.trim() || !selectedRole) {
-      setErrorMessage(isKurdish ? 'تکایە هەموو خانە پێویستەکان پڕبکەرەوە.' : 'Please fill all required fields.');
-      return;
-    }
-    if (!resumeFile) {
-      setErrorMessage(isKurdish ? 'تکایە فایلی سیڤی (PDF) دابنێ.' : 'Please attach your CV in PDF format.');
-      return;
-    }
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
+  // Restore draft from sessionStorage on mount
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem('idg-careers-draft');
+      if (saved) {
+        const data = JSON.parse(saved);
+        if (data.fullName) setFullName(data.fullName);
+        if (data.email) setEmail(data.email);
+        if (data.selectedRole) setSelectedRole(data.selectedRole);
+        if (data.coverNote) setCoverNote(data.coverNote);
+      }
+    } catch {}
+  }, []);
+
+  // Save draft to sessionStorage as user types
+  useEffect(() => {
+    if (!isSubmitted) {
+      try {
+        sessionStorage.setItem(
+          'idg-careers-draft',
+          JSON.stringify({ fullName, email, selectedRole, coverNote })
+        );
+      } catch {}
+    }
+  }, [fullName, email, selectedRole, coverNote, isSubmitted]);
+
+  const isValidEmail = (val: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+
+  const isFormValid =
+    fullName.trim().length >= 2 &&
+    isValidEmail(email) &&
+    Boolean(selectedRole) &&
+    Boolean(resumeFile) &&
+    !isUploading;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isFormValid) {
+      if (!fullName.trim() || fullName.trim().length < 2) {
+        setErrorMessage(isKurdish ? 'ناو دەبێت لانیکەم ٢ پیت بێت.' : 'Name must be at least 2 characters.');
+        return;
+      }
+      if (!isValidEmail(email)) {
+        setErrorMessage(isKurdish ? 'تکایە ئیمەیڵێکی دروست بنووسە.' : 'Please enter a valid email address.');
+        return;
+      }
+      if (!selectedRole) {
+        setErrorMessage(isKurdish ? 'تکایە پۆستی داواکراو دیاریبکە.' : 'Please select a position.');
+        return;
+      }
+      if (!resumeFile) {
+        setErrorMessage(isKurdish ? 'تکایە فایلی سیڤی (PDF) دابنێ.' : 'Please attach your CV in PDF format.');
+        return;
+      }
+      return;
+    }
+    setErrorMessage('');
+    setShowConfirmModal(true);
+  };
+
+  const executeSubmit = async () => {
+    setShowConfirmModal(false);
     setIsSubmitting(true);
     setErrorMessage('');
 
@@ -186,12 +240,15 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
       formData.append('email', email.trim());
       formData.append('position', selectedRole);
       formData.append('coverNote', coverNote.trim());
-      formData.append('cv', resumeFile);
+      formData.append('cv', resumeFile!);
 
       const result = await submitCareerApplication(formData);
       if (result.success && result.applicationId) {
         setAppId(result.applicationId);
         setIsSubmitted(true);
+        try {
+          sessionStorage.removeItem('idg-careers-draft');
+        } catch {}
       } else if (result.error) {
         setErrorMessage(result.error);
       }
@@ -218,6 +275,10 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
     setUploadFileSize('');
     setErrorMessage('');
     setIsSubmitted(false);
+    setShowConfirmModal(false);
+    try {
+      sessionStorage.removeItem('idg-careers-draft');
+    } catch {}
   };
 
   return (
@@ -339,28 +400,39 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   </div>
                 )}
 
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  suppressHydrationWarning
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder={content.namePlaceholder}
-                  className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] outline-hidden text-sm"
+                <ValidatedInput
                   id="career-input-name"
+                  name="name"
+                  value={fullName}
+                  onChange={setFullName}
+                  placeholder={content.namePlaceholder}
+                  validate={(v) =>
+                    !v.trim()
+                      ? (isKurdish ? 'ناو پێویستە' : isArabic ? 'الاسم مطلوب' : 'Name is required')
+                      : v.trim().length < 2
+                      ? (isKurdish ? 'ناو دەبێت لانیکەم ٢ پیت بێت' : isArabic ? 'الاسم يجب أن يتكون من حرفين على الأقل' : 'Name must be at least 2 characters')
+                      : null
+                  }
+                  autoComplete="name"
+                  suppressHydrationWarning
                 />
 
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  suppressHydrationWarning
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={content.emailPlaceholder}
-                  className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] outline-hidden text-sm"
+                <ValidatedInput
                   id="career-input-email"
+                  name="email"
+                  type="email"
+                  value={email}
+                  onChange={setEmail}
+                  placeholder={content.emailPlaceholder}
+                  validate={(v) =>
+                    !v.trim()
+                      ? (isKurdish ? 'ئیمەیڵ پێویستە' : isArabic ? 'البريد الإلكتروني مطلوب' : 'Email is required')
+                      : !isValidEmail(v)
+                      ? (isKurdish ? 'تکایە ئیمەیڵێکی دروست بنووسە' : isArabic ? 'يرجى إدخال بريد إلكتروني صحيح' : 'Please enter a valid email address')
+                      : null
+                  }
+                  autoComplete="email"
+                  suppressHydrationWarning
                 />
 
                 <select
@@ -377,15 +449,16 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   <option value={content.role2Option} className="bg-[#0B172E] text-slate-100">{content.role2Option}</option>
                 </select>
 
-                <textarea
-                  name="coverNote"
-                  suppressHydrationWarning
-                  value={coverNote}
-                  onChange={(e) => setCoverNote(e.target.value)}
-                  placeholder={content.coverPlaceholder}
-                  rows={4}
-                  className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 placeholder-slate-500 focus:bg-[#102447] focus:border-[#1D5BD8] outline-hidden text-sm leading-relaxed"
+                <ValidatedTextarea
                   id="career-textarea-cover"
+                  name="coverNote"
+                  rows={4}
+                  value={coverNote}
+                  onChange={setCoverNote}
+                  placeholder={content.coverPlaceholder}
+                  maxLength={500}
+                  showCharCount={true}
+                  suppressHydrationWarning
                 />
 
                 {/* CV File Upload */}
@@ -456,7 +529,7 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting || isUploading}
+                  disabled={isSubmitting || isUploading || !isFormValid}
                   suppressHydrationWarning
                   className="w-full bg-[#1D5BD8] hover:bg-blue-600 text-white font-bold py-3 rounded-lg transition inline-flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
                   id="btn-submit-career-app"
@@ -478,6 +551,69 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
           </div>
         </div>
       </div>
+
+      {/* Confirmation Dialog before submitting */}
+      {showConfirmModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="bg-[#0B172E] border border-[#193B73] rounded-2xl max-w-md w-full p-6 shadow-2xl text-slate-100 space-y-4"
+            dir={isRtl ? 'rtl' : 'ltr'}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-blue-500/20 text-[#19C7FF] flex items-center justify-center shrink-0">
+                <HelpCircle className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-base text-slate-100">
+                  {isKurdish
+                    ? 'دڵنیایت لە ناردنی داواکارییەکە؟'
+                    : isArabic
+                    ? 'هل أنت متأكد من إرسال الطلب؟'
+                    : 'Confirm Application Submission'}
+                </h4>
+                <p className="text-xs text-slate-400">
+                  {isKurdish
+                    ? 'دەتوانیت هێشتا پێداچوونەوەی بۆ بکەیت یان بەردەوام بیت.'
+                    : isArabic
+                    ? 'يمكنك مراجعة البيانات أو المتابعة.'
+                    : 'Are you sure? You can still edit your submission before sending.'}
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#060D1A] p-3 rounded-lg border border-[#102447] text-xs space-y-1.5 font-mono text-slate-300">
+              <div className="truncate"><span className="text-slate-500">Name:</span> {fullName}</div>
+              <div className="truncate"><span className="text-slate-500">Email:</span> {email}</div>
+              <div className="truncate"><span className="text-slate-500">Role:</span> {selectedRole}</div>
+              <div className="truncate"><span className="text-slate-500">CV:</span> {resumeFile?.name} ({uploadFileSize})</div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5 pt-2">
+              <button
+                type="button"
+                onClick={() => setShowConfirmModal(false)}
+                className="px-4 py-2 text-xs font-semibold text-slate-300 hover:text-white bg-[#102447] hover:bg-[#193B73] rounded-lg transition cursor-pointer"
+                id="btn-cancel-career-confirm"
+              >
+                {isKurdish ? 'پێداچوونەوە و گەڕانەوە' : isArabic ? 'تعديل البيانات' : 'Cancel & Edit'}
+              </button>
+              <button
+                type="button"
+                onClick={executeSubmit}
+                className="px-5 py-2 text-xs font-bold text-white bg-[#1D5BD8] hover:bg-blue-600 rounded-lg transition inline-flex items-center gap-2 cursor-pointer shadow-sm"
+                id="btn-confirm-career-submit"
+              >
+                <Send className="w-3.5 h-3.5" />
+                <span>{isKurdish ? 'ناردنی کۆتایی' : isArabic ? 'تأكيد الإرسال' : 'Confirm & Submit'}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

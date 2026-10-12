@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { TranslationData } from '@/lib/translations';
 import { useLocale } from '@/lib/locale-context';
 import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
+import { ValidatedInput } from '@/components/ui/ValidatedInput';
 
 interface FooterProps {
   t?: TranslationData;
@@ -19,13 +20,13 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const cleanEmail = newsletterEmail.trim();
     if (!cleanEmail) return;
 
-    // Simple email regex validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(cleanEmail)) {
       setErrorMsg(
         t?.footer?.newsletter?.invalidEmail || 'تکایە ئیمەیڵێکی فەرمی و دروست بنووسە.'
@@ -186,28 +187,28 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
                   suppressHydrationWarning
                   id="footer-newsletter-form"
                 >
-                  <div className="relative">
-                    <input
-                      type="email"
-                      required
-                      autoComplete="off"
-                      spellCheck={false}
-                      value={newsletterEmail}
-                      onChange={(e) => {
-                        setNewsletterEmail(e.target.value);
-                        if (errorMsg) setErrorMsg('');
-                      }}
-                      placeholder={
-                        t?.footer?.newsletter?.placeholder ||
-                        'ئیمەیڵی دامەزراوەیی (name@institution.gov.iq)'
-                      }
-                      className={`w-full bg-slate-950 border rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
-                        errorMsg ? 'border-red-500' : 'border-slate-700 focus:border-blue-500'
-                      }`}
-                      id="footer-newsletter-email"
-                      suppressHydrationWarning
-                    />
-                  </div>
+                  <ValidatedInput
+                    id="footer-newsletter-email"
+                    name="newsletter-email"
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(val) => {
+                      setNewsletterEmail(val);
+                      if (errorMsg) setErrorMsg('');
+                    }}
+                    placeholder={
+                      t?.footer?.newsletter?.placeholder ||
+                      'ئیمەیڵی دامەزراوەیی (name@institution.gov.iq)'
+                    }
+                    validate={(v) =>
+                      !v.trim()
+                        ? null
+                        : !emailRegex.test(v.trim())
+                        ? (isRtl ? 'تکایە ئیمەیڵێکی دروست بنووسە' : 'Please enter a valid email address')
+                        : null
+                    }
+                    suppressHydrationWarning
+                  />
 
                   {errorMsg && (
                     <p className="text-[11px] text-red-400 font-medium" id="footer-newsletter-error">
@@ -217,7 +218,7 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
 
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !newsletterEmail.trim() || !emailRegex.test(newsletterEmail.trim())}
                     className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800/60 text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-md hover:shadow-blue-900/30 cursor-pointer disabled:opacity-50"
                     id="footer-newsletter-submit"
                   >
