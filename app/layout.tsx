@@ -1,7 +1,9 @@
+import React, { Suspense } from 'react';
 import type { Metadata, Viewport } from 'next';
 import { Noto_Kufi_Arabic, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import PageTransitionLoader from '@/components/PageTransitionLoader';
 import './globals.css';
 
 const notoKufi = Noto_Kufi_Arabic({
@@ -95,6 +97,9 @@ export default function RootLayout({
             }),
           }}
         />
+        <Suspense fallback={null}>
+          <PageTransitionLoader />
+        </Suspense>
         {children}
         <Analytics />
         <SpeedInsights />

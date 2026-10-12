@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { TranslationData } from '@/lib/translations';
 import { useLocale } from '@/lib/locale-context';
-import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
 
 interface FooterProps {
   t?: TranslationData;
@@ -218,15 +218,20 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800/60 text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-md hover:shadow-blue-900/30 cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800/60 text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-md hover:shadow-blue-900/30 cursor-pointer disabled:opacity-50"
                     id="footer-newsletter-submit"
                   >
-                    <span>
-                      {isSubmitting
-                        ? t?.footer?.newsletter?.submittingBtn || 'تۆمارکردنی ئیمەیڵ...'
-                        : t?.footer?.newsletter?.submitBtn || 'بەشداریکردن لە نوێکارییەکان'}
-                    </span>
-                    {!isSubmitting && <ArrowIcon className="w-3.5 h-3.5" />}
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        <span>{t?.footer?.newsletter?.submittingBtn || 'تۆمارکردنی ئیمەیڵ...'}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>{t?.footer?.newsletter?.submitBtn || 'بەشداریکردن لە نوێکارییەکان'}</span>
+                        <ArrowIcon className="w-3.5 h-3.5" />
+                      </>
+                    )}
                   </button>
 
                   <p className="text-[10px] text-slate-400 pt-1 leading-normal">

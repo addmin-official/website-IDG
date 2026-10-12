@@ -3,7 +3,8 @@
 import React, { useState, useRef } from 'react';
 import { TranslationData } from '@/lib/translations';
 import { useIsMounted } from '@/lib/useIsMounted';
-import { CheckCircle2, Upload, FileCheck, X, AlertCircle } from 'lucide-react';
+import { CheckCircle2, Upload, FileCheck, X, AlertCircle, Loader2, Send } from 'lucide-react';
+import { InlineStatus, ProgressBar } from '@/components/ui/LoadingStates';
 import { submitCareerApplication } from '@/infrastructure/actions/careers';
 
 interface CareersProps {
@@ -25,6 +26,10 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [appId, setAppId] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadFileName, setUploadFileName] = useState('');
+  const [uploadFileSize, setUploadFileSize] = useState('');
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -110,6 +115,12 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
       : 'پێشکەشکردنی داواکارییەکی تر',
   };
 
+  const formatBytes = (bytes: number) => {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+  };
+
   const validateAndSetFile = (file: File) => {
     if (file.type !== 'application/pdf') {
       setErrorMessage(isKurdish ? 'تەنها فایلی PDF قبوڵکراوە.' : 'Only PDF files are accepted.');
@@ -120,7 +131,25 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
       return false;
     }
     setErrorMessage('');
-    setResumeFile(file);
+    setUploadFileName(file.name);
+    setUploadFileSize(formatBytes(file.size));
+    setIsUploading(true);
+    setUploadProgress(15);
+
+    let current = 15;
+    const interval = setInterval(() => {
+      current += 25;
+      if (current >= 100) {
+        clearInterval(interval);
+        setUploadProgress(100);
+        setTimeout(() => {
+          setIsUploading(false);
+          setResumeFile(file);
+        }, 150);
+      } else {
+        setUploadProgress(current);
+      }
+    }, 70);
     return true;
   };
 
@@ -183,6 +212,10 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
     setSelectedRole('');
     setCoverNote('');
     setResumeFile(null);
+    setUploadProgress(0);
+    setIsUploading(false);
+    setUploadFileName('');
+    setUploadFileSize('');
     setErrorMessage('');
     setIsSubmitted(false);
   };
@@ -291,6 +324,21 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                 id="careers-form"
                 suppressHydrationWarning
               >
+                {isSubmitting && (
+                  <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                    <InlineStatus
+                      status="loading"
+                      loadingLabel={
+                        isKurdish
+                          ? 'داواکارییەکەت لەگەڵ سیڤی دەنێردرێت بۆ ڕاژەکار...'
+                          : isArabic
+                          ? 'جاري إرسال طلب التوظيف والسيرة الذاتية...'
+                          : 'Submitting application and CV to secure server...'
+                      }
+                    />
+                  </div>
+                )}
+
                 <input
                   type="text"
                   name="name"
@@ -351,25 +399,45 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   id="career-file-input"
                 />
                 <div
-                  onClick={() => fileInputRef.current?.click()}
+                  onClick={() => !isUploading && fileInputRef.current?.click()}
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={handleFileDrop}
                   className="border-2 border-dashed border-[#102447] hover:border-[#1D5BD8] hover:bg-[#102447]/30 p-4 rounded-lg text-center text-sm text-slate-400 transition cursor-pointer"
                   id="career-upload-dropzone"
                 >
-                  {resumeFile ? (
+                  {isUploading ? (
+                    <div className="space-y-2 py-1 text-xs">
+                      <div className="flex items-center justify-between text-blue-300">
+                        <span className="flex items-center gap-1.5 font-medium truncate">
+                          <Loader2 className="w-3.5 h-3.5 animate-spin shrink-0 text-[#19C7FF]" />
+                          <span>
+                            {isKurdish
+                              ? 'بارکردنی فایلی PDF...'
+                              : isArabic
+                              ? 'جاري رفع ملف PDF...'
+                              : 'Uploading PDF...'}
+                          </span>
+                          <span className="text-slate-400 font-mono">({uploadFileName} • {uploadFileSize})</span>
+                        </span>
+                        <span className="font-mono text-[#19C7FF]">{uploadProgress}%</span>
+                      </div>
+                      <ProgressBar value={uploadProgress} showLabel={false} />
+                    </div>
+                  ) : resumeFile ? (
                     <div className="flex items-center justify-between text-xs text-blue-300 bg-[#102447] px-3 py-1.5 rounded border border-[#193B73]">
                       <span className="flex items-center gap-1.5 font-medium truncate">
-                        <FileCheck className="w-4 h-4 shrink-0" />
-                        {resumeFile.name}
+                        <FileCheck className="w-4 h-4 shrink-0 text-emerald-400" />
+                        <span className="truncate">{resumeFile.name}</span>
+                        <span className="text-slate-400 text-[11px] font-mono">({uploadFileSize || formatBytes(resumeFile.size)})</span>
                       </span>
                       <button
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
                           setResumeFile(null);
+                          setUploadProgress(0);
                         }}
-                        className="text-slate-400 hover:text-slate-200 p-0.5"
+                        className="text-slate-400 hover:text-slate-200 p-0.5 cursor-pointer"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
@@ -388,12 +456,22 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isUploading}
                   suppressHydrationWarning
-                  className="w-full bg-[#1D5BD8] hover:bg-blue-600 text-white font-bold py-3 rounded-lg transition cursor-pointer shadow-sm disabled:opacity-50"
+                  className="w-full bg-[#1D5BD8] hover:bg-blue-600 text-white font-bold py-3 rounded-lg transition inline-flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
                   id="btn-submit-career-app"
                 >
-                  {isSubmitting ? '...' : content.submitBtn}
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>{isKurdish ? 'لە ناردندایە...' : isArabic ? 'جاري الإرسال...' : 'Sending...'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>{content.submitBtn}</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}

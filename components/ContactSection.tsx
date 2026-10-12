@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { TranslationData } from '@/lib/translations';
 import { useIsMounted } from '@/lib/useIsMounted';
-import { CheckCircle2, AlertCircle } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Loader2, Send } from 'lucide-react';
+import { InlineStatus } from '@/components/ui/LoadingStates';
 import { submitContactInquiry } from '@/infrastructure/actions/contact';
 
 interface ContactSectionProps {
@@ -190,6 +191,21 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
             id="contact-form"
             suppressHydrationWarning
           >
+            {isSubmitting && (
+              <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                <InlineStatus
+                  status="loading"
+                  loadingLabel={
+                    isKurdish
+                      ? 'پەیامەکەت ئامادە دەکرێت و دەنێردرێت بۆ ڕاژەکار...'
+                      : isArabic
+                      ? 'جاري تشفير وإرسال الرسالة إلى الخادم...'
+                      : 'Encrypting and transmitting inquiry to server...'
+                  }
+                />
+              </div>
+            )}
+
             <div className="grid md:grid-cols-2 gap-6">
               <input
                 type="text"
@@ -280,10 +296,20 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               type="submit"
               disabled={isSubmitting}
               suppressHydrationWarning
-              className="bg-[#1D5BD8] text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-600 transition w-full md:w-auto cursor-pointer disabled:opacity-50 text-sm shadow-sm"
+              className="bg-[#1D5BD8] text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-600 transition inline-flex items-center justify-center gap-2 w-full md:w-auto cursor-pointer disabled:opacity-50 text-sm shadow-sm"
               id="btn-submit-contact"
             >
-              {isSubmitting ? '...' : content.submitBtn}
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>{isKurdish ? 'لە ناردندایە...' : isArabic ? 'جاري الإرسال...' : 'Sending...'}</span>
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  <span>{content.submitBtn}</span>
+                </>
+              )}
             </button>
           </form>
         )}

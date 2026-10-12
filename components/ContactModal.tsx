@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { TranslationData } from '@/lib/translations';
-import { X, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { X, Send, CheckCircle2, ShieldCheck, Loader2 } from 'lucide-react';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -17,19 +17,25 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
   const [inquiryType, setInquiryType] = useState(t.contactModal.inquiryOptions[0] || '');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !entity.trim() || !message.trim()) return;
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }, 600);
   };
 
   const handleReset = () => {
     setName('');
     setEntity('');
     setMessage('');
+    setIsSubmitting(false);
     setSubmitted(false);
     onClose();
   };
@@ -187,11 +193,21 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
               </button>
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2.5 px-6 rounded-lg text-xs sm:text-sm transition shadow-xs"
+                disabled={isSubmitting}
+                className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-900/60 text-white font-semibold py-2.5 px-6 rounded-lg text-xs sm:text-sm transition shadow-xs cursor-pointer disabled:opacity-60"
                 id="btn-submit-inquiry"
               >
-                <Send className="w-4 h-4" />
-                <span>{t.contactModal.submitBtn}</span>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>تکایە چاوەڕێبە...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>{t.contactModal.submitBtn}</span>
+                  </>
+                )}
               </button>
             </div>
           </form>
