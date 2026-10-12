@@ -3,5 +3,6 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install --include=dev",
   "framework": "nextjs",
+  "outputDirectory": ".next",
   "regions": ["fra1"]
 }
