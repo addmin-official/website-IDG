@@ -68,8 +68,8 @@ export default function FAQ({ t, isRtl = true, onOpenContact }: FAQProps) {
     >
       {/* Background Accent Mesh */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#1D5BD8_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none" />
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-32 -start-32 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -end-32 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         

@@ -59,7 +59,7 @@ export default function Stakeholders({ t, isRtl = true, onOpenContact }: Stakeho
     >
       {/* Hero Section */}
       <section className="bg-[#0B172E] text-white py-10 sm:py-14 md:py-20 border-b border-[#102447]" id="stakeholders-hero">
-        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${isRtl ? 'text-center md:text-right' : 'text-center md:text-left'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-start">
           <h1
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight text-slate-100"
             id="stakeholders-hero-title"

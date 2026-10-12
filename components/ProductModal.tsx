@@ -75,7 +75,7 @@ export default function ProductModal({
           {/* Close button positioned adaptively */}
           <button
             onClick={onClose}
-            className={`absolute top-4 ${isRtl ? 'left-4' : 'right-4'} text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition duration-150 z-10`}
+            className="absolute top-4 end-4 text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition duration-150 z-10"
             aria-label={labels.close}
           >
             <X className="w-5 h-5" />
@@ -249,7 +249,7 @@ export default function ProductModal({
         {/* Close button */}
         <button
           onClick={onClose}
-          className={`absolute top-4 ${isRtl ? 'left-4' : 'right-4'} text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition duration-150 z-10`}
+          className="absolute top-4 end-4 text-slate-400 hover:text-slate-700 hover:bg-slate-100 p-2 rounded-xl transition duration-150 z-10"
           aria-label={labels.close}
         >
           <X className="w-5 h-5" />

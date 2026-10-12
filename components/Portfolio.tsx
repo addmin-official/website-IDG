@@ -109,7 +109,7 @@ export default function Portfolio({
                     </span>
                     <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-100 mb-2 group-hover:text-[#60A5FA] transition-colors">
                       {prod.title}{' '}
-                      <span className="block md:inline text-xs md:text-sm font-normal text-slate-400 md:ml-2">
+                      <span className="block md:inline text-xs md:text-sm font-normal text-slate-400 md:ms-2">
                         — {prod.subtitle}
                       </span>
                     </h3>

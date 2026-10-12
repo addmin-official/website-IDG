@@ -136,25 +136,13 @@ export default function Governance({ t, isRtl }: GovernanceProps) {
             >
               <thead className="bg-[#060D1A] text-slate-200 border-b border-[#102447]">
                 <tr>
-                  <th
-                    className={`py-4 px-6 font-semibold text-sm md:text-base ${
-                      isRtl ? 'text-right' : 'text-left'
-                    } w-1/5`}
-                  >
+                  <th className="py-4 px-6 font-semibold text-sm md:text-base text-start w-1/5">
                     {gov.tableHeaders.domain}
                   </th>
-                  <th
-                    className={`py-4 px-6 font-semibold text-sm md:text-base ${
-                      isRtl ? 'text-right' : 'text-left'
-                    } w-2/5`}
-                  >
+                  <th className="py-4 px-6 font-semibold text-sm md:text-base text-start w-2/5">
                     {gov.tableHeaders.principle}
                   </th>
-                  <th
-                    className={`py-4 px-6 font-semibold text-sm md:text-base ${
-                      isRtl ? 'text-right' : 'text-left'
-                    } w-2/5`}
-                  >
+                  <th className="py-4 px-6 font-semibold text-sm md:text-base text-start w-2/5">
                     {gov.tableHeaders.mechanism}
                   </th>
                 </tr>
@@ -233,7 +221,7 @@ export default function Governance({ t, isRtl }: GovernanceProps) {
                           }`}
                           id={`btn-case-tab-${item.id}`}
                         >
-                          <span className="opacity-60 text-xs mr-1 ml-1">{item.category} •</span>
+                          <span className="opacity-60 text-xs me-1 ms-1">{item.category} •</span>
                           <span>{item.title}</span>
                         </button>
                       );

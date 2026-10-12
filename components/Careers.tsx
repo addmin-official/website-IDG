@@ -199,9 +199,7 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
             {content.title}
           </h2>
           <p
-            className={`text-lg text-slate-300 leading-relaxed ${
-              isRtl ? 'border-r-4 pr-4' : 'border-l-4 pl-4'
-            } border-[#1D5BD8]`}
+            className="text-lg text-slate-300 leading-relaxed border-s-4 ps-4 border-[#1D5BD8]"
             id="careers-intro"
           >
             {content.intro}

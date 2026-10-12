@@ -50,7 +50,7 @@ export default function LocaleHomePage() {
     <div
       dir={isRtl ? 'rtl' : 'ltr'}
       lang={lang}
-      className={`min-h-screen bg-[#060D1A] text-slate-200 ${isRtl ? 'text-right' : 'text-left'} transition-all overflow-x-hidden w-full max-w-full`}
+      className="min-h-screen bg-[#060D1A] text-slate-200 text-start transition-all overflow-x-hidden w-full max-w-full"
       id="idg-app-root"
     >
       <ScrollProgressBar isRtl={isRtl} />

@@ -869,7 +869,7 @@ export default function StudentDashboard({
                       setPracticeAnswer(opt.idx);
                       setPracticeSubmitted(true);
                     }}
-                    className={`p-2 rounded text-right transition border ${
+                    className={`p-2 rounded text-start transition border ${
                       practiceSubmitted && opt.correct
                         ? 'bg-emerald-950/80 border-emerald-500 text-emerald-200'
                         : practiceSubmitted && practiceAnswer === opt.idx && !opt.correct

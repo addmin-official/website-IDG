@@ -28,7 +28,7 @@ export default function ScrollProgressBar({ isRtl = true }: ScrollProgressBarPro
 
   return (
     <div
-      className="fixed top-0 left-0 right-0 z-50 h-[3.5px] bg-slate-900/10 backdrop-blur-xs pointer-events-none"
+      className="fixed top-0 start-0 end-0 z-50 h-[3.5px] bg-slate-900/10 backdrop-blur-xs pointer-events-none"
       id="scroll-progress-container"
       role="progressbar"
       aria-valuenow={Math.round(scrollProgress)}
