@@ -338,7 +338,7 @@ export default function HelpClient({ locale }: { locale: string }) {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
               {lang === 'ku'
                 ? 'چۆن دەتوانین هاوکاریت بکەین؟'
                 : lang === 'ar'

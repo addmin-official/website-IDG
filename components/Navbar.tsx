@@ -124,12 +124,12 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
         <div className="flex justify-between items-center h-16 sm:h-20">
           
           {/* Brand & Sovereign Parent Mark */}
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0">
-            <Link href={`/${lang}`} prefetch={true} className="flex items-center gap-2 sm:gap-2.5 group min-w-0" id="brand-logo-link">
+          <div className="flex items-center gap-1.5 sm:gap-3 min-w-0 shrink">
+            <Link href={`/${lang}`} prefetch={true} className="flex items-center gap-1.5 sm:gap-2.5 group min-w-0" id="brand-logo-link">
               <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg sm:rounded-xl bg-[#1D5BD8] text-white flex items-center justify-center font-extrabold text-base sm:text-lg md:text-xl tracking-wider shadow-sm group-hover:bg-[#193B73] transition-colors border border-[#193B73] ring-1 ring-[#1D5BD8]/40 shrink-0">
                 IDG
               </div>
-              <div className="flex flex-col max-w-[120px] min-[370px]:max-w-[160px] sm:max-w-[240px] md:max-w-none min-w-0">
+              <div className="flex flex-col max-w-[110px] min-[360px]:max-w-[130px] min-[400px]:max-w-[180px] sm:max-w-[240px] md:max-w-none min-w-0">
                 <span className="font-extrabold text-white text-xs sm:text-sm md:text-base leading-tight tracking-tight whitespace-nowrap truncate">
                   {lang === 'ku' ? 'دەروازەی دیجیتاڵیی عێراق' : lang === 'ar' ? 'بوابة العراق الرقمية' : 'Iraq Digital Gateway'}
                 </span>
@@ -357,8 +357,18 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
           </nav>
 
           {/* Right Actions: Language Switcher & Contact Button */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+            {/* Help Center Icon Link */}
+            <Link
+              href={`/${lang}/help`}
+              title={lang === 'ku' ? 'ناوەندی هاوکاری و بەڵگەنامەکان' : lang === 'ar' ? 'مركز المساعدة والتوثيق' : 'Help Center'}
+              aria-label={lang === 'ku' ? 'ناوەندی هاوکاری و بەڵگەنامەکان' : lang === 'ar' ? 'مركز المساعدة والتوثيق' : 'Help Center'}
+              className="hidden lg:inline-flex items-center justify-center w-9 h-9 rounded-lg text-slate-400 hover:text-white hover:bg-[#102447] transition-colors"
+              id="nav-link-help-desktop"
+            >
+              <HelpCircle className="w-4 h-4" />
+            </Link>
+
             {/* Language Selector (Kurdish default, Arabic & English available) */}
             <div className="flex items-center bg-[#102447]/60 rounded-xl p-0.5 sm:p-1 border border-[#102447] shadow-2xs" id="language-switcher-group">
               <span className="text-slate-400 px-1.5 hidden md:inline" title="زمان / اللغة / Language">
@@ -366,7 +376,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               </span>
               <button
                 onClick={() => handleLanguageChange('ku')}
-                className={`px-2 sm:px-3 py-1 text-[11px] sm:text-xs font-bold rounded-md sm:rounded-lg transition-all cursor-pointer ${
+                className={`px-1.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-bold rounded-md sm:rounded-lg transition-all cursor-pointer ${
                   lang === 'ku'
                     ? 'bg-[#1D5BD8] text-white shadow-xs'
                     : 'text-slate-300 hover:text-white'
@@ -378,7 +388,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               </button>
               <button
                 onClick={() => handleLanguageChange('ar')}
-                className={`px-2 sm:px-3 py-1 text-[11px] sm:text-xs font-bold rounded-md sm:rounded-lg transition-all cursor-pointer ${
+                className={`px-1.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-bold rounded-md sm:rounded-lg transition-all cursor-pointer ${
                   lang === 'ar'
                     ? 'bg-[#1D5BD8] text-white shadow-xs'
                     : 'text-slate-300 hover:text-white'
@@ -390,7 +400,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               </button>
               <button
                 onClick={() => handleLanguageChange('en')}
-                className={`px-2 sm:px-3 py-1 text-[11px] sm:text-xs font-bold rounded-md sm:rounded-lg transition-all cursor-pointer ${
+                className={`px-1.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-bold rounded-md sm:rounded-lg transition-all cursor-pointer ${
                   lang === 'en'
                     ? 'bg-[#1D5BD8] text-white shadow-xs'
                     : 'text-slate-300 hover:text-white'
@@ -401,17 +411,6 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                 EN
               </button>
             </div>
-
-            {/* Help Center Icon Link */}
-            <Link
-              href={`/${lang}/help`}
-              title={lang === 'ku' ? 'ناوەندی هاوکاری' : lang === 'ar' ? 'مركز المساعدة' : 'Help Center'}
-              aria-label={lang === 'ku' ? 'ناوەندی هاوکاری و بەڵگەنامەکان' : lang === 'ar' ? 'مركز المساعدة والتوثيق' : 'Help Center'}
-              className="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-lg text-slate-400 hover:text-white hover:bg-[#102447] transition-colors"
-              id="nav-link-help-desktop"
-            >
-              <HelpCircle className="w-4 h-4" />
-            </Link>
 
             {/* Official Contact CTA */}
             <Button

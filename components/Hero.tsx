@@ -26,7 +26,7 @@ export default function Hero({ t, isRtl }: HeroProps) {
         </div>
 
         {/* Headline */}
-        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.25] sm:leading-[1.18] tracking-tight text-white mb-6 sm:mb-8" id="hero-main-title">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-[1.25] sm:leading-[1.18] tracking-tight text-white mb-6 sm:mb-8" id="hero-main-title">
           {t.hero.headline}
         </h1>
 
@@ -39,7 +39,7 @@ export default function Hero({ t, isRtl }: HeroProps) {
         <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-4 mb-10 sm:mb-16" id="hero-actions-container">
           <a
             href="#portfolio"
-            className="inline-flex items-center justify-center gap-2 bg-[#1D5BD8] hover:bg-[#193B73] text-white font-semibold py-3 px-6 sm:px-8 rounded-xl transition-all shadow-md hover:shadow-blue-900/30 text-sm sm:text-base border border-[#1D5BD8]/40 min-h-[46px]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#1D5BD8] hover:bg-[#193B73] text-white font-semibold py-3 px-6 sm:px-8 rounded-xl transition-all shadow-md hover:shadow-blue-900/30 text-sm sm:text-base border border-[#1D5BD8]/40 min-h-[46px]"
             id="btn-hero-explore-portfolio"
           >
             <span>{t.hero.exploreBtn}</span>
@@ -47,7 +47,7 @@ export default function Hero({ t, isRtl }: HeroProps) {
           </a>
           <a
             href="#vision"
-            className="inline-flex items-center justify-center gap-2 bg-[#0B172E] hover:bg-[#102447] border border-[#102447] text-slate-200 hover:text-white font-semibold py-3 px-6 sm:px-8 rounded-xl transition-colors text-sm sm:text-base min-h-[46px]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0B172E] hover:bg-[#102447] border border-[#102447] text-slate-200 hover:text-white font-semibold py-3 px-6 sm:px-8 rounded-xl transition-colors text-sm sm:text-base min-h-[46px]"
             id="btn-hero-vision"
           >
             <span>{t.hero.visionBtn}</span>
@@ -56,12 +56,12 @@ export default function Hero({ t, isRtl }: HeroProps) {
         </div>
 
         {/* Sovereign Architecture Proof Strip */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-6 sm:pt-8 border-t border-[#102447] max-w-4xl mx-auto" id="hero-proof-strip">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-6 sm:pt-8 border-t border-[#102447] max-w-4xl mx-auto w-full" id="hero-proof-strip">
           <div
-            className="p-4 sm:p-5 rounded-xl bg-[#0B172E] border border-[#102447] flex flex-col items-center gap-1"
+            className="p-4 sm:p-5 rounded-xl bg-[#0B172E] border border-[#102447] flex flex-col items-center gap-1 w-full"
             aria-label={`${t.hero.stats.stat1Label}: ${t.hero.stats.stat1Val}`}
           >
-            <span className="text-[11px] uppercase tracking-widest text-slate-500 font-semibold">
+            <span className="text-[11px] uppercase tracking-widest text-slate-500 font-semibold text-center">
               {t.hero.stats.stat1Label}
             </span>
             <span className="text-2xl sm:text-3xl font-black text-white tabular-nums">
@@ -71,10 +71,10 @@ export default function Hero({ t, isRtl }: HeroProps) {
           </div>
 
           <div
-            className="p-5 rounded-xl bg-[#0B172E] border border-[#102447] flex flex-col items-center gap-1"
+            className="p-4 sm:p-5 rounded-xl bg-[#0B172E] border border-[#102447] flex flex-col items-center gap-1 w-full"
             aria-label={`${t.hero.stats.stat2Label}: ${t.hero.stats.stat2Val}`}
           >
-            <span className="text-[11px] uppercase tracking-widest text-slate-500 font-semibold">
+            <span className="text-[11px] uppercase tracking-widest text-slate-500 font-semibold text-center">
               {t.hero.stats.stat2Label}
             </span>
             <span className="text-2xl sm:text-3xl font-black text-white tabular-nums">
@@ -84,10 +84,10 @@ export default function Hero({ t, isRtl }: HeroProps) {
           </div>
 
           <div
-            className="p-5 rounded-xl bg-[#0B172E] border border-[#102447] flex flex-col items-center gap-1"
+            className="p-4 sm:p-5 rounded-xl bg-[#0B172E] border border-[#102447] flex flex-col items-center gap-1 w-full"
             aria-label={`${t.hero.stats.stat3Label}: ${t.hero.stats.stat3Val}`}
           >
-            <span className="text-[11px] uppercase tracking-widest text-slate-500 font-semibold">
+            <span className="text-[11px] uppercase tracking-widest text-slate-500 font-semibold text-center">
               {t.hero.stats.stat3Label}
             </span>
             <span className="text-2xl sm:text-3xl font-black text-white tabular-nums">
