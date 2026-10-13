@@ -319,6 +319,13 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
             </Link>
           </div>
         </div>
+
+        {/* Brand Disambiguation Disclaimer */}
+        <p className="text-[10px] text-slate-600 leading-relaxed max-w-3xl mx-auto text-center mt-4" id="footer-disambiguation-notice">
+          {currentLang === 'ku' && 'دەروازەی دیجیتاڵیی عێراق (IDG) کۆمپانیایەکی سەربەخۆی عێراقییە. هیچ پەیوەندییەکی نییە بە International Data Group (IDG Inc.) یان IDG Communications.'}
+          {currentLang === 'ar' && 'بوابة العراق الرقمية (IDG) هي شركة عراقية مستقلة. لا علاقة لها بـ International Data Group أو IDG Communications.'}
+          {currentLang === 'en' && 'Iraq Digital Gateway (IDG) is an independent Iraqi company. Not affiliated with International Data Group or IDG Communications.'}
+        </p>
       </div>
     </footer>
   );

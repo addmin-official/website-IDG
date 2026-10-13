@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#060D1A"/>
+      <stop offset="50%" stop-color="#0B172E"/>
+      <stop offset="100%" stop-color="#060D1A"/>
+    </linearGradient>
+    <linearGradient id="primaryGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D5BD8"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+    <radialGradient id="radialGlow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#1D5BD8" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#060D1A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#radialGlow)"/>
+
+  <!-- Border accent -->
+  <rect x="24" y="24" width="1152" height="582" rx="20" fill="none" stroke="#102447" stroke-width="2"/>
+
+  <!-- IDG Emblem / Logo Mark -->
+  <g transform="translate(600, 190)">
+    <!-- Arc 1 -->
+    <path d="M -70 40 A 80 80 0 0 1 70 40" fill="none" stroke="url(#primaryGlow)" stroke-width="12" stroke-linecap="round"/>
+    <!-- Arc 2 -->
+    <path d="M -45 55 A 55 55 0 0 1 45 55" fill="none" stroke="#60A5FA" stroke-width="8" stroke-linecap="round" stroke-opacity="0.7"/>
+    <!-- Center Sovereign Dot -->
+    <circle cx="0" cy="5" r="14" fill="#60A5FA"/>
+  </g>
+
+  <!-- Brand Typography -->
+  <!-- Latin Title -->
+  <text x="600" y="340" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="52" fill="#FFFFFF" letter-spacing="-1">
+    Iraq Digital Gateway
+  </text>
+  
+  <text x="600" y="390" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="24" fill="#60A5FA" letter-spacing="4">
+    IDG · SOVEREIGN TECHNOLOGY INSTITUTION
+  </text>
+
+  <!-- Multilingual Arabic & Kurdish Tagline -->
+  <text x="600" y="450" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="28" fill="#94A3B8">
+    دەروازەی دیجیتاڵیی عێراق · بوابة العراق الرقمية
+  </text>
+
+  <!-- Strategic Pillars Bar -->
+  <g transform="translate(600, 520)">
+    <rect x="-380" y="-22" width="760" height="44" rx="22" fill="#0B172E" stroke="#193B73" stroke-width="1.5"/>
+    <text x="0" y="6" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="500" font-size="14" fill="#CBD5E1" letter-spacing="1">
+      NATIONAL INFRASTRUCTURE · DATA SOVEREIGNTY · APPLIED AI · ERBIL, IRAQ
+    </text>
+  </g>
+</svg>

@@ -86,6 +86,39 @@ export default function LocaleHomePage() {
           isRtl={isRtl}
         />
 
+        {/* SEO Disambiguation & Entity Authority Strip */}
+        <section className="py-8 bg-[#0A141F] border-y border-[#102447]" id="seo-entity-authority">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-sm text-slate-400 leading-relaxed max-w-4xl mx-auto">
+              {lang === 'ku' && (
+                <>
+                  دەروازەی دیجیتاڵیی عێراق (Iraq Digital Gateway — IDG) 
+                  کۆمپانیای دایکی سەروەریی تەکنەلۆژییە لە عێراق کە 
+                  ژێرخانی دیجیتاڵی، سەروەریی داتا، ژیریی دەستکردی کارپێکراو، 
+                  و چارەسەری دامەزراوەیی پێشکەش دەکات. لە هەولێر، 
+                  هەرێمی کوردستان دامەزراوە.
+                </>
+              )}
+              {lang === 'ar' && (
+                <>
+                  بوابة العراق الرقمية (IDG) هي الشركة الأم السيادية 
+                  للتكنولوجيا في العراق، وتقدم البنية التحتية الرقمية 
+                  وسيادة البيانات والذكاء الاصطناعي التطبيقي والحلول 
+                  المؤسسية. يقع مقرها في أربيل، إقليم كردستان.
+                </>
+              )}
+              {lang === 'en' && (
+                <>
+                  Iraq Digital Gateway (IDG) is Iraq&apos;s sovereign parent 
+                  technology company providing digital infrastructure, 
+                  data sovereignty, applied AI, and institutional 
+                  solutions. Headquartered in Erbil, Kurdistan Region.
+                </>
+              )}
+            </p>
+          </div>
+        </section>
+
         <RecentlyViewed />
 
         <AboutUs

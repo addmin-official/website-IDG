@@ -29,9 +29,55 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Iraq Digital Gateway (IDG)',
+  title: {
+    default: 'Iraq Digital Gateway (IDG) — Sovereign Technology Institution',
+    template: '%s | Iraq Digital Gateway (IDG)',
+  },
   description:
-    'Sovereign parent company for governance, data, applied AI, and secure institutional infrastructure in Iraq.',
+    "Iraq Digital Gateway (IDG) is Iraq's sovereign parent technology " +
+    'company and institutional venture studio. NOT affiliated with IDG ' +
+    'Communications or International Data Group.',
+  keywords: [
+    'Iraq Digital Gateway',
+    'IDG Iraq',
+    'Sovereign Technology Iraq',
+    'Iraq Digital Infrastructure',
+    'Erbil Technology',
+    'Kurdistan Digital',
+    'Iraq National Single Window',
+    'AI Gate Iraq',
+    'ZaNa Academy',
+    'Green Belt Iraq',
+  ],
+  authors: [{ name: 'Mustafa Jalal Mustafa Khoshnaw' }],
+  creator: 'Iraq Digital Gateway (IDG)',
+  publisher: 'Iraq Digital Gateway (IDG)',
+  metadataBase: new URL('https://idg.iq'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Iraq Digital Gateway (IDG) — Sovereign Technology Institution',
+    description:
+      "Iraq's sovereign parent technology company and institutional venture studio for national digital infrastructure.",
+    type: 'website',
+    url: 'https://idg.iq',
+    images: [
+      {
+        url: '/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Iraq Digital Gateway',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Iraq Digital Gateway (IDG)',
+    description:
+      "Iraq's sovereign parent technology company. NOT affiliated with International Data Group.",
+    images: ['/og-image.svg'],
+  },
 };
 
 export default function RootLayout({
@@ -59,22 +105,32 @@ export default function RootLayout({
               '@id': 'https://idg.iq/#corporation',
               name: 'Iraq Digital Gateway',
               alternateName: [
-                'IDG',
+                'IDG Iraq',
                 'دەروازەی دیجیتاڵیی عێراق',
                 'بوابة العراق الرقمية',
               ],
+              legalName: 'Iraq Digital Gateway',
+              description:
+                "Iraq's sovereign parent technology company and institutional venture studio engineering digital infrastructure and applied AI for Iraq.",
+              disambiguatingDescription:
+                'Iraq Digital Gateway (IDG) is an Iraqi sovereign technology ' +
+                'institution. Not to be confused with International Data Group ' +
+                '(IDG Inc.), IDG Communications, or IDG Ventures.',
               url: 'https://idg.iq',
               logo: 'https://idg.iq/assets/brand/idg-emblem.png',
-              founder: {
-                '@type': 'Person',
-                name: 'Mustafa Jalal Mustafa Khoshnaw',
-              },
+              foundingDate: '2024',
               foundingLocation: {
                 '@type': 'Place',
                 name: 'Erbil, Kurdistan Region, Iraq',
               },
-              description:
-                'Sovereign parent technology company and institutional venture studio engineering digital infrastructure and applied AI for Iraq.',
+              founder: {
+                '@type': 'Person',
+                name: 'Mustafa Jalal Mustafa Khoshnaw',
+              },
+              areaServed: {
+                '@type': 'Country',
+                name: 'Iraq',
+              },
               knowsAbout: [
                 'Sovereign Digital Infrastructure',
                 'Iraq National Single Window',
@@ -82,6 +138,7 @@ export default function RootLayout({
                 'Data Sovereignty',
                 'Zero-Trust Architecture',
               ],
+              slogan: 'Turning complexity into trusted operational capability',
             }),
           }}
         />
