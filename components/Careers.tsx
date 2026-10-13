@@ -6,6 +6,7 @@ import { useIsMounted } from '@/lib/useIsMounted';
 import { CheckCircle2, Upload, FileCheck, X, AlertCircle, Loader2, Send, HelpCircle } from 'lucide-react';
 import { InlineStatus, ProgressBar } from '@/components/ui/LoadingStates';
 import { ValidatedInput, ValidatedTextarea } from '@/components/ui/ValidatedInput';
+import { HelpIcon } from '@/components/ui/Tooltip';
 import { submitCareerApplication } from '@/infrastructure/actions/careers';
 
 interface CareersProps {
@@ -303,9 +304,15 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
         <div className="grid md:grid-cols-2 gap-12 items-start" id="careers-grid">
           {/* Open Roles */}
           <div className="space-y-6" id="careers-roles-container">
-            <h3 className="text-2xl font-bold mb-6 text-slate-100" id="careers-roles-title">
-              {content.rolesTitle}
-            </h3>
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+              <h3 className="text-2xl font-bold text-slate-100" id="careers-roles-title">
+                {content.rolesTitle}
+              </h3>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#102447] border border-[#193B73] rounded-full text-xs text-[#60A5FA]">
+                <span>{isKurdish ? 'هاوبەشی نیشتمانی' : isArabic ? 'الزمالة الوطنية' : 'National Fellowship'}</span>
+                <HelpIcon tooltip={isKurdish ? 'بەرنامەی پێگەیاندنی بەهرە ناوخۆییەکان و زەمالەی نیشتمانی بۆ ئەندازیارانی عێراق و کوردستان (National Fellowship)' : isArabic ? 'برنامج تأهيل الكفاءات العراقية وبرنامج الزمالة الهندسية الوطنية' : 'Structured domestic talent stewardship and national fellowship track'} />
+              </div>
+            </div>
 
             {/* Role 1 */}
             <div

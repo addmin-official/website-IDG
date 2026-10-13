@@ -538,6 +538,15 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               {t.nav.faq}
             </Link>
             <Link
+              href={`/${lang}/help`}
+              prefetch={true}
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition text-blue-400"
+              id="mobile-link-help"
+            >
+              {lang === 'ku' ? 'ناوەندی هاوکاری و بەڵگەنامەکان' : lang === 'ar' ? 'مركز المساعدة والوثائق' : 'Help & Documentation'}
+            </Link>
+            <Link
               href={`/${lang}/contact`}
               prefetch={true}
               onClick={() => setMobileMenuOpen(false)}

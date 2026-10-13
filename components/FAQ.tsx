@@ -14,6 +14,7 @@ import {
   X,
   Sparkles,
 } from 'lucide-react';
+import EmptyState from '@/components/ui/EmptyState';
 
 interface FAQProps {
   t: TranslationData;
@@ -155,27 +156,20 @@ export default function FAQ({ t, isRtl = true, onOpenContact }: FAQProps) {
         {/* FAQ Items Accordion */}
         <div className="space-y-4 mb-16" id="faq-accordion-list">
           {filteredItems.length === 0 ? (
-            <div
-              className="text-center py-12 px-4 bg-slate-800/50 rounded-2xl border border-slate-700/60"
-              id="faq-empty-state"
-            >
-              <HelpCircle className="w-10 h-10 text-slate-500 mx-auto mb-3" />
-              <p className="text-slate-300 text-sm font-medium mb-3">
-                {isRtl
-                  ? 'هیچ پرسیارێک نەدۆزرایەوە کە لەگەڵ گەڕانەکەتدا بگونجێت.'
-                  : 'No questions matched your search criteria.'}
-              </p>
-              <button
-                onClick={() => {
-                  setSearchQuery('');
-                  setActiveCategory('all');
-                }}
-                className="text-xs font-semibold text-blue-400 hover:text-blue-300 underline underline-offset-4"
-                id="faq-reset-filters"
-              >
-                {isRtl ? 'سڕینەوەی فلتەرەکان' : 'Reset filters'}
-              </button>
-            </div>
+            <EmptyState
+              icon={HelpCircle}
+              title={isRtl ? 'هیچ پرسیارێک نەدۆزرایەوە' : 'No questions found'}
+              description={
+                isRtl
+                  ? 'هیچ پرسیارێک نەدۆزرایەوە کە لەگەڵ وشەی گەڕانەکەت یان فلتەرەکەدا بگونجێت.'
+                  : 'No questions matched your current search or category filter.'
+              }
+              actionLabel={isRtl ? 'سڕینەوەی فلتەرەکان' : 'Reset filters'}
+              onAction={() => {
+                setSearchQuery('');
+                setActiveCategory('all');
+              }}
+            />
           ) : (
             filteredItems.map((item, index) => {
               const isOpen = openItems.has(item.id);

@@ -1,6 +1,8 @@
 'use client';
+
 import React, { useState } from 'react';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
+import { HelpIcon } from '@/components/ui/Tooltip';
 
 interface ValidatedInputProps {
   value: string;
@@ -9,6 +11,7 @@ interface ValidatedInputProps {
   placeholder?: string;
   type?: string;
   label?: string;
+  helperTooltip?: string;
   required?: boolean;
   showCharCount?: boolean;
   maxLength?: number;
@@ -26,6 +29,7 @@ export function ValidatedInput({
   placeholder,
   type = 'text',
   label,
+  helperTooltip,
   required,
   showCharCount,
   maxLength,
@@ -43,7 +47,11 @@ export function ValidatedInput({
     <div className={className}>
       {label && (
         <label htmlFor={id} className="block text-xs font-bold text-slate-300 mb-1">
-          {label} {required && <span className="text-red-400">*</span>}
+          <span className="inline-flex items-center gap-1.5">
+            <span>{label}</span>
+            {helperTooltip && <HelpIcon tooltip={helperTooltip} />}
+            {required && <span className="text-red-400">*</span>}
+          </span>
         </label>
       )}
       <div className="relative">

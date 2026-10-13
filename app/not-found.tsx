@@ -140,6 +140,22 @@ const DESTINATIONS: Destination[] = [
     },
     icon: Mail,
   },
+  {
+    id: 'help',
+    href: '/help',
+    keywords: ['help', 'docs', 'هاوکاری', 'مساعدة', 'ڕێبەر', 'فەرهەنگ', 'دلیل'],
+    title: {
+      ku: 'ناوەندی هاوکاری و بەڵگەنامەکان',
+      ar: 'مركز المساعدة والوثائق',
+      en: 'Help Center & Docs',
+    },
+    desc: {
+      ku: 'فەرهەنگی زاراوەکان، ڕێبەرنامەکان، و فێرکارییە تەکنیکییەکان',
+      ar: 'قاموس المصطلحات، الأدلة الفنية، والشروحات المرئية',
+      en: 'Glossary of terms, downloadable whitepapers, and guides',
+    },
+    icon: Compass,
+  },
 ];
 
 const UI_COPY = {

@@ -3,6 +3,7 @@
 import React from 'react';
 import { TranslationData } from '@/lib/translations';
 import { Maximize2 } from 'lucide-react';
+import { HelpIcon } from '@/components/ui/Tooltip';
 
 interface PortfolioProps {
   t: TranslationData;
@@ -69,10 +70,11 @@ export default function Portfolio({
       <section className="py-10 sm:py-14 md:py-20 bg-[#060D1A]" id="portfolio-assets">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2
-            className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-100 mb-6 sm:mb-10 md:mb-12"
+            className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-100 mb-6 sm:mb-10 md:mb-12 inline-flex items-center gap-2"
             id="portfolio-governed-heading"
           >
-            {p.heading}
+            <span>{p.heading}</span>
+            <HelpIcon tooltip={isRtl ? 'یەکە و بەرهەمە فەرمییە بەڕێوەبراوەکانی ژێر چاودێریی IDG (Governed Portfolio Asset)' : 'Official institutional entities operating under IDG sovereign governance'} />
           </h2>
 
           <div className="space-y-4 sm:space-y-6 md:space-y-8">

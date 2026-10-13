@@ -6,6 +6,7 @@ import { TranslationData } from '@/lib/translations';
 import { useLocale } from '@/lib/locale-context';
 import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
 import { ValidatedInput } from '@/components/ui/ValidatedInput';
+import { HelpIcon } from '@/components/ui/Tooltip';
 
 interface FooterProps {
   t?: TranslationData;
@@ -103,6 +104,11 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
               <li>
                 <Link href={`/${currentLang}/faq`} className="hover:text-blue-400 transition text-blue-300 font-medium" id="footer-link-faq">
                   {t?.footer?.links?.faq || t?.nav?.faq || 'پرسیارە باوەکان (FAQ)'}
+                </Link>
+              </li>
+              <li>
+                <Link href={`/${currentLang}/help`} prefetch={true} className="hover:text-blue-400 transition" id="footer-link-help">
+                  {currentLang === 'ku' ? 'ناوەندی هاوکاری و بەڵگەنامەکان' : currentLang === 'ar' ? 'مركز المساعدة والوثائق' : 'Help & Documentation'}
                 </Link>
               </li>
             </ul>
@@ -250,7 +256,10 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
         <div className="py-3 border-t border-[#102447] flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[10px] font-mono text-slate-500 text-center" id="footer-governance-bar">
           <span>Build IDG-2026.10-PROD</span>
           <span className="text-slate-700">·</span>
-          <span>ISO-27001 Verified</span>
+          <span className="inline-flex items-center gap-1">
+            <span>ISO-27001 Verified</span>
+            <HelpIcon tooltip={isRtl ? 'پابەندبوونی تەواو بە ستانداردی جیهانیی بەڕێوەبردنی ئاسایشی زانیاری (ISO/IEC 27001)' : 'Strict compliance with Information Security Management System standards (ISO/IEC 27001)'} />
+          </span>
           <span className="text-slate-700">·</span>
           <span>Erbil Node 01</span>
         </div>

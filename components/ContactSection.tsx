@@ -311,6 +311,13 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
                 value={email}
                 onChange={setEmail}
                 placeholder={content.emailPlaceholder}
+                helperTooltip={
+                  isKurdish
+                    ? 'ئیمەیڵی فەرمیی دامەزراوە یان ڕێکخراو بۆ پەیوەندییە فەرمییەکان (Institutional Email)'
+                    : isArabic
+                    ? 'البريد الإلكتروني المؤسسي الرسمي للجهة أو الشركة (Institutional Email)'
+                    : 'Official institutional or corporate email address'
+                }
                 validate={(v) =>
                   !v.trim()
                     ? (isKurdish ? 'ئیمەیڵ پێویستە' : isArabic ? 'البريد الإلكتروني مطلوب' : 'Email is required')

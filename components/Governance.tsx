@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { TranslationData } from '@/lib/translations';
 import { ShieldCheck, ChevronDown, ChevronUp } from 'lucide-react';
+import { HelpIcon } from '@/components/ui/Tooltip';
 
 interface GovernanceProps {
   t: TranslationData;
@@ -137,7 +138,10 @@ export default function Governance({ t, isRtl }: GovernanceProps) {
               <thead className="bg-[#060D1A] text-slate-200 border-b border-[#102447]">
                 <tr>
                   <th className="py-4 px-6 font-semibold text-sm md:text-base text-start w-1/5">
-                    {gov.tableHeaders.domain}
+                    <span className="inline-flex items-center gap-1.5">
+                      <span>{gov.tableHeaders.domain}</span>
+                      <HelpIcon tooltip={isRtl ? 'کایەی ستراتیژی و خاوەنی بەرپرسیار (Accountable Owner)ی چاودێری جێبەجێکردن' : 'Strategic domain and designated Accountable Owner overseeing execution'} />
+                    </span>
                   </th>
                   <th className="py-4 px-6 font-semibold text-sm md:text-base text-start w-2/5">
                     {gov.tableHeaders.principle}
