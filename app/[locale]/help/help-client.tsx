@@ -32,6 +32,10 @@ const ContactModal = dynamic(() => import('@/components/ContactModal'), {
   ssr: false,
 });
 
+const VideoModal = dynamic(() => import('@/components/VideoModal'), {
+  ssr: false,
+});
+
 interface GlossaryTerm {
   id: string;
   term: Record<Language, string>;
@@ -233,79 +237,12 @@ const DOWNLOADABLE_GUIDES: GuideItem[] = [
   },
 ];
 
-interface VideoTutorial {
-  id: string;
-  title: Record<Language, string>;
-  duration: string;
-  desc: Record<Language, string>;
-  category: Record<Language, string>;
-}
-
-const VIDEO_TUTORIALS: VideoTutorial[] = [
-  {
-    id: 'v1',
-    title: {
-      ku: 'ناساندنی تەلارسازیی سەروەریی دیجیتاڵی لە عێراق',
-      ar: 'مقدمة إلى معمارية السيادة الرقمية في العراق',
-      en: 'Introduction to Sovereign Digital Architecture in Iraq',
-    },
-    duration: '14:20',
-    desc: {
-      ku: 'ڕوونکردنەوەی فەلسەفەی کارکردن، یەکەکانی پۆرتفۆلیۆ، و قەڵغانی پاراستنی داتا.',
-      ar: 'استعراض شامل لنموذج العمل والوحدات السيادية وحماية تدفق البيانات الوطنية.',
-      en: 'Comprehensive walkthrough of the sovereign operating model and portfolio.',
-    },
-    category: {
-      ku: 'ناساندن',
-      ar: 'نظرة عامة',
-      en: 'Overview',
-    },
-  },
-  {
-    id: 'v2',
-    title: {
-      ku: 'چۆنیەتی بەکارهێنانی دەروازەی NSW بۆ گومرگ و دەروازەکان',
-      ar: 'كيفية تشغيل نافذة العراق الموحدة للجمارك والمنافذ',
-      en: 'Operating the Iraq National Single Window (NSW) Platform',
-    },
-    duration: '09:45',
-    desc: {
-      ku: 'فێرکارییەکی هەنگاو بە هەنگاو بۆ دامەزراوە هاوبەشە بازرگانییەکان.',
-      ar: 'دليل عملي للمؤسسات الحكومية والشركاء التجاريين لاستكمال المعاملات.',
-      en: 'Step-by-step tutorial for trade stakeholders and customs operations.',
-    },
-    category: {
-      ku: 'پلاتفۆرم',
-      ar: 'المنصات',
-      en: 'Platform',
-    },
-  },
-  {
-    id: 'v3',
-    title: {
-      ku: 'پێوەرەکانی شەفافیەت و چاودێریی مرۆیی لە مۆدێلەکانی AI',
-      ar: 'معايير الشفافية والرقابة البشرية في نماذج الذكاء الاصطناعي',
-      en: 'Human Oversight & Auditability in Applied AI Systems',
-    },
-    duration: '11:10',
-    desc: {
-      ku: 'شیکردنەوەی چوارچێوەی بەڵگەنەویستی و بەرپرسیارێتیی ئەندازیاری لە IDG.',
-      ar: 'تفصيل آليات التدقيق وسلسلة الأدلة البرمجية في المنظومة الوطنية.',
-      en: 'Deep dive into evidence chains and human accountability in sovereign AI.',
-    },
-    category: {
-      ku: 'ژیریی دەستکرد',
-      ar: 'الذكاء الاصطناعي',
-      en: 'AI Governance',
-    },
-  },
-];
-
 export default function HelpClient({ locale }: { locale: string }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [downloadNotice, setDownloadNotice] = useState<string | null>(null);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<{ videoUrl: string; title: string } | null>(null);
 
   const lang: Language = locale === 'ar' || locale === 'en' ? locale : 'ku';
   const isRtl = lang === 'ku' || lang === 'ar';
@@ -639,28 +576,40 @@ export default function HelpClient({ locale }: { locale: string }) {
                 <h2 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
                   <Video className="w-5 h-5 text-amber-400" />
                   <span>
-                    {lang === 'ku'
-                      ? 'ڕاهێنان و فێرکارییە بینراوەکان'
-                      : lang === 'ar'
-                      ? 'الشروحات التدريبية والمرئية'
-                      : 'Interactive Video Tutorials'}
+                    {t.help?.tutorials.title ||
+                      (lang === 'ku'
+                        ? 'ڕاهێنان و فێرکارییەکان'
+                        : lang === 'ar'
+                        ? 'التدريب والدروس التعليمية'
+                        : 'Training & Tutorials')}
                   </span>
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                  {lang === 'ku'
-                    ? 'فێرکارییە فەرمییەکانی چۆنیەتی کارکردن لەگەڵ سیستمەکان و ڕێنمایی ڕاهێنانی ئەندازیاران.'
-                    : lang === 'ar'
-                    ? 'شروحات توضيحية لآلية العمل مع المنصات الوطنية وتدريب الفرق الهندسية.'
-                    : 'Visual guides and implementation overviews for national stakeholders.'}
+                  {t.help?.tutorials.subtitle ||
+                    (lang === 'ku'
+                      ? 'فێرکارییە ڤیدیۆییەکانی چۆنیەتی کارکردن لەگەڵ سیستەمەکان و ڕێنمایی ڕاهێنانی ئەندازیاران.'
+                      : lang === 'ar'
+                      ? 'مقاطع فيديو توضيحية لكيفية العمل مع الأنظمة وإرشادات التدريب.'
+                      : 'Video guides on working with systems and technical training instructions.')}
                 </p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {VIDEO_TUTORIALS.map((video) => (
+              {(t.help?.tutorials?.items || []).map((video) => (
                 <div
                   key={video.id}
-                  className="bg-[#0B172E] border border-[#102447] rounded-2xl overflow-hidden flex flex-col group hover:border-[#1D5BD8]/50 transition-all"
+                  onClick={() => setSelectedVideo({ videoUrl: video.videoUrl, title: video.title })}
+                  className="bg-[#0B172E] border border-[#102447] rounded-2xl overflow-hidden flex flex-col group hover:border-[#1D5BD8]/50 transition-all cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setSelectedVideo({ videoUrl: video.videoUrl, title: video.title });
+                    }
+                  }}
+                  aria-label={video.title}
                 >
                   {/* Video Mockup Thumbnail */}
                   <div className="relative aspect-video bg-[#060D1A] flex items-center justify-center border-b border-[#102447] group-hover:bg-[#081326] transition-colors">
@@ -671,23 +620,23 @@ export default function HelpClient({ locale }: { locale: string }) {
                       {video.duration}
                     </span>
                     <span className="absolute top-2 start-2 bg-[#102447]/90 text-amber-400 font-bold text-[10px] px-2 py-0.5 rounded border border-[#193B73]">
-                      {video.category[lang]}
+                      {video.badge}
                     </span>
                   </div>
 
                   <div className="p-5 flex-1 flex flex-col justify-between">
                     <div>
                       <h3 className="text-sm font-bold text-white mb-2 leading-snug group-hover:text-[#60A5FA] transition-colors">
-                        {video.title[lang]}
+                        {video.title}
                       </h3>
                       <p className="text-xs text-slate-400 leading-relaxed">
-                        {video.desc[lang]}
+                        {video.description}
                       </p>
                     </div>
 
                     <div className="pt-4 mt-4 border-t border-[#102447] flex items-center justify-between text-xs text-slate-500">
                       <span>IDG Academy</span>
-                      <span className="text-[#60A5FA] font-medium inline-flex items-center gap-1">
+                      <span className="text-[#60A5FA] font-medium inline-flex items-center gap-1 group-hover:underline">
                         <span>{lang === 'ku' ? 'سەیرکردن' : lang === 'ar' ? 'مشاهدة' : 'Watch'}</span>
                         <ArrowIcon className="w-3 h-3" />
                       </span>
@@ -847,6 +796,13 @@ export default function HelpClient({ locale }: { locale: string }) {
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
         t={t}
+      />
+
+      <VideoModal
+        isOpen={!!selectedVideo}
+        onClose={() => setSelectedVideo(null)}
+        videoUrl={selectedVideo?.videoUrl || ''}
+        title={selectedVideo?.title || ''}
       />
     </div>
   );

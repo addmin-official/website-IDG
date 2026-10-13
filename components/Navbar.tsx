@@ -5,7 +5,7 @@ import Link from '@/components/ui/Link';
 import Button from '@/components/ui/Button';
 import { usePathname, useRouter } from 'next/navigation';
 import { Language, TranslationData } from '@/lib/translations';
-import { Globe, Menu, X, ShieldCheck, Mail, ChevronDown } from 'lucide-react';
+import { Globe, Menu, X, ShieldCheck, Mail, ChevronDown, HelpCircle } from 'lucide-react';
 
 interface NavbarProps {
   lang: Language;
@@ -402,6 +402,17 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               </button>
             </div>
 
+            {/* Help Center Icon Link */}
+            <Link
+              href={`/${lang}/help`}
+              title={lang === 'ku' ? 'ناوەندی هاوکاری' : lang === 'ar' ? 'مركز المساعدة' : 'Help Center'}
+              aria-label={lang === 'ku' ? 'ناوەندی هاوکاری و بەڵگەنامەکان' : lang === 'ar' ? 'مركز المساعدة والتوثيق' : 'Help Center'}
+              className="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-lg text-slate-400 hover:text-white hover:bg-[#102447] transition-colors"
+              id="nav-link-help-desktop"
+            >
+              <HelpCircle className="w-4 h-4" />
+            </Link>
+
             {/* Official Contact CTA */}
             <Button
               variant="primary"
@@ -544,7 +555,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
               href={`/${lang}/help`}
               prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition text-blue-400"
+              className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition"
               id="mobile-link-help"
             >
               {lang === 'ku' ? 'ناوەندی هاوکاری و بەڵگەنامەکان' : lang === 'ar' ? 'مركز المساعدة والوثائق' : 'Help & Documentation'}

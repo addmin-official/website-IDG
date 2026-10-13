@@ -339,6 +339,20 @@ export interface TranslationData {
       invalidEmail: string;
     };
   };
+  help?: {
+    tutorials: {
+      title: string;
+      subtitle: string;
+      items: Array<{
+        id: string;
+        duration: string;
+        badge: string;
+        title: string;
+        description: string;
+        videoUrl: string;
+      }>;
+    };
+  };
 }
 
 export const translations: Record<Language, TranslationData> = {
@@ -1196,6 +1210,38 @@ export const translations: Record<Language, TranslationData> = {
         invalidEmail: 'تکایە ئیمەیڵێکی دامەزراوەیی دروست بنووسە.',
       },
     },
+    help: {
+      tutorials: {
+        title: 'ڕاهێنان و فێرکارییەکان',
+        subtitle: 'فێرکارییە ڤیدیۆییەکانی چۆنیەتی کارکردن لەگەڵ سیستەمەکان و ڕێنمایی ڕاهێنانی ئەندازیاران.',
+        items: [
+          {
+            id: 'intro',
+            duration: '14:20',
+            badge: 'ناساندن',
+            title: 'ناساندنی تەلارسازیی سەروەریی دیجیتاڵی لە عێراق',
+            description: 'ڕوونکردنەوەی فەلسەفەی کارکردن، بنەکانی پۆرتفۆلیۆ، و ئەرکی سەرەکی لە IDG.',
+            videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+          },
+          {
+            id: 'nsw',
+            duration: '09:45',
+            badge: 'پلاتفۆرم',
+            title: 'چۆنیەتی بەکارهێنانی دەروازەی NSW بۆ گومرگ و دەروازەکان',
+            description: 'فێرکارییەکی هەنگاو بە هەنگاو بۆ دامەزراوە هاوبەشە بازرگانییەکان.',
+            videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+          },
+          {
+            id: 'ai-oversight',
+            duration: '11:10',
+            badge: 'ژیریی دەستکرد',
+            title: 'پێوەرەکانی شەفافیەت و چاودێریی مرۆیی لە مۆدێلەکانی AI',
+            description: 'شیکردنەوەی چوارچێوەی بەڵگەنەویستی و بەرپرسیارێتیی ئەندازیاری لە IDG.',
+            videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+          },
+        ],
+      },
+    },
   },
   // REVIEW: ar-native — verify naturalness
   ar: {
@@ -2051,6 +2097,38 @@ export const translations: Record<Language, TranslationData> = {
         invalidEmail: 'يرجى إدخال عنوان بريد إلكتروني مؤسسي صالح.',
       },
     },
+    help: {
+      tutorials: {
+        title: 'التدريب والدروس التعليمية',
+        subtitle: 'مقاطع فيديو توضيحية لكيفية العمل مع الأنظمة وإرشادات التدريب.',
+        items: [
+          {
+            id: 'intro',
+            duration: '14:20',
+            badge: 'مقدمة',
+            title: 'تعريف بالبنية السيادية الرقمية في العراق',
+            description: 'شرح فلسفة العمل، أساسيات المحفظة، والمسؤوليات الرئيسية في IDG.',
+            videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+          },
+          {
+            id: 'nsw',
+            duration: '09:45',
+            badge: 'المنصات',
+            title: 'كيفية تشغيل نافذة العراق الموحدة للجمارك والمنافذ',
+            description: 'دليل عملي للمؤسسات الحكومية والشركاء التجاريين لاستكمال المعاملات.',
+            videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+          },
+          {
+            id: 'ai-oversight',
+            duration: '11:10',
+            badge: 'الذكاء الاصطناعي',
+            title: 'معايير الشفافية والرقابة البشرية في نماذج الذكاء الاصطناعي',
+            description: 'تفصيل آليات التدقيق وسلسلة الأدلة البرمجية في المنظومة الوطنية.',
+            videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+          },
+        ],
+      },
+    },
   },
   en: {
     companyName: 'Iraq Digital Gateway (IDG)',
@@ -2903,6 +2981,38 @@ export const translations: Record<Language, TranslationData> = {
         successMsg: 'Thank you. Your institutional address has been recorded. Periodic executive briefs will be dispatched to this inbox.',
         notice: 'Note: Exclusively intended for official and institutional stakeholders under strict privacy governance.',
         invalidEmail: 'Please enter a valid institutional email address.',
+      },
+    },
+    help: {
+      tutorials: {
+        title: 'Training & Tutorials',
+        subtitle: 'Video guides on working with systems and technical training instructions.',
+        items: [
+          {
+            id: 'intro',
+            duration: '14:20',
+            badge: 'Introduction',
+            title: 'Introduction to Sovereign Digital Architecture in Iraq',
+            description: 'Overview of work philosophy, portfolio fundamentals, and core engineering missions at IDG.',
+            videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+          },
+          {
+            id: 'nsw',
+            duration: '09:45',
+            badge: 'Platform',
+            title: 'Operating the Iraq National Single Window (NSW) Platform',
+            description: 'Step-by-step practical guide for institutional trade stakeholders and customs operations.',
+            videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+          },
+          {
+            id: 'ai-oversight',
+            duration: '11:10',
+            badge: 'AI Governance',
+            title: 'Human Oversight & Auditability in Applied AI Systems',
+            description: 'Deep dive into evidence chains, audit logs, and human accountability in sovereign AI.',
+            videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
+          },
+        ],
       },
     },
   },
