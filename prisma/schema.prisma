@@ -8,6 +8,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ──────────────────────────────────────────────
+// Existing Models
+// ──────────────────────────────────────────────
+
 model ContactInquiry {
   id          String   @id @default(cuid())
   name        String
@@ -28,4 +32,48 @@ model CareerApplication {
   resumeName    String?
   applicationId String   @unique
   createdAt     DateTime @default(now())
+}
+
+// ──────────────────────────────────────────────
+// Production Models
+// ──────────────────────────────────────────────
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  locale    String   @default("ku")
+  status    String   @default("PENDING") // PENDING, REVIEWED, RESOLVED, ARCHIVED
+  createdAt DateTime @default(now())
+
+  @@index([status])
+  @@index([locale])
+  @@index([createdAt])
+}
+
+model NewsletterSubscriber {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  locale       String   @default("ku")
+  subscribedAt DateTime @default(now())
+  status       String   @default("ACTIVE") // ACTIVE, UNSUBSCRIBED
+
+  @@index([status])
+  @@index([locale])
+}
+
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  locale    String   @default("ku")
+  referrer  String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([path])
+  @@index([locale])
+  @@index([createdAt])
 }
