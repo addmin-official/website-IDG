@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import EmptyState from '@/components/ui/EmptyState';
 import {
   BookOpen,
@@ -326,6 +327,15 @@ export default function HelpClient({ locale }: { locale: string }) {
       <main id="main-content" className="pt-24 pb-20">
         {/* Hero Section */}
         <section className="bg-gradient-to-b from-[#0B172E] to-[#060D1A] border-b border-[#102447] py-14 sm:py-20 px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto mb-4">
+            <Breadcrumbs
+              items={[
+                {
+                  label: lang === 'ku' ? 'ناوەندی هاوکاری' : lang === 'ar' ? 'مركز المساعدة' : 'Help Center',
+                },
+              ]}
+            />
+          </div>
           <div className="max-w-5xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[#60A5FA] text-xs font-semibold mb-4">
               <BookOpen className="w-3.5 h-3.5" />

@@ -4,6 +4,7 @@ import React from 'react';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { Eye, CheckCircle2, Keyboard, Monitor, Globe, ArrowLeft, ArrowRight, Sparkles, Mail } from 'lucide-react';
 import Link from 'next/link';
 
@@ -170,16 +171,17 @@ export default function AccessibilityClient({ locale }: { locale: string }) {
       <Navbar lang={lang} t={t} onOpenContact={() => {}} />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
-        {/* Breadcrumb / Back Link */}
-        <div className="mb-6">
-          <Link
-            href={`/${lang}`}
-            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-blue-700 transition"
-          >
-            {isRtl ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
-            <span>{content.backBtn}</span>
-          </Link>
-        </div>
+        {/* Breadcrumb Navigation */}
+        <Breadcrumbs
+          items={[
+            {
+              label: isKu ? 'یاسایی' : isAr ? 'القانونية' : 'Legal',
+            },
+            {
+              label: isKu ? 'دەستڕاگەیشتن' : isAr ? 'إمكانية الوصول' : 'Accessibility Statement',
+            },
+          ]}
+        />
 
         {/* Page Header */}
         <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-8">

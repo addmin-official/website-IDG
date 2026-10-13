@@ -7,16 +7,43 @@ import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import AIUseDisclosure from '@/components/AIUseDisclosure';
 import EvidenceBadge from '@/components/EvidenceBadge';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import RelatedPages from '@/components/RelatedPages';
 
 export default function ContactClient({ locale }: { locale: string }) {
   const lang: Language = locale === 'ar' || locale === 'en' ? locale : 'ku';
   const isRtl = lang === 'ku' || lang === 'ar';
   const t = translations[lang] || translations.ku;
 
+  const relatedPages = [
+    {
+      href: `/${lang}/about`,
+      title: lang === 'ku' ? 'دەربارەی ئێمە' : lang === 'ar' ? 'من نحن' : 'About Us',
+      description: lang === 'ku' ? 'تەلارسازی و دیدگای دامەزراندنی IDG لە عێراق.' : lang === 'ar' ? 'المعمارية المؤسسية والتنظيمية لبوابة العراق الرقمية.' : 'Sovereign institutional blueprint and foundation.',
+    },
+    {
+      href: `/${lang}/governance`,
+      title: lang === 'ku' ? 'حوکمڕانی و دیسپلین' : lang === 'ar' ? 'مصفوفة الحوكمة' : 'Governance & Escalation',
+      description: lang === 'ku' ? 'کەناڵەکانی پەیوەندیی فەرمی و دەستەی چاودێری.' : lang === 'ar' ? 'قنوات التصعيد المؤسسي وضوابط الامتثال السيادي.' : 'Institutional compliance and escalation oversight.',
+    },
+    {
+      href: `/${lang}/faq`,
+      title: lang === 'ku' ? 'پرسیارە باوەکان' : lang === 'ar' ? 'الأسئلة الشائعة' : 'FAQ',
+      description: lang === 'ku' ? 'وەڵامی پرسیارە گشتی و تەکنیکییە باوەکان پێش پەیوەندیکردن.' : lang === 'ar' ? 'إجابات مباشرة حول الشراكات وآليات العمل المشترك.' : 'Quick answers to common institutional inquiries.',
+    },
+  ];
+
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'} lang={lang} className="min-h-screen bg-[#060D1A] text-slate-100 overflow-x-hidden w-full max-w-full">
       <Navbar lang={lang} onLanguageChange={() => {}} t={t} onOpenContact={() => {}} />
       <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+        <Breadcrumbs
+          items={[
+            {
+              label: lang === 'ku' ? 'پەیوەندی' : lang === 'ar' ? 'تواصل معنا' : 'Contact',
+            },
+          ]}
+        />
         <AIUseDisclosure lang={lang} className="mb-6" />
         <div className="mb-6 flex items-center justify-between flex-wrap gap-2 text-xs text-slate-400 font-mono bg-[#0B172E] p-3 rounded-xl border border-[#102447]">
           <span>
@@ -31,6 +58,7 @@ export default function ContactClient({ locale }: { locale: string }) {
         <section id="governance-escalation">
           <ContactSection t={t} isRtl={isRtl} />
         </section>
+        <RelatedPages pages={relatedPages} />
       </main>
       <Footer t={t} isRtl={isRtl} onOpenContact={() => {}} />
     </div>

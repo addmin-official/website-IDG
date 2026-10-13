@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
@@ -56,6 +57,18 @@ export default function DesignSystemClient({ locale }: { locale: string }) {
       <Navbar lang={lang} onLanguageChange={() => {}} t={t} onOpenContact={() => {}} />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 space-y-16">
+        <Breadcrumbs
+          items={[
+            {
+              label:
+                lang === 'ku'
+                  ? 'سیستەمی دیزاین'
+                  : lang === 'ar'
+                  ? 'نظام التصميم'
+                  : 'Design System',
+            },
+          ]}
+        />
         {/* Header Section */}
         <section className="border-b border-[#102447] pb-8 text-start">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#102447] text-[#60A5FA] border border-[#193B73] rounded-md text-xs font-bold uppercase tracking-wider mb-3">

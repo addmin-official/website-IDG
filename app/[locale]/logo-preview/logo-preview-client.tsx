@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import dynamic from 'next/dynamic';
 import IDGLogoFull from '@/components/IDGLogoFull';
 import IDGLogoIcon from '@/components/IDGLogoIcon';
@@ -41,6 +42,18 @@ export default function LogoPreviewClient({ locale }: { locale: string }) {
         {/* ── HEADER ────────────────────────────────────────── */}
         <section className="border-b border-[#102447] bg-[#0B172E]/80 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <Breadcrumbs
+              items={[
+                {
+                  label:
+                    lang === 'ku'
+                      ? 'پێشبینینی لۆگۆ'
+                      : lang === 'ar'
+                      ? 'معاينة الشعار'
+                      : 'Logo Preview',
+                },
+              ]}
+            />
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <span className="inline-flex items-center px-2.5 py-0.5 rounded text-[10px] font-bold tracking-widest uppercase bg-[#1D5BD8]/20 text-[#60A5FA] border border-[#1D5BD8]/40">
                 OFFICIAL BRAND REFINEMENT

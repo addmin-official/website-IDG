@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { TranslationData } from '@/lib/translations';
 import {
   HelpCircle,
@@ -25,7 +25,25 @@ interface FAQProps {
 export default function FAQ({ t, isRtl = true, onOpenContact }: FAQProps) {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [openItems, setOpenItems] = useState<Set<string>>(() => new Set(['faq-1', 'faq-2']));
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('idg-faq-searches');
+      if (saved) setRecentSearches(JSON.parse(saved).slice(0, 5));
+    } catch {}
+  }, []);
+
+  const saveSearch = (query: string) => {
+    const trimmed = query.trim();
+    if (trimmed.length < 3) return;
+    const updated = [trimmed, ...recentSearches.filter((s) => s !== trimmed)].slice(0, 5);
+    setRecentSearches(updated);
+    try {
+      localStorage.setItem('idg-faq-searches', JSON.stringify(updated));
+    } catch {}
+  };
 
   const toggleItem = (id: string) => {
     setOpenItems((prev) => {
@@ -107,6 +125,12 @@ export default function FAQ({ t, isRtl = true, onOpenContact }: FAQProps) {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') saveSearch(searchQuery);
+              }}
+              onBlur={() => {
+                if (searchQuery.length >= 3) saveSearch(searchQuery);
+              }}
               placeholder={t.faq.searchPlaceholder}
               autoComplete="off"
               spellCheck={false}
@@ -125,6 +149,37 @@ export default function FAQ({ t, isRtl = true, onOpenContact }: FAQProps) {
               </button>
             )}
           </div>
+
+          {recentSearches.length > 0 && !searchQuery && (
+            <div className="flex items-center gap-2 mt-2.5 flex-wrap text-xs text-slate-400" id="faq-recent-searches">
+              <span className="text-[11px] text-slate-500 font-medium">
+                {isRtl ? 'گەڕانەکانی پێشوو:' : 'Recent searches:'}
+              </span>
+              {recentSearches.map((s, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setSearchQuery(s)}
+                  className="px-2.5 py-1 rounded-lg bg-[#0B172E] border border-[#102447] text-slate-300 hover:text-white hover:border-[#1D5BD8]/60 transition-colors cursor-pointer text-xs"
+                >
+                  {s}
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={() => {
+                  setRecentSearches([]);
+                  try {
+                    localStorage.removeItem('idg-faq-searches');
+                  } catch {}
+                }}
+                className="text-[10px] text-slate-500 hover:text-slate-300 transition-colors ms-1 cursor-pointer"
+                title={isRtl ? 'سڕینەوەی مێژوو' : 'Clear history'}
+              >
+                <X className="w-3 h-3 inline" />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Category Filters */}

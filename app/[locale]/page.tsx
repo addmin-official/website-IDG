@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useLocale } from '@/lib/locale-context';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import RecentlyViewed from '@/components/RecentlyViewed';
 import AboutUs from '@/components/AboutUs';
 import dynamic from 'next/dynamic';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
@@ -84,6 +85,8 @@ export default function LocaleHomePage() {
           t={t}
           isRtl={isRtl}
         />
+
+        <RecentlyViewed />
 
         <AboutUs
           t={t}
