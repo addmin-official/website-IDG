@@ -608,7 +608,7 @@ export default function StudentDashboard({
                 </div>
                 <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden mb-2">
                   <div
-                    className={`h-full bg-gradient-to-r ${sub.color} rounded-full transition-all duration-700`}
+                    className={`h-full bg-gradient-to-r ${sub.color} rounded-full transition-all duration-300`}
                     style={{ width: `${sub.progress}%` }}
                   />
                 </div>
@@ -1065,7 +1065,7 @@ export default function StudentDashboard({
                     {/* Progress Bar */}
                     <div className="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden">
                       <div
-                        className={`h-full rounded-full transition-all duration-500 ${
+                        className={`h-full rounded-full transition-all duration-300 ${
                           goal.completed
                             ? 'bg-emerald-500'
                             : percent > 70

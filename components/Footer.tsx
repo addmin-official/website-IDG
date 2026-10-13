@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
+import Button from '@/components/ui/Button';
+import SovereignBadge from '@/components/SovereignBadge';
 import { TranslationData } from '@/lib/translations';
 import { useLocale } from '@/lib/locale-context';
-import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
+import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft } from 'lucide-react';
 import { ValidatedInput } from '@/components/ui/ValidatedInput';
 import { HelpIcon } from '@/components/ui/Tooltip';
 
@@ -66,9 +68,7 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
           <div className="lg:col-span-4" id="footer-brand-section">
             <div className="flex items-center gap-2 mb-4">
               <span className="text-2xl font-black text-white tracking-tight">IDG</span>
-              <span className="px-2 py-0.5 text-[11px] font-semibold bg-[#102447] text-[#60A5FA] border border-[#193B73] rounded-md">
-                {t?.parentBadge || 'کۆمپانیای دایک'}
-              </span>
+              <SovereignBadge label={t?.parentBadge || 'کۆمپانیای دایک'} variant="primary" size="sm" />
             </div>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6 font-normal">
               {t?.footer?.parentDesc ||
@@ -178,13 +178,15 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
                     {t?.footer?.newsletter?.successMsg ||
                       'سوپاس، ئیمەیڵی دامەزراوەییەکەت تۆمار کرا. پوختەی ڕاپۆرتەکان بۆ ناونیشانەکەت دەنێردرێن.'}
                   </p>
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={resetForm}
-                    className="text-[11px] font-semibold text-blue-400 hover:text-blue-300 underline underline-offset-2 cursor-pointer"
+                    className="text-[11px] font-semibold text-blue-400 hover:text-blue-300 underline underline-offset-2 p-0 h-auto"
                     id="footer-newsletter-reset"
                   >
                     {isRtl ? 'تۆمارکردنی ئیمەیڵێکی تر' : 'Register another email'}
-                  </button>
+                  </Button>
                 </div>
               ) : (
                 <form
@@ -222,24 +224,21 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
                     </p>
                   )}
 
-                  <button
+                  <Button
                     type="submit"
+                    variant="primary"
+                    size="md"
+                    loading={isSubmitting}
                     disabled={isSubmitting || !newsletterEmail.trim() || !emailRegex.test(newsletterEmail.trim())}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800/60 text-white text-xs font-bold py-2.5 rounded-xl transition-all shadow-md hover:shadow-blue-900/30 cursor-pointer disabled:opacity-50"
+                    className="w-full text-xs py-2.5"
+                    icon={!isSubmitting ? <ArrowIcon className="w-3.5 h-3.5" /> : undefined}
+                    iconPosition="end"
                     id="footer-newsletter-submit"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                        <span>{t?.footer?.newsletter?.submittingBtn || 'تۆمارکردنی ئیمەیڵ...'}</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>{t?.footer?.newsletter?.submitBtn || 'بەشداریکردن لە نوێکارییەکان'}</span>
-                        <ArrowIcon className="w-3.5 h-3.5" />
-                      </>
-                    )}
-                  </button>
+                    {isSubmitting
+                      ? (t?.footer?.newsletter?.submittingBtn || 'تۆمارکردنی ئیمەیڵ...')
+                      : (t?.footer?.newsletter?.submitBtn || 'بەشداریکردن لە نوێکارییەکان')}
+                  </Button>
 
                   <p className="text-[10px] text-slate-400 pt-1 leading-normal">
                     {t?.footer?.newsletter?.notice ||

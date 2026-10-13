@@ -433,7 +433,7 @@ export default function HelpClient({ locale }: { locale: string }) {
                     ? 'ابحث في المصطلحات، الأدلة، أو الفيديوهات...'
                     : 'Search glossary terms, downloadable guides, or tutorials...'
                 }
-                className="w-full ps-11 pe-10 py-3.5 bg-[#0B172E] border border-[#102447] focus:border-[#1D5BD8] focus:ring-2 focus:ring-[#1D5BD8]/30 rounded-xl text-sm text-slate-100 placeholder:text-slate-500 outline-none transition-all shadow-lg"
+                className="input-base rounded-xl ps-11 pe-10 py-3.5 shadow-lg"
               />
               {searchQuery && (
                 <button

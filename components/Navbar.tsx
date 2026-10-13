@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
+import Button from '@/components/ui/Button';
 import { usePathname, useRouter } from 'next/navigation';
 import { Language, TranslationData } from '@/lib/translations';
 import { Globe, Menu, X, ShieldCheck, Mail, ChevronDown } from 'lucide-react';
@@ -402,14 +403,16 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </div>
 
             {/* Official Contact CTA */}
-            <button
+            <Button
+              variant="primary"
+              size="sm"
               onClick={onOpenContact}
-              className="hidden sm:inline-flex items-center gap-2 bg-[#1D5BD8] hover:bg-[#193B73] text-white font-semibold text-xs sm:text-sm py-2 px-3.5 sm:px-4 rounded-xl transition-colors shadow-xs border border-[#1D5BD8]/40 cursor-pointer"
+              className="hidden sm:inline-flex rounded-xl"
+              icon={<Mail className="w-4 h-4" />}
               id="btn-header-contact"
             >
-              <Mail className="w-4 h-4" />
               <span>{t.nav.contact}</span>
-            </button>
+            </Button>
 
             {/* Mobile Hamburger */}
             <button
@@ -558,17 +561,19 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
           </nav>
 
           <div className="pt-2 border-t border-[#102447]">
-            <button
+            <Button
+              variant="primary"
+              size="md"
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenContact();
               }}
-              className="w-full flex items-center justify-center gap-2 bg-[#1D5BD8] hover:bg-[#193B73] text-white py-3 px-4 rounded-xl font-semibold text-sm shadow-sm border border-[#1D5BD8]/40 cursor-pointer"
+              className="w-full"
+              icon={<Mail className="w-4 h-4" />}
               id="mobile-btn-contact"
             >
-              <Mail className="w-4 h-4" />
               <span>{t.nav.contact}</span>
-            </button>
+            </Button>
           </div>
         </div>
       )}

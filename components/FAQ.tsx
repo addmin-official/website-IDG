@@ -111,7 +111,7 @@ export default function FAQ({ t, isRtl = true, onOpenContact }: FAQProps) {
               autoComplete="off"
               spellCheck={false}
               suppressHydrationWarning
-              className="w-full bg-[#0B172E] border border-[#102447] rounded-xl ps-10 sm:ps-12 pe-10 py-3 sm:py-3.5 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-inner transition-colors min-h-[44px]"
+              className="input-base rounded-xl ps-10 sm:ps-12 pe-10 py-3 sm:py-3.5 text-xs sm:text-sm text-white placeholder-slate-400 min-h-[44px]"
               id="faq-search-input"
             />
             {searchQuery && (

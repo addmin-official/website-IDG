@@ -296,7 +296,7 @@ export default function NotFound() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t.searchPlaceholder}
-              className="w-full ps-10 pe-4 py-3 bg-[#0B172E] border border-[#102447] focus:border-[#1D5BD8] focus:ring-2 focus:ring-[#1D5BD8]/30 rounded-xl text-sm text-slate-100 placeholder:text-slate-500 outline-none transition-all"
+              className="input-base rounded-xl ps-10 pe-4 py-3"
             />
             {searchQuery && (
               <button

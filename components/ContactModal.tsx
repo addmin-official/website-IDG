@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { TranslationData } from '@/lib/translations';
 import { X, Send, CheckCircle2, ShieldCheck, Loader2 } from 'lucide-react';
+import Button from '@/components/ui/Button';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -94,13 +95,14 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
               {t.contactModal.successMsg}
             </p>
             <div className="pt-4">
-              <button
+              <Button
+                variant="primary"
+                size="md"
                 onClick={handleReset}
-                className="bg-slate-900 hover:bg-slate-800 text-white font-semibold py-2.5 px-8 rounded-lg text-sm transition"
                 id="btn-dismiss-success-modal"
               >
                 {t.contactModal.closeBtn}
-              </button>
+              </Button>
             </div>
           </div>
         ) : (
@@ -214,31 +216,26 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
             </div>
 
             <div className="pt-3 border-t border-slate-200 flex justify-end gap-2">
-              <button
+              <Button
                 type="button"
+                variant="ghost"
+                size="sm"
                 onClick={handleReset}
-                className="px-4 py-2 text-xs font-medium text-slate-600 hover:text-slate-900"
+                className="text-slate-600 hover:text-slate-900"
               >
                 پاشگەزبوونەوە
-              </button>
-              <button
+              </Button>
+              <Button
                 type="submit"
+                variant="primary"
+                size="md"
+                loading={isSubmitting}
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-900/60 text-white font-semibold py-2.5 px-6 rounded-lg text-xs sm:text-sm transition shadow-xs cursor-pointer disabled:opacity-60"
+                icon={!isSubmitting ? <Send className="w-4 h-4" /> : undefined}
                 id="btn-submit-inquiry"
               >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>تکایە چاوەڕێبە...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-4 h-4" />
-                    <span>{t.contactModal.submitBtn}</span>
-                  </>
-                )}
-              </button>
+                {isSubmitting ? 'تکایە چاوەڕێبە...' : t.contactModal.submitBtn}
+              </Button>
             </div>
           </form>
         )}

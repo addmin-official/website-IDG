@@ -6,6 +6,7 @@ import { useIsMounted } from '@/lib/useIsMounted';
 import { CheckCircle2, AlertCircle, Loader2, Send, RotateCcw } from 'lucide-react';
 import { InlineStatus } from '@/components/ui/LoadingStates';
 import { ValidatedInput, ValidatedTextarea } from '@/components/ui/ValidatedInput';
+import Button from '@/components/ui/Button';
 import { submitContactInquiry } from '@/infrastructure/actions/contact';
 
 interface ContactSectionProps {
@@ -239,13 +240,15 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
             </div>
             <div className="flex flex-wrap items-center justify-center gap-3">
               {undoCountdown > 0 && (
-                <button
+                <Button
                   type="button"
+                  variant="primary"
+                  size="md"
                   onClick={handleUndo}
-                  className="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg text-xs transition inline-flex items-center gap-2 cursor-pointer shadow-sm animate-pulse"
+                  className="bg-amber-500 hover:bg-amber-600 text-slate-950 border-amber-400/50 shadow-sm animate-pulse"
+                  icon={<RotateCcw className="w-3.5 h-3.5" />}
                   id="btn-contact-undo"
                 >
-                  <RotateCcw className="w-3.5 h-3.5" />
                   <span>
                     {isKurdish
                       ? `پاشگەزبوونەوە لە ناردن (${undoCountdown} چرکە)`
@@ -253,16 +256,17 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
                       ? `التراجع عن الإرسال (${undoCountdown} ثوانٍ)`
                       : `Undo submission (${undoCountdown}s)`}
                   </span>
-                </button>
+                </Button>
               )}
-              <button
+              <Button
                 type="button"
+                variant="primary"
+                size="md"
                 onClick={handleReset}
-                className="px-6 py-2.5 bg-[#1D5BD8] hover:bg-blue-600 text-white font-bold rounded-lg text-xs transition cursor-pointer"
                 id="btn-contact-reset"
               >
                 {content.resetBtn}
-              </button>
+              </Button>
             </div>
           </div>
         ) : (
@@ -397,25 +401,21 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               </div>
             )}
 
-            <button
+            <Button
               type="submit"
+              variant="primary"
+              size="lg"
+              loading={isSubmitting}
               disabled={isSubmitting || !isFormValid}
               suppressHydrationWarning
-              className="bg-[#1D5BD8] text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-600 transition inline-flex items-center justify-center gap-2 w-full md:w-auto cursor-pointer disabled:opacity-50 text-sm shadow-sm"
+              className="w-full md:w-auto"
+              icon={!isSubmitting ? <Send className="w-4 h-4" /> : undefined}
               id="btn-submit-contact"
             >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>{isKurdish ? 'لە ناردندایە...' : isArabic ? 'جاري الإرسال...' : 'Sending...'}</span>
-                </>
-              ) : (
-                <>
-                  <Send className="w-4 h-4" />
-                  <span>{content.submitBtn}</span>
-                </>
-              )}
-            </button>
+              {isSubmitting
+                ? (isKurdish ? 'لە ناردندایە...' : isArabic ? 'جاري الإرسال...' : 'Sending...')
+                : content.submitBtn}
+            </Button>
           </form>
         )}
       </div>

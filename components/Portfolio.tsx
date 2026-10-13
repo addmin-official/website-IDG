@@ -4,6 +4,7 @@ import React from 'react';
 import { TranslationData } from '@/lib/translations';
 import { Maximize2 } from 'lucide-react';
 import { HelpIcon } from '@/components/ui/Tooltip';
+import SovereignBadge, { BadgeVariant } from '@/components/SovereignBadge';
 
 interface PortfolioProps {
   t: TranslationData;
@@ -25,12 +26,12 @@ export default function Portfolio({
       {/* Header Section */}
       <section className="bg-[#0B172E] text-white py-10 sm:py-14 md:py-20 border-b border-[#102447]" id="portfolio">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1
+          <h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight"
             id="portfolio-header-title"
           >
             {p.headerTitle}
-          </h1>
+          </h2>
           <p
             className="text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl leading-relaxed"
             id="portfolio-header-desc"
@@ -79,12 +80,11 @@ export default function Portfolio({
 
           <div className="space-y-4 sm:space-y-6 md:space-y-8">
             {p.products.map((prod) => {
-              // Badge color variants matching the design
-              let badgeColor = 'bg-[#102447] text-[#60A5FA] border border-[#1D5BD8]/40';
+              let badgeVariant: BadgeVariant = 'primary';
               if (prod.id === 'zana') {
-                badgeColor = 'bg-slate-800 text-slate-300 border border-slate-700';
+                badgeVariant = 'neutral';
               } else if (prod.id === 'greenbelt') {
-                badgeColor = 'bg-[#052e16] text-[#059669] border border-[#059669]/40';
+                badgeVariant = 'emerald';
               }
 
               return (
@@ -104,11 +104,13 @@ export default function Portfolio({
                   id={prod.id}
                 >
                   <div className="w-full md:w-auto flex-1">
-                    <span
-                      className={`${badgeColor} text-xs font-bold px-3 py-1 rounded-full mb-2 md:mb-3 inline-block`}
-                    >
-                      {prod.numBadge}
-                    </span>
+                    <div className="mb-2 md:mb-3">
+                      <SovereignBadge
+                        label={prod.numBadge}
+                        variant={badgeVariant}
+                        size="md"
+                      />
+                    </div>
                     <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-100 mb-2 group-hover:text-[#60A5FA] transition-colors">
                       {prod.title}{' '}
                       <span className="block md:inline text-xs md:text-sm font-normal text-slate-400 md:ms-2">

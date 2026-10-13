@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { TranslationData } from '@/lib/translations';
 import { ShieldCheck, ChevronDown, ChevronUp } from 'lucide-react';
 import { HelpIcon } from '@/components/ui/Tooltip';
+import SovereignBadge, { BadgeVariant } from '@/components/SovereignBadge';
 
 interface GovernanceProps {
   t: TranslationData;
@@ -18,49 +19,49 @@ export default function Governance({ t, isRtl }: GovernanceProps) {
   const cases = gov.cases || [];
   const currentCase = cases[activeCaseIndex] || cases[0];
 
-  const steps = currentCase
+  const steps: { key: string; label: string; value: string; color: string; badgeVariant: BadgeVariant }[] = currentCase
     ? [
         {
           key: 'context',
           label: isRtl ? '١. بارودۆخ (Context)' : '1. Context',
           value: currentCase.context,
           color: 'border-[#102447] bg-[#060D1A] text-slate-200',
-          badgeColor: 'bg-[#102447] text-slate-300',
+          badgeVariant: 'neutral',
         },
         {
           key: 'evidence',
           label: isRtl ? '٢. بەڵگە (Evidence)' : '2. Evidence',
           value: currentCase.evidence,
           color: 'border-[#193B73] bg-[#060D1A] text-slate-200',
-          badgeColor: 'bg-[#102447] text-blue-400',
+          badgeVariant: 'primary',
         },
         {
           key: 'decision',
           label: isRtl ? '٣. بڕیار (Decision)' : '3. Decision',
           value: currentCase.decision,
           color: 'border-[#059669]/40 bg-[#060D1A] text-slate-200 font-medium',
-          badgeColor: 'bg-[#052e16] text-[#059669]',
+          badgeVariant: 'emerald',
         },
         {
           key: 'impact',
           label: isRtl ? '٤. کاریگەری (Impact)' : '4. Impact',
           value: currentCase.impact,
           color: 'border-[#6366f1]/40 bg-[#060D1A] text-slate-200',
-          badgeColor: 'bg-[#1e1b4b] text-indigo-300',
+          badgeVariant: 'primary',
         },
         {
           key: 'risk',
           label: isRtl ? '٥. مەترسی و سنووردارکردن (Risk)' : '5. Risk & Mitigation',
           value: currentCase.risk,
           color: 'border-[#D97706]/40 bg-[#060D1A] text-slate-200',
-          badgeColor: 'bg-[#451a03] text-[#D97706]',
+          badgeVariant: 'gold',
         },
         {
           key: 'nextStep',
           label: isRtl ? '٦. هەنگاوی داهاتوو (Next Step)' : '6. Next Step',
           value: currentCase.nextStep,
           color: 'border-[#1D5BD8] bg-[#060D1A] text-slate-100',
-          badgeColor: 'bg-[#102447] text-blue-400',
+          badgeVariant: 'primary',
         },
       ]
     : [];
@@ -74,12 +75,12 @@ export default function Governance({ t, isRtl }: GovernanceProps) {
       {/* Hero Section */}
       <section className="bg-[#0B172E] text-white py-10 sm:py-14 md:py-20 border-b border-[#102447]" id="governance">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1
+          <h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight text-slate-100"
             id="governance-hero-title"
           >
             {gov.heroTitle}
-          </h1>
+          </h2>
           <p
             className="text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl leading-relaxed"
             id="governance-hero-desc"
@@ -263,11 +264,11 @@ export default function Governance({ t, isRtl }: GovernanceProps) {
                         >
                           <div>
                             <div className="flex items-center justify-between mb-2">
-                              <span
-                                className={`text-xs font-bold px-2 py-0.5 rounded ${step.badgeColor}`}
-                              >
-                                {step.label}
-                              </span>
+                              <SovereignBadge
+                                label={step.label}
+                                variant={step.badgeVariant}
+                                size="sm"
+                              />
                               <span className="text-xs opacity-50 font-mono">{idx + 1}/6</span>
                             </div>
                             <p className="text-xs sm:text-sm leading-relaxed">{step.value}</p>

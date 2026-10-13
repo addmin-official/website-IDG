@@ -6,6 +6,7 @@ import { useIsMounted } from '@/lib/useIsMounted';
 import { CheckCircle2, Upload, FileCheck, X, AlertCircle, Loader2, Send, HelpCircle } from 'lucide-react';
 import { InlineStatus, ProgressBar } from '@/components/ui/LoadingStates';
 import { ValidatedInput, ValidatedTextarea } from '@/components/ui/ValidatedInput';
+import Button from '@/components/ui/Button';
 import { HelpIcon } from '@/components/ui/Tooltip';
 import { submitCareerApplication } from '@/infrastructure/actions/careers';
 
@@ -376,14 +377,15 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                 <div className="bg-[#060D1A] p-3 rounded-lg border border-[#102447] text-xs font-mono text-slate-300 mb-5">
                   ID: {appId}
                 </div>
-                <button
+                <Button
                   type="button"
+                  variant="primary"
+                  size="sm"
                   onClick={handleReset}
-                  className="px-5 py-2.5 bg-[#1D5BD8] hover:bg-blue-600 text-white rounded-lg text-xs font-bold transition cursor-pointer"
                   id="btn-career-reset"
                 >
                   {content.resetBtn}
-                </button>
+                </Button>
               </div>
             ) : (
               <form
@@ -448,7 +450,7 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   suppressHydrationWarning
                   value={selectedRole}
                   onChange={(e) => setSelectedRole(e.target.value)}
-                  className="w-full p-3 rounded-lg border border-[#102447] bg-[#0B172E] text-slate-100 focus:bg-[#102447] focus:border-[#1D5BD8] outline-hidden text-sm"
+                  className="input-base cursor-pointer"
                   id="career-select-role"
                 >
                   <option value="" className="bg-[#0B172E] text-slate-400">{content.rolePlaceholder}</option>
@@ -534,25 +536,21 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                   </div>
                 )}
 
-                <button
+                <Button
                   type="submit"
+                  variant="primary"
+                  size="lg"
+                  loading={isSubmitting}
                   disabled={isSubmitting || isUploading || !isFormValid}
                   suppressHydrationWarning
-                  className="w-full bg-[#1D5BD8] hover:bg-blue-600 text-white font-bold py-3 rounded-lg transition inline-flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
+                  className="w-full"
+                  icon={!isSubmitting ? <Send className="w-4 h-4" /> : undefined}
                   id="btn-submit-career-app"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>{isKurdish ? 'لە ناردندایە...' : isArabic ? 'جاري الإرسال...' : 'Sending...'}</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      <span>{content.submitBtn}</span>
-                    </>
-                  )}
-                </button>
+                  {isSubmitting
+                    ? (isKurdish ? 'لە ناردندایە...' : isArabic ? 'جاري الإرسال...' : 'Sending...')
+                    : content.submitBtn}
+                </Button>
               </form>
             )}
           </div>
@@ -600,23 +598,25 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
             </div>
 
             <div className="flex items-center justify-end gap-2.5 pt-2">
-              <button
+              <Button
                 type="button"
+                variant="secondary"
+                size="sm"
                 onClick={() => setShowConfirmModal(false)}
-                className="px-4 py-2 text-xs font-semibold text-slate-300 hover:text-white bg-[#102447] hover:bg-[#193B73] rounded-lg transition cursor-pointer"
                 id="btn-cancel-career-confirm"
               >
                 {isKurdish ? 'پێداچوونەوە و گەڕانەوە' : isArabic ? 'تعديل البيانات' : 'Cancel & Edit'}
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
+                variant="primary"
+                size="sm"
                 onClick={executeSubmit}
-                className="px-5 py-2 text-xs font-bold text-white bg-[#1D5BD8] hover:bg-blue-600 rounded-lg transition inline-flex items-center gap-2 cursor-pointer shadow-sm"
+                icon={<Send className="w-3.5 h-3.5" />}
                 id="btn-confirm-career-submit"
               >
-                <Send className="w-3.5 h-3.5" />
                 <span>{isKurdish ? 'ناردنی کۆتایی' : isArabic ? 'تأكيد الإرسال' : 'Confirm & Submit'}</span>
-              </button>
+              </Button>
             </div>
           </div>
         </div>

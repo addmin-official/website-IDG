@@ -66,12 +66,12 @@ export function ValidatedInput({
           onBlur={() => setTouched(true)}
           maxLength={maxLength}
           placeholder={placeholder}
-          className={`w-full px-3.5 py-2.5 rounded-lg border bg-[#0B172E] text-slate-100 text-sm focus:outline-hidden focus:ring-2 transition-colors ${
+          className={`input-base ${
             error
               ? 'border-red-500 focus:ring-red-500/30'
               : valid
               ? 'border-emerald-500 focus:ring-emerald-500/30'
-              : 'border-[#102447] focus:ring-[#1D5BD8]/30 focus:border-[#1D5BD8]'
+              : ''
           }`}
         />
         {valid && (
@@ -152,12 +152,12 @@ export function ValidatedTextarea({
           onBlur={() => setTouched(true)}
           maxLength={maxLength}
           placeholder={placeholder}
-          className={`w-full px-3.5 py-2.5 rounded-lg border bg-[#0B172E] text-slate-100 text-sm focus:outline-hidden focus:ring-2 transition-colors leading-relaxed ${
+          className={`input-base leading-relaxed ${
             error
               ? 'border-red-500 focus:ring-red-500/30'
               : valid
               ? 'border-emerald-500 focus:ring-emerald-500/30'
-              : 'border-[#102447] focus:ring-[#1D5BD8]/30 focus:border-[#1D5BD8]'
+              : ''
           }`}
         />
         {valid && (

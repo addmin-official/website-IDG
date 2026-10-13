@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic';
 import { TranslationData, Language } from '@/lib/translations';
 import EvidenceBadge from '@/components/EvidenceBadge';
 import DocumentClassification from '@/components/DocumentClassification';
+import SovereignBadge from '@/components/SovereignBadge';
+import Button from '@/components/ui/Button';
 
 const ProductMockups = dynamic(
   () => import('@/components/ProductMockups'),
@@ -88,10 +90,7 @@ export default function ProductModal({
 
           {/* Badges */}
           <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-900">
-              <Building2 className="w-3.5 h-3.5 text-blue-700" />
-              <span>{nsw.badge}</span>
-            </span>
+            <SovereignBadge label={nsw.badge} variant="primary" size="md" />
             <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700">
               <ShieldCheck className="w-3.5 h-3.5 text-slate-600" />
               <span>{labels.governedBy}</span>
@@ -223,12 +222,13 @@ export default function ProductModal({
             <span className="text-xs text-slate-500 font-mono">
               Iraq Digital Gateway (IDG) • National Portfolio
             </span>
-            <button
+            <Button
+              variant="secondary"
+              size="sm"
               onClick={onClose}
-              className="bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold py-2 px-6 rounded-lg transition shadow-sm"
             >
               {labels.close}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -262,9 +262,7 @@ export default function ProductModal({
 
         {/* Badges */}
         <div className="flex flex-wrap items-center gap-2 mb-3">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-900">
-            <span>{product.numBadge}</span>
-          </span>
+          <SovereignBadge label={product.numBadge} variant="primary" size="md" />
           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700">
             <ShieldCheck className="w-3.5 h-3.5 text-slate-600" />
             <span>{labels.governedBy}</span>
@@ -407,12 +405,13 @@ export default function ProductModal({
             <ExternalLink className="w-4 h-4" />
           </a>
 
-          <button
+          <Button
+            variant="secondary"
+            size="md"
             onClick={onClose}
-            className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold py-2.5 px-6 rounded-lg transition"
           >
             {labels.close}
-          </button>
+          </Button>
         </div>
       </div>
     </div>
