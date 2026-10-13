@@ -5,6 +5,8 @@ import { isValidLocale, LOCALES } from '@/lib/locale-utils';
 import { Language } from '@/lib/translations';
 
 import { OfflineDetector } from '@/components/OfflineDetector';
+import KeyboardShortcuts from '@/components/KeyboardShortcuts';
+import CommandPalette from '@/components/CommandPalette';
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -64,6 +66,8 @@ export default async function LocaleLayout({
 
   return (
     <LocaleProvider lang={locale as Language}>
+      <KeyboardShortcuts />
+      <CommandPalette />
       {children}
       <OfflineDetector />
     </LocaleProvider>

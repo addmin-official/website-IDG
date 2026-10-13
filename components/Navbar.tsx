@@ -5,7 +5,7 @@ import Link from '@/components/ui/Link';
 import Button from '@/components/ui/Button';
 import { usePathname, useRouter } from 'next/navigation';
 import { Language, TranslationData } from '@/lib/translations';
-import { Globe, Menu, X, ShieldCheck, Mail, ChevronDown, HelpCircle } from 'lucide-react';
+import { Globe, Menu, X, ShieldCheck, Mail, ChevronDown, HelpCircle, Keyboard } from 'lucide-react';
 
 interface NavbarProps {
   lang: Language;
@@ -368,6 +368,22 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             >
               <HelpCircle className="w-4 h-4" />
             </Link>
+
+            {/* Keyboard Shortcuts Trigger Button */}
+            <button
+              type="button"
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent('idg:show-shortcuts'));
+              }}
+              className="hidden lg:inline-flex items-center justify-center w-9 h-9 rounded-lg text-slate-400 hover:text-white hover:bg-[#102447] transition-colors cursor-pointer"
+              title={lang === 'ku' ? 'کلیلەکانی ڕێنمایی (؟)' : 
+                     lang === 'ar' ? 'اختصارات لوحة المفاتيح (؟)' : 
+                     'Keyboard Shortcuts (?)'}
+              aria-label="Keyboard shortcuts"
+              id="nav-button-shortcuts-desktop"
+            >
+              <Keyboard className="w-4 h-4" />
+            </button>
 
             {/* Language Selector (Kurdish default, Arabic & English available) */}
             <div className="flex items-center bg-[#102447]/60 rounded-xl p-0.5 sm:p-1 border border-[#102447] shadow-2xs" id="language-switcher-group">

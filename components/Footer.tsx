@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import SovereignBadge from '@/components/SovereignBadge';
 import { TranslationData } from '@/lib/translations';
 import { useLocale } from '@/lib/locale-context';
-import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft, Keyboard } from 'lucide-react';
 import { ValidatedInput } from '@/components/ui/ValidatedInput';
 import { HelpIcon } from '@/components/ui/Tooltip';
 
@@ -145,6 +145,22 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
                   id="footer-link-contact"
                 >
                   {t?.footer?.links?.contact || 'پەیوەندیی فەرمی'}
+                </button>
+              </li>
+              <li className="pt-2 border-t border-slate-800/80">
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new CustomEvent('idg:show-shortcuts'))}
+                  className="text-xs text-slate-500 hover:text-[#60A5FA] transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+                  id="footer-link-shortcuts"
+                >
+                  <Keyboard className="w-3 h-3" />
+                  <span>{currentLang === 'ku' ? 'کلیلەکانی ڕێنمایی' : 
+                         currentLang === 'ar' ? 'اختصارات' : 
+                         'Shortcuts'}</span>
+                  <kbd className="px-1.5 py-0.5 bg-[#102447] border border-[#193B73] rounded text-[9px] font-mono text-slate-300">
+                    ?
+                  </kbd>
                 </button>
               </li>
             </ul>

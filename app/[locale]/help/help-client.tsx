@@ -27,7 +27,9 @@ import {
   Lock,
   Cpu,
   Compass,
+  Keyboard,
 } from 'lucide-react';
+import { SHORTCUTS } from '@/lib/keyboard-shortcuts';
 
 const ContactModal = dynamic(() => import('@/components/ContactModal'), {
   ssr: false,
@@ -714,6 +716,128 @@ export default function HelpClient({ locale }: { locale: string }) {
                   )}
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* SECTION 4.5: Keyboard Shortcuts Documentation */}
+          <section id="keyboard-shortcuts" className="bg-[#0B172E] border border-[#102447] rounded-2xl p-6 sm:p-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                  <Keyboard className="w-5 h-5 text-[#60A5FA]" />
+                  <span>
+                    {lang === 'ku'
+                      ? 'کلیلەکانی ڕێنمایی و گەڕانی خێرا'
+                      : lang === 'ar'
+                      ? 'اختصارات لوحة المفاتيح والوصول السريع'
+                      : 'Keyboard Shortcuts & Quick Access'}
+                  </span>
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                  {lang === 'ku'
+                    ? 'سیستمی کورتەڕێیەکان بۆ بەکارهێنەرانی پیشەیی و خێراکردنی ئیشوکارەکان لە تەواوی سیستمدا.'
+                    : lang === 'ar'
+                    ? 'اختصارات لوحة المفاتيح المتقدمة للمستخدمين المحترفين لتسريع التنقل والبحث.'
+                    : 'Global accelerators and shortcuts designed for power users and rapid navigation.'}
+                </p>
+                <p className="text-xs text-slate-500 sm:hidden mt-2">
+                  {lang === 'ku' ? 'کلیلەکانی ڕێنمایی تەنها لە کۆمپیوتەردا کاردەکەن' : 
+                   lang === 'ar' ? 'اختصارات لوحة المفاتيح متاحة على الحاسوب فقط' : 
+                   'Keyboard shortcuts are available on desktop only'}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent('idg:show-shortcuts'))}
+                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-[#102447] hover:bg-[#193B73] text-white text-xs font-bold rounded-xl border border-[#1D5BD8]/30 transition-colors cursor-pointer shrink-0"
+              >
+                <span>{lang === 'ku' ? 'تاقیکردنەوەی کورتەڕێیەکان' : lang === 'ar' ? 'عرض نافذة الاختصارات' : 'Open Shortcuts Modal'}</span>
+                <kbd className="px-1.5 py-0.5 bg-[#060D1A] border border-[#102447] rounded text-[10px] font-mono text-[#60A5FA]">
+                  ?
+                </kbd>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Navigation Category */}
+              <div className="bg-[#060D1A] border border-[#102447] rounded-xl p-4">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-[#60A5FA] mb-3">
+                  {lang === 'ku' ? 'ڕێنمایی و گەیشتن' : lang === 'ar' ? 'التنقل' : 'Navigation'}
+                </h3>
+                <div className="space-y-2.5">
+                  {SHORTCUTS.filter(s => s.category === 'navigation').map((shortcut, idx) => (
+                    <div key={idx} className="flex items-center justify-between py-1 border-b border-[#102447]/50 last:border-b-0 text-xs">
+                      <span className="text-slate-300">
+                        {shortcut.description[lang as keyof typeof shortcut.description]}
+                      </span>
+                      <div className="flex items-center gap-1">
+                        {shortcut.keys.split(' + ').map((k, i) => (
+                          <kbd
+                            key={i}
+                            className="px-1.5 py-0.5 bg-[#0B172E] border border-[#102447] rounded font-mono text-[10px] text-slate-200"
+                          >
+                            {k}
+                          </kbd>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Actions Category */}
+              <div className="bg-[#060D1A] border border-[#102447] rounded-xl p-4">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-3">
+                  {lang === 'ku' ? 'کردارەکان' : lang === 'ar' ? 'الإجراءات' : 'Actions'}
+                </h3>
+                <div className="space-y-2.5">
+                  {SHORTCUTS.filter(s => s.category === 'action').map((shortcut, idx) => (
+                    <div key={idx} className="flex items-center justify-between py-1 border-b border-[#102447]/50 last:border-b-0 text-xs">
+                      <span className="text-slate-300">
+                        {shortcut.description[lang as keyof typeof shortcut.description]}
+                      </span>
+                      <div className="flex items-center gap-1">
+                        {shortcut.keys.split(' + ').map((k, i) => (
+                          <kbd
+                            key={i}
+                            className="px-1.5 py-0.5 bg-[#0B172E] border border-[#102447] rounded font-mono text-[10px] text-slate-200"
+                          >
+                            {k}
+                          </kbd>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Search & Quick Command Palette */}
+              <div className="bg-[#060D1A] border border-[#102447] rounded-xl p-4">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-amber-400 mb-3">
+                  {lang === 'ku' ? 'گەڕانی خێرا' : lang === 'ar' ? 'البحث والأوامر' : 'Search & Palette'}
+                </h3>
+                <div className="space-y-2.5">
+                  {SHORTCUTS.filter(s => s.category === 'search').map((shortcut, idx) => (
+                    <div key={idx} className="flex items-center justify-between py-1 border-b border-[#102447]/50 last:border-b-0 text-xs">
+                      <span className="text-slate-300">
+                        {shortcut.description[lang as keyof typeof shortcut.description]}
+                      </span>
+                      <kbd className="px-1.5 py-0.5 bg-[#0B172E] border border-[#102447] rounded font-mono text-[10px] text-slate-200">
+                        {shortcut.keys}
+                      </kbd>
+                    </div>
+                  ))}
+                  <div className="flex items-center justify-between py-1 text-xs">
+                    <span className="text-slate-300">
+                      {lang === 'ku' ? 'پالێتی فەرمانەکان' : lang === 'ar' ? 'لوحة الأوامر' : 'Command Palette'}
+                    </span>
+                    <kbd className="px-1.5 py-0.5 bg-[#0B172E] border border-[#102447] rounded font-mono text-[10px] text-slate-200">
+                      Cmd/Ctrl + K
+                    </kbd>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
