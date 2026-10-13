@@ -415,7 +415,7 @@ export default function StudentDashboard({
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
                 <span>
                   {lang === 'ku'
-                    ? 'داشبۆردی زیرەکی قوتابی'
+                    ? 'پانێڵی زیرەکی چاودێریی قوتابی'
                     : lang === 'ar'
                     ? 'لوحة متابعة الطالب الذكية'
                     : 'Smart Student Dashboard'}

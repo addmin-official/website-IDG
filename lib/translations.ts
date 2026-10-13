@@ -342,6 +342,7 @@ export interface TranslationData {
 }
 
 export const translations: Record<Language, TranslationData> = {
+  // REVIEW: ku-native — verify naturalness
   ku: {
     companyName: 'دەروازەی دیجیتاڵیی عێراق (IDG)',
     parentBadge: 'کۆمپانیای دایک و ستۆدیۆی وەبەرهێنان',
@@ -458,12 +459,12 @@ export const translations: Record<Language, TranslationData> = {
           description:
             'یەکەم بەرهەمی حوکمڕانیکراو لە کۆمەڵەپۆلی IDG. پلاتفۆرمێک بۆ دابینکردنی شیکاری و بڕیاردانی سەلمێنراو لەژێر دەسەڵاتی دیاریکراوی مرۆییدا.',
           detailedDescription:
-            'پلاتفۆرمی AI Gate Iraq ژێرخانێکی حوکمڕانیکراوی ژیریی دەستکردی کارپێکراوە کە تایبەت بۆ بەڕێوەبردنی بڕیارە ئاڵۆزەکان و شیکاریی بەڵگەمەند لە دامەزراوە حکومی و کۆمپانیا گەورەکان دیزاین کراوە. سیستەمەکە تەواوی پێداویستییەکانی سەروەریی داتا بەپێی یاساکانی دەوڵەت دابین دەکات بە جێگیرکردنی مۆدێلەکان لەسەر سێرڤەری لۆکاڵی بەبێ ناردنەدەرەوەی زانیاری بۆ دەرەوەی عێراق. کارایی سەرەکی لە دەوری پشکنینی ئۆتۆماتیکی دۆکیۆمێنت، شیکاریی بەراوردکاری، و پشتڕاستکردنەوەی مرۆیی (Human-in-the-Loop) دەخولێتەوە تا هیچ بڕیارێکی هەڵە دەرنەچێت.',
+            'پلاتفۆرمی AI Gate Iraq ژێرخانێکی حوکمڕانیکراوی ژیریی دەستکردی کارپێکراوە کە تایبەت بۆ بەڕێوەبردنی بڕیارە ئاڵۆزەکان و شیکاریی بەڵگەمەند لە دامەزراوە حکومی و کۆمپانیا گەورەکان دیزاین کراوە. سیستەمەکە تەواوی پێداویستییەکانی سەروەریی داتا بەپێی یاساکانی دەوڵەت دابین دەکات بە جێگیرکردنی مۆدێلەکان لەسەر ڕاژەکارە ناوخۆییەکان بەبێ ناردنەدەرەوەی زانیاری بۆ دەرەوەی عێراق. کارایی سەرەکی لە دەوری پشکنینی خۆکاری بەڵگەنامە، شیکاریی بەراوردکاری، و چاودێریی مرۆیی لە بڕیارداندا (Human-in-the-Loop) دەخولێتەوە تا هیچ بڕیارێکی هەڵە دەرنەچێت.',
           keyFeatures: [
             'شیکاریی بەڵگەمەندی بڕیارە کارگێڕییەکان لەژێر چاودێریی توندی مرۆیی',
-            'خوێندنەوەی بەڵگەنامە و OCR بە زمانی کوردی و عەرەبی بە دڵنیایی ٩٩.٤٪',
+            'خوێندنەوەی بەڵگەنامە و ناسینەوەی نووسین (OCR) بە زمانی کوردی و عەرەبی بە دڵنیایی ٩٩.٤٪',
             'پاراستنی تەواوی داتا لەناو سنووری عێراق لەسەر ژێرخانی سەربەخۆ',
-            'سلسلسەی شەفافی دەستکارینەکراوی تۆماری ئۆدیت (Immutable Audit Hash)',
+            'تۆماری وردبینیی نەگۆڕ و دەستکارینەکراو (Immutable Audit Hash)',
           ],
           targetAudience: [
             'وەزارەتەکان و دەستە فەرمییەکانی حکومەت',
@@ -486,7 +487,7 @@ export const translations: Record<Language, TranslationData> = {
         {
           id: 'zana',
           numBadge: 'بەرهەمی ٠٠٢',
-          title: 'ZaNa Acadime',
+          title: 'ZaNa Academy',
           subtitle: 'ئەکادیمیای زانا',
           problem:
             'قوتابی زۆر جار پرسیار ناکات چونکە شەرم دەکات لە بەرامبەر هاوپۆلەکانی. دایک و باوک ناتوانن یارمەتی بدەن لە وانەکاندا. مامۆستا ناتوانێت چاودێری هەر قوتابییەک بکات بە جیاوازی. پرسیارەکان بێ وەڵام دەمێننەوە.',
@@ -525,13 +526,13 @@ export const translations: Record<Language, TranslationData> = {
           id: 'greenbelt',
           numBadge: 'بەرهەمی ٠٠٣',
           title: 'Green Belt',
-          subtitle: 'کەمەربەندی سەوز',
+          subtitle: 'پشتێنی سەوز',
           problem: 'بەفیڕۆچوونی زۆری پاشماوەی خۆراک، کەمیی داتای چاودێریی ژینگەیی و نەبوونی ژێرخانی ئابووری بازنەیی.',
           owner: 'کۆنسۆڵخانەی ژینگە و تەلارسازیی بازنەیی (IDG Circular Economy Core)',
           description:
             'پلاتفۆرمی ئابووری بازنەیی زیرەک بۆ کۆکردنەوەی پاشماوەی خۆراک، کۆمپۆستکردن، چاودێریکردنی ژینگە، و بەدواداچوونی کاریگەرییەکانی دارەکان.',
           detailedDescription:
-            'پڕۆژەی کەمەربەندی سەوز (Green Belt) پلاتفۆرمێکی ئابووریی بازنەیی زیرەکە کە شێوازی مامەڵەکردن لەگەڵ پاشماوەی خۆراک و سامانی ژینگەیی لە عێراق دەگۆڕێت. لە ڕێگەی تۆڕێکی سەروەری هەستەوەری لۆکاڵی (IoT)، بەستەرە جوگرافییەکان، و چاودێریی مانگی دەستکردەوە، سیستەمەکە بەردەوام چاودێریی ڕێژەی کۆکردنەوەی زبڵی ئەندامی، قۆناغەکانی گۆڕینی بۆ کۆمپۆستی بەپیت، و تەندروستیی سەدان هەزار درەختی چێنراوی پشتێنی سەوزی بەغدا و شارەکان دەکات.',
+            'پڕۆژەی پشتێنی سەوز (Green Belt) پلاتفۆرمێکی ئابووریی بازنەیی زیرەکە کە شێوازی مامەڵەکردن لەگەڵ پاشماوەی خۆراک و سامانی ژینگەیی لە عێراق دەگۆڕێت. لە ڕێگەی تۆڕێکی سەروەری هەستەوەری لۆکاڵی (IoT)، بەستەرە جوگرافییەکان، و چاودێریی مانگی دەستکردەوە، سیستەمەکە بەردەوام چاودێریی ڕێژەی کۆکردنەوەی پاشماوەی ئەندامی، قۆناغەکانی گۆڕینی بۆ کۆمپۆستی بەپیت، و تەندروستیی سەدان هەزار درەختی چێنراوی پشتێنی سەوزی بەغدا و شارەکان دەکات.',
           keyFeatures: [
             'بەدواداچوونی ئۆتۆماتیکی سووڕی کۆکردنەوەی پاشماوەی خۆراک و بەفیڕۆچوون',
             'سیستەمی هەستەوەری IoT بۆ چاودێریی گەرمی، شێداری و خێرایی کۆمپۆست',
@@ -551,7 +552,7 @@ export const translations: Record<Language, TranslationData> = {
             'Satellite Vegetation Analysis',
             'REST API Integration Gateway',
           ],
-          impact: 'گۆڕینی تەنەها پاشماوە بۆ سەرچاوەی بەسوود، چاندنی زیاتر لە ١٢٠،٠٠٠ درەخت و دۆکیومێنتکردنی داتای سەوزی نیشتمانی.',
+          impact: 'گۆڕینی هەزاران تەن لە پاشماوە بۆ سەرچاوەی بەسوود، چاندنی زیاتر لە ١٢٠،٠٠٠ درەخت و تۆمارکردنی داتای سەوزی نیشتمانی.',
           status: 'جێبەجێکردنی مەیدانیی بەردەوام',
           url: 'https://greenbelt.iq',
           mockupType: 'greenbelt',
@@ -562,16 +563,16 @@ export const translations: Record<Language, TranslationData> = {
         fullTitle: '🇮🇶 پەنجەرەی نیشتمانی بۆ بازرگانی — عێراق (Iraq NSW)',
         title: 'پەنجەرەی نیشتمانی بۆ بازرگانی — عێراق',
         subtitle: 'National Single Window for Trade — Iraq',
-        problem: 'پارچەپارچەبوونی سیستەمی گومرگ، نەبوونی پێکەوەبەستنی داتا لەنێوان دەروازە سنورییەکان، کاتی پاکتاوی درێژخایەن (٤٨ کاتژمێر)، بەرزیی تێچووی هەر ڕاگەیاندن ($١،٠٠٠)، ڕەوایی کەمی گومرگ (١٠٪)، و بەفیڕۆچوونی داهاتی گشتی.',
-        architecture: 'پەنجەرەی نیشتمانی بۆ بازرگانی — عێراق (Iraq NSW) پلاتفۆرمێکی دەسەڵاتییە بۆ یەکخستنی دەروازە سنورییەکان، گومرگ، بانکەکان و دەستە ڕێکخەرەکان. ئامانجی: کەمکردنەوەی کاتی پاکتاو لە ٤٨ کاتژمێرەوە بۆ ٧ کاتژمێر، کەمکردنەوەی تێچوو لە $١،٠٠٠ بۆ $٤٠٠، و بەرزکردنەوەی شەفافیەت لە ١٠٪ بۆ ٩٠٪+.',
-        description: 'پەنجەرەی نیشتمانی بۆ بازرگانی — عێراق (Iraq NSW) پلاتفۆرمێکی دەسەڵاتییە بۆ یەکخستنی دەروازە سنورییەکان، گومرگ، بانکەکان و دەستە ڕێکخەرەکان.',
-        detailedDescription: 'Iraq NSW سیستەمێکی نیشتمانیی یەکگرتووە کە دەروازە سنورییە وشکانی، دەریایی و ئاسمانییەکانی عێراق پێکەوە دەبەستێت. بودجەی گشتی: $١٨٠ ملیۆن | ماوە: ١٨ مانگ | ROI: ٤٢٠٪ (ساڵی ٣).',
+        problem: 'پارچەپارچەبوونی سیستەمی گومرگ، نەبوونی پێکەوەبەستنی داتا لەنێوان دەروازە سنورییەکان، کاتی پاکتاوی درێژخایەن (٤٨ کاتژمێر)، بەرزیی تێچووی هەر ڕاگەیاندن (١،٠٠٠ دۆلار)، ڕەوایی کەمی گومرگ (١٠٪)، و بەفیڕۆچوونی داهاتی گشتی.',
+        architecture: 'پەنجەرەی نیشتمانی بۆ بازرگانی — عێراق (Iraq NSW) پلاتفۆرمێکی سەروەریی نیشتمانییە بۆ یەکخستنی دەروازە سنورییەکان، گومرگ، بانکەکان و دەستە ڕێکخەرەکان. ئامانجی: کەمکردنەوەی کاتی پاکتاو لە ٤٨ کاتژمێرەوە بۆ ٧ کاتژمێر، کەمکردنەوەی تێچوو لە ١،٠٠٠ دۆلارەوە بۆ ٤٠٠ دۆلار، و بەرزکردنەوەی شەفافیەت لە ١٠٪ بۆ ٩٠٪+.',
+        description: 'پەنجەرەی نیشتمانی بۆ بازرگانی — عێراق (Iraq NSW) پلاتفۆرمێکی سەروەریی نیشتمانییە بۆ یەکخستنی دەروازە سنورییەکان، گومرگ، بانکەکان و دەستە ڕێکخەرەکان.',
+        detailedDescription: 'Iraq NSW سیستەمێکی نیشتمانیی یەکگرتووە کە دەروازە سنورییە وشکانی، دەریایی و ئاسمانییەکانی عێراق پێکەوە دەبەستێت. بودجەی گشتی: ١٨٠ ملیۆن دۆلار | ماوە: ١٨ مانگ | گەڕانەوەی وەبەرهێنان (ROI): ٤٢٠٪ (ساڵی سێیەم).',
         keyFeatures: [
           'کەمکردنەوەی کاتی پاکتاوی گومرگی لە ٤٨ کاتژمێرەوە بۆ ٧ کاتژمێر',
-          'کەمکردنەوەی تێچووی هەر ڕاگەیاندن لە $١،٠٠٠ بۆ $٤٠٠ (٦٠٪ کەمتر)',
+          'کەمکردنەوەی تێچووی هەر ڕاگەیاندن لە ١،٠٠٠ دۆلارەوە بۆ ٤٠٠ دۆلار (٦٠٪ کەمتر)',
           'بەرزکردنەوەی شەفافیەت لە ١٠٪ بۆ ٩٠٪+',
           'کەمکردنەوەی گەندەڵی لە ٤٠٪ بۆ ٠٪',
-          'پێکەوەبەستنی ١٠ دەروازە سنورییەکان + هەرێمی کوردستان',
+          'پێکەوەبەستنی ١٠ دەروازەی سنوری + هەرێمی کوردستان',
           'دۆزینەوەی ساختەکاری بە AI/ML — ٧٠٪ → ٩٠٪',
           'پشتڕاستکردنەوەی بەڵگەنامە بە OCR و LayoutLMv3',
           'نەخشەی Offline Mode بۆ دەروازەکان بەبێ ئینتەرنێت',
@@ -594,7 +595,7 @@ export const translations: Record<Language, TranslationData> = {
           'LayoutLMv3 + Dialogflow CX',
         ],
         owner: 'دەستەی تەلارسازیی سیستەمە نیشتمانییەکان — IDG',
-        impact: 'کەمکردنەوەی کاتی پاکتاو بە ٨٥٪، کەمکردنەوەی تێچوو بە ٦٠٪، بەرزکردنەوەی شەفافیەت بە ٩x، کەمکردنەوەی گەندەڵی بۆ ٠٪ — ROI ٤٢٠٪ لە ساڵی ٣.',
+        impact: 'کەمکردنەوەی کاتی پاکتاو بە ٨٥٪، کەمکردنەوەی تێچوو بە ٦٠٪، بەرزکردنەوەی شەفافیەت بە ٩x، کەمکردنەوەی گەندەڵی بۆ ٠٪ — گەڕانەوەی وەبەرهێنان (ROI) بە ڕێژەی ٤٢٠٪ لە ساڵی سێیەم.',
         mockupType: 'nsw',
       },
     },
@@ -835,7 +836,7 @@ export const translations: Record<Language, TranslationData> = {
       inquiryOptions: [
         'هاوبەشیی ستراتیژی لەگەڵ IDG',
         'داواکاریی بەکارهێنانی AI Gate Iraq',
-        'ڕێککەوتنی فێرکردن لە ZaNa Acadime',
+        'ڕێککەوتنی ڕاهێنان لە ئەکادیمیای زانا (ZaNa Academy)',
         'پڕۆژەی بەردەوامی لەگەڵ Green Belt',
         'هەماهەنگی لە پەنجەرەی نیشتمانی (Iraq NSW)',
       ],
@@ -1118,9 +1119,9 @@ export const translations: Record<Language, TranslationData> = {
         {
           id: 'faq-1',
           category: 'governance',
-          question: 'ڕۆڵی IDG وەک کۆمپانیای دایک چییە بەراورد بە بەرهەمەکانی وەک AI Gate Iraq و ZaNa Acadime؟',
+          question: 'ڕۆڵی IDG وەک کۆمپانیای دایک چییە بەراورد بە بەرهەمەکانی وەک AI Gate Iraq و ئەکادیمیای زانا (ZaNa Academy)؟',
           answer:
-            'IDG کۆمپانیای دایک و ستۆدیۆی سەروەریی وەبەرهێنانی تەکنەلۆژییە. بەرهەمەکانی وەک "AI Gate Iraq" (بەرهەمی ٠٠١)، "ZaNa Acadime"، و "Green Belt" بەرهەمی تایبەتمەندن لەژێر بەڕێوەبردن و حوکمڕانیی ڕاستەوخۆی IDG. بەرهەمەکان قەوارەی سەربەخۆ نین، بەڵکو میکانیزمی تەکنەلۆژین بۆ جێبەجێکردنی ئەرکە ستراتیژییەکان لەژێر ستانداردە یەکگرتووەکانی IDG.',
+            'IDG کۆمپانیای دایک و ستۆدیۆی سەروەریی وەبەرهێنانی تەکنەلۆژییە. بەرهەمەکانی وەک "AI Gate Iraq" (بەرهەمی ٠٠١)، "ئەکادیمیای زانا (ZaNa Academy)"، و "Green Belt" بەرهەمی تایبەتمەندن لەژێر بەڕێوەبردن و حوکمڕانیی ڕاستەوخۆی IDG. بەرهەمەکان قەوارەی سەربەخۆ نین، بەڵکو میکانیزمی تەکنەلۆژین بۆ جێبەجێکردنی ئەرکە ستراتیژییەکان لەژێر ستانداردە یەکگرتووەکانی IDG.',
           highlights: ['کۆمپانیای دایک و ستۆدیۆی وەبەرهێنان', 'حوکمڕانیی یەکگرتوو', 'یەکپارچەیی تەلارسازی'],
         },
         {
@@ -1196,6 +1197,7 @@ export const translations: Record<Language, TranslationData> = {
       },
     },
   },
+  // REVIEW: ar-native — verify naturalness
   ar: {
     companyName: 'بوابة العراق الرقمية (IDG)',
     parentBadge: 'الشركة الأم واستوديو المشاريع التكنولوجية',
@@ -1340,7 +1342,7 @@ export const translations: Record<Language, TranslationData> = {
         {
           id: 'zana',
           numBadge: 'المنتج ٠٠٢',
-          title: 'ZaNa Acadime',
+          title: 'ZaNa Academy',
           subtitle: 'أكاديمية زانا',
           problem:
             'غالباً ما يتردد الطالب في طرح الأسئلة بسبب الخجل أمام زملائه. لا يستطيع أولياء الأمور تقديم المساعدة في الدروس. لا يستطيع المعلم متابعة كل طالب بشكل فردي. تبقى التساؤلات دون إجابات دقيقة.',
@@ -1689,7 +1691,7 @@ export const translations: Record<Language, TranslationData> = {
       inquiryOptions: [
         'شراكة استراتيجية مع IDG',
         'طلب اعتماد AI Gate Iraq',
-        'اتفاقية تأهيل مع ZaNa Acadime',
+        'اتفاقية تدريب وتأهيل مع أكاديمية زانا (ZaNa Academy)',
         'مشروع استدامة مع Green Belt',
         'التنسيق في النافذة الوطنية (Iraq NSW)',
       ],
@@ -1972,9 +1974,9 @@ export const translations: Record<Language, TranslationData> = {
         {
           id: 'faq-1',
           category: 'governance',
-          question: 'ما هو دور IDG كشركة أم مقارنة بمنتجات مثل AI Gate Iraq و ZaNa Acadime؟',
+          question: 'ما هو دور IDG كشركة أم مقارنة بمنتجات مثل AI Gate Iraq وأكاديمية زانا (ZaNa Academy)؟',
           answer:
-            'IDG هي الشركة الأم السيادية واستوديو المشاريع التكنولوجية. المنتجات مثل "AI Gate Iraq" (المنتج 001)، و"ZaNa Acadime"، و"Green Belt" هي منتجات متخصصة خاضعة لحوكمة وإشراف IDG المباشر. المنتجات ليست كيانات مستقلة بل أدوات تقنية لتنفيذ أهداف المحفظة وفق معايير الحوكمة الموحدة لـ IDG.',
+            'IDG هي الشركة الأم السيادية واستوديو المشاريع التكنولوجية. المنتجات مثل "AI Gate Iraq" (المنتج 001)، و"أكاديمية زانا (ZaNa Academy)"، و"Green Belt" هي منتجات متخصصة خاضعة لحوكمة وإشراف IDG المباشر. المنتجات ليست كيانات مستقلة بل أدوات تقنية لتنفيذ أهداف المحفظة وفق معايير الحوكمة الموحدة لـ IDG.',
           highlights: ['الشركة الأم واستوديو المشاريع', 'حوكمة مؤسسية موحدة', 'تكامل معماري سيادي'],
         },
         {
@@ -2194,7 +2196,7 @@ export const translations: Record<Language, TranslationData> = {
         {
           id: 'zana',
           numBadge: 'Product 002',
-          title: 'ZaNa Acadime',
+          title: 'ZaNa Academy',
           subtitle: 'ZaNa Academy',
           problem:
             'Students avoid asking questions out of shyness. Parents cannot help with lessons. Teachers cannot track every student individually. Questions remain unanswered.',
@@ -2543,7 +2545,7 @@ export const translations: Record<Language, TranslationData> = {
       inquiryOptions: [
         'Strategic Partnership with IDG',
         'AI Gate Iraq Institutional Deployment',
-        'ZaNa Acadime Talent Program',
+        'ZaNa Academy Talent Program',
         'Green Belt Sustainability Project',
         'Iraq NSW Coordination & Integration',
       ],
@@ -2826,9 +2828,9 @@ export const translations: Record<Language, TranslationData> = {
         {
           id: 'faq-1',
           category: 'governance',
-          question: 'What is IDG’s role as the sovereign parent company relative to products like AI Gate Iraq and ZaNa Acadime?',
+          question: 'What is IDG’s role as the sovereign parent company relative to products like AI Gate Iraq and ZaNa Academy?',
           answer:
-            'IDG is the sovereign parent technology company and venture studio. Portfolio products such as "AI Gate Iraq" (Product 001), "ZaNa Acadime", and "Green Belt" are dedicated portfolio assets governed directly by IDG. Products are never standalone parent entities; they operate as specialized technical platforms advancing national institutional capability under IDG’s unified architecture and sovereign oversight.',
+            'IDG is the sovereign parent technology company and venture studio. Portfolio products such as "AI Gate Iraq" (Product 001), "ZaNa Academy", and "Green Belt" are dedicated portfolio assets governed directly by IDG. Products are never standalone parent entities; they operate as specialized technical platforms advancing national institutional capability under IDG’s unified architecture and sovereign oversight.',
           highlights: ['Sovereign Parent & Venture Studio', 'Governed Portfolio Assets', 'Unified Architecture'],
         },
         {

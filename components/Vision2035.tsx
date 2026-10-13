@@ -3,12 +3,14 @@
 import React from 'react';
 import { TranslationData } from '@/lib/translations';
 import { Calendar, Target, Compass, ChevronRight } from 'lucide-react';
+import { useLocale } from '@/lib/locale-context';
 
 interface Vision2035Props {
   t: TranslationData;
 }
 
 export default function Vision2035({ t }: Vision2035Props) {
+  const { lang } = useLocale();
   const v = t.vision;
 
   return (
@@ -42,7 +44,7 @@ export default function Vision2035({ t }: Vision2035Props) {
               >
                 {isCurrent && (
                   <span className="absolute -top-3 start-6 bg-[#1D5BD8] text-white text-[11px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
-                    قۆناغی چالاک
+                    {lang === 'ku' ? 'قۆناغی چالاک' : lang === 'ar' ? 'المرحلة النشطة' : 'Active Phase'}
                   </span>
                 )}
                 
@@ -57,7 +59,9 @@ export default function Vision2035({ t }: Vision2035Props) {
                   </h3>
 
                   <div className="p-3 rounded-lg bg-slate-900/80 border border-slate-800 text-xs font-medium text-slate-300 mb-4">
-                    <span className="text-blue-400 block mb-1 font-bold">ئامانجی پێوانەیی:</span>
+                    <span className="text-blue-400 block mb-1 font-bold">
+                      {lang === 'ku' ? 'ئامانجی پێوانەیی:' : lang === 'ar' ? 'الهدف المعياري:' : 'Milestone Target:'}
+                    </span>
                     {phase.target}
                   </div>
 
@@ -67,7 +71,9 @@ export default function Vision2035({ t }: Vision2035Props) {
                 </div>
 
                 <div className="mt-8 pt-4 border-t border-slate-800 text-xs text-slate-500 flex justify-between items-center">
-                  <span>دەستپێشخەریی ٢٠٣٥</span>
+                  <span>
+                    {lang === 'ku' ? 'دەستپێشخەریی ٢٠٣٥' : lang === 'ar' ? 'مبادرة ٢٠٣٥' : 'Vision 2035 Horizon'}
+                  </span>
                   <span className="font-mono">PHASE-0{idx + 1}</span>
                 </div>
               </div>

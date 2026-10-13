@@ -215,7 +215,7 @@ export default function ProductMockups({ type, lang }: MockupProps) {
               }`}
             >
               <span>📊</span>
-              <span>{lang === 'ku' ? 'داشبۆردی قوتابی' : lang === 'ar' ? 'لوحة متابعة الطالب' : 'Student Dashboard'}</span>
+              <span>{lang === 'ku' ? 'پانێڵی چاودێریی قوتابی' : lang === 'ar' ? 'لوحة متابعة الطالب' : 'Student Dashboard'}</span>
             </button>
             <button
               type="button"
@@ -367,7 +367,7 @@ export default function ProductMockups({ type, lang }: MockupProps) {
                       onClick={() => setZanaTab('dashboard')}
                       className="font-mono text-purple-400 hover:text-purple-300 font-bold underline text-[11px]"
                     >
-                      {lang === 'ku' ? 'کردنەوەی داشبۆردی تەواو ↗' : lang === 'ar' ? 'فتح لوحة المتابعة الكاملة ↗' : 'Open Full Dashboard ↗'}
+                      {lang === 'ku' ? 'کردنەوەی پانێڵی چاودێریی تەواو ↗' : lang === 'ar' ? 'فتح لوحة المتابعة الكاملة ↗' : 'Open Full Dashboard ↗'}
                     </button>
                   </div>
                   <div className="w-full h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
@@ -503,12 +503,24 @@ export default function ProductMockups({ type, lang }: MockupProps) {
               {/* Real-time telemetry map / route note */}
               <div className="p-2.5 rounded bg-slate-950 border border-slate-800 text-[11px] space-y-1.5">
                 <div className="flex justify-between items-center text-slate-400 border-b border-slate-800/80 pb-1">
-                  <span>{lang === 'ku' ? 'ناوچەی چاودێری:' : lang === 'ar' ? 'منطقة الرصد:' : 'Monitored Sector:'} کەرتی کەمەربەندی سەوزی شاری بەغدا</span>
-                  <span className="text-emerald-400 font-mono">٩٤.٢٪ ڕێژەی ژیانی نەمامەکان</span>
+                  <span>
+                    {lang === 'ku'
+                      ? 'ناوچەی چاودێری: کەرتی پشتێنی سەوزی شاری بەغدا'
+                      : lang === 'ar'
+                      ? 'منطقة الرصد: قطاع الحزام الأخضر لبغداد'
+                      : 'Monitored Sector: Baghdad Green Belt Perimeter'}
+                  </span>
+                  <span className="text-emerald-400 font-mono">
+                    {lang === 'ku'
+                      ? '٩٤.٢٪ ڕێژەی ژیانی نەمامەکان'
+                      : lang === 'ar'
+                      ? '٩٤.٢٪ نسبة بقاء الشتلات'
+                      : '94.2% Sapling Survival Rate'}
+                  </span>
                 </div>
                 <p className="text-slate-300 leading-relaxed">
                   {lang === 'ku'
-                    ? 'تەکنەلۆژیای هەستەوەری لۆکاڵی (IoT) پەیوەستە بە بنکەی داتای ناوخۆیی. هەموو تەنێک پاشماوەی خۆراک دۆکیۆمێنت دەکرێت و بەپێی ستانداردەکان دەگۆڕدرێت بۆ خاکی بەپیت.'
+                    ? 'هەستەوەرە ناوخۆییەکان (IoT) پەیوەستن بە بنکەدراوەی سەروەریی ناوخۆ. سەرجەم قەبارەی پاشماوەی خۆراک تۆمار دەکرێت و دەگۆڕدرێت بۆ پەینی سروشتیی بەپیت.'
                     : lang === 'ar'
                     ? 'أجهزة الاستشعار الذكية ترسل قراءات الرطوبة وحيوية التربة مباشرة إلى قاعدة البيانات المحلية. يتم توثيق مسار كل شحنة للحد من انبعاثات الميثان.'
                     : 'Edge IoT telemetry continuously samples soil hydration and microbial activity across designated perimeter green belts.'}
