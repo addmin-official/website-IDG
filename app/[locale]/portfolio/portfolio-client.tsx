@@ -5,8 +5,11 @@ import dynamic from 'next/dynamic';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Portfolio from '@/components/Portfolio';
-import ZaNaShowcase from '@/components/ZaNaShowcase';
 import Footer from '@/components/Footer';
+
+const ZaNaShowcase = dynamic(() => import('@/components/ZaNaShowcase'), {
+  loading: () => <div className="h-96 bg-[#0B172E] animate-pulse rounded-2xl my-8 mx-4 border border-[#102447]/30" />,
+});
 
 const ProductModal = dynamic(() => import('@/components/ProductModal'), {
   ssr: false,

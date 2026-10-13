@@ -1,10 +1,15 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { TranslationData, Language } from '@/lib/translations';
-import ProductMockups from '@/components/ProductMockups';
 import EvidenceBadge from '@/components/EvidenceBadge';
 import DocumentClassification from '@/components/DocumentClassification';
+
+const ProductMockups = dynamic(
+  () => import('@/components/ProductMockups'),
+  { ssr: false, loading: () => <div className="h-64 bg-[#0B172E] rounded-lg animate-pulse" /> }
+);
 import {
   X,
   ShieldCheck,

@@ -124,7 +124,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
           
           {/* Brand & Sovereign Parent Mark */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0">
-            <Link href={`/${lang}`} className="flex items-center gap-2 sm:gap-2.5 group min-w-0" id="brand-logo-link">
+            <Link href={`/${lang}`} prefetch={true} className="flex items-center gap-2 sm:gap-2.5 group min-w-0" id="brand-logo-link">
               <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg sm:rounded-xl bg-[#1D5BD8] text-white flex items-center justify-center font-extrabold text-base sm:text-lg md:text-xl tracking-wider shadow-sm group-hover:bg-[#193B73] transition-colors border border-[#193B73] ring-1 ring-[#1D5BD8]/40 shrink-0">
                 IDG
               </div>
@@ -149,6 +149,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             {/* [1] Home — direct link */}
             <Link
               href={`/${lang}`}
+              prefetch={true}
               aria-current={isActive(`/${lang}`) ? 'page' : undefined}
               className={`transition-colors py-2 px-1 border-b-2 whitespace-nowrap ${
                 isActive(`/${lang}`)
@@ -191,6 +192,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                 <div className="bg-[#0B172E] border border-[#102447] rounded-lg shadow-[0_8px_32px_rgba(0,0,0,0.4)] py-2 backdrop-blur-md">
                   <Link
                     href={`/${lang}/about`}
+                    prefetch={true}
                     role="menuitem"
                     onClick={() => setOpenDropdown(null)}
                     className={`block px-4 py-2.5 text-sm transition-colors duration-150 ${
@@ -204,6 +206,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                   </Link>
                   <Link
                     href={`/${lang}/vision`}
+                    prefetch={true}
                     role="menuitem"
                     onClick={() => setOpenDropdown(null)}
                     className={`block px-4 py-2.5 text-sm transition-colors duration-150 ${
@@ -217,6 +220,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                   </Link>
                   <Link
                     href={`/${lang}/stakeholders`}
+                    prefetch={true}
                     role="menuitem"
                     onClick={() => setOpenDropdown(null)}
                     className={`block px-4 py-2.5 text-sm transition-colors duration-150 ${
@@ -263,6 +267,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                 <div className="bg-[#0B172E] border border-[#102447] rounded-lg shadow-[0_8px_32px_rgba(0,0,0,0.4)] py-2 backdrop-blur-md">
                   <Link
                     href={`/${lang}/portfolio`}
+                    prefetch={true}
                     role="menuitem"
                     onClick={() => setOpenDropdown(null)}
                     className={`block px-4 py-2.5 text-sm transition-colors duration-150 ${
@@ -277,6 +282,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                   <div className="h-px bg-[#102447] my-1 mx-2" />
                   <Link
                     href={`/${lang}/portfolio#ai-gate`}
+                    prefetch={true}
                     role="menuitem"
                     onClick={() => setOpenDropdown(null)}
                     className="block px-4 py-2 text-xs text-slate-400 hover:text-white hover:bg-[#102447] transition-colors"
@@ -286,6 +292,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                   </Link>
                   <Link
                     href={`/${lang}/portfolio#zana`}
+                    prefetch={true}
                     role="menuitem"
                     onClick={() => setOpenDropdown(null)}
                     className="block px-4 py-2 text-xs text-slate-400 hover:text-white hover:bg-[#102447] transition-colors"
@@ -295,6 +302,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                   </Link>
                   <Link
                     href={`/${lang}/portfolio#greenbelt`}
+                    prefetch={true}
                     role="menuitem"
                     onClick={() => setOpenDropdown(null)}
                     className="block px-4 py-2 text-xs text-slate-400 hover:text-white hover:bg-[#102447] transition-colors"
@@ -304,6 +312,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
                   </Link>
                   <Link
                     href={`/${lang}/portfolio#nsw`}
+                    prefetch={true}
                     role="menuitem"
                     onClick={() => setOpenDropdown(null)}
                     className="block px-4 py-2 text-xs text-slate-400 hover:text-white hover:bg-[#102447] transition-colors"
@@ -318,6 +327,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             {/* [4] Governance — direct link */}
             <Link
               href={`/${lang}/governance`}
+              prefetch={true}
               aria-current={isActive(`/${lang}/governance`) ? 'page' : undefined}
               className={`transition-colors py-2 px-1 border-b-2 whitespace-nowrap ${
                 isActive(`/${lang}/governance`)
@@ -332,6 +342,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             {/* [5] FAQ — direct link */}
             <Link
               href={`/${lang}/faq`}
+              prefetch={true}
               aria-current={isActive(`/${lang}/faq`) ? 'page' : undefined}
               className={`transition-colors py-2 px-1 border-b-2 whitespace-nowrap ${
                 isActive(`/${lang}/faq`)
@@ -456,6 +467,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
           <nav className="flex flex-col space-y-1 text-sm font-medium text-slate-200">
             <Link
               href={`/${lang}`}
+              prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition"
               id="mobile-link-home"
@@ -464,6 +476,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </Link>
             <Link
               href={`/${lang}/about`}
+              prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition"
               id="mobile-link-about"
@@ -472,6 +485,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </Link>
             <Link
               href={`/${lang}/vision`}
+              prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition"
               id="mobile-link-vision"
@@ -480,6 +494,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </Link>
             <Link
               href={`/${lang}/stakeholders`}
+              prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition"
               id="mobile-link-stakeholders"
@@ -488,6 +503,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </Link>
             <Link
               href={`/${lang}/portfolio`}
+              prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition"
               id="mobile-link-portfolio"
@@ -496,6 +512,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </Link>
             <Link
               href={`/${lang}/governance`}
+              prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition"
               id="mobile-link-governance"
@@ -504,6 +521,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </Link>
             <Link
               href={`/${lang}/careers`}
+              prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition"
               id="mobile-link-careers"
@@ -512,6 +530,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </Link>
             <Link
               href={`/${lang}/faq`}
+              prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition"
               id="mobile-link-faq"
@@ -520,6 +539,7 @@ export default function Navbar({ lang, onLanguageChange, t, onOpenContact }: Nav
             </Link>
             <Link
               href={`/${lang}/contact`}
+              prefetch={true}
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg hover:bg-[#102447] transition"
               id="mobile-link-contact-scroll"

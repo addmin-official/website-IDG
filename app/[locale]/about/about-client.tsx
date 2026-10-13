@@ -5,8 +5,11 @@ import dynamic from 'next/dynamic';
 import { translations, Language } from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import AboutUs from '@/components/AboutUs';
-import Purpose from '@/components/Purpose';
 import Footer from '@/components/Footer';
+
+const Purpose = dynamic(() => import('@/components/Purpose'), {
+  loading: () => <div className="h-96 bg-[#060D1A] animate-pulse rounded-2xl my-8 mx-4 border border-[#102447]/30" />,
+});
 
 const ContactModal = dynamic(() => import('@/components/ContactModal'), {
   ssr: false,

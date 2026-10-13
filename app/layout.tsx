@@ -10,12 +10,14 @@ const notoKufi = Noto_Kufi_Arabic({
   subsets: ['arabic'],
   weight: ['400', '500', '600', '700', '800', '900'],
   display: 'swap',
+  preload: true,
   variable: '--font-ku',
 });
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
+  preload: true,
   variable: '--font-en',
 });
 

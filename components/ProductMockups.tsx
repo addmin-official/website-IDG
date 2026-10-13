@@ -1,8 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { Language } from '@/lib/translations';
-import StudentDashboard from '@/components/StudentDashboard';
+
+const StudentDashboard = dynamic(
+  () => import('@/components/StudentDashboard'),
+  { ssr: false, loading: () => <div className="h-64 bg-[#0B172E] rounded-lg animate-pulse" /> }
+);
 import {
   ShieldCheck,
   CheckCircle2,
