@@ -1,0 +1,65 @@
+'use client';
+import React, { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
+import { ChevronDown, Eye, Users, Briefcase, HelpCircle, FileText, Accessibility } from 'lucide-react';
+import { useLocale } from '@/lib/locale-context';
+
+export default function NavbarMoreMenu() {
+  const { lang } = useLocale();
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const items = [
+    { href: `/${lang}/vision`, label: { ku: 'دیدگای ٢٠٣٥', ar: 'رؤية ٢٠٣٥', en: 'Vision 2035' }, icon: Eye },
+    { href: `/${lang}/stakeholders`, label: { ku: 'لایەنە ئامانجدارەکان', ar: 'الجهات المستهدفة', en: 'Stakeholders' }, icon: Users },
+    { href: `/${lang}/careers`, label: { ku: 'هەلی کار', ar: 'الوظائف', en: 'Careers' }, icon: Briefcase },
+    { href: `/${lang}/faq`, label: { ku: 'پرسیارە باوەکان', ar: 'الأسئلة الشائعة', en: 'FAQ' }, icon: HelpCircle },
+    { href: `/${lang}/help`, label: { ku: 'ناوەندی هاوکاری', ar: 'مركز المساعدة', en: 'Help Center' }, icon: FileText },
+    { href: `/${lang}/legal/accessibility`, label: { ku: 'دەستڕاگەیشتن', ar: 'إمكانية الوصول', en: 'Accessibility' }, icon: Accessibility },
+  ];
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-haspopup="true"
+        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+      >
+        <span>
+          {lang === 'ku' ? 'پەرەی زیاتر' : lang === 'ar' ? 'المزيد' : 'More'}
+        </span>
+        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+
+      {open && (
+        <div className="absolute top-full start-0 mt-2 w-64 bg-[#0B172E] border border-[#102447] rounded-xl shadow-2xl shadow-black/40 py-2 z-50">
+          {items.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-[#102447] transition-colors"
+              >
+                <Icon className="w-4 h-4 text-slate-500" />
+                <span>{item.label[lang as keyof typeof item.label]}</span>
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
