@@ -28,6 +28,8 @@ export const viewport: Viewport = {
   themeColor: '#060D1A',
 };
 
+const siteUrl = 'https://idggov.tech';
+
 export const metadata: Metadata = {
   title: {
     default: 'Iraq Digital Gateway (IDG) — Sovereign Technology Institution',
@@ -52,7 +54,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Mustafa Jalal Mustafa Khoshnaw' }],
   creator: 'Iraq Digital Gateway (IDG)',
   publisher: 'Iraq Digital Gateway (IDG)',
-  metadataBase: new URL('https://idggov.tech'),
+  metadataBase: new URL(siteUrl),
   alternates: {
     canonical: '/',
   },
@@ -61,7 +63,7 @@ export const metadata: Metadata = {
     description:
       "Iraq's sovereign parent technology company and institutional venture studio for national digital infrastructure.",
     type: 'website',
-    url: 'https://idggov.tech',
+    url: siteUrl,
     images: [
       {
         url: '/og-image.svg',
@@ -102,7 +104,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Corporation',
-              '@id': 'https://idggov.tech/#corporation',
+              '@id': `${siteUrl}/#corporation`,
               name: 'Iraq Digital Gateway',
               alternateName: [
                 'IDG Iraq',
@@ -116,8 +118,8 @@ export default function RootLayout({
                 'Iraq Digital Gateway (IDG) is an Iraqi sovereign technology ' +
                 'institution. Not to be confused with International Data Group ' +
                 '(IDG Inc.), IDG Communications, or IDG Ventures.',
-              url: 'https://idggov.tech',
-              logo: 'https://idggov.tech/assets/brand/idg-emblem.png',
+              url: siteUrl,
+              logo: `${siteUrl}/assets/brand/idg-emblem.png`,
               foundingDate: '2024',
               foundingLocation: {
                 '@type': 'Place',
