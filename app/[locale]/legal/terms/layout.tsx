@@ -23,7 +23,7 @@ export async function generateMetadata({
     en: 'Official Terms of Service governing access to Iraq Digital Gateway (IDG) sovereign platforms.',
   };
 
-  const baseUrl = 'https://idg.iq';
+  const baseUrl = 'https://idggov.tech';
 
   return {
     title: titles[lang],

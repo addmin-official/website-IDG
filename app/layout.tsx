@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Mustafa Jalal Mustafa Khoshnaw' }],
   creator: 'Iraq Digital Gateway (IDG)',
   publisher: 'Iraq Digital Gateway (IDG)',
-  metadataBase: new URL('https://idg.iq'),
+  metadataBase: new URL('https://idggov.tech'),
   alternates: {
     canonical: '/',
   },
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     description:
       "Iraq's sovereign parent technology company and institutional venture studio for national digital infrastructure.",
     type: 'website',
-    url: 'https://idg.iq',
+    url: 'https://idggov.tech',
     images: [
       {
         url: '/og-image.svg',
@@ -102,7 +102,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Corporation',
-              '@id': 'https://idg.iq/#corporation',
+              '@id': 'https://idggov.tech/#corporation',
               name: 'Iraq Digital Gateway',
               alternateName: [
                 'IDG Iraq',
@@ -116,8 +116,8 @@ export default function RootLayout({
                 'Iraq Digital Gateway (IDG) is an Iraqi sovereign technology ' +
                 'institution. Not to be confused with International Data Group ' +
                 '(IDG Inc.), IDG Communications, or IDG Ventures.',
-              url: 'https://idg.iq',
-              logo: 'https://idg.iq/assets/brand/idg-emblem.png',
+              url: 'https://idggov.tech',
+              logo: 'https://idggov.tech/assets/brand/idg-emblem.png',
               foundingDate: '2024',
               foundingLocation: {
                 '@type': 'Place',
@@ -148,11 +148,11 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              '@id': 'https://idg.iq/#website',
-              url: 'https://idg.iq',
+              '@id': 'https://idggov.tech/#website',
+              url: 'https://idggov.tech',
               name: 'Iraq Digital Gateway (IDG)',
               inLanguage: ['ku', 'ar', 'en'],
-              publisher: { '@id': 'https://idg.iq/#corporation' },
+              publisher: { '@id': 'https://idggov.tech/#corporation' },
             }),
           }}
         />

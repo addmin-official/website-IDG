@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const sitemapUrl = 'https://idg.iq/sitemap.xml';
+  const sitemapUrl = 'https://idggov.tech/sitemap.xml';
 
   // In production, ping Google and Bing sitemap URLs
   // This is a manual trigger endpoint for SEO refresh

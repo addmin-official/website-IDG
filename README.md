@@ -107,7 +107,7 @@ Detailed deployment procedures for cloud and on-premise environments are also sp
 * **Founder & Chairman:** Mustafa Jalal Mustafa Khoshnaw
 * **Headquarters:** Erbil, Kurdistan Region, Iraq
 * **Official Communications:** `mustafa@aigateiraq.com`
-* **Website:** [https://idg.iq](https://idg.iq)
+* **Website:** [https://idggov.tech](https://idggov.tech)
 
 ---
 

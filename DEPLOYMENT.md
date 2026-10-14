@@ -12,10 +12,10 @@ The application requires the following environment variables defined in producti
 
 ```env
 # 1. Primary PostgreSQL Connection String for Prisma ORM
-DATABASE_URL="postgresql://idg_prod_user:SECRET_PASSWORD@postgres.internal.idg.iq:5432/idg_db?schema=public&sslmode=require"
+DATABASE_URL="postgresql://idg_prod_user:SECRET_PASSWORD@postgres.internal.idggov.tech:5432/idg_db?schema=public&sslmode=require"
 
 # 2. Hostname / Base URL of the Gateway
-APP_URL="https://idg.iq"
+APP_URL="https://idggov.tech"
 
 # 3. Gemini AI API Key (for server-side document & NLP processing)
 GEMINI_API_KEY="YOUR_PRODUCTION_GEMINI_API_KEY"
@@ -95,11 +95,11 @@ pnpm start
 
 ## 4. Health Checks & Monitoring
 
-* **Liveness & Readiness Health Endpoint:** `https://idg.iq/ku`
+* **Liveness & Readiness Health Endpoint:** `https://idggov.tech/ku`
 * **Expected Response:** `200 OK` (HTTP/2 or HTTP/3)
-* **Root Redirect Verification:** `https://idg.iq/` → `307 Temporary Redirect` to `https://idg.iq/ku`
-* **Robots Rule Verification:** `https://idg.iq/robots.txt` → `200 OK`
-* **Sitemap Feed:** `https://idg.iq/sitemap.xml` → `200 OK`
+* **Root Redirect Verification:** `https://idggov.tech/` → `307 Temporary Redirect` to `https://idggov.tech/ku`
+* **Robots Rule Verification:** `https://idggov.tech/robots.txt` → `200 OK`
+* **Sitemap Feed:** `https://idggov.tech/sitemap.xml` → `200 OK`
 
 ---
 
@@ -114,22 +114,22 @@ In accordance with IDG's Zero-Trust baseline, the web server or edge reverse pro
 
 ---
 
-## 6. Domain Setup (`idg.iq`)
+## 6. Domain Setup (`idggov.tech`)
 
-Configure authoritative DNS records for `idg.iq` and `www.idg.iq`:
+Configure authoritative DNS records for `idggov.tech` and `www.idggov.tech`:
 
 | Type | Host | Value / Target | TTL |
 | :--- | :--- | :--- | :--- |
 | **A** | `@` | Sovereign Load Balancer Anycast IP | 300 |
 | **AAAA** | `@` | Sovereign Load Balancer IPv6 | 300 |
-| **CNAME** | `www` | `idg.iq.` | 300 |
+| **CNAME** | `www` | `idggov.tech.` | 300 |
 | **CAA** | `@` | `0 issue "letsencrypt.org"` / `"pki.gov.iq"` | 3600 |
 
 ---
 
 ## 7. Post-Deployment Verification Checklist
 
-- [ ] Verify root redirection: `curl -I https://idg.iq/` returns `307` to `/ku`.
+- [ ] Verify root redirection: `curl -I https://idggov.tech/` returns `307` to `/ku`.
 - [ ] Verify tri-lingual routes: `/ku`, `/ar`, `/en` return `200 OK`.
 - [ ] Verify all 4 legal routes: `/ku/legal/privacy`, `/ku/legal/terms`, `/ku/legal/sovereign-data`, `/ku/legal/accessibility` return `200 OK`.
 - [ ] Verify `sitemap.xml` returns 43 indexed URLs across the 3 locales.

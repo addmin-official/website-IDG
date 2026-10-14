@@ -23,7 +23,7 @@ export async function generateMetadata({
     en: 'Official Sovereign Data Policy enforcing 100% in-country data residency, Zero-Trust perimeter, and ISO 27001 compliance at IDG.',
   };
 
-  const baseUrl = 'https://idg.iq';
+  const baseUrl = 'https://idggov.tech';
 
   return {
     title: titles[lang],

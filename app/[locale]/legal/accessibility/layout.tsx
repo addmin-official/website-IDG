@@ -23,7 +23,7 @@ export async function generateMetadata({
     en: 'Official Accessibility Statement detailing WCAG 2.2 AA compliance, multi-lingual accessibility, and assistive technology support at IDG.',
   };
 
-  const baseUrl = 'https://idg.iq';
+  const baseUrl = 'https://idggov.tech';
 
   return {
     title: titles[lang],

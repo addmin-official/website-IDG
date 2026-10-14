@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://idg.iq';
+const BASE_URL = 'https://idggov.tech';
 const LOCALES = ['ku', 'ar', 'en'] as const;
 
 interface RouteConfig {

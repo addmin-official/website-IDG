@@ -869,7 +869,7 @@ export default function HelpClient({ locale }: { locale: string }) {
                   {lang === 'ku' ? 'پەیوەندیی فەرمی' : lang === 'ar' ? 'التواصل الرسمي' : 'Official Desk'}
                 </h3>
                 <p className="text-xs text-slate-400 mb-4">
-                  contact@idg.iq
+                  contact@idggov.tech
                 </p>
                 <button
                   type="button"
@@ -888,7 +888,7 @@ export default function HelpClient({ locale }: { locale: string }) {
                   {lang === 'ku' ? 'ئاسایش و سیادە' : lang === 'ar' ? 'الأمن والسيادة' : 'Security Escalation'}
                 </h3>
                 <p className="text-xs text-slate-400 mb-4">
-                  security@idg.iq
+                  security@idggov.tech
                 </p>
                 <Link
                   href={`/${lang}/legal/sovereign-data`}
@@ -906,7 +906,7 @@ export default function HelpClient({ locale }: { locale: string }) {
                   {lang === 'ku' ? 'حوکمڕانی و پابەندبوون' : lang === 'ar' ? 'الحوكمة والامتثال' : 'Governance Office'}
                 </h3>
                 <p className="text-xs text-slate-400 mb-4">
-                  governance@idg.iq
+                  governance@idggov.tech
                 </p>
                 <Link
                   href={`/${lang}/governance`}

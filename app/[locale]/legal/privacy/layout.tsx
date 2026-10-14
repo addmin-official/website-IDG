@@ -23,7 +23,7 @@ export async function generateMetadata({
     en: 'Official Privacy Policy and institutional data governance at Iraq Digital Gateway (IDG).',
   };
 
-  const baseUrl = 'https://idg.iq';
+  const baseUrl = 'https://idggov.tech';
 
   return {
     title: titles[lang],

@@ -1,6 +1,6 @@
 # IDG SEO Keyword Targets & Content Mapping
 
-This document serves as the canonical reference for content writers, technical editors, and engineers publishing on `idg.iq`.
+This document serves as the canonical reference for content writers, technical editors, and engineers publishing on `idggov.tech`.
 
 | Page / Route | Primary Keyword | Secondary Keywords | Search Intent | Target Language Anchors |
 | :--- | :--- | :--- | :--- | :--- |

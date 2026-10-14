@@ -14,7 +14,7 @@
 | **Legal Status** | Sovereign Parent Technology Company & Institutional Venture Studio |
 | **Founder & Chairman** | Mustafa Jalal Mustafa Khoshnaw |
 | **Headquarters** | Erbil, Kurdistan Region, Iraq |
-| **Official Domain** | [https://idg.iq](https://idg.iq) |
+| **Official Domain** | [https://idggov.tech](https://idggov.tech) |
 | **Core Operating Languages** | Kurdish Sorani (`ku`, RTL - Default), Arabic (`ar`, RTL), English (`en`, LTR) |
 | **Architectural Mandate** | Data Sovereignty, Applied AI, Zero-Trust Institutional Infrastructure, National Venture Studio |
 

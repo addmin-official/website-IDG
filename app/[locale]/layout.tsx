@@ -33,7 +33,7 @@ export async function generateMetadata({
     en: 'Iraq Digital Gateway (IDG) — Sovereign parent company.',
   };
 
-  const baseUrl = 'https://idg.iq';
+  const baseUrl = 'https://idggov.tech';
 
   return {
     title: titles[locale],
