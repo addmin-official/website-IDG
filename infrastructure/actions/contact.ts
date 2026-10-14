@@ -1,6 +1,7 @@
 'use server';
 
 import { prisma } from '@/lib/prisma';
+import { routeContactInquiry } from '@/lib/ai';
 
 export async function submitContactInquiry(formData: FormData) {
   const name = formData.get('name') as string;
@@ -20,13 +21,25 @@ export async function submitContactInquiry(formData: FormData) {
     return { success: true, referenceId };
   }
 
+  // AI Routing to appropriate department
+  let assignedDepartment = problem;
+  try {
+    const inquiryText = `${subject ? `Subject: ${subject}\n` : ''}${message || problem || ''}`.trim();
+    if (inquiryText) {
+      const routing = await routeContactInquiry(inquiryText);
+      assignedDepartment = routing.department || problem;
+    }
+  } catch (aiError) {
+    console.warn('AI routing non-critical error, continuing with fallback:', aiError);
+  }
+
   try {
     await prisma.contactInquiry.create({
       data: {
         name,
         email,
         subject: subject || null,
-        problem: problem || null,
+        problem: assignedDepartment || null,
         message: message || null,
         referenceId,
       },
