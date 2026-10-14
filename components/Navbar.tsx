@@ -51,20 +51,20 @@ export default function Navbar(_props?: NavbarProps) {
         <div className="flex items-center justify-between h-16 lg:h-[72px]">
           
           {/* BRAND SECTION */}
-          <div className="flex items-center gap-3 min-w-0 shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 shrink-0">
             <Link
               href={`/${lang}`}
-              className="flex items-center gap-2.5 group min-w-0"
+              className="flex items-center gap-2 sm:gap-2.5 group min-w-0"
               id="brand-logo-link"
             >
-              <IDGLogo variant="icon" size={40} />
-              <div className="flex flex-col max-w-[140px] lg:max-w-[200px] min-w-0">
-                <span className="font-extrabold text-white text-sm lg:text-base leading-tight tracking-tight whitespace-nowrap truncate">
+              <IDGLogo variant="icon" size={40} className="shrink-0" />
+              <div className="flex flex-col min-w-0">
+                <span className="font-extrabold text-white text-xs sm:text-sm lg:text-base leading-tight tracking-tight whitespace-nowrap">
                   {lang === 'ku' ? 'دەروازەی دیجیتاڵیی عێراق' :
                    lang === 'ar' ? 'بوابة العراق الرقمية' :
                    'Iraq Digital Gateway'}
                 </span>
-                <span className="hidden xl:inline text-[10px] font-medium text-slate-500 whitespace-nowrap truncate">
+                <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 whitespace-nowrap leading-tight mt-0.5">
                   {t.parentBadge}
                 </span>
               </div>
