@@ -15,6 +15,9 @@ export interface TranslationData {
     careers: string;
     contact: string;
     faq: string;
+    blog: string;
+    insights: string;
+    news: string;
   };
   hero: {
     headline: string;
@@ -372,6 +375,9 @@ export const translations: Record<Language, TranslationData> = {
       careers: 'هەلی کار',
       contact: 'پەیوەندیی فەرمی',
       faq: 'پرسیارە باوەکان',
+      blog: 'بلۆگ',
+      insights: 'تێڕوانینەکان',
+      news: 'هەواڵەکان',
     },
     hero: {
       headline: 'ئاڵۆزی دەگۆڕین بۆ توانایەکی کارپێکردنی متمانەپێکراو.',
@@ -1259,6 +1265,9 @@ export const translations: Record<Language, TranslationData> = {
       careers: 'الوظائف',
       contact: 'التواصل الرسمي',
       faq: 'الأسئلة الشائعة',
+      blog: 'المدونة',
+      insights: 'الرؤى والتحليلات',
+      news: 'الأخبار',
     },
     hero: {
       headline: 'نحوّل التعقيد إلى قدرة تشغيلية موثوقة.',
@@ -2145,6 +2154,9 @@ export const translations: Record<Language, TranslationData> = {
       careers: 'Careers',
       contact: 'Contact Us',
       faq: 'FAQ',
+      blog: 'Blog',
+      insights: 'Insights',
+      news: 'News',
     },
     hero: {
       headline: 'Transforming complexity into reliable operational capability.',

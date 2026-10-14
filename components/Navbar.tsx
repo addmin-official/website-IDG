@@ -34,6 +34,9 @@ export default function Navbar(_props?: NavbarProps) {
 
   const mobileNavLinks = [
     ...primaryNav,
+    { href: `/${lang}/blog`, label: { ku: t.nav.blog, ar: t.nav.blog, en: t.nav.blog } },
+    { href: `/${lang}/insights`, label: { ku: t.nav.insights, ar: t.nav.insights, en: t.nav.insights } },
+    { href: `/${lang}/news`, label: { ku: t.nav.news, ar: t.nav.news, en: t.nav.news } },
     { href: `/${lang}/vision`, label: { ku: 'دیدگای ٢٠٣٥', ar: 'رؤية ٢٠٣٥', en: 'Vision 2035' } },
     { href: `/${lang}/stakeholders`, label: { ku: 'لایەنە ئامانجدارەکان', ar: 'الجهات المستهدفة', en: 'Stakeholders' } },
     { href: `/${lang}/careers`, label: { ku: 'هەلی کار', ar: 'الوظائف', en: 'Careers' } },

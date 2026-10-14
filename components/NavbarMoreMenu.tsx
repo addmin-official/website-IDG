@@ -1,11 +1,11 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { ChevronDown, Eye, Users, Briefcase, HelpCircle, FileText, Accessibility } from 'lucide-react';
+import { ChevronDown, Eye, Users, Briefcase, HelpCircle, FileText, Accessibility, BookOpen, Lightbulb, Newspaper } from 'lucide-react';
 import { useLocale } from '@/lib/locale-context';
 
 export default function NavbarMoreMenu() {
-  const { lang } = useLocale();
+  const { lang, t } = useLocale();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -20,12 +20,15 @@ export default function NavbarMoreMenu() {
   }, []);
 
   const items = [
-    { href: `/${lang}/vision`, label: { ku: 'دیدگای ٢٠٣٥', ar: 'رؤية ٢٠٣٥', en: 'Vision 2035' }, icon: Eye },
-    { href: `/${lang}/stakeholders`, label: { ku: 'لایەنە ئامانجدارەکان', ar: 'الجهات المستهدفة', en: 'Stakeholders' }, icon: Users },
-    { href: `/${lang}/careers`, label: { ku: 'هەلی کار', ar: 'الوظائف', en: 'Careers' }, icon: Briefcase },
-    { href: `/${lang}/faq`, label: { ku: 'پرسیارە باوەکان', ar: 'الأسئلة الشائعة', en: 'FAQ' }, icon: HelpCircle },
-    { href: `/${lang}/help`, label: { ku: 'ناوەندی هاوکاری', ar: 'مركز المساعدة', en: 'Help Center' }, icon: FileText },
-    { href: `/${lang}/legal/accessibility`, label: { ku: 'دەستڕاگەیشتن', ar: 'إمكانية الوصول', en: 'Accessibility' }, icon: Accessibility },
+    { href: `/${lang}/blog`, label: t.nav.blog, icon: BookOpen },
+    { href: `/${lang}/insights`, label: t.nav.insights, icon: Lightbulb },
+    { href: `/${lang}/news`, label: t.nav.news, icon: Newspaper },
+    { href: `/${lang}/vision`, label: { ku: 'دیدگای ٢٠٣٥', ar: 'رؤية ٢٠٣٥', en: 'Vision 2035' }[lang] || 'Vision 2035', icon: Eye },
+    { href: `/${lang}/stakeholders`, label: { ku: 'لایەنە ئامانجدارەکان', ar: 'الجهات المستهدفة', en: 'Stakeholders' }[lang] || 'Stakeholders', icon: Users },
+    { href: `/${lang}/careers`, label: { ku: 'هەلی کار', ar: 'الوظائف', en: 'Careers' }[lang] || 'Careers', icon: Briefcase },
+    { href: `/${lang}/faq`, label: { ku: 'پرسیارە باوەکان', ar: 'الأسئلة الشائعة', en: 'FAQ' }[lang] || 'FAQ', icon: HelpCircle },
+    { href: `/${lang}/help`, label: { ku: 'ناوەندی هاوکاری', ar: 'مركز المساعدة', en: 'Help Center' }[lang] || 'Help Center', icon: FileText },
+    { href: `/${lang}/legal/accessibility`, label: { ku: 'دەستڕاگەیشتن', ar: 'إمكانية الوصول', en: 'Accessibility' }[lang] || 'Accessibility', icon: Accessibility },
   ];
 
   return (
@@ -43,7 +46,7 @@ export default function NavbarMoreMenu() {
       </button>
 
       {open && (
-        <div className="absolute top-full start-0 mt-2 w-64 bg-[#0B172E] border border-[#102447] rounded-xl shadow-2xl shadow-black/40 py-2 z-50">
+        <div className="absolute top-full start-0 mt-2 w-64 max-h-[80vh] overflow-y-auto bg-[#0B172E] border border-[#102447] rounded-xl shadow-2xl shadow-black/40 py-2 z-50">
           {items.map((item) => {
             const Icon = item.icon;
             return (
@@ -51,10 +54,10 @@ export default function NavbarMoreMenu() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-[#102447] transition-colors"
+                className="flex items-center gap-3 px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-[#102447] transition-colors"
               >
-                <Icon className="w-4 h-4 text-slate-500" />
-                <span>{item.label[lang as keyof typeof item.label]}</span>
+                <Icon className="w-4 h-4 text-slate-500 shrink-0" />
+                <span className="truncate">{item.label}</span>
               </Link>
             );
           })}

@@ -77,3 +77,20 @@ model PageView {
   @@index([locale])
   @@index([createdAt])
 }
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  excerpt     String
+  content     String
+  locale      String    @default("ku")
+  author      String?
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  featured    Boolean   @default(false)
+
+  @@index([locale])
+  @@index([publishedAt])
+}
