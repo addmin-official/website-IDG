@@ -89,6 +89,69 @@ async function main() {
     skipDuplicates: true,
   });
 
+  // Seed BlogPost sample records
+  console.log('Inserting sample BlogPost records...');
+  const blogPosts = [
+    {
+      title: 'عراق الرقمية: بناء المستقبل التكنولوجي والسيادة الرقمية',
+      slug: 'iraq-digital-future-ar',
+      excerpt: 'استكشف كيف تعيد بوابة العراق الرقمية (IDG) تعريف البنية التحتية والتحول الرقمي الوطني المستقل.',
+      content: 'تُعد بوابة العراق الرقمية ركيزة التحول السيادي من خلال توحيد الحوكمة، البيانات، والذكاء الاصطناعي في منصات وطنية متكاملة ومستقرة، صُممت لتخدم الأجيال القادمة وتعزز استقلالية البنية التحتية التكنولوجية الوطنية.',
+      locale: 'ar',
+      author: 'Mustafa Khoshnaw',
+      publishedAt: new Date('2026-10-15'),
+      featured: true,
+    },
+    {
+      title: 'Digital Transformation in Iraq: A Sovereign Architectural Blueprint',
+      slug: 'digital-transformation-blueprint-en',
+      excerpt: 'How IDG is engineering connected, trusted enterprise systems and high-throughput national digital infrastructure.',
+      content: 'Iraq Digital Gateway (IDG) represents an institutional approach to modernizing digital infrastructure. By bridging strategic governance, zero-trust cybersecurity, and institutional venture development, IDG transforms complexity into trusted operational capability across the country.',
+      locale: 'en',
+      author: 'Mustafa Khoshnaw',
+      publishedAt: new Date('2026-10-14'),
+      featured: true,
+    },
+    {
+      title: 'سیستمی دیجیتاڵی عێراق: بونیادنانی ژێرخانی سەروەریی تەکنەلۆژیا',
+      slug: 'iraqi-digital-system-ku',
+      excerpt: 'چۆن دەروازەی دیجیتاڵیی عێراق (IDG) ژێرخانێکی سەروەری متمانەپێکراو بۆ داهاتووی عێراق بونیاد دەنێت.',
+      content: 'دەروازەی دیجیتاڵیی عێراق وەک کۆمپانیایەکی دایکی تەکنەلۆژی و ستۆدیۆی وەبەرهێنان، کار لەسەر بەستنەوەی حوکمڕانی دامەزراوەیی، داتای سەروەر و ژیریی دەستکرد دەکات، بە مەبەستی گۆڕینی ئاڵۆزییەکان بۆ توانایەکی بەردەوامی سەقامگیر.',
+      locale: 'ku',
+      author: 'Mustafa Khoshnaw',
+      publishedAt: new Date('2026-10-13'),
+      featured: true,
+    },
+    {
+      title: 'تطوير النافذة الوطنية الموحدة: خطوة نحو أتمتة التجارة العراقية',
+      slug: 'national-single-window-iraq-ar',
+      excerpt: 'نظرة تحليلية على مشروع النافذة الوطنية الموحدة لدعم انسيابية التجارة وتسريع الإجراءات الحكومية.',
+      content: 'مشروع النافذة الوطنية الموحدة لتجارة العراق (INSW) يعيد هيكلة العمليات الجمركية واللوجستية من خلال منصة موحدة رقمية تربط كافة المنافذ والوزارات المعنية وفق أعلى معايير الشفافية والأمان.',
+      locale: 'ar',
+      author: 'IDG Research Team',
+      publishedAt: new Date('2026-10-12'),
+      featured: false,
+    },
+    {
+      title: 'AI Gate Iraq: Scaling Applied Artificial Intelligence for Public Infrastructure',
+      slug: 'ai-gate-iraq-infrastructure-en',
+      excerpt: 'Deploying domain-specific language models and sovereign data platforms tailored for institutional automation.',
+      content: 'AI Gate provides the foundational pipeline for secure machine learning deployments across Iraqi enterprises and public institutions, guaranteeing that critical data remains within national borders while unlocking state-of-the-art computational efficiencies.',
+      locale: 'en',
+      author: 'IDG Engineering',
+      publishedAt: new Date('2026-10-11'),
+      featured: false,
+    },
+  ];
+
+  for (const post of blogPosts) {
+    await prisma.blogPost.upsert({
+      where: { slug: post.slug },
+      update: post,
+      create: post,
+    });
+  }
+
   console.log('✅ Seeding completed successfully.');
 }
 
