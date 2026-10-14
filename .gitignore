@@ -13,3 +13,4 @@ bun.lockb
 yarn.lock
 pnpm-lock.yaml
 *.tsbuildinfo
+.vercel
