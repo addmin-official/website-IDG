@@ -14,6 +14,7 @@ export interface TranslationData {
     stakeholders: string;
     vision: string;
     careers: string;
+    team: string;
     contact: string;
     faq: string;
     blog: string;
@@ -357,6 +358,34 @@ export interface TranslationData {
       }>;
     };
   };
+  team?: {
+    title: string;
+    subtitle: string;
+    leadership: string;
+    leadershipDesc: string;
+    coreTeam: string;
+    coreTeamDesc: string;
+    joinUs: string;
+    joinUsDesc: string;
+    viewPositions: string;
+    departments: {
+      all: string;
+      leadership: string;
+      engineering: string;
+      product: string;
+      operations: string;
+      communications: string;
+    };
+    labels: {
+      bio: string;
+      expertise: string;
+      connect: string;
+      viewProfile: string;
+      backToTeam: string;
+      keyFocus: string;
+      achievements: string;
+    };
+  };
 }
 
 export const translations: Record<Language, TranslationData> = {
@@ -375,6 +404,7 @@ export const translations: Record<Language, TranslationData> = {
       stakeholders: 'لایەنە ئامانجدارەکان',
       vision: 'دیدگای ٢٠٣٥',
       careers: 'هەلی کار',
+      team: 'تیمی ئێمە',
       contact: 'پەیوەندیی فەرمی',
       faq: 'پرسیارە باوەکان',
       blog: 'بلۆگ',
@@ -1250,6 +1280,34 @@ export const translations: Record<Language, TranslationData> = {
         ],
       },
     },
+    team: {
+      title: 'تیمی ئێمە',
+      subtitle: 'سەرکردایەتیی لێهاتوو و ئەندازیارانی پێشەنگ لە بونیادنانی سەروەریی دیجیتاڵیی عێراق.',
+      leadership: 'دەستەی سەرکردایەتی و بەڕێوەبردن',
+      leadershipDesc: 'بنیاتنەران و سەرکردە جێبەجێکارەکان کە ستراتیژی تەکنەلۆژیای نیشتمانی ڕابەرایەتی دەکەن.',
+      coreTeam: 'تیمی سەرەکی و ئەندازیاری',
+      coreTeamDesc: 'کادیرانی باڵای ئەندازیاریی سۆفتوێر، ئاسایشی سایبەری، ژێرخان و بەرهەمهێنان.',
+      joinUs: 'بەشداربە لە گەشتەکەمان',
+      joinUsDesc: 'ئایا دەتەوێت کاریگەرییەکی مانادار لە داهاتووی دیجیتاڵیی عێراقدا دروست بکەیت؟',
+      viewPositions: 'بینینی دەرفەتە کراوەکان',
+      departments: {
+        all: 'هەموو بەشەکان',
+        leadership: 'سەرکردایەتی',
+        engineering: 'ئەندازیاری و ژێرخان',
+        product: 'بەرهەم و دیزاین',
+        operations: 'کارگێڕی و هاوبەشی',
+        communications: 'پەیوەندییەکان',
+      },
+      labels: {
+        bio: 'کورتەی ژیاننامە',
+        expertise: 'بوارەکانی پسپۆڕی',
+        connect: 'پەیوەندی و تۆڕە کۆمەڵایەتییەکان',
+        viewProfile: 'بینینی پرۆفایل',
+        backToTeam: 'گەڕانەوە بۆ لیستی تیم',
+        keyFocus: 'تەرکیزی سەرەکی',
+        achievements: 'دەستکەوتە سەرەکییەکان',
+      },
+    },
   },
   // REVIEW: ar-native — verify naturalness
   ar: {
@@ -1266,6 +1324,7 @@ export const translations: Record<Language, TranslationData> = {
       stakeholders: 'الجهات المستهدفة',
       vision: 'رؤية ٢٠٣٥',
       careers: 'الوظائف',
+      team: 'فريقنا',
       contact: 'التواصل الرسمي',
       faq: 'الأسئلة الشائعة',
       blog: 'المدونة',
@@ -2141,6 +2200,34 @@ export const translations: Record<Language, TranslationData> = {
         ],
       },
     },
+    team: {
+      title: 'فريقنا',
+      subtitle: 'نخبة من القيادات الهندسية والخبراء المتفانين في إرساء السيادة الرقمية للعراق.',
+      leadership: 'الإدارة التنفيذية والقيادة',
+      leadershipDesc: 'المؤسسون والقادة التنفيذيون الذين يقودون استراتيجية التكنولوجيا الوطنية.',
+      coreTeam: 'الفريق الأساسي والكوادر الهندسية',
+      coreTeamDesc: 'خبراء متمرسون في هندسة البرمجيات، الأمن السيبراني، البنية السحابية وإدارة المنتجات.',
+      joinUs: 'انضم إلى مسيرتنا',
+      joinUsDesc: 'هل ترغب في ترك أثر حقيقي وملموس في صياغة مستقبل العراق الرقمي؟',
+      viewPositions: 'استعراض الفرص الوظيفية',
+      departments: {
+        all: 'جميع الأقسام',
+        leadership: 'القيادة التنفيذية',
+        engineering: 'الهندسة والبنية التحتية',
+        product: 'المنتجات والتصميم',
+        operations: 'العمليات والشراكات',
+        communications: 'الاتصال والإعلام',
+      },
+      labels: {
+        bio: 'نبذة شخصية',
+        expertise: 'مجالات الخبرة',
+        connect: 'التواصل والشبكات المهنية',
+        viewProfile: 'عرض الملف التعريفي',
+        backToTeam: 'العودة إلى دليل الفريق',
+        keyFocus: 'مجال التركيز الأساسي',
+        achievements: 'أبرز الإنجازات',
+      },
+    },
   },
   en: {
     companyName: 'Iraq Digital Gateway (IDG)',
@@ -2156,6 +2243,7 @@ export const translations: Record<Language, TranslationData> = {
       stakeholders: 'Target Stakeholders',
       vision: 'Vision 2035',
       careers: 'Careers',
+      team: 'Our Team',
       contact: 'Contact Us',
       faq: 'FAQ',
       blog: 'Blog',
@@ -3029,6 +3117,34 @@ export const translations: Record<Language, TranslationData> = {
             videoUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ',
           },
         ],
+      },
+    },
+    team: {
+      title: 'Our Team',
+      subtitle: 'Dedicated leaders and engineering pioneers establishing Iraq’s digital sovereignty.',
+      leadership: 'Executive Leadership',
+      leadershipDesc: 'Founders and C-level executives directing national technology strategy and institutional architecture.',
+      coreTeam: 'Core Engineering & Specialized Team',
+      coreTeamDesc: 'Senior specialists across systems architecture, cybersecurity, cloud infrastructure, and product execution.',
+      joinUs: 'Join Our Mission',
+      joinUsDesc: 'Interested in making a profound, enduring impact on Iraq’s sovereign digital future?',
+      viewPositions: 'View Open Positions',
+      departments: {
+        all: 'All Departments',
+        leadership: 'Leadership',
+        engineering: 'Engineering & Infrastructure',
+        product: 'Product & Design',
+        operations: 'Operations & Partnerships',
+        communications: 'Communications',
+      },
+      labels: {
+        bio: 'Biography',
+        expertise: 'Areas of Expertise',
+        connect: 'Connect & Socials',
+        viewProfile: 'View Profile',
+        backToTeam: 'Back to Team Directory',
+        keyFocus: 'Key Strategic Focus',
+        achievements: 'Notable Achievements',
       },
     },
   },

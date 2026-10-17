@@ -41,6 +41,7 @@ export default function Navbar(_props?: NavbarProps) {
     { href: `/${lang}/vision`, label: { ku: 'دیدگای ٢٠٣٥', ar: 'رؤية ٢٠٣٥', en: 'Vision 2035' } },
     { href: `/${lang}/stakeholders`, label: { ku: 'لایەنە ئامانجدارەکان', ar: 'الجهات المستهدفة', en: 'Stakeholders' } },
     { href: `/${lang}/careers`, label: { ku: 'هەلی کار', ar: 'الوظائف', en: 'Careers' } },
+    { href: `/${lang}/team`, label: { ku: 'تیمی ئێمە', ar: 'فريقنا', en: 'Our Team' } },
     { href: `/${lang}/faq`, label: { ku: 'پرسیارە باوەکان', ar: 'الأسئلة الشائعة', en: 'FAQ' } },
     { href: `/${lang}/help`, label: { ku: 'ناوەندی هاوکاری', ar: 'مركز المساعدة', en: 'Help Center' } },
     { href: `/${lang}/contact`, label: { ku: 'پەیوەندی', ar: 'التواصل', en: 'Contact' } },

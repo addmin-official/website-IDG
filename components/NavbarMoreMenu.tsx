@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { ChevronDown, Eye, Users, Briefcase, HelpCircle, FileText, Accessibility, BookOpen, Lightbulb, Newspaper, Layers } from 'lucide-react';
+import { ChevronDown, Eye, Users, UserCheck, Briefcase, HelpCircle, FileText, Accessibility, BookOpen, Lightbulb, Newspaper, Layers } from 'lucide-react';
 import { useLocale } from '@/lib/locale-context';
 
 export default function NavbarMoreMenu() {
@@ -27,6 +27,7 @@ export default function NavbarMoreMenu() {
     { href: `/${lang}/vision`, label: { ku: 'دیدگای ٢٠٣٥', ar: 'رؤية ٢٠٣٥', en: 'Vision 2035' }[lang] || 'Vision 2035', icon: Eye },
     { href: `/${lang}/stakeholders`, label: { ku: 'لایەنە ئامانجدارەکان', ar: 'الجهات المستهدفة', en: 'Stakeholders' }[lang] || 'Stakeholders', icon: Users },
     { href: `/${lang}/careers`, label: { ku: 'هەلی کار', ar: 'الوظائف', en: 'Careers' }[lang] || 'Careers', icon: Briefcase },
+    { href: `/${lang}/team`, label: t?.nav?.team || ({ ku: 'تیمی ئێمە', ar: 'فريقنا', en: 'Our Team' }[lang] || 'Our Team'), icon: UserCheck },
     { href: `/${lang}/faq`, label: { ku: 'پرسیارە باوەکان', ar: 'الأسئلة الشائعة', en: 'FAQ' }[lang] || 'FAQ', icon: HelpCircle },
     { href: `/${lang}/help`, label: { ku: 'ناوەندی هاوکاری', ar: 'مركز المساعدة', en: 'Help Center' }[lang] || 'Help Center', icon: FileText },
     { href: `/${lang}/legal/accessibility`, label: { ku: 'دەستڕاگەیشتن', ar: 'إمكانية الوصول', en: 'Accessibility' }[lang] || 'Accessibility', icon: Accessibility },

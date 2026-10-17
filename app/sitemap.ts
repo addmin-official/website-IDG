@@ -14,6 +14,7 @@ const ROUTE_CONFIGS: RouteConfig[] = [
   { path: '/services', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/portfolio', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/team', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/governance', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/vision', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/help', priority: 0.7, changeFrequency: 'weekly' },

@@ -141,6 +141,11 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
                 </Link>
               </li>
               <li>
+                <Link href={`/${currentLang}/team`} className="hover:text-blue-400 transition" id="footer-link-team">
+                  {currentLang === 'ku' ? 'تیمی ئێمە' : currentLang === 'ar' ? 'فريقنا' : 'Our Team'}
+                </Link>
+              </li>
+              <li>
                 <button
                   type="button"
                   onClick={() => {
