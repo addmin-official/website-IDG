@@ -11,6 +11,7 @@ interface RouteConfig {
 
 const ROUTE_CONFIGS: RouteConfig[] = [
   { path: '', priority: 1.0, changeFrequency: 'weekly' },
+  { path: '/services', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/portfolio', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/governance', priority: 0.8, changeFrequency: 'monthly' },

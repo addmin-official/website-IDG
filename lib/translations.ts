@@ -7,6 +7,7 @@ export interface TranslationData {
   nav: {
     home: string;
     about: string;
+    services: string;
     portfolio: string;
     philosophy: string;
     governance: string;
@@ -367,6 +368,7 @@ export const translations: Record<Language, TranslationData> = {
     nav: {
       home: 'سەرەکی',
       about: 'دەربارەی ئێمە',
+      services: 'خزمەتگوزارییەکان',
       portfolio: 'پۆرتفۆلیۆ و بەرهەمەکان',
       philosophy: 'فەلسەفەی کارکردن',
       governance: 'حوکمڕانی و دیسپلین',
@@ -1257,6 +1259,7 @@ export const translations: Record<Language, TranslationData> = {
     nav: {
       home: 'الرئيسية',
       about: 'من نحن',
+      services: 'الخدمات',
       portfolio: 'المحفظة والمنتجات',
       philosophy: 'فلسفة العمل',
       governance: 'الحوكمة والانضباط',
@@ -2146,6 +2149,7 @@ export const translations: Record<Language, TranslationData> = {
     nav: {
       home: 'Home',
       about: 'About Us',
+      services: 'Services',
       portfolio: 'Portfolio & Products',
       philosophy: 'Philosophy',
       governance: 'Governance & Discipline',

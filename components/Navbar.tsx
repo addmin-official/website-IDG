@@ -28,6 +28,7 @@ export default function Navbar(_props?: NavbarProps) {
   const primaryNav = [
     { href: `/${lang}`, label: { ku: 'سەرەکی', ar: 'الرئيسية', en: 'Home' } },
     { href: `/${lang}/about`, label: { ku: 'دەربارە', ar: 'من نحن', en: 'About' } },
+    { href: `/${lang}/services`, label: { ku: 'خزمەتگوزارییەکان', ar: 'الخدمات', en: 'Services' } },
     { href: `/${lang}/portfolio`, label: { ku: 'پۆرتفۆلیۆ', ar: 'المحفظة', en: 'Portfolio' } },
     { href: `/${lang}/governance`, label: { ku: 'حوکمڕانی', ar: 'الحوكمة', en: 'Governance' } },
   ];

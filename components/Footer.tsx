@@ -92,6 +92,11 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
                 </Link>
               </li>
               <li>
+                <Link href={`/${currentLang}/services`} className="hover:text-blue-400 transition" id="footer-link-services">
+                  {currentLang === 'ku' ? 'خزمەتگوزارییەکان' : currentLang === 'ar' ? 'الخدمات' : 'Services'}
+                </Link>
+              </li>
+              <li>
                 <Link href={`/${currentLang}/portfolio`} className="hover:text-blue-400 transition" id="footer-link-portfolio">
                   {t?.nav?.portfolio || 'پۆرتفۆلیۆ'}
                 </Link>

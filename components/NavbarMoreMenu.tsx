@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { ChevronDown, Eye, Users, Briefcase, HelpCircle, FileText, Accessibility, BookOpen, Lightbulb, Newspaper } from 'lucide-react';
+import { ChevronDown, Eye, Users, Briefcase, HelpCircle, FileText, Accessibility, BookOpen, Lightbulb, Newspaper, Layers } from 'lucide-react';
 import { useLocale } from '@/lib/locale-context';
 
 export default function NavbarMoreMenu() {
@@ -20,6 +20,7 @@ export default function NavbarMoreMenu() {
   }, []);
 
   const items = [
+    { href: `/${lang}/services`, label: { ku: 'خزمەتگوزارییەکان', ar: 'الخدمات', en: 'Services' }[lang] || 'Services', icon: Layers },
     { href: `/${lang}/blog`, label: t.nav.blog, icon: BookOpen },
     { href: `/${lang}/insights`, label: t.nav.insights, icon: Lightbulb },
     { href: `/${lang}/news`, label: t.nav.news, icon: Newspaper },
