@@ -45,6 +45,20 @@ export async function submitContactInquiry(formData: FormData) {
       },
     });
 
+    try {
+      await prisma.contactSubmission.create({
+        data: {
+          name,
+          email,
+          subject: subject || null,
+          message: message || problem || 'No message provided',
+          status: 'PENDING',
+        },
+      });
+    } catch {
+      // Secondary write fallback
+    }
+
     return { success: true, referenceId };
   } catch (error) {
     console.warn('Database write failed, falling back to stateless confirmation:', error);
