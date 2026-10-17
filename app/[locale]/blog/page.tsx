@@ -79,5 +79,10 @@ export default async function BlogPage({
     }
   }
 
+  if (posts.length === 0) {
+    const { getFallbackPostsByLocale } = await import('@/lib/blog-data');
+    posts = getFallbackPostsByLocale(locale);
+  }
+
   return <BlogClient locale={locale} posts={posts} />;
 }

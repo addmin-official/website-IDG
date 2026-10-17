@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import prisma from '@/lib/prisma';
 import PostClient from './post-client';
 import { BlogPostData } from '@/components/BlogCard';
+import { getFallbackPost, getFallbackPostsByLocale, FALLBACK_BLOG_POSTS } from '@/lib/blog-data';
 
 interface PageProps {
   params: Promise<{
@@ -11,25 +12,6 @@ interface PageProps {
     slug: string;
   }>;
 }
-
-// Fallback known slugs for static pre-rendering
-const STATIC_SEED_SLUGS = [
-  { locale: 'ku', slug: 'tech-delivery-iraq-ku' },
-  { locale: 'ku', slug: 'internet-digitalization-iraq-ku' },
-  { locale: 'ku', slug: 'digital-education-zana-academy-ku' },
-  { locale: 'ku', slug: 'idg-venture-studio-model-ku' },
-  { locale: 'ku', slug: 'sovereign-tech-infrastructure-ku' },
-  { locale: 'ar', slug: 'tech-delivery-iraq-ar' },
-  { locale: 'ar', slug: 'internet-digitalization-iraq-ar' },
-  { locale: 'ar', slug: 'digital-education-zana-academy-ar' },
-  { locale: 'ar', slug: 'idg-venture-studio-model-ar' },
-  { locale: 'ar', slug: 'sovereign-tech-infrastructure-ar' },
-  { locale: 'en', slug: 'tech-delivery-iraq-en' },
-  { locale: 'en', slug: 'internet-digitalization-iraq-en' },
-  { locale: 'en', slug: 'digital-education-zana-academy-en' },
-  { locale: 'en', slug: 'idg-venture-studio-model-en' },
-  { locale: 'en', slug: 'sovereign-tech-infrastructure-en' },
-];
 
 export async function generateStaticParams() {
   if (prisma) {
@@ -47,7 +29,10 @@ export async function generateStaticParams() {
       console.warn('Prisma not available for generateStaticParams, using static slugs:', err);
     }
   }
-  return STATIC_SEED_SLUGS;
+  return FALLBACK_BLOG_POSTS.map((p) => ({
+    locale: p.locale || 'ku',
+    slug: p.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -66,7 +51,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         postExcerpt = post.excerpt;
       }
     } catch {
-      // Fallback
+      // Fallback below
+    }
+  }
+
+  // Fallback check
+  if (postTitle === 'Blog Post - IDG') {
+    const fallback = getFallbackPost(slug);
+    if (fallback) {
+      postTitle = `${fallback.title} | IDG`;
+      postExcerpt = fallback.excerpt;
     }
   }
 
@@ -147,7 +141,18 @@ export default async function SingleBlogPostPage({ params }: PageProps) {
         }));
       }
     } catch (err) {
-      console.warn('Could not query single post from DB:', err);
+      console.warn('Could not query single post from DB, using fallback:', err);
+    }
+  }
+
+  // Graceful fallback to static seed post if DB is offline or cold
+  if (!post) {
+    const fallback = getFallbackPost(slug);
+    if (fallback) {
+      post = fallback;
+      relatedPosts = getFallbackPostsByLocale(locale)
+        .filter((p) => p.slug !== slug)
+        .slice(0, 2);
     }
   }
 
