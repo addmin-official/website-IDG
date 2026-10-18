@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TranslationData } from '@/lib/translations';
-import { X, Send, CheckCircle2, ShieldCheck, Loader2 } from 'lucide-react';
+import { X, Send, CheckCircle2, ShieldCheck, Loader2, AlertCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -12,11 +13,14 @@ interface ContactModalProps {
 }
 
 export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [name, setName] = useState('');
   const [entity, setEntity] = useState('');
   const [sector, setSector] = useState(t.contactModal.sectorOptions[0] || '');
   const [inquiryType, setInquiryType] = useState(t.contactModal.inquiryOptions[0] || '');
   const [message, setMessage] = useState('');
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -26,6 +30,9 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
         setName('');
         setEntity('');
         setMessage('');
+        setErrorMessage('');
+        recaptchaRef.current?.reset();
+        setRecaptchaToken(null);
         setIsSubmitting(false);
         setSubmitted(false);
         onClose();
@@ -43,20 +50,62 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !entity.trim() || !message.trim()) return;
+
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeDWfUtAAAAABW74h5XiCKBJs8Cg5ooGGjbD7aC';
+    if (siteKey && !recaptchaToken) {
+      setErrorMessage(
+        t.contactSection?.form?.submitBtn === 'ناردنی پەیام'
+          ? 'تکایە پشتڕاستکردنەوەی reCAPTCHA تەواو بکە.'
+          : t.contactSection?.form?.submitBtn === 'إرسال الرسالة'
+          ? 'يرجى إكمال التحقق من reCAPTCHA.'
+          : 'Please complete the reCAPTCHA verification.'
+      );
+      return;
+    }
+
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setErrorMessage('');
+
+    try {
+      if (recaptchaToken) {
+        const verifyRes = await fetch('/api/verify-recaptcha', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: recaptchaToken }),
+        });
+        const verifyData = await verifyRes.json();
+        if (!verifyRes.ok || !verifyData.verified) {
+          recaptchaRef.current?.reset();
+          setRecaptchaToken(null);
+          setErrorMessage(
+            t.contactSection?.form?.submitBtn === 'ناردنی پەیام'
+              ? 'پشتڕاستکردنەوەی reCAPTCHA سەرکەوتوو نەبوو، تکایە دووبارە هەوڵبدەرەوە.'
+              : t.contactSection?.form?.submitBtn === 'إرسال الرسالة'
+              ? 'فشل التحقق من reCAPTCHA، يرجى المحاولة مرة أخرى.'
+              : 'reCAPTCHA verification failed. Please try again.'
+          );
+          setIsSubmitting(false);
+          return;
+        }
+      }
       setSubmitted(true);
-    }, 600);
+    } catch {
+      setErrorMessage('Verification failed. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
     setName('');
     setEntity('');
     setMessage('');
+    setErrorMessage('');
+    recaptchaRef.current?.reset();
+    setRecaptchaToken(null);
     setIsSubmitting(false);
     setSubmitted(false);
     onClose();
@@ -214,6 +263,25 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
                 />
               </div>
             </div>
+
+            {(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeDWfUtAAAAABW74h5XiCKBJs8Cg5ooGGjbD7aC') && (
+              <div className="flex justify-start my-4 overflow-x-auto min-h-[78px]" id="modal-recaptcha-wrapper">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeDWfUtAAAAABW74h5XiCKBJs8Cg5ooGGjbD7aC'}
+                  onChange={(token: string | null) => setRecaptchaToken(token)}
+                  theme="light"
+                  hl={t.contactSection?.form?.submitBtn === 'إرسال الرسالة' ? 'ar' : t.contactSection?.form?.submitBtn === 'ناردنی پەیام' ? 'ar' : 'en'}
+                />
+              </div>
+            )}
+
+            {errorMessage && (
+              <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 text-red-600 text-xs rounded-lg mb-4" id="modal-contact-error">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
 
             <div className="pt-3 border-t border-slate-200 flex justify-end gap-2">
               <Button

@@ -154,7 +154,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
     e.preventDefault();
     if (!isFormValid || isSubmitting) return;
 
-    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeDWfUtAAAAABW74h5XiCKBJs8Cg5ooGGjbD7aC';
     if (siteKey && !recaptchaToken) {
       setErrorMessage(
         isKurdish
@@ -433,11 +433,11 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               suppressHydrationWarning
             />
 
-            {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
-              <div className="flex justify-start my-3 overflow-x-auto" id="contact-recaptcha-wrapper">
+            {(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeDWfUtAAAAABW74h5XiCKBJs8Cg5ooGGjbD7aC') && (
+              <div className="flex justify-start my-3 overflow-x-auto min-h-[78px]" id="contact-recaptcha-wrapper">
                 <ReCAPTCHA
                   ref={recaptchaRef}
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeDWfUtAAAAABW74h5XiCKBJs8Cg5ooGGjbD7aC'}
                   onChange={(token: string | null) => setRecaptchaToken(token)}
                   theme="dark"
                   hl={isArabic ? 'ar' : isKurdish ? 'ar' : 'en'}
