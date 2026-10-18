@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { LocaleProvider } from '@/lib/locale-context';
-import { isValidLocale, LOCALES } from '@/lib/locale-utils';
+import { isValidLocale } from '@/lib/locale-utils';
 import { Language } from '@/lib/translations';
+import { generatePageMetadata, generateStructuredOrganization } from '@/lib/seo-config';
 
 import { OfflineDetector } from '@/components/OfflineDetector';
 import KeyboardShortcuts from '@/components/KeyboardShortcuts';
@@ -21,40 +22,9 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isValidLocale(locale)) return {};
 
-  const titles: Record<Language, string> = {
-    ku: 'دەروازەی دیجیتاڵیی عێراق (IDG)',
-    ar: 'بوابة العراق الرقمية (IDG)',
-    en: 'Iraq Digital Gateway (IDG)',
-  };
-
-  const descriptions: Record<Language, string> = {
-    ku: 'دەروازەی دیجیتاڵیی عێراق (IDG) — کۆمپانیای دایکی سەربەخۆ بۆ حوکمڕانی، داتا و ژیریی دەستکرد.',
-    ar: 'بوابة العراق الرقمية (IDG) — الشركة الأم السيادية للحوكمة والبيانات.',
-    en: 'Iraq Digital Gateway (IDG) — Sovereign parent company.',
-  };
-
-  const baseUrl = 'https://idggov.tech';
-
-  return {
-    title: titles[locale],
-    description: descriptions[locale],
-    alternates: {
-      canonical: `${baseUrl}/${locale}`,
-      languages: {
-        ku: `${baseUrl}/ku`,
-        ar: `${baseUrl}/ar`,
-        en: `${baseUrl}/en`,
-        'x-default': `${baseUrl}/ku`,
-      },
-    },
-    openGraph: {
-      title: titles[locale],
-      description: descriptions[locale],
-      type: 'website',
-      locale: locale === 'ku' ? 'ckb_IQ' : locale === 'ar' ? 'ar_IQ' : 'en_US',
-      url: `${baseUrl}/${locale}`,
-    },
-  };
+  return generatePageMetadata({
+    locale: locale as Language,
+  });
 }
 
 export default async function LocaleLayout({
@@ -64,8 +34,14 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!isValidLocale(locale)) notFound();
 
+  const orgSchema = generateStructuredOrganization(locale as Language);
+
   return (
     <LocaleProvider lang={locale as Language}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+      />
       <KeyboardShortcuts />
       <CommandPalette />
       {children}
@@ -73,4 +49,3 @@ export default async function LocaleLayout({
     </LocaleProvider>
   );
 }
-

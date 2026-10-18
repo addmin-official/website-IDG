@@ -8,6 +8,7 @@ import { InlineStatus } from '@/components/ui/LoadingStates';
 import { ValidatedInput, ValidatedTextarea } from '@/components/ui/ValidatedInput';
 import Button from '@/components/ui/Button';
 import { submitContactInquiry } from '@/infrastructure/actions/contact';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 interface ContactSectionProps {
   t?: TranslationData;
@@ -22,6 +23,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
   const [subject, setSubject] = useState('');
   const [provenProblem, setProvenProblem] = useState('');
   const [message, setMessage] = useState('');
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -151,10 +153,42 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
     e.preventDefault();
     if (!isFormValid || isSubmitting) return;
 
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    if (siteKey && !recaptchaToken) {
+      setErrorMessage(
+        isKurdish
+          ? 'تکایە پشتڕاستکردنەوەی reCAPTCHA تەواو بکە.'
+          : isArabic
+          ? 'يرجى إكمال التحقق من reCAPTCHA.'
+          : 'Please complete the reCAPTCHA verification.'
+      );
+      return;
+    }
+
     setIsSubmitting(true);
     setErrorMessage('');
 
     try {
+      if (recaptchaToken) {
+        const verifyRes = await fetch('/api/verify-recaptcha', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: recaptchaToken }),
+        });
+        const verifyData = await verifyRes.json();
+        if (!verifyRes.ok || !verifyData.verified) {
+          setErrorMessage(
+            isKurdish
+              ? 'پشتڕاستکردنەوەی reCAPTCHA سەرکەوتوو نەبوو، تکایە دووبارە هەوڵبدەرەوە.'
+              : isArabic
+              ? 'فشل التحقق من reCAPTCHA، يرجى المحاولة مرة أخرى.'
+              : 'reCAPTCHA verification failed. Please try again.'
+          );
+          setIsSubmitting(false);
+          return;
+        }
+      }
+
       const formData = new FormData();
       formData.append('name', fullName.trim());
       formData.append('email', email.trim());
@@ -194,6 +228,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
     setProvenProblem('');
     setMessage('');
     setErrorMessage('');
+    setRecaptchaToken(null);
     setIsSubmitted(false);
     setUndoCountdown(0);
     try {
@@ -393,6 +428,17 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               }
               suppressHydrationWarning
             />
+
+            {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
+              <div className="flex justify-start my-3 overflow-x-auto" id="contact-recaptcha-wrapper">
+                <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                  onChange={(token: string | null) => setRecaptchaToken(token)}
+                  theme="dark"
+                  hl={isArabic ? 'ar' : isKurdish ? 'ar' : 'en'}
+                />
+              </div>
+            )}
 
             {errorMessage && (
               <div className="flex items-center gap-2 p-3 bg-[#450a0a] border border-[#DC2626]/40 text-[#DC2626] text-xs rounded-lg" id="contact-error-alert">

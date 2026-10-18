@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import { Noto_Kufi_Arabic, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -79,6 +80,9 @@ export const metadata: Metadata = {
     description:
       "Iraq's sovereign parent technology company. NOT affiliated with International Data Group.",
     images: ['/og-image.svg'],
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'google-site-verification-idg',
   },
 };
 
@@ -162,6 +166,28 @@ export default function RootLayout({
           <PageTransitionLoader />
         </Suspense>
         {children}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+            />
+            <Script
+              id="google-analytics"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
         <Analytics />
         <SpeedInsights />
       </body>
