@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TranslationData } from '@/lib/translations';
 import { useIsMounted } from '@/lib/useIsMounted';
 import { CheckCircle2, AlertCircle, Loader2, Send, RotateCcw } from 'lucide-react';
@@ -17,6 +17,7 @@ interface ContactSectionProps {
 
 export default function ContactSection({ t, isRtl = true }: ContactSectionProps) {
   const isMounted = useIsMounted();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -177,6 +178,8 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
         });
         const verifyData = await verifyRes.json();
         if (!verifyRes.ok || !verifyData.verified) {
+          recaptchaRef.current?.reset();
+          setRecaptchaToken(null);
           setErrorMessage(
             isKurdish
               ? 'پشتڕاستکردنەوەی reCAPTCHA سەرکەوتوو نەبوو، تکایە دووبارە هەوڵبدەرەوە.'
@@ -228,6 +231,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
     setProvenProblem('');
     setMessage('');
     setErrorMessage('');
+    recaptchaRef.current?.reset();
     setRecaptchaToken(null);
     setIsSubmitted(false);
     setUndoCountdown(0);
@@ -432,6 +436,7 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
             {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
               <div className="flex justify-start my-3 overflow-x-auto" id="contact-recaptcha-wrapper">
                 <ReCAPTCHA
+                  ref={recaptchaRef}
                   sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                   onChange={(token: string | null) => setRecaptchaToken(token)}
                   theme="dark"
