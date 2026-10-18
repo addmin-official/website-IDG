@@ -112,7 +112,7 @@ export const rawTeamMembers: TeamMember[] = [
       'https://www.linkedin.com/in/mustafa-jalal-mustafa-13034b273?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
     twitter: 'https://x.com/idg_iq',
 
-    image: '/images/team/mustafa-jalal.svg',
+    image: '/images/team/mustafa-jalal.jpg',
     expertise: ['strategic-leadership', 'digital-sovereignty', 'governance-tech', 'visionary'],
     section: 'leadership',
   },

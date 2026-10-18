@@ -203,14 +203,39 @@ export default function TeamMemberCard({ member, locale }: TeamMemberCardProps) 
               </p>
             </div>
 
-            <div className="mt-5 pt-4 border-t border-[#102447]/60">
+            <div className="mt-5 pt-4 border-t border-[#102447]/60 space-y-2.5">
               <Link
                 href={`/${locale}/careers`}
-                className="w-full inline-flex items-center justify-center gap-2 bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/30 hover:border-transparent py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-sm"
+                className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-md shadow-blue-600/20"
               >
                 <Briefcase className="w-4 h-4" />
                 <span>{tLabels.sendCv}</span>
               </Link>
+
+              {/* Quick Share Buttons */}
+              <div className="flex items-center gap-2">
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://idggov.tech/${locale}/careers`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#060D1A] hover:bg-[#102447] text-blue-400 border border-[#102447] text-xs font-medium transition-colors"
+                  title="Share on LinkedIn"
+                >
+                  <Linkedin className="w-3.5 h-3.5" />
+                  <span>LinkedIn</span>
+                </a>
+
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`We are hiring: ${getPosition()} at IDG! 🚀\nApply now: `)}&url=${encodeURIComponent(`https://idggov.tech/${locale}/careers`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#060D1A] hover:bg-[#102447] text-sky-400 border border-[#102447] text-xs font-medium transition-colors"
+                  title="Share on X"
+                >
+                  <Twitter className="w-3.5 h-3.5" />
+                  <span>X / Twitter</span>
+                </a>
+              </div>
             </div>
           </div>
         </>
