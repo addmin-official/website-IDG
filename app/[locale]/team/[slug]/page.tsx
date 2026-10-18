@@ -43,8 +43,12 @@ export async function generateMetadata({
 
   const siteUrl = 'https://idggov.tech';
 
-  const title = `${member.name} — ${member.title} | IDG`;
-  const description = `${member.name}: ${member.bio}`;
+  const memberName = locale === 'ku' ? member.nameKu || member.name : locale === 'ar' ? member.nameAr || member.name : member.name;
+  const memberPosition = locale === 'ku' ? member.positionKu || member.position : locale === 'ar' ? member.positionAr || member.position : member.position;
+  const memberBio = locale === 'ku' ? member.bioKu || member.bio : locale === 'ar' ? member.bioAr || member.bio : member.bio;
+
+  const title = `${memberName} — ${memberPosition} | IDG`;
+  const description = `${memberName}: ${memberBio}`;
 
   return {
     title,
