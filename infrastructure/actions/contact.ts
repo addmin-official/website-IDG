@@ -9,9 +9,29 @@ export async function submitContactInquiry(formData: FormData) {
   const subject = formData.get('subject') as string | null;
   const problem = formData.get('problem') as string | null;
   const message = formData.get('message') as string | null;
+  const recaptchaToken = formData.get('recaptchaToken') as string;
 
   if (!name || !email) {
     return { success: false, error: 'تکایە خانە سەرەکییەکان پڕبکەرەوە.' };
+  }
+
+  if (!recaptchaToken) {
+    return { success: false, error: 'تکایە سەلماندنی reCAPTCHA تەواو بکە.' };
+  }
+
+  // Verify reCAPTCHA token with Google API
+  try {
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY || '6LcJ3vUtAAAAAIvMnvWSU7gY3-TLJldEF1mPebZ2';
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(recaptchaToken)}`;
+    const verifyRes = await fetch(verifyUrl, { method: 'POST' });
+    const verifyData = await verifyRes.json();
+
+    if (!verifyData.success || (verifyData.score !== undefined && verifyData.score < 0.5)) {
+      return { success: false, error: 'سەلماندنی reCAPTCHA شکستی هێنا. تکایە دووبارە هەوڵ بدەرەوە.' };
+    }
+  } catch (verifyError) {
+    console.error('reCAPTCHA verification error:', verifyError);
+    return { success: false, error: 'سەلماندنی reCAPTCHA شکستی هێنا. تکایە دووبارە هەوڵ بدەرەوە.' };
   }
 
   const referenceId = `IDG-REQ-${Math.floor(1000 + Math.random() * 9000)}`;

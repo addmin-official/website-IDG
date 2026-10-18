@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TranslationData } from '@/lib/translations';
 import { useIsMounted } from '@/lib/useIsMounted';
 import { CheckCircle2, AlertCircle, Loader2, Send, RotateCcw } from 'lucide-react';
@@ -8,7 +8,6 @@ import { InlineStatus } from '@/components/ui/LoadingStates';
 import { ValidatedInput, ValidatedTextarea } from '@/components/ui/ValidatedInput';
 import Button from '@/components/ui/Button';
 import { submitContactInquiry } from '@/infrastructure/actions/contact';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 interface ContactSectionProps {
   t?: TranslationData;
@@ -17,14 +16,12 @@ interface ContactSectionProps {
 
 export default function ContactSection({ t, isRtl = true }: ContactSectionProps) {
   const isMounted = useIsMounted();
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [provenProblem, setProvenProblem] = useState('');
   const [message, setMessage] = useState('');
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -154,50 +151,56 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
     e.preventDefault();
     if (!isFormValid || isSubmitting) return;
 
-    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeDWfUtAAAAABW74h5XiCKBJs8Cg5ooGGjbD7aC';
-    if (siteKey && !recaptchaToken) {
-      setErrorMessage(
-        isKurdish
-          ? 'تکایە پشتڕاستکردنەوەی reCAPTCHA تەواو بکە.'
-          : isArabic
-          ? 'يرجى إكمال التحقق من reCAPTCHA.'
-          : 'Please complete the reCAPTCHA verification.'
-      );
-      return;
-    }
-
     setIsSubmitting(true);
     setErrorMessage('');
 
+    let token = '';
     try {
-      if (recaptchaToken) {
-        const verifyRes = await fetch('/api/verify-recaptcha', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token: recaptchaToken }),
+      if (typeof window !== 'undefined' && (window as any).grecaptcha?.enterprise) {
+        token = await new Promise<string>((resolve, reject) => {
+          (window as any).grecaptcha.enterprise.ready(async () => {
+            try {
+              const t = await (window as any).grecaptcha.enterprise.execute(
+                process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LcJ3vUtAAAAAGCUj91nNm9PAe08J-Z6y5XPI552',
+                { action: 'CONTACT_SUBMIT' }
+              );
+              resolve(t);
+            } catch (error) {
+              reject(error);
+            }
+          });
         });
-        const verifyData = await verifyRes.json();
-        if (!verifyRes.ok || !verifyData.verified) {
-          recaptchaRef.current?.reset();
-          setRecaptchaToken(null);
-          setErrorMessage(
-            isKurdish
-              ? 'پشتڕاستکردنەوەی reCAPTCHA سەرکەوتوو نەبوو، تکایە دووبارە هەوڵبدەرەوە.'
-              : isArabic
-              ? 'فشل التحقق من reCAPTCHA، يرجى المحاولة مرة أخرى.'
-              : 'reCAPTCHA verification failed. Please try again.'
-          );
-          setIsSubmitting(false);
-          return;
-        }
+      } else if (typeof window !== 'undefined' && (window as any).grecaptcha) {
+        token = await new Promise<string>((resolve, reject) => {
+          (window as any).grecaptcha.ready(async () => {
+            try {
+              const t = await (window as any).grecaptcha.execute(
+                process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LcJ3vUtAAAAAGCUj91nNm9PAe08J-Z6y5XPI552',
+                { action: 'CONTACT_SUBMIT' }
+              );
+              resolve(t);
+            } catch (error) {
+              reject(error);
+            }
+          });
+        });
+      } else {
+        throw new Error('reCAPTCHA not loaded');
       }
+    } catch {
+      setErrorMessage('هەڵەیەک لە سیستەمی پاراستندا ڕوویدا. تکایە دووبارە هەوڵبدەرەوە.');
+      setIsSubmitting(false);
+      return;
+    }
 
+    try {
       const formData = new FormData();
       formData.append('name', fullName.trim());
       formData.append('email', email.trim());
       formData.append('subject', subject.trim());
       formData.append('problem', provenProblem.trim());
       formData.append('message', message.trim());
+      formData.append('recaptchaToken', token);
 
       const result = await submitContactInquiry(formData);
       if (result.success && result.referenceId) {
@@ -231,8 +234,6 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
     setProvenProblem('');
     setMessage('');
     setErrorMessage('');
-    recaptchaRef.current?.reset();
-    setRecaptchaToken(null);
     setIsSubmitted(false);
     setUndoCountdown(0);
     try {
@@ -433,17 +434,9 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               suppressHydrationWarning
             />
 
-            {(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeDWfUtAAAAABW74h5XiCKBJs8Cg5ooGGjbD7aC') && (
-              <div className="flex justify-start my-3 overflow-x-auto min-h-[78px]" id="contact-recaptcha-wrapper">
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LeDWfUtAAAAABW74h5XiCKBJs8Cg5ooGGjbD7aC'}
-                  onChange={(token: string | null) => setRecaptchaToken(token)}
-                  theme="dark"
-                  hl={isArabic ? 'ar' : isKurdish ? 'ar' : 'en'}
-                />
-              </div>
-            )}
+            <div className="text-[11px] text-slate-400 font-mono mt-2 mb-1 flex items-center gap-1.5 opacity-80" id="recaptcha-enterprise-note">
+              <span>{isKurdish ? 'ئەم فۆرمە بە Google reCAPTCHA Enterprise پارێزراوە.' : isArabic ? 'هذا النموذج محمي بواسطة Google reCAPTCHA Enterprise.' : 'Protected by Google reCAPTCHA Enterprise.'}</span>
+            </div>
 
             {errorMessage && (
               <div className="flex items-center gap-2 p-3 bg-[#450a0a] border border-[#DC2626]/40 text-[#DC2626] text-xs rounded-lg" id="contact-error-alert">
