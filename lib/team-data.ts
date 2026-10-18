@@ -110,7 +110,7 @@ export const rawTeamMembers: TeamMember[] = [
     email: 'mustafa@idggov.tech',
     linkedIn:
       'https://www.linkedin.com/in/mustafa-jalal-mustafa-13034b273?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
-    twitter: 'https://twitter.com/mustafajalaliq',
+    twitter: 'https://x.com/idg_iq',
 
     image: '/images/team/mustafa-jalal.svg',
     expertise: ['strategic-leadership', 'digital-sovereignty', 'governance-tech', 'visionary'],
