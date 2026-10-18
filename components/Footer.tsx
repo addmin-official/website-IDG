@@ -1,14 +1,11 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import Link from '@/components/ui/Link';
-import Button from '@/components/ui/Button';
 import SovereignBadge from '@/components/SovereignBadge';
 import { TranslationData } from '@/lib/translations';
 import { useLocale } from '@/lib/locale-context';
-import { Mail, CheckCircle2, Shield, ArrowRight, ArrowLeft, Keyboard } from 'lucide-react';
-import { ValidatedInput } from '@/components/ui/ValidatedInput';
+import { Shield, ArrowRight, ArrowLeft, Keyboard } from 'lucide-react';
 import { HelpIcon } from '@/components/ui/Tooltip';
+import NewsletterSignup from '@/components/NewsletterSignup';
 
 interface FooterProps {
   t?: TranslationData;
@@ -18,41 +15,6 @@ interface FooterProps {
 
 export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps = {}) {
   const { lang: currentLang } = useLocale();
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const cleanEmail = newsletterEmail.trim();
-    if (!cleanEmail) return;
-
-    if (!emailRegex.test(cleanEmail)) {
-      setErrorMsg(
-        t?.footer?.newsletter?.invalidEmail || 'تکایە ئیمەیڵێکی فەرمی و دروست بنووسە.'
-      );
-      return;
-    }
-
-    setErrorMsg('');
-    setIsSubmitting(true);
-
-    // Simulate reliable capture of institutional email
-    await new Promise((resolve) => setTimeout(resolve, 600));
-
-    setIsSubmitting(false);
-    setIsSubscribed(true);
-  };
-
-  const resetForm = () => {
-    setNewsletterEmail('');
-    setIsSubscribed(false);
-    setErrorMsg('');
-  };
-
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
   return (
@@ -178,101 +140,7 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
 
           {/* Newsletter Subscription (4 cols) */}
           <div className="lg:col-span-4" id="footer-newsletter-section">
-            <div className="bg-[#0B172E] border border-[#102447] rounded-2xl p-4 sm:p-5 shadow-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <Mail className="w-4 h-4 text-blue-400" />
-                <h4 className="text-sm font-bold text-white tracking-wide">
-                  {t?.footer?.newsletter?.title || 'ناوەندی زانیاری و نوێکارییە خولییەکان'}
-                </h4>
-              </div>
-              
-              <p className="text-xs text-slate-400 mb-4 leading-relaxed">
-                {t?.footer?.newsletter?.description ||
-                  'ئیمەیڵی دامەزراوەیی خۆت تۆمار بکە بۆ وەرگرتنی ڕاپۆرتە فەرمییەکان، شیارییە ستراتیژییەکان، و پێشکەوتنەکانی ژێرخانی دیجیتاڵیی IDG.'}
-              </p>
-
-              {isSubscribed ? (
-                <div
-                  className="bg-blue-950/70 border border-blue-800/80 rounded-xl p-4 text-start animate-in fade-in duration-300"
-                  id="footer-newsletter-success"
-                >
-                  <div className="flex items-center gap-2 text-blue-400 font-bold text-xs mb-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
-                    <span>{t?.footer?.newsletter?.successTitle || 'بە سەرکەوتوویی تۆمار کرا'}</span>
-                  </div>
-                  <p className="text-xs text-slate-300 leading-relaxed mb-3">
-                    {t?.footer?.newsletter?.successMsg ||
-                      'سوپاس، ئیمەیڵی دامەزراوەییەکەت تۆمار کرا. پوختەی ڕاپۆرتەکان بۆ ناونیشانەکەت دەنێردرێن.'}
-                  </p>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={resetForm}
-                    className="text-[11px] font-semibold text-blue-400 hover:text-blue-300 underline underline-offset-2 p-0 h-auto"
-                    id="footer-newsletter-reset"
-                  >
-                    {isRtl ? 'تۆمارکردنی ئیمەیڵێکی تر' : 'Register another email'}
-                  </Button>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleNewsletterSubmit}
-                  className="space-y-2.5"
-                  suppressHydrationWarning
-                  id="footer-newsletter-form"
-                >
-                  <ValidatedInput
-                    id="footer-newsletter-email"
-                    name="newsletter-email"
-                    type="email"
-                    value={newsletterEmail}
-                    onChange={(val) => {
-                      setNewsletterEmail(val);
-                      if (errorMsg) setErrorMsg('');
-                    }}
-                    placeholder={
-                      t?.footer?.newsletter?.placeholder ||
-                      'ئیمەیڵی دامەزراوەیی (name@institution.gov.iq)'
-                    }
-                    validate={(v) =>
-                      !v.trim()
-                        ? null
-                        : !emailRegex.test(v.trim())
-                        ? (isRtl ? 'تکایە ئیمەیڵێکی دروست بنووسە' : 'Please enter a valid email address')
-                        : null
-                    }
-                    suppressHydrationWarning
-                  />
-
-                  {errorMsg && (
-                    <p className="text-[11px] text-red-400 font-medium" id="footer-newsletter-error">
-                      {errorMsg}
-                    </p>
-                  )}
-
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="md"
-                    loading={isSubmitting}
-                    disabled={isSubmitting || !newsletterEmail.trim() || !emailRegex.test(newsletterEmail.trim())}
-                    className="w-full text-xs py-2.5"
-                    icon={!isSubmitting ? <ArrowIcon className="w-3.5 h-3.5" /> : undefined}
-                    iconPosition="end"
-                    id="footer-newsletter-submit"
-                  >
-                    {isSubmitting
-                      ? (t?.footer?.newsletter?.submittingBtn || 'تۆمارکردنی ئیمەیڵ...')
-                      : (t?.footer?.newsletter?.submitBtn || 'بەشداریکردن لە نوێکارییەکان')}
-                  </Button>
-
-                  <p className="text-[10px] text-slate-400 pt-1 leading-normal">
-                    {t?.footer?.newsletter?.notice ||
-                      'تێبینی: ئەم کەناڵە تەنها بۆ ئیمەیڵە فەرمی و دامەزراوەیییەکان بەردەستە و پارێزراوە.'}
-                  </p>
-                </form>
-              )}
-            </div>
+            <NewsletterSignup t={t} isRtl={isRtl} />
           </div>
 
         </div>
