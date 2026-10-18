@@ -19,6 +19,7 @@ import {
   Mail,
   Copy,
   Check,
+  Award,
   ChevronLeft,
   ChevronRight,
   Send,
@@ -209,19 +210,21 @@ export default function JobClient({ job, locale }: JobClientProps) {
               {getTitle()}
             </h1>
 
-            <div className="mt-4 flex flex-wrap items-center gap-6 text-sm text-slate-400">
+            <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-400">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-slate-500 shrink-0" />
                 <span>{job.location}</span>
               </div>
-              {job.salary && (
-                <div className="flex items-center gap-2 text-emerald-400 font-mono font-medium">
-                  <DollarSign className="w-4 h-4 shrink-0" />
-                  <span>
-                    ${(job.salary.min / 1000).toFixed(0)}k – ${(job.salary.max / 1000).toFixed(0)}k {job.salary.currency}
-                  </span>
-                </div>
-              )}
+              <div className="flex items-center gap-2 text-amber-400 font-medium bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 text-xs sm:text-sm">
+                <Award className="w-4 h-4 shrink-0" />
+                <span>
+                  {locale === 'ku'
+                    ? 'پشک (Equity) + مووچەی کێبڕکێکار دوای دابینکردنی سەرمایە'
+                    : locale === 'ar'
+                    ? 'حصص (Equity) + راتب تنافسي بعد جولة التمويل'
+                    : 'Equity + Competitive Salary Post-Funding'}
+                </span>
+              </div>
             </div>
 
             {/* Quick Share Bar */}

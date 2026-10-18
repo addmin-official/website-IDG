@@ -69,7 +69,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['High-Throughput Banking Engines', 'National PKI Infrastructure', 'AI/ML Pipelines'],
     level: 'executive',
     location: 'Baghdad / Erbil, Iraq (Hybrid / Remote OK)',
-    salary: { min: 80000, max: 140000, currency: 'USD' },
+    
     department: 'leadership',
     category: 'leadership',
   },
@@ -108,7 +108,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['Public Sector Modernization', 'Cross-Border Trade Programs', 'Legal Accords'],
     level: 'executive',
     location: 'Baghdad / Erbil, Iraq',
-    salary: { min: 70000, max: 120000, currency: 'USD' },
+    
     department: 'leadership',
     category: 'leadership',
   },
@@ -147,7 +147,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['Developer Relations', 'Angel Syndicates', 'Curriculum Engineering'],
     level: 'executive',
     location: 'Erbil / Baghdad, Iraq (Hybrid)',
-    salary: { min: 65000, max: 110000, currency: 'USD' },
+    
     department: 'leadership',
     category: 'leadership',
   },
@@ -190,7 +190,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['gRPC / Protobuf', 'Redis Cluster', 'Zero-Downtime Migrations'],
     level: 'senior',
     location: 'Erbil / Baghdad / Remote OK',
-    salary: { min: 45000, max: 75000, currency: 'USD' },
+    
     department: 'engineering',
     category: 'engineering',
   },
@@ -229,7 +229,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['Framer Motion', 'State Machines (XState)', 'Automated E2E Testing (Playwright)'],
     level: 'senior',
     location: 'Erbil / Baghdad / Remote OK',
-    salary: { min: 40000, max: 70000, currency: 'USD' },
+    
     department: 'engineering',
     category: 'engineering',
   },
@@ -268,7 +268,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['Ceph Storage', 'BGP Routing', 'CKA / CKS Certification'],
     level: 'senior',
     location: 'Erbil / Baghdad, Iraq (Hybrid)',
-    salary: { min: 42000, max: 72000, currency: 'USD' },
+    
     department: 'engineering',
     category: 'engineering',
   },
@@ -307,7 +307,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['CISSP / CEH', 'Reverse Engineering', 'Malware Analysis'],
     level: 'senior',
     location: 'Erbil / Baghdad / Remote OK',
-    salary: { min: 45000, max: 75000, currency: 'USD' },
+    
     department: 'engineering',
     category: 'engineering',
   },
@@ -350,7 +350,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['FinTech Gateway Experience', 'Data Analytics', 'Regulatory Compliance'],
     level: 'senior',
     location: 'Erbil / Baghdad, Iraq (Hybrid)',
-    salary: { min: 38000, max: 65000, currency: 'USD' },
+    
     department: 'product',
     category: 'product',
   },
@@ -389,7 +389,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['Design Token Automation', 'Micro-Interactions', 'User Testing Software'],
     level: 'senior',
     location: 'Erbil / Baghdad / Remote OK',
-    salary: { min: 35000, max: 60000, currency: 'USD' },
+    
     department: 'product',
     category: 'product',
   },
@@ -432,7 +432,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['Telecommunications Law', 'Cross-Border Privacy Frameworks', 'GovTech Policy'],
     level: 'senior',
     location: 'Baghdad / Erbil, Iraq',
-    salary: { min: 35000, max: 60000, currency: 'USD' },
+    
     department: 'operations',
     category: 'operations',
   },
@@ -471,7 +471,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['Developer Community Engagement', 'Employer Branding', 'Compensation Design'],
     level: 'senior',
     location: 'Erbil / Baghdad, Iraq (Hybrid)',
-    salary: { min: 32000, max: 55000, currency: 'USD' },
+    
     department: 'operations',
     category: 'operations',
   },
@@ -510,7 +510,7 @@ export const rawJobPostings: JobPosting[] = [
     preferredSkills: ['GovTech Journalism', 'Crisis Communications', 'Multilingual Publishing'],
     level: 'senior',
     location: 'Baghdad / Erbil, Iraq (Hybrid)',
-    salary: { min: 30000, max: 52000, currency: 'USD' },
+    
     department: 'operations',
     category: 'operations',
   },

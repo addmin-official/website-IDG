@@ -18,6 +18,7 @@ import {
   ArrowRight,
   ArrowLeft,
   DollarSign,
+  Award,
 } from 'lucide-react';
 
 interface JobShareCardProps {
@@ -182,20 +183,22 @@ export default function JobShareCard({ job, locale }: JobShareCardProps) {
           </Link>
         </h3>
 
-        {/* Location & Salary Metadata */}
-        <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-400 mt-2.5">
+        {/* Location & Equity Compensation Metadata */}
+        <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-slate-400 mt-2.5">
           <div className="flex items-center gap-1.5">
             <MapPin className="w-4 h-4 text-slate-500 shrink-0" />
             <span>{job.location}</span>
           </div>
-          {job.salary && (
-            <div className="flex items-center gap-1.5 text-emerald-400 font-mono font-medium">
-              <DollarSign className="w-4 h-4 shrink-0" />
-              <span>
-                ${(job.salary.min / 1000).toFixed(0)}k – ${(job.salary.max / 1000).toFixed(0)}k {job.salary.currency}
-              </span>
-            </div>
-          )}
+          <div className="flex items-center gap-1.5 text-amber-400 font-medium bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 text-xs">
+            <Award className="w-3.5 h-3.5 shrink-0" />
+            <span>
+              {locale === 'ku'
+                ? 'پشک (Equity) + مووچە دوای سەرمایە'
+                : locale === 'ar'
+                ? 'حصص (Equity) + راتب بعد التمويل'
+                : 'Equity + Post-Funding Salary'}
+            </span>
+          </div>
         </div>
 
         {/* Description */}

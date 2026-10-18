@@ -265,6 +265,11 @@ export interface TranslationData {
       successMsg: string;
       resetBtn: string;
     };
+    banner?: Record<Language, string>;
+    compensation?: Record<Language, string>;
+    ctaButton?: Record<Language, string>;
+    earlyStageNote?: Record<Language, string>;
+    postFundingNote?: Record<Language, string>;
   };
   contactSection: {
     badge: string;
@@ -1119,6 +1124,31 @@ export const translations: Record<Language, TranslationData> = {
         successTitle: 'داواکارییەکەت بە سەرکەوتوویی وەرگیرا',
         successMsg: 'سوپاس بۆ پێشکەشکردن. تیمی سەرچاوە مرۆییەکانی IDG دوای لێکۆڵینەوە لە پڕۆفایلەکەت، لە ئەگەری گونجاوی پەیوەندیت پێوە دەکەن.',
         resetBtn: 'پێشکەشکردنی داواکارییەکی تر',
+      },
+      banner: {
+        ku: '⚠️ تێبینی گرنگ: ئێمە ئێستا لە قۆناغی سەرەتایی پێش-وەبەرهێنانداین (Pre-Seed). ئەم پۆستانە دوای تەواوبوونی خولی سەرمایە (Seed Round) دەبنە خاوەن مووچەی کێبڕکێکار. ئێستا ئێمە بۆ هاوبەشی ستراتیژی و ڕێککەوتنی پشک (Equity Partnership) و هاودامەزرێنەر پێشوازی دەکەین.',
+        ar: '⚠️ ملاحظة مهمة: نحن حالياً في مرحلة التأسيس المبكرة (Pre-Seed). ستتم توظيف هذه المناصب برواتب تنافسية بعد جولة التمويل. نحن نرحب حالياً بالشراكة الاستراتيجية ونظام الحصص (Equity Partnership) والشركاء المؤسسين.',
+        en: '⚠️ Important Note: We are currently in early-stage pre-seed. These roles will convert to competitive salaries post-funding. We currently welcome strategic co-founders and equity-based partnerships.',
+      },
+      compensation: {
+        ku: 'پشک (Equity) + مووچەی کێبڕکێکار دوای دابینکردنی سەرمایە',
+        ar: 'حصص (Equity) + راتب تنافسي بعد جولة التمويل',
+        en: 'Equity + Competitive Salary Post-Funding',
+      },
+      ctaButton: {
+        ku: 'ڕێککەوتن وەک بنیاتنەری هاوبەش',
+        ar: 'التقديم كشريك مؤسس',
+        en: 'Apply as Co-founder / Partner',
+      },
+      earlyStageNote: {
+        ku: 'دەرفەتێکی دەگمەن بۆ ئەوەی ببیتە بەشێک لە دروستکردنی ژێرخانی دیجیتاڵی نیشتمانی لە قۆناغی سفرەوە.',
+        ar: 'فرصة نادرة لتكون جزءاً من بناء البنية التحتية الرقمية الوطنية من نقطة الصفر.',
+        en: 'A rare opportunity to build national digital infrastructure from ground zero.',
+      },
+      postFundingNote: {
+        ku: 'هەموو ئەندامانی سەرەتایی خاوەنی پشکی فەرمی دەبن لە کۆمپانیا لەگەڵ گرێبەستی یاسایی پارێزراو.',
+        ar: 'يحصل جميع الأعضاء الأوائل على حصص ملكية موثقة قانونياً في الشركة.',
+        en: 'All early core contributors receive legal equity vesting agreements.',
       },
     },
     contactSection: {
@@ -2040,6 +2070,31 @@ export const translations: Record<Language, TranslationData> = {
         successMsg: 'شكراً لاهتمامكم بالعمل معنا. سيقوم فريق الموارد البشرية في IDG بمراجعة ملفكم والتواصل معكم في حال توفر الشروط المطلوبة.',
         resetBtn: 'تقديم طلب إضافي',
       },
+      banner: {
+        ku: '⚠️ تێبینی گرنگ: ئێمە ئێستا لە قۆناغی سەرەتایی پێش-وەبەرهێنانداین (Pre-Seed). ئەم پۆستانە دوای تەواوبوونی خولی سەرمایە (Seed Round) دەبنە خاوەن مووچەی کێبڕکێکار. ئێستا ئێمە بۆ هاوبەشی ستراتیژی و ڕێککەوتنی پشک (Equity Partnership) و هاودامەزرێنەر پێشوازی دەکەین.',
+        ar: '⚠️ ملاحظة مهمة: نحن حالياً في مرحلة التأسيس المبكرة (Pre-Seed). ستتم توظيف هذه المناصب برواتب تنافسية بعد جولة التمويل. نحن نرحب حالياً بالشراكة الاستراتيجية ونظام الحصص (Equity Partnership) والشركاء المؤسسين.',
+        en: '⚠️ Important Note: We are currently in early-stage pre-seed. These roles will convert to competitive salaries post-funding. We currently welcome strategic co-founders and equity-based partnerships.',
+      },
+      compensation: {
+        ku: 'پشک (Equity) + مووچەی کێبڕکێکار دوای دابینکردنی سەرمایە',
+        ar: 'حصص (Equity) + راتب تنافسي بعد جولة التمويل',
+        en: 'Equity + Competitive Salary Post-Funding',
+      },
+      ctaButton: {
+        ku: 'ڕێککەوتن وەک بنیاتنەری هاوبەش',
+        ar: 'التقديم كشريك مؤسس',
+        en: 'Apply as Co-founder / Partner',
+      },
+      earlyStageNote: {
+        ku: 'دەرفەتێکی دەگمەن بۆ ئەوەی ببیتە بەشێک لە دروستکردنی ژێرخانی دیجیتاڵی نیشتمانی لە قۆناغی سفرەوە.',
+        ar: 'فرصة نادرة لتكون جزءاً من بناء البنية التحتية الرقمية الوطنية من نقطة الصفر.',
+        en: 'A rare opportunity to build national digital infrastructure from ground zero.',
+      },
+      postFundingNote: {
+        ku: 'هەموو ئەندامانی سەرەتایی خاوەنی پشکی فەرمی دەبن لە کۆمپانیا لەگەڵ گرێبەستی یاسایی پارێزراو.',
+        ar: 'يحصل جميع الأعضاء الأوائل على حصص ملكية موثقة قانونياً في الشركة.',
+        en: 'All early core contributors receive legal equity vesting agreements.',
+      },
     },
     contactSection: {
       badge: 'التواصل المؤسسي • Institutional Channel',
@@ -2958,6 +3013,31 @@ export const translations: Record<Language, TranslationData> = {
         successTitle: 'Application Successfully Received',
         successMsg: 'Thank you for your interest in building with IDG. Our talent acquisition committee will review your credentials and reach out if there is an alignment.',
         resetBtn: 'Submit Another Application',
+      },
+      banner: {
+        ku: '⚠️ تێبینی گرنگ: ئێمە ئێستا لە قۆناغی سەرەتایی پێش-وەبەرهێنانداین (Pre-Seed). ئەم پۆستانە دوای تەواوبوونی خولی سەرمایە (Seed Round) دەبنە خاوەن مووچەی کێبڕکێکار. ئێستا ئێمە بۆ هاوبەشی ستراتیژی و ڕێککەوتنی پشک (Equity Partnership) و هاودامەزرێنەر پێشوازی دەکەین.',
+        ar: '⚠️ ملاحظة مهمة: نحن حالياً في مرحلة التأسيس المبكرة (Pre-Seed). ستتم توظيف هذه المناصب برواتب تنافسية بعد جولة التمويل. نحن نرحب حالياً بالشراكة الاستراتيجية ونظام الحصص (Equity Partnership) والشركاء المؤسسين.',
+        en: '⚠️ Important Note: We are currently in early-stage pre-seed. These roles will convert to competitive salaries post-funding. We currently welcome strategic co-founders and equity-based partnerships.',
+      },
+      compensation: {
+        ku: 'پشک (Equity) + مووچەی کێبڕکێکار دوای دابینکردنی سەرمایە',
+        ar: 'حصص (Equity) + راتب تنافسي بعد جولة التمويل',
+        en: 'Equity + Competitive Salary Post-Funding',
+      },
+      ctaButton: {
+        ku: 'ڕێککەوتن وەک بنیاتنەری هاوبەش',
+        ar: 'التقديم كشريك مؤسس',
+        en: 'Apply as Co-founder / Partner',
+      },
+      earlyStageNote: {
+        ku: 'دەرفەتێکی دەگمەن بۆ ئەوەی ببیتە بەشێک لە دروستکردنی ژێرخانی دیجیتاڵی نیشتمانی لە قۆناغی سفرەوە.',
+        ar: 'فرصة نادرة لتكون جزءاً من بناء البنية التحتية الرقمية الوطنية من نقطة الصفر.',
+        en: 'A rare opportunity to build national digital infrastructure from ground zero.',
+      },
+      postFundingNote: {
+        ku: 'هەموو ئەندامانی سەرەتایی خاوەنی پشکی فەرمی دەبن لە کۆمپانیا لەگەڵ گرێبەستی یاسایی پارێزراو.',
+        ar: 'يحصل جميع الأعضاء الأوائل على حصص ملكية موثقة قانونياً في الشركة.',
+        en: 'All early core contributors receive legal equity vesting agreements.',
       },
     },
     contactSection: {
