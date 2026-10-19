@@ -272,9 +272,13 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
               </div>
             </div>
 
-            <div className="text-[11px] text-slate-500 font-mono my-2 opacity-80" id="modal-recaptcha-note">
-              <span>Protected by Google reCAPTCHA Enterprise</span>
-            </div>
+            <p className="text-[10px] text-slate-500 my-2 leading-relaxed text-center" id="modal-recaptcha-note">
+              {t.contactSection?.form?.submitBtn === 'إرسال الرسالة'
+                ? 'هذا الموقع محمي بواسطة reCAPTCHA ويطبق سياسة الخصوصية وشروط الخدمة الخاصة بـ Google.'
+                : t.contactSection?.form?.submitBtn === 'Send Message'
+                ? 'This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.'
+                : 'ئەم ماڵپەڕە بە reCAPTCHA پارێزراوە و سیاسەتی تایبەتمەندی و مەرجەکانی بەکارهێنانی Google پەیڕەو دەکات.'}
+            </p>
 
             {errorMessage && (
               <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 text-red-600 text-xs rounded-lg mb-4" id="modal-contact-error">

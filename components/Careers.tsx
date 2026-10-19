@@ -116,6 +116,11 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
       : !isKurdish
       ? 'Submit Another Application'
       : 'پێشکەشکردنی داواکارییەکی تر',
+    recaptchaDisclaimer: isArabic 
+      ? 'هذا الموقع محمي بواسطة reCAPTCHA ويطبق سياسة الخصوصية وشروط الخدمة الخاصة بـ Google.'
+      : !isKurdish
+      ? 'This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.'
+      : 'ئەم ماڵپەڕە بە reCAPTCHA پارێزراوە و سیاسەتی تایبەتمەندی و مەرجەکانی بەکارهێنانی Google پەیڕەو دەکات.',
   };
 
   const formatBytes = (bytes: number) => {
@@ -551,6 +556,10 @@ export default function Careers({ t, isRtl = true }: CareersProps) {
                     ? (isKurdish ? 'لە ناردندایە...' : isArabic ? 'جاري الإرسال...' : 'Sending...')
                     : content.submitBtn}
                 </Button>
+
+                <p className="text-[10px] text-slate-500 mt-4 leading-relaxed text-center">
+                  {content.recaptchaDisclaimer}
+                </p>
               </form>
             )}
           </div>

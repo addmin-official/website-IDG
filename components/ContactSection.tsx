@@ -93,6 +93,11 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
       : !isKurdish
       ? 'Send Another Message'
       : 'ناردنی پەیامێکی تر',
+    recaptchaDisclaimer: isArabic 
+      ? 'هذا الموقع محمي بواسطة reCAPTCHA ويطبق سياسة الخصوصية وشروط الخدمة الخاصة بـ Google.'
+      : !isKurdish
+      ? 'This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.'
+      : 'ئەم ماڵپەڕە بە reCAPTCHA پارێزراوە و سیاسەتی تایبەتمەندی و مەرجەکانی بەکارهێنانی Google پەیڕەو دەکات.',
   };
 
   const [undoCountdown, setUndoCountdown] = useState(0);
@@ -434,10 +439,6 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
               suppressHydrationWarning
             />
 
-            <div className="text-[11px] text-slate-400 font-mono mt-2 mb-1 flex items-center gap-1.5 opacity-80" id="recaptcha-enterprise-note">
-              <span>{isKurdish ? 'ئەم فۆرمە بە Google reCAPTCHA Enterprise پارێزراوە.' : isArabic ? 'هذا النموذج محمي بواسطة Google reCAPTCHA Enterprise.' : 'Protected by Google reCAPTCHA Enterprise.'}</span>
-            </div>
-
             {errorMessage && (
               <div className="flex items-center gap-2 p-3 bg-[#450a0a] border border-[#DC2626]/40 text-[#DC2626] text-xs rounded-lg" id="contact-error-alert">
                 <AlertCircle className="w-4 h-4 shrink-0" />
@@ -460,6 +461,10 @@ export default function ContactSection({ t, isRtl = true }: ContactSectionProps)
                 ? (isKurdish ? 'لە ناردندایە...' : isArabic ? 'جاري الإرسال...' : 'Sending...')
                 : content.submitBtn}
             </Button>
+
+            <p className="text-[10px] text-slate-500 mt-4 leading-relaxed text-center">
+              {content.recaptchaDisclaimer}
+            </p>
           </form>
         )}
       </div>
