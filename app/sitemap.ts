@@ -15,6 +15,7 @@ const ROUTE_CONFIGS: RouteConfig[] = [
   { path: '/services', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/products/impactiq', priority: 0.9, changeFrequency: 'weekly', lastModified: new Date() },
   { path: '/products/gateway-ai', priority: 0.9, changeFrequency: 'weekly', lastModified: new Date() },
+  { path: '/products/economic-knowledge-graph', priority: 0.8, changeFrequency: 'weekly', lastModified: new Date() },
   { path: '/portfolio', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/team', priority: 0.8, changeFrequency: 'monthly' },

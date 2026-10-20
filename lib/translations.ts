@@ -147,6 +147,16 @@ export interface TranslationData {
       external: boolean;
       ctaType: string;
     };
+    economicKnowledgeGraph?: {
+      title: string;
+      description: string;
+      shortDesc: string;
+      link: string;
+      category: string;
+      tags: string[];
+      icon: string;
+      color: string;
+    };
     nsw: {
       badge: string;
       fullTitle: string;
@@ -587,6 +597,16 @@ export const translations: Record<Language, TranslationData> = {
         link: '/ku/products/gateway-ai',
         external: false,
         ctaType: 'internal',
+      },
+      economicKnowledgeGraph: {
+        title: 'تۆڕی زانیاری ئابووری',
+        description: 'نیگارکێشانی پەیوەندی نێوان بەندەر، گومرگ، کاڵا و بڕیارە مەنەفیستیەکان',
+        shortDesc: 'سیستەمی تیبینی ترابط لاجستی',
+        link: '/products/economic-knowledge-graph',
+        category: 'intelligence',
+        tags: ['گومرگ', 'تجارة', 'لاجستی'],
+        icon: 'Workflow',
+        color: 'emerald',
       },
       governanceNote:
         'سەرنج: هەر بەرهەمێک خاوەنی کەسایەتیی بازاڕیی خۆیەتی، بەڵام خاوەندارێتیی داتا، ئاسایش و ئاراستەی ستراتیژی ١٠٠٪ لەژێر حوکمڕانیی سەروەریی IDG دایە.',
@@ -1671,6 +1691,16 @@ export const translations: Record<Language, TranslationData> = {
         link: '/ar/products/gateway-ai',
         external: false,
         ctaType: 'internal',
+      },
+      economicKnowledgeGraph: {
+        title: 'الشبكة المعرفية الاقتصادية',
+        description: 'نظام تتبع الترابط المؤسسي والمنافذ والسلع اللوجستية والسياسات الاتحادية',
+        shortDesc: 'نظام المراقبة المتكامل للعلاقات التجارية',
+        link: '/products/economic-knowledge-graph',
+        category: 'intelligence',
+        tags: ['جمارك', 'تجارة', 'لوجستيات'],
+        icon: 'Workflow',
+        color: 'emerald',
       },
       governanceNote:
         'ملاحظة: يتمتع كل منتج بهويته السوقية الخاصة، بينما تبقى ملكية البيانات والأمن والتوجه الاستراتيجي خاضعة بنسبة ١٠٠٪ لحوكمة IDG السيادية.',
@@ -2761,6 +2791,16 @@ export const translations: Record<Language, TranslationData> = {
         link: '/en/products/gateway-ai',
         external: false,
         ctaType: 'internal',
+      },
+      economicKnowledgeGraph: {
+        title: 'Economic Knowledge Graph',
+        description: 'Mapping relationships between ports, customs, commodities and policy decisions',
+        shortDesc: 'Integrated trade relationship monitoring system',
+        link: '/products/economic-knowledge-graph',
+        category: 'intelligence',
+        tags: ['customs', 'trade', 'logistics'],
+        icon: 'Workflow',
+        color: 'emerald',
       },
       governanceNote:
         'Governance Notice: Each product maintains its distinct market identity, while data ownership, security architecture, and strategic direction remain 100% governed by IDG.',
