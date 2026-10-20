@@ -247,7 +247,7 @@ export default function Portfolio({
 
                   <div className="w-full">
                     {/* Standalone Platforms Section Header - renders above external platform cards */}
-                    {isExternal && (
+                    {isExternal && prod.id === 'zana' && (
                       <div className="text-xs uppercase tracking-wider text-muted text-slate-400 font-semibold mb-3 pt-2">
                         {p.standalonePlatforms}
                       </div>
@@ -255,7 +255,7 @@ export default function Portfolio({
 
                     <div
                       onClick={() => {
-                        if (isExternal) {
+                        if (isExternal && prod.id === 'zana') {
                           window.open(prod.externalUrl || prod.url, '_blank', 'noopener,noreferrer');
                         } else if (isGatewayAI) {
                           router.push(`/${lang}/products/economic-knowledge-graph`);
@@ -266,7 +266,7 @@ export default function Portfolio({
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
-                          if (isExternal) {
+                          if (isExternal && prod.id === 'zana') {
                             window.open(prod.externalUrl || prod.url, '_blank', 'noopener,noreferrer');
                           } else if (isGatewayAI) {
                             router.push(`/${lang}/products/economic-knowledge-graph`);
@@ -279,7 +279,7 @@ export default function Portfolio({
                       tabIndex={0}
                       aria-label={`${prod.title} - ${p.cardInspectPrompt}`}
                       className={`bg-[#0B172E] p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl transition cursor-pointer group flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 ${
-                        isExternal
+                        isExternal && prod.id === 'zana'
                           ? 'border-dashed border-2 border-amber-500/40 hover:border-amber-400/80 hover:bg-[#0B172E]/90'
                           : isImpactIQ
                           ? 'border border-sky-500/40 ring-1 ring-sky-500/30 shadow-lg shadow-sky-500/10 hover:border-sky-400 hover:ring-sky-500/50'
@@ -376,7 +376,7 @@ export default function Portfolio({
                       </div>
 
                       {/* CTA Button */}
-                      {isExternal ? (
+                      {isExternal && prod.id === 'zana' ? (
                         <a
                           href={prod.externalUrl || prod.url}
                           target="_blank"
@@ -386,6 +386,18 @@ export default function Portfolio({
                           id={`btn-visit-site-${prod.id}`}
                         >
                           <span>{p.openExternalPlatform}</span>
+                          <ExternalLink className="w-4 h-4 shrink-0" />
+                        </a>
+                      ) : productHref.startsWith('http') ? (
+                        <a
+                          href={productHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-full md:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
+                          id={`btn-visit-site-${prod.id}`}
+                        >
+                          <span>{p.visitWebsiteBtn}</span>
                           <ExternalLink className="w-4 h-4 shrink-0" />
                         </a>
                       ) : (

@@ -131,9 +131,16 @@ export interface TranslationData {
       status: string;
       badge: string;
       externalUrl: string;
+      link?: string;
       external: boolean;
       ctaType: string;
       audience: string;
+    };
+    aiGateIraq?: {
+      title?: string;
+      description?: string;
+      link: string;
+      url?: string;
     };
     gatewayAI?: {
       code: string;
@@ -555,7 +562,7 @@ export const translations: Record<Language, TranslationData> = {
       openExternalPlatform: 'کردنەوەی پلاتفۆرمی سەربەخۆ',
       standalonePlatforms: 'پلاتفۆرمە سەربەخۆکان',
       schoolsStudentsAudience: 'بۆ قوتابخانە و قوتابیان',
-      zaNaUrl: 'https://zana.idggov.tech',
+      zaNaUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
       impactIQ: {
         code: 'IDG-PRD-004',
         name: 'ImpactIQ',
@@ -575,10 +582,16 @@ export const translations: Record<Language, TranslationData> = {
         description: 'پلاتفۆرمێکی سەربەخۆ و تەواو جیاواز بۆ قوتابخانە و قوتابیان — سیستەمی فێرکردنی K-12 بە زمانی کوردی، لەگەڵ مامۆستایان، پڕۆگرامەکان، و ئەنجامدانی فێربوون. ئەم بەرهەمە پلاتفۆرمێکی سەر بە خۆیەتی و لە ماڵپەڕی سەرەکی IDG جیاکراوەتەوە.',
         status: 'external',
         badge: 'منالپلاتفۆرمی سەربەخۆ',
-        externalUrl: 'https://zana.idggov.tech',
+        externalUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
+        link: 'https://new-vs-zana.zana-platform.workers.dev/',
         external: true,
         ctaType: 'external',
         audience: 'قوتابخانەکان • قوتابیان • مامۆستایان • دایک و باوکان',
+      },
+      aiGateIraq: {
+        title: 'AI Gate Iraq',
+        description: 'دەروازەی زیرەکیی دەستکردی عێراق',
+        link: 'https://www.aigateiraq.com',
       },
       gatewayAI: {
         code: 'IDG-PRD-005',
@@ -663,10 +676,11 @@ export const translations: Record<Language, TranslationData> = {
           ],
           impact: 'کەمکردنەوەی هەڵەی کارگێڕی، خێراکردنی ئامادەکردنی بڕیارە ئاڵۆزەکان بە بەڵگەی سەلمێنراو بە ڕێژەی ٦٥٪.',
           status: 'کارپێکراو و چالاک لەژێر حوکمڕانیی IDG',
-          url: 'https://aigate.iq',
-          link: '/products/aigate',
-          external: false,
-          ctaType: 'internal',
+          url: 'https://www.aigateiraq.com',
+          link: 'https://www.aigateiraq.com',
+          external: true,
+          externalUrl: 'https://www.aigateiraq.com',
+          ctaType: 'external',
           mockupType: 'aigate',
         },
         {
@@ -708,12 +722,12 @@ export const translations: Record<Language, TranslationData> = {
             'یەکەم هاوڕێی ژیری خوێندنی کوردی کە فێربوون بۆ هەر قوتابییەک بە شێوەیەکی دادپەروەرانە ڕێکدەخات.',
           status: 'external',
           badge: 'منالپلاتفۆرمی سەربەخۆ',
-          externalUrl: 'https://zana.idggov.tech',
+          externalUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
           external: true,
           ctaType: 'external',
           audience: 'قوتابخانەکان • قوتابیان • مامۆستایان • دایک و باوکان',
-          url: 'https://zana.idggov.tech',
-          link: 'https://zana.idggov.tech',
+          url: 'https://new-vs-zana.zana-platform.workers.dev/',
+          link: 'https://new-vs-zana.zana-platform.workers.dev/',
           mockupType: 'zana',
         },
         {
@@ -1649,7 +1663,7 @@ export const translations: Record<Language, TranslationData> = {
       openExternalPlatform: 'فتح المنصة المستقلة',
       standalonePlatforms: 'المنصات المستقلة',
       schoolsStudentsAudience: 'للمدارس والطلاب',
-      zaNaUrl: 'https://zana.idggov.tech',
+      zaNaUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
       impactIQ: {
         code: 'IDG-PRD-004',
         name: 'ImpactIQ',
@@ -1669,10 +1683,16 @@ export const translations: Record<Language, TranslationData> = {
         description: 'منصة مستقلة بالكامل لمدارس وطلاب — نظام تعليمي K-12 باللغة الكردية، مع المعلمين والمناهج وتتبع التعلّم. هذا المنتج منصة قائمة بذاتها ومنفصلة عن موقع IDG الرئيسي.',
         status: 'external',
         badge: 'منصة مستقلة',
-        externalUrl: 'https://zana.idggov.tech',
+        externalUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
+        link: 'https://new-vs-zana.zana-platform.workers.dev/',
         external: true,
         ctaType: 'external',
         audience: 'المدارس • الطلاب • المعلمون • أولياء الأمور',
+      },
+      aiGateIraq: {
+        title: 'AI Gate Iraq',
+        description: 'بوابة الذكاء الاصطناعي العراقية',
+        link: 'https://www.aigateiraq.com',
       },
       gatewayAI: {
         code: 'IDG-PRD-005',
@@ -1757,10 +1777,11 @@ export const translations: Record<Language, TranslationData> = {
           ],
           impact: 'تقليص الأخطاء الإدارية وتسريع صياغة القرارات المعقدة ببيانات مؤكدة بنسبة ٦٥٪.',
           status: 'قيد التشغيل الفعلي تحت حوكمة IDG',
-          url: 'https://aigate.iq',
-          link: '/ar/products/aigate',
-          external: false,
-          ctaType: 'internal',
+          url: 'https://www.aigateiraq.com',
+          link: 'https://www.aigateiraq.com',
+          external: true,
+          externalUrl: 'https://www.aigateiraq.com',
+          ctaType: 'external',
           mockupType: 'aigate',
         },
         {
@@ -1802,12 +1823,12 @@ export const translations: Record<Language, TranslationData> = {
             'أول رفيق ذكي للتعليم الكردي يضمن تعليماً عادلاً ومكيفاً لكل طالب.',
           status: 'external',
           badge: 'منصة مستقلة',
-          externalUrl: 'https://zana.idggov.tech',
+          externalUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
           external: true,
           ctaType: 'external',
           audience: 'المدارس • الطلاب • المعلمون • أولياء الأمور',
-          url: 'https://zana.idggov.tech',
-          link: 'https://zana.idggov.tech',
+          url: 'https://new-vs-zana.zana-platform.workers.dev/',
+          link: 'https://new-vs-zana.zana-platform.workers.dev/',
           mockupType: 'zana',
         },
         {
@@ -2742,7 +2763,7 @@ export const translations: Record<Language, TranslationData> = {
       openExternalPlatform: 'Open External Platform',
       standalonePlatforms: 'Standalone Platforms',
       schoolsStudentsAudience: 'For Schools & Students',
-      zaNaUrl: 'https://zana.idggov.tech',
+      zaNaUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
       impactIQ: {
         code: 'IDG-PRD-004',
         name: 'ImpactIQ',
@@ -2769,10 +2790,16 @@ export const translations: Record<Language, TranslationData> = {
           'A fully independent platform for schools and students — a Kurdish K-12 learning system with teachers, curricula, and progress tracking. This product is a standalone platform completely separated from the main IDG corporate website.',
         status: 'external',
         badge: 'Standalone Platform',
-        externalUrl: 'https://zana.idggov.tech',
+        externalUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
+        link: 'https://new-vs-zana.zana-platform.workers.dev/',
         external: true,
         ctaType: 'external',
         audience: 'Schools • Students • Teachers • Parents',
+      },
+      aiGateIraq: {
+        title: 'AI Gate Iraq',
+        description: 'Sovereign AI Gateway of Iraq',
+        link: 'https://www.aigateiraq.com',
       },
       gatewayAI: {
         code: 'IDG-PRD-005',
@@ -2857,10 +2884,11 @@ export const translations: Record<Language, TranslationData> = {
           ],
           impact: 'Mitigates administrative error and accelerates high-stakes decisions through empirically grounded evidence by 65%.',
           status: 'Active & Governed by IDG',
-          url: 'https://aigate.iq',
-          link: '/en/products/aigate',
-          external: false,
-          ctaType: 'internal',
+          url: 'https://www.aigateiraq.com',
+          link: 'https://www.aigateiraq.com',
+          external: true,
+          externalUrl: 'https://www.aigateiraq.com',
+          ctaType: 'external',
           mockupType: 'aigate',
         },
         {
@@ -2902,12 +2930,12 @@ export const translations: Record<Language, TranslationData> = {
             'The first Kurdish AI learning companion delivering fair, adaptive education for every student.',
           status: 'external',
           badge: 'Standalone Platform',
-          externalUrl: 'https://zana.idggov.tech',
+          externalUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
           external: true,
           ctaType: 'external',
           audience: 'Schools • Students • Teachers • Parents',
-          url: 'https://zana.idggov.tech',
-          link: 'https://zana.idggov.tech',
+          url: 'https://new-vs-zana.zana-platform.workers.dev/',
+          link: 'https://new-vs-zana.zana-platform.workers.dev/',
           mockupType: 'zana',
         },
         {

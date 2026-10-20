@@ -281,3 +281,10 @@ export function getLinkLabel(link: GraphLink, locale: Locale): string {
   if (locale === 'ar') return link.arLabel;
   return link.label;
 }
+
+export const SOVEREIGN_ECOSYSTEM_LINKS = {
+  zanaAcademy: 'https://new-vs-zana.zana-platform.workers.dev/',
+  aiGateIraq: 'https://www.aigateiraq.com',
+  economicKnowledgeGraph: '/products/economic-knowledge-graph',
+};
+

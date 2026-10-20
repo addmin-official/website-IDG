@@ -20,3 +20,9 @@ export interface GraphLink {
 }
 
 export type Locale = 'ku' | 'ar' | 'en';
+
+export interface SovereignEcosystemLinks {
+  zanaAcademy: string;
+  aiGateIraq: string;
+  economicKnowledgeGraph: string;
+}
