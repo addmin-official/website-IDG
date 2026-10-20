@@ -98,8 +98,31 @@
 }
 
 .grecaptcha-badge {
-  bottom: 20px !important;
-  right: 20px !important;
-  z-index: 50;
+  width: 70px !important;
+  height: 60px !important;
+  overflow: hidden !important;
+  transition: width 0.3s ease, transform 0.3s ease !important;
+  transform: scale(0.85) !important;
+  transform-origin: bottom right !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 4px !important;
+  z-index: 50 !important;
+}
+
+.grecaptcha-badge:hover {
+  width: 256px !important;
+  transform: scale(0.95) !important;
+}
+
+/* Adjust for RTL layout to keep it on the bottom left or right safely */
+[dir="rtl"] .grecaptcha-badge {
+  transform-origin: bottom left !important;
+  right: auto !important;
+  left: 24px !important;
+}
+[dir="rtl"] .grecaptcha-badge:hover {
+  transform: scale(0.95) !important;
 }
 
