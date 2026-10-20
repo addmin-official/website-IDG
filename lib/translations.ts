@@ -60,6 +60,9 @@ export interface TranslationData {
     visitWebsiteBtn: string;
     governanceNote: string;
     cardInspectPrompt: string;
+    openExternalPlatform: string;
+    standalonePlatforms: string;
+    schoolsStudentsAudience: string;
     zaNaUrl?: string;
     modalLabels: {
       overview: string;
@@ -93,7 +96,41 @@ export interface TranslationData {
       status: string;
       url: string;
       mockupType: 'aigate' | 'zana' | 'greenbelt' | 'nsw';
+      code?: string;
+      name?: string;
+      tagline?: string;
+      badge?: string;
+      features?: string[];
+      link?: string;
+      external?: boolean;
+      ctaType?: 'internal' | 'external';
+      externalUrl?: string;
+      audience?: string;
     }>;
+    impactIQ?: {
+      code: string;
+      name: string;
+      tagline: string;
+      description: string;
+      status: string;
+      badge: string;
+      features: string[];
+      link: string;
+      external: boolean;
+      ctaType: string;
+    };
+    zanaAcademy?: {
+      code: string;
+      name: string;
+      tagline: string;
+      description: string;
+      status: string;
+      badge: string;
+      externalUrl: string;
+      external: boolean;
+      ctaType: string;
+      audience: string;
+    };
     nsw: {
       badge: string;
       fullTitle: string;
@@ -485,7 +522,34 @@ export const translations: Record<Language, TranslationData> = {
       subheading:
         'دەروازەی دیجیتاڵیی عێراق (IDG) کۆمپانیای دایکی هەمیشەیی و براندی سەرەکییە. بەرهەمەکان سامانی پۆرتفۆلیۆن کە لەلایەن IDG حوکمڕانی دەکرێن، بەڵام ناسنامەی کارپێکردنی تایبەت بە خۆیان هەیە.',
       visitWebsiteBtn: 'سەردانی وێبسایت ➔',
-      zaNaUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
+      openExternalPlatform: 'کردنەوەی پلاتفۆرمی سەربەخۆ',
+      standalonePlatforms: 'پلاتفۆرمە سەربەخۆکان',
+      schoolsStudentsAudience: 'بۆ قوتابخانە و قوتابیان',
+      zaNaUrl: 'https://zana.idggov.tech',
+      impactIQ: {
+        code: 'IDG-PRD-004',
+        name: 'ImpactIQ',
+        tagline: 'پێوانەکردنی سەروەرانەی کاریگەریی نیشتمانی',
+        description: 'ژێرخانێکی سەروەرانەی شیکاری و پێوانەکردنی کاریگەری (MEAL Engine) بە مۆدێلی ژیریی دەستکردی نیشتمانی، کە بە گەرەنتی مانەوەی ١٠٠٪ی داتا لە ناوخۆی وڵات، بڕیاردان لە پێشبینی نادڵنیاوە دەگۆڕێت بۆ زانستی بەڵگەنەویستی.',
+        status: 'active',
+        badge: 'Strategic Initiative',
+        features: ['AI Predictive Impact Scoring', 'Immutable Audit Trails', '100% Sovereign Hosting', 'Sovereign NLP Reporting'],
+        link: '/products/impactiq',
+        external: false,
+        ctaType: 'internal',
+      },
+      zanaAcademy: {
+        code: 'IDG-PRD-002',
+        name: 'ZaNa Academy',
+        tagline: 'پلاتفۆرمی سەربەخۆی فێرکردنی K-12',
+        description: 'پلاتفۆرمێکی سەربەخۆ و تەواو جیاواز بۆ قوتابخانە و قوتابیان — سیستەمی فێرکردنی K-12 بە زمانی کوردی، لەگەڵ مامۆستایان، پڕۆگرامەکان، و ئەنجامدانی فێربوون. ئەم بەرهەمە پلاتفۆرمێکی سەر بە خۆیەتی و لە ماڵپەڕی سەرەکی IDG جیاکراوەتەوە.',
+        status: 'external',
+        badge: 'منالپلاتفۆرمی سەربەخۆ',
+        externalUrl: 'https://zana.idggov.tech',
+        external: true,
+        ctaType: 'external',
+        audience: 'قوتابخانەکان • قوتابیان • مامۆستایان • دایک و باوکان',
+      },
       governanceNote:
         'سەرنج: هەر بەرهەمێک خاوەنی کەسایەتیی بازاڕیی خۆیەتی، بەڵام خاوەندارێتیی داتا، ئاسایش و ئاراستەی ستراتیژی ١٠٠٪ لەژێر حوکمڕانیی سەروەریی IDG دایە.',
       cardInspectPrompt: 'کلیک بکە بۆ بینینی دۆسیەی تەلارسازی و مۆک-ئەپ',
@@ -509,8 +573,11 @@ export const translations: Record<Language, TranslationData> = {
         {
           id: 'aigate',
           numBadge: 'بەرهەمی ٠٠١',
+          code: 'IDG-PRD-001',
+          name: 'AI Gate Iraq',
           title: 'AI Gate Iraq',
           subtitle: 'دەروازەی زیرەکیی دەستکردی عێراق',
+          tagline: 'دەروازەی زیرەکیی دەستکردی عێراق',
           problem: 'پارچەپارچەبوونی بڕیاردانی کارگێڕی و نەبوونی سیستەمی شیکاریی سەلمێنراو لە دامەزراوەکاندا.',
           owner: 'دەستەی شیکاری و بڕیاردانی بەڵگەمەند (IDG Analytics Directorate)',
           description:
@@ -539,18 +606,24 @@ export const translations: Record<Language, TranslationData> = {
           impact: 'کەمکردنەوەی هەڵەی کارگێڕی، خێراکردنی ئامادەکردنی بڕیارە ئاڵۆزەکان بە بەڵگەی سەلمێنراو بە ڕێژەی ٦٥٪.',
           status: 'کارپێکراو و چالاک لەژێر حوکمڕانیی IDG',
           url: 'https://aigate.iq',
+          link: '/products/aigate',
+          external: false,
+          ctaType: 'internal',
           mockupType: 'aigate',
         },
         {
           id: 'zana',
           numBadge: 'بەرهەمی ٠٠٢',
+          code: 'IDG-PRD-002',
+          name: 'ZaNa Academy',
           title: 'ZaNa Academy',
-          subtitle: 'ئەکادیمیای زانا',
+          subtitle: 'پلاتفۆرمی سەربەخۆی فێرکردنی K-12',
+          tagline: 'پلاتفۆرمی سەربەخۆی فێرکردنی K-12',
           problem:
             'قوتابی زۆر جار پرسیار ناکات چونکە شەرم دەکات لە بەرامبەر هاوپۆلەکانی. دایک و باوک ناتوانن یارمەتی بدەن لە وانەکاندا. مامۆستا ناتوانێت چاودێری هەر قوتابییەک بکات بە جیاوازی. پرسیارەکان بێ وەڵام دەمێننەوە.',
           owner: 'IDG Human Capital Division',
           description:
-            'پلاتفۆرمی فێربوونی زیرەک بۆ خوێندنی کوردی — فێربوون بۆ هەر قوتابییەک بە شێوەیەکی دادپەروەرانە، پارێزراو و گونجاو.',
+            'پلاتفۆرمێکی سەربەخۆ و تەواو جیاواز بۆ قوتابخانە و قوتابیان — سیستەمی فێرکردنی K-12 بە زمانی کوردی، لەگەڵ مامۆستایان، پڕۆگرامەکان، و ئەنجامدانی فێربوون. ئەم بەرهەمە پلاتفۆرمێکی سەر بە خۆیەتی و لە ماڵپەڕی سەرەکی IDG جیاکراوەتەوە.',
           detailedDescription:
             'پلاتفۆرمی فێربوونی زیرەک و مامۆستای ژیریی دەستکرد کە بۆ قوتابیانی کوردی دروست کراوە. کتێبی فەرمی بە کوردیی سۆرانی دەخوێنێتەوە، وەڵامی پرسیارەکان دەداتەوە لە کتێبی فەرمی، ڕاپۆرتی دایک و باوک ئامادە دەکات، و ئاستی فێربوون بەپێی هەر قوتابی گونجاو دەکات.',
           keyFeatures: [
@@ -575,15 +648,24 @@ export const translations: Record<Language, TranslationData> = {
           ],
           impact:
             'یەکەم هاوڕێی ژیری خوێندنی کوردی کە فێربوون بۆ هەر قوتابییەک بە شێوەیەکی دادپەروەرانە ڕێکدەخات.',
-          status: 'قۆناغی کارپێکردن و فێربوونی کارا',
-          url: 'https://new-vs-zana.zana-platform.workers.dev/',
+          status: 'external',
+          badge: 'منالپلاتفۆرمی سەربەخۆ',
+          externalUrl: 'https://zana.idggov.tech',
+          external: true,
+          ctaType: 'external',
+          audience: 'قوتابخانەکان • قوتابیان • مامۆستایان • دایک و باوکان',
+          url: 'https://zana.idggov.tech',
+          link: 'https://zana.idggov.tech',
           mockupType: 'zana',
         },
         {
           id: 'greenbelt',
           numBadge: 'بەرهەمی ٠٠٣',
+          code: 'IDG-PRD-003',
+          name: 'Green Belt',
           title: 'Green Belt',
           subtitle: 'پشتێنی سەوز',
+          tagline: 'پشتێنی سەوز',
           problem: 'بەفیڕۆچوونی زۆری پاشماوەی خۆراک، کەمیی داتای چاودێریی ژینگەیی و نەبوونی ژێرخانی ئابووری بازنەیی.',
           owner: 'کۆنسۆڵخانەی ژینگە و تەلارسازیی بازنەیی (IDG Circular Economy Core)',
           description:
@@ -612,7 +694,57 @@ export const translations: Record<Language, TranslationData> = {
           impact: 'گۆڕینی هەزاران تەن لە پاشماوە بۆ سەرچاوەی بەسوود، چاندنی زیاتر لە ١٢٠،٠٠٠ درەخت و تۆمارکردنی داتای سەوزی نیشتمانی.',
           status: 'جێبەجێکردنی مەیدانیی بەردەوام',
           url: 'https://greenbelt.iq',
+          link: '/products/greenbelt',
+          external: false,
+          ctaType: 'internal',
           mockupType: 'greenbelt',
+        },
+        {
+          id: 'impactiq',
+          numBadge: 'بەرهەمی ٠٠٤',
+          code: 'IDG-PRD-004',
+          name: 'ImpactIQ',
+          title: 'ImpactIQ',
+          subtitle: 'پێوانەکردنی سەروەرانەی کاریگەریی نیشتمانی',
+          tagline: 'پێوانەکردنی سەروەرانەی کاریگەریی نیشتمانی',
+          problem: 'نەبوونی پێوانەکردنی زانستی بۆ کاریگەریی پڕۆژە نیشتمانییەکان، پشت بەستن بە هەڵسەنگاندنی نادڵنیا و نەبوونی شەفافیەتی لێپرسینەوە.',
+          owner: 'دەستەی سەروەریی شیکاری و پێوانەکردنی کاریگەری (IDG MEAL Directorate)',
+          description:
+            'ژێرخانێکی سەروەرانەی شیکاری و پێوانەکردنی کاریگەری (MEAL Engine) بە مۆدێلی ژیریی دەستکردی نیشتمانی، کە بە گەرەنتی مانەوەی ١٠٠٪ی داتا لە ناوخۆی وڵات، بڕیاردان لە پێشبینی نادڵنیاوە دەگۆڕێت بۆ زانستی بەڵگەنەویستی.',
+          detailedDescription:
+            'پلاتفۆرمی ImpactIQ ژێرخانێکی سەروەرانەی شیکاری و هەڵسەنگاندنی بەردەوامە (Monitoring, Evaluation, Accountability, and Learning - MEAL Engine) کە بە مۆدێلی ژیریی دەستکردی نیشتمانی کاردەکات. بە گەرەنتی مانەوەی ١٠٠٪ی داتا لە ناوخۆی وڵات لەژێر ستانداردی ISO 27001، هەموو داتا و پڕۆسەی بڕیاردانی کارگێڕی دەگۆڕێت بۆ زانستێکی بەڵگەنەویست کە وردبینی و شەفافیەتی تەواوی هەیە.',
+          features: [
+            'AI Predictive Impact Scoring',
+            'Immutable Audit Trails',
+            '100% Sovereign Hosting',
+            'Sovereign NLP Reporting',
+          ],
+          keyFeatures: [
+            'AI Predictive Impact Scoring — خەمڵاندنی پێشبینیکراوی کاریگەریی پڕۆژەکان بە ژیریی دەستکرد',
+            'Immutable Audit Trails — تۆماری وردبینیی نەگۆڕ و بەڵگەمەند بە تەکنەلۆژیای Cryptographic Hash',
+            '100% Sovereign Hosting — میوانداریکردنی سەروەرانەی تەواوی داتاکان لە ناوخۆی عێراق',
+            'Sovereign NLP Reporting — ڕاپۆرتسازیی پێشکەوتووی خۆکار بە زمانەکانی کوردی و عەرەبی',
+          ],
+          targetAudience: [
+            'وەزارەتەکان و دەستە باڵاکانی سەرپەرشتیاری پڕۆژە نیشتمانییەکان',
+            'ڕێکخراوە نێودەوڵەتییەکان و ئاژانسەکانی گەشەپێدان',
+            'دامەزراوە داراییەکان و سندووقەکانی وەبەرهێنانی سەروەری',
+          ],
+          technologies: [
+            'Sovereign Fine-Tuned NLP Models',
+            'PostgreSQL & TimescaleDB',
+            'Cryptographic Hash Ledger',
+            'FastAPI & Next.js 15 App Router',
+            'Air-Gapped Sovereign Infrastructure',
+          ],
+          impact: 'گۆڕینی بڕیاردان لە پێشبینی نادیارەوە بۆ شیکاریی بەڵگەنەویست بە گەرەنتی مانەوەی ١٠٠٪ی داتا لە عێراق.',
+          status: 'active',
+          badge: 'Strategic Initiative',
+          link: '/products/impactiq',
+          external: false,
+          ctaType: 'internal',
+          url: '/products/impactiq',
+          mockupType: 'aigate',
         },
       ],
       nsw: {
@@ -1430,7 +1562,34 @@ export const translations: Record<Language, TranslationData> = {
       subheading:
         'بوابة العراق الرقمية (IDG) هي الشركة الأم الدائمة والعلامة التجارية السيادية. المنتجات هي أصول المحفظة المحكومة من قبل IDG وتتمتع بهوية تشغيلية مستقلة في السوق.',
       visitWebsiteBtn: 'زيارة الموقع ➔',
-      zaNaUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
+      openExternalPlatform: 'فتح المنصة المستقلة',
+      standalonePlatforms: 'المنصات المستقلة',
+      schoolsStudentsAudience: 'للمدارس والطلاب',
+      zaNaUrl: 'https://zana.idggov.tech',
+      impactIQ: {
+        code: 'IDG-PRD-004',
+        name: 'ImpactIQ',
+        tagline: 'قياس الأثر الوطني السيادي الحقيقي',
+        description: 'بنية تحتية سيادية لتحليل وقياس الأثر التنموي (MEAL Engine) تعتمد على الذكاء الاصطناعي الوطني، بضمان ١٠٠٪ لبقاء البيانات داخل العراق، لتحويل القرار من التقدير إلى علم الأدلة الرقمية الدقيقة.',
+        status: 'active',
+        badge: 'مبادرة استراتيجية',
+        features: ['التقييم التنبؤي للأثر', 'سجلات التدقيق غير القابلة للتعديل', 'استضافة سيادية ١٠٠٪', 'محرك التقارير السيادي'],
+        link: '/ar/products/impactiq',
+        external: false,
+        ctaType: 'internal',
+      },
+      zanaAcademy: {
+        code: 'IDG-PRD-002',
+        name: 'ZaNa Academy',
+        tagline: 'منصة مستقلة للتعليم K-12',
+        description: 'منصة مستقلة بالكامل لمدارس وطلاب — نظام تعليمي K-12 باللغة الكردية، مع المعلمين والمناهج وتتبع التعلّم. هذا المنتج منصة قائمة بذاتها ومنفصلة عن موقع IDG الرئيسي.',
+        status: 'external',
+        badge: 'منصة مستقلة',
+        externalUrl: 'https://zana.idggov.tech',
+        external: true,
+        ctaType: 'external',
+        audience: 'المدارس • الطلاب • المعلمون • أولياء الأمور',
+      },
       governanceNote:
         'ملاحظة: يتمتع كل منتج بهويته السوقية الخاصة، بينما تبقى ملكية البيانات والأمن والتوجه الاستراتيجي خاضعة بنسبة ١٠٠٪ لحوكمة IDG السيادية.',
       cardInspectPrompt: 'انقر لمعاينة الملف المعماري والمجسم التفاعلي',
@@ -1454,8 +1613,11 @@ export const translations: Record<Language, TranslationData> = {
         {
           id: 'aigate',
           numBadge: 'المنتج ٠٠١',
+          code: 'IDG-PRD-001',
+          name: 'AI Gate Iraq',
           title: 'AI Gate Iraq',
           subtitle: 'بوابة الذكاء الاصطناعي للعراق',
+          tagline: 'بوابة الذكاء الاصطناعي للعراق',
           problem: 'تجزؤ اتخاذ القرار الإداري وغياب منظومة تحليلات مثبتة بالأدلة في المؤسسات.',
           owner: 'مديرية التحليلات واتخاذ القرار بالأدلة (IDG Analytics Directorate)',
           description:
@@ -1484,18 +1646,24 @@ export const translations: Record<Language, TranslationData> = {
           impact: 'تقليص الأخطاء الإدارية وتسريع صياغة القرارات المعقدة ببيانات مؤكدة بنسبة ٦٥٪.',
           status: 'قيد التشغيل الفعلي تحت حوكمة IDG',
           url: 'https://aigate.iq',
+          link: '/ar/products/aigate',
+          external: false,
+          ctaType: 'internal',
           mockupType: 'aigate',
         },
         {
           id: 'zana',
           numBadge: 'المنتج ٠٠٢',
+          code: 'IDG-PRD-002',
+          name: 'ZaNa Academy',
           title: 'ZaNa Academy',
-          subtitle: 'أكاديمية زانا',
+          subtitle: 'منصة مستقلة للتعليم K-12',
+          tagline: 'منصة مستقلة للتعليم K-12',
           problem:
             'غالباً ما يتردد الطالب في طرح الأسئلة بسبب الخجل أمام زملائه. لا يستطيع أولياء الأمور تقديم المساعدة في الدروس. لا يستطيع المعلم متابعة كل طالب بشكل فردي. تبقى التساؤلات دون إجابات دقيقة.',
           owner: 'IDG Human Capital Division',
           description:
-            'منصة تعلم ذكية للمناهج الكردية — تعليم عادل، آمن ومناسب لكل طالب بشكل فردي.',
+            'منصة مستقلة بالكامل لمدارس وطلاب — نظام تعليمي K-12 باللغة الكردية، مع المعلمين والمناهج وتتبع التعلّم. هذا المنتج منصة قائمة بذاتها ومنفصلة عن موقع IDG الرئيسي.',
           detailedDescription:
             'منصة تعلم ذكية ومعلم معزز بالذكاء الاصطناعي موجه لطلاب المدارس الكردية. تقرأ المناهج والكتب المعتمدة بالكردية السورانية، وتجيب عن الأسئلة بدقة من المصدر الرسمي، وتُعد تقارير دورية لأولياء الأمور، وتكيف وتيرة ومستوى التعلم لكل طالب.',
           keyFeatures: [
@@ -1520,15 +1688,24 @@ export const translations: Record<Language, TranslationData> = {
           ],
           impact:
             'أول رفيق ذكي للتعليم الكردي يضمن تعليماً عادلاً ومكيفاً لكل طالب.',
-          status: 'قيد التشغيل والتعلم النشط',
-          url: 'https://new-vs-zana.zana-platform.workers.dev/',
+          status: 'external',
+          badge: 'منصة مستقلة',
+          externalUrl: 'https://zana.idggov.tech',
+          external: true,
+          ctaType: 'external',
+          audience: 'المدارس • الطلاب • المعلمون • أولياء الأمور',
+          url: 'https://zana.idggov.tech',
+          link: 'https://zana.idggov.tech',
           mockupType: 'zana',
         },
         {
           id: 'greenbelt',
           numBadge: 'المنتج ٠٠٣',
+          code: 'IDG-PRD-003',
+          name: 'Green Belt',
           title: 'Green Belt',
           subtitle: 'الحزام الأخضر',
+          tagline: 'الحزام الأخضر',
           problem: 'هدر كميات هائلة من مخلفات الطعام وغياب الرصد البيئي الدقيق وضعف بنية الاقتصاد الدائري.',
           owner: 'نواة الاقتصاد الدائري والاستدامة (IDG Circular Economy Core)',
           description:
@@ -1557,7 +1734,57 @@ export const translations: Record<Language, TranslationData> = {
           impact: 'تحويل أطنان النفايات إلى موارد حيوية وتوثيق البيانات البيئية الوطنية وزراعة ١٢٠ ألف شجرة.',
           status: 'تنفيذ ميداني مستمر',
           url: 'https://greenbelt.iq',
+          link: '/ar/products/greenbelt',
+          external: false,
+          ctaType: 'internal',
           mockupType: 'greenbelt',
+        },
+        {
+          id: 'impactiq',
+          numBadge: 'المنتج ٠٠٤',
+          code: 'IDG-PRD-004',
+          name: 'ImpactIQ',
+          title: 'ImpactIQ',
+          subtitle: 'قياس الأثر الوطني السيادي الحقيقي',
+          tagline: 'قياس الأثر الوطني السيادي الحقيقي',
+          problem: 'غياب القياس العلمي الموثق لأثر المشاريع التنموية والاعتماد على التقديرات غير الدقيقة مع ضعف المساءلة.',
+          owner: 'مديرية قياس الأثر والتقييم المؤسسي السيادي (IDG MEAL Directorate)',
+          description:
+            'بنية تحتية سيادية لتحليل وقياس الأثر التنموي (MEAL Engine) تعتمد على الذكاء الاصطناعي الوطني، بضمان ١٠٠٪ لبقاء البيانات داخل العراق، لتحويل القرار من التقدير إلى علم الأدلة الرقمية الدقيقة.',
+          detailedDescription:
+            'منظومة ImpactIQ هي بنية تحتية وطنية متقدمة للرصد والتقييم والمساءلة والتعلم (MEAL Engine) معززة بالذكاء الاصطناعي السيادي. تضمن استضافة محلية كاملة للبيانات داخل جمهورية العراق بنسبة ١٠٠٪ وفق معايير ISO 27001، لتحويل القرارات الإدارية والاستثمارية إلى علم أدلة موثق غير قابل للتشكيك.',
+          features: [
+            'التقييم التنبؤي للأثر',
+            'سجلات التدقيق غير القابلة للتعديل',
+            'استضافة سيادية ١٠٠٪',
+            'محرك التقارير السيادي',
+          ],
+          keyFeatures: [
+            'التقييم التنبؤي للأثر (AI Predictive Impact Scoring)',
+            'سجلات التدقيق غير القابلة للتعديل (Immutable Audit Trails)',
+            'استضافة سيادية ١٠٠٪ داخل العراق (100% Sovereign Hosting)',
+            'محرك التقارير السيادي باللغتين العربية والكردية (Sovereign NLP Reporting)',
+          ],
+          targetAudience: [
+            'الوزارات والهيئات الحكومية المعنية بالمشاريع التنموية الكبرى',
+            'المنظمات الدولية ووكالات التنمية والتمويل الإنمائي',
+            'المؤسسات المالية والصناديق السيادية الاستثمارية',
+          ],
+          technologies: [
+            'Sovereign Fine-Tuned NLP Models',
+            'PostgreSQL & TimescaleDB',
+            'Cryptographic Hash Ledger',
+            'FastAPI & Next.js 15 App Router',
+            'Air-Gapped Sovereign Infrastructure',
+          ],
+          impact: 'تحويل اتخاذ القرار من التقدير إلى علم الأدلة الرقمية الدقيقة مع بقاء البيانات داخل العراق ١٠٠٪.',
+          status: 'active',
+          badge: 'مبادرة استراتيجية',
+          link: '/ar/products/impactiq',
+          external: false,
+          ctaType: 'internal',
+          url: '/ar/products/impactiq',
+          mockupType: 'aigate',
         },
       ],
       nsw: {
@@ -2374,7 +2601,41 @@ export const translations: Record<Language, TranslationData> = {
       subheading:
         'Iraq Digital Gateway (IDG) is the perpetual parent company and sovereign brand. Portfolio products are governed assets held by IDG, each with an independent market and operational identity.',
       visitWebsiteBtn: 'Visit Website ➔',
-      zaNaUrl: 'https://new-vs-zana.zana-platform.workers.dev/',
+      openExternalPlatform: 'Open External Platform',
+      standalonePlatforms: 'Standalone Platforms',
+      schoolsStudentsAudience: 'For Schools & Students',
+      zaNaUrl: 'https://zana.idggov.tech',
+      impactIQ: {
+        code: 'IDG-PRD-004',
+        name: 'ImpactIQ',
+        tagline: 'Measuring True National Impact',
+        description:
+          'A sovereign impact measurement and analytics platform (MEAL Engine) powered by sovereign AI, enforcing 100% in-country data residency under ISO 27001 — transforming administrative oversight into an empirical, auditable science.',
+        status: 'active',
+        badge: 'Strategic Initiative',
+        features: [
+          'AI Predictive Impact Scoring',
+          'Immutable Audit Trails',
+          '100% Sovereign Hosting',
+          'Sovereign NLP Reporting',
+        ],
+        link: '/en/products/impactiq',
+        external: false,
+        ctaType: 'internal',
+      },
+      zanaAcademy: {
+        code: 'IDG-PRD-002',
+        name: 'ZaNa Academy',
+        tagline: 'Standalone K-12 Sovereign Learning Platform',
+        description:
+          'A fully independent platform for schools and students — a Kurdish K-12 learning system with teachers, curricula, and progress tracking. This product is a standalone platform completely separated from the main IDG corporate website.',
+        status: 'external',
+        badge: 'Standalone Platform',
+        externalUrl: 'https://zana.idggov.tech',
+        external: true,
+        ctaType: 'external',
+        audience: 'Schools • Students • Teachers • Parents',
+      },
       governanceNote:
         'Governance Notice: Each product maintains its distinct market identity, while data ownership, security architecture, and strategic direction remain 100% governed by IDG.',
       cardInspectPrompt: 'Click to inspect architectural dossier & system mock-up',
@@ -2398,8 +2659,11 @@ export const translations: Record<Language, TranslationData> = {
         {
           id: 'aigate',
           numBadge: 'Product 001',
+          code: 'IDG-PRD-001',
+          name: 'AI Gate Iraq',
           title: 'AI Gate Iraq',
           subtitle: 'Applied AI & Sovereign Analytics Gateway',
+          tagline: 'Applied AI & Sovereign Analytics Gateway',
           problem: 'Fragmented administrative decision-making and lack of evidence-grounded analytics across institutions.',
           owner: 'Evidence & Analytics Directorate (IDG Central Governance)',
           description:
@@ -2428,18 +2692,24 @@ export const translations: Record<Language, TranslationData> = {
           impact: 'Mitigates administrative error and accelerates high-stakes decisions through empirically grounded evidence by 65%.',
           status: 'Active & Governed by IDG',
           url: 'https://aigate.iq',
+          link: '/en/products/aigate',
+          external: false,
+          ctaType: 'internal',
           mockupType: 'aigate',
         },
         {
           id: 'zana',
           numBadge: 'Product 002',
+          code: 'IDG-PRD-002',
+          name: 'ZaNa Academy',
           title: 'ZaNa Academy',
-          subtitle: 'ZaNa Academy',
+          subtitle: 'Standalone K-12 Sovereign Learning Platform',
+          tagline: 'Standalone K-12 Sovereign Learning Platform',
           problem:
             'Students avoid asking questions out of shyness. Parents cannot help with lessons. Teachers cannot track every student individually. Questions remain unanswered.',
           owner: 'IDG Human Capital Division',
           description:
-            'Smart learning platform for Kurdish students — fair, secure, and adaptive learning for every student.',
+            'A fully independent platform for schools and students — a Kurdish K-12 learning system with teachers, curricula, and progress tracking. This product is a standalone platform completely separated from the main IDG corporate website.',
           detailedDescription:
             'An intelligent learning platform and AI tutor built for Kurdish students. It reads the official textbook in Kurdish Sorani, answers questions from the official source, generates parent reports, and adapts the learning pace to each student.',
           keyFeatures: [
@@ -2464,15 +2734,24 @@ export const translations: Record<Language, TranslationData> = {
           ],
           impact:
             'The first Kurdish AI learning companion delivering fair, adaptive education for every student.',
-          status: 'Active Learning & Deployment',
-          url: 'https://new-vs-zana.zana-platform.workers.dev/',
+          status: 'external',
+          badge: 'Standalone Platform',
+          externalUrl: 'https://zana.idggov.tech',
+          external: true,
+          ctaType: 'external',
+          audience: 'Schools • Students • Teachers • Parents',
+          url: 'https://zana.idggov.tech',
+          link: 'https://zana.idggov.tech',
           mockupType: 'zana',
         },
         {
           id: 'greenbelt',
           numBadge: 'Product 003',
+          code: 'IDG-PRD-003',
+          name: 'Green Belt',
           title: 'Green Belt',
           subtitle: 'Smart Circular Economy & Eco-Sovereignty',
+          tagline: 'Smart Circular Economy & Eco-Sovereignty',
           problem: 'High municipal organic waste volume, insufficient environmental monitoring data, and lack of circular economy infrastructure.',
           owner: 'Circular Economy & Environmental Systems Core (IDG Sustainability Unit)',
           description:
@@ -2501,7 +2780,57 @@ export const translations: Record<Language, TranslationData> = {
           impact: 'Diverts tons of organic waste into sovereign compost resources with auditable environmental data and 120,000+ trees tracked.',
           status: 'Active Field Operations',
           url: 'https://greenbelt.iq',
+          link: '/en/products/greenbelt',
+          external: false,
+          ctaType: 'internal',
           mockupType: 'greenbelt',
+        },
+        {
+          id: 'impactiq',
+          numBadge: 'Product 004',
+          code: 'IDG-PRD-004',
+          name: 'ImpactIQ',
+          title: 'ImpactIQ',
+          subtitle: 'Measuring True National Impact',
+          tagline: 'Measuring True National Impact',
+          problem: 'Absence of empirical impact measurement for national projects, reliance on imprecise estimates, and lack of auditable accountability.',
+          owner: 'Sovereign MEAL & Institutional Evaluation Directorate (IDG Core)',
+          description:
+            'A sovereign impact measurement and analytics platform (MEAL Engine) powered by sovereign AI, enforcing 100% in-country data residency under ISO 27001 — transforming administrative oversight into an empirical, auditable science.',
+          detailedDescription:
+            'ImpactIQ is a national sovereign Monitoring, Evaluation, Accountability, and Learning platform (MEAL Engine) powered by sovereign intelligence. It mandates 100% in-country data residency under ISO 27001 guidelines to transform public sector oversight, municipal resource allocation, and development projects into an empirical, auditable science.',
+          features: [
+            'AI Predictive Impact Scoring',
+            'Immutable Audit Trails',
+            '100% Sovereign Hosting',
+            'Sovereign NLP Reporting',
+          ],
+          keyFeatures: [
+            'AI Predictive Impact Scoring — Empirical forecasting of project outcomes and socio-economic ROI',
+            'Immutable Audit Trails — Cryptographic ledger ensuring tamper-proof compliance evidence',
+            '100% Sovereign Hosting — Air-gapped on-premise execution strictly inside Iraqi borders',
+            'Sovereign NLP Reporting — Multilingual Kurdish, Arabic, and English automated institutional reports',
+          ],
+          targetAudience: [
+            'Government ministries and high commissions overseeing major development programs',
+            'International development partners and multilateral development agencies',
+            'Sovereign wealth funds and state investment entities',
+          ],
+          technologies: [
+            'Sovereign Fine-Tuned NLP Models',
+            'PostgreSQL & TimescaleDB',
+            'Cryptographic Hash Ledger',
+            'FastAPI & Next.js 15 App Router',
+            'Air-Gapped Sovereign Infrastructure',
+          ],
+          impact: 'Transforms institutional decision-making into an auditable science with 100% in-country sovereign data residency.',
+          status: 'active',
+          badge: 'Strategic Initiative',
+          link: '/en/products/impactiq',
+          external: false,
+          ctaType: 'internal',
+          url: '/en/products/impactiq',
+          mockupType: 'aigate',
         },
       ],
       nsw: {
