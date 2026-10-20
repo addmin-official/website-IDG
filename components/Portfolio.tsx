@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { TranslationData } from '@/lib/translations';
 import { Maximize2, Search, X, ExternalLink, ArrowRight, Users, Sparkles } from 'lucide-react';
 import { HelpIcon } from '@/components/ui/Tooltip';
@@ -22,6 +23,7 @@ export default function Portfolio({
   onSelectProduct,
   onSelectNSW,
 }: PortfolioProps) {
+  const router = useRouter();
   const { lang } = useLocale();
   const p = t.portfolio;
   const [searchQuery, setSearchQuery] = useState('');
@@ -255,6 +257,8 @@ export default function Portfolio({
                       onClick={() => {
                         if (isExternal) {
                           window.open(prod.externalUrl || prod.url, '_blank', 'noopener,noreferrer');
+                        } else if (isGatewayAI) {
+                          router.push(`/${lang}/products/economic-knowledge-graph`);
                         } else {
                           onSelectProduct(prod.id);
                         }
@@ -264,6 +268,8 @@ export default function Portfolio({
                           e.preventDefault();
                           if (isExternal) {
                             window.open(prod.externalUrl || prod.url, '_blank', 'noopener,noreferrer');
+                          } else if (isGatewayAI) {
+                            router.push(`/${lang}/products/economic-knowledge-graph`);
                           } else {
                             onSelectProduct(prod.id);
                           }
@@ -344,17 +350,29 @@ export default function Portfolio({
                         </p>
 
                         {/* Technical Dossier & Mock-up Inspect Prompt */}
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onSelectProduct(prod.id);
-                          }}
-                          className="inline-flex items-center gap-1.5 text-xs text-[#60A5FA] hover:text-[#93C5FD] font-medium transition-colors cursor-pointer"
-                        >
-                          <Maximize2 className="w-3.5 h-3.5" />
-                          <span>{p.cardInspectPrompt}</span>
-                        </button>
+                        {isGatewayAI ? (
+                          <Link
+                            href={`/${lang}/products/economic-knowledge-graph`}
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 font-medium transition-colors cursor-pointer"
+                            id={`btn-inspect-${prod.id}`}
+                          >
+                            <Maximize2 className="w-3.5 h-3.5" />
+                            <span>{p.cardInspectPrompt}</span>
+                          </Link>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onSelectProduct(prod.id);
+                            }}
+                            className="inline-flex items-center gap-1.5 text-xs text-[#60A5FA] hover:text-[#93C5FD] font-medium transition-colors cursor-pointer"
+                          >
+                            <Maximize2 className="w-3.5 h-3.5" />
+                            <span>{p.cardInspectPrompt}</span>
+                          </button>
+                        )}
                       </div>
 
                       {/* CTA Button */}

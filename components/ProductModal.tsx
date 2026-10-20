@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { TranslationData, Language } from '@/lib/translations';
 import EvidenceBadge from '@/components/EvidenceBadge';
@@ -291,16 +292,47 @@ export default function ProductModal({
         </div>
 
         {/* Interactive System Mock-Up */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-              <Activity className="w-3.5 h-3.5 text-blue-600" />
-              <span>{labels.systemMockup}</span>
-            </span>
-            <span className="text-[11px] font-mono text-slate-400">IDG-PORTAL-SYS</span>
+        {product.id === 'gatewayai' ? (
+          <div className="mb-6 p-4 rounded-xl bg-[#060D1A] border border-emerald-500/40 text-white">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                <span>{labels.systemMockup}</span>
+              </span>
+              <span className="text-[11px] font-mono text-emerald-400/80">IDG-INT-001</span>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-300 mb-3 leading-relaxed">
+              {lang === 'ku'
+                ? 'تۆڕی زانیاری ئابووری: نیگارکێشانی کارلێککاری پەیوەندی نێوان بەندەرەکان، دەروازە سنورییەکان، کاڵا ستراتیژییەکان و بڕیارە مەنەفیستیەکان.'
+                : lang === 'ar'
+                ? 'الشبكة المعرفية الاقتصادية: مخطط تفاعلي يربط الموانئ والمنافذ الجمركية وحركة السلع والسياسات الاتحادية.'
+                : 'Economic Knowledge Graph: Interactive network mapping ports, customs terminals, strategic commodities, and federal trade regulations.'}
+            </p>
+            <Link
+              href={`/${lang}/products/economic-knowledge-graph`}
+              className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2 px-4 rounded-lg text-xs transition"
+            >
+              <span>
+                {lang === 'ku'
+                  ? 'کردنەوەی تەلارسازی کارلێککار و تۆڕی زانیاری ➔'
+                  : lang === 'ar'
+                  ? 'استعراض المخطط التفاعلي والشبكة المعرفية ➔'
+                  : 'Open Interactive Knowledge Graph & Architecture ➔'}
+              </span>
+            </Link>
           </div>
-          <ProductMockups type={product.mockupType || 'aigate'} lang={lang} />
-        </div>
+        ) : (
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <Activity className="w-3.5 h-3.5 text-blue-600" />
+                <span>{labels.systemMockup}</span>
+              </span>
+              <span className="text-[11px] font-mono text-slate-400">IDG-PORTAL-SYS</span>
+            </div>
+            <ProductMockups type={product.mockupType || 'aigate'} lang={lang} />
+          </div>
+        )}
 
         {/* Detailed Operational Description */}
         {(product.detailedDescription || product.description) && (
