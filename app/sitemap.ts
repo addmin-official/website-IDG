@@ -1,18 +1,20 @@
 import type { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://idggov.tech';
+const BASE_URL = 'https://www.idggov.tech';
 const LOCALES = ['ku', 'ar', 'en'] as const;
 
 interface RouteConfig {
   path: string;
   priority: number;
   changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  lastModified?: Date;
 }
 
 const ROUTE_CONFIGS: RouteConfig[] = [
   { path: '', priority: 1.0, changeFrequency: 'weekly' },
   { path: '/services', priority: 0.9, changeFrequency: 'weekly' },
-  { path: '/portfolio', priority: 0.9, changeFrequency: 'weekly' },
+  { path: '/products/impactiq', priority: 0.9, changeFrequency: 'weekly', lastModified: new Date() },
+  { path: '/portfolio', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/team', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/governance', priority: 0.8, changeFrequency: 'monthly' },
@@ -40,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const route of ROUTE_CONFIGS) {
       entries.push({
         url: `${BASE_URL}/${locale}${route.path}`,
-        lastModified: new Date(),
+        lastModified: route.lastModified || new Date(),
         changeFrequency: route.changeFrequency,
         priority: route.priority,
         alternates: {
@@ -48,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             ku: `${BASE_URL}/ku${route.path}`,
             ar: `${BASE_URL}/ar${route.path}`,
             en: `${BASE_URL}/en${route.path}`,
+            'x-default': `${BASE_URL}/ku${route.path}`,
           },
         },
       });
@@ -56,4 +59,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return entries;
 }
-

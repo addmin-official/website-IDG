@@ -1,8 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { TranslationData } from '@/lib/translations';
-import { Shield, ChevronDown, CheckCircle2, ArrowLeft, ArrowRight } from 'lucide-react';
+import { useLocale } from '@/lib/locale-context';
+import { Shield, ChevronDown, CheckCircle2, ArrowLeft, ArrowRight, X } from 'lucide-react';
 
 interface HeroProps {
   t: TranslationData;
@@ -10,8 +12,78 @@ interface HeroProps {
 }
 
 export default function Hero({ t, isRtl }: HeroProps) {
+  const { lang } = useLocale();
+  const [isDismissed, setIsDismissed] = useState(true);
+
+  useEffect(() => {
+    try {
+      const dismissed = localStorage.getItem('impactiq-banner-dismissed');
+      if (dismissed !== 'true') {
+        setIsDismissed(false);
+      }
+    } catch {
+      setIsDismissed(false);
+    }
+  }, []);
+
+  const handleDismiss = () => {
+    try {
+      localStorage.setItem('impactiq-banner-dismissed', 'true');
+    } catch {
+      // safe fallback
+    }
+    setIsDismissed(true);
+  };
+
+  const bannerTitle = t.home?.impactiqBannerTitle || (
+    lang === 'ku'
+      ? '⭐ نوێ: ImpactIQ لایڤە — پێوانەکردنی سەروەرانەی کاریگەریی نیشتمانی'
+      : lang === 'ar'
+      ? '⭐ جديد: منصة ImpactIQ متاحة الآن — قياس الأثر الوطني السيادي'
+      : '⭐ NEW: ImpactIQ is live — Sovereign National Impact Measurement'
+  );
+
+  const bannerCta = t.home?.impactiqBannerCta || (
+    lang === 'ku' ? 'بینینی بەرهەم' : lang === 'ar' ? 'عرض المنتج' : 'Explore Product'
+  );
+
   return (
-    <section className="relative bg-[#060D1A] text-white pt-10 sm:pt-16 md:pt-20 lg:pt-24 pb-12 sm:pb-16 md:pb-20 overflow-hidden border-b border-[#102447]" id="hero">
+    <>
+      {/* Dismissible ImpactIQ Launch Banner */}
+      {!isDismissed && (
+        <div
+          className="relative bg-sky-500/10 border-b border-sky-500/30 backdrop-blur-sm px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-sky-200 transition-all z-20"
+          id="impactiq-launch-banner"
+          dir={isRtl ? 'rtl' : 'ltr'}
+        >
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 px-2 sm:px-6">
+            <div className="flex-1 flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 text-center sm:text-start">
+              <span className="font-semibold text-white">
+                {bannerTitle}
+              </span>
+              <Link
+                href={`/${lang}/products/impactiq`}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 hover:text-white border border-sky-400/30 font-medium transition-colors text-xs"
+                id="banner-impactiq-cta"
+              >
+                <span>{bannerCta}</span>
+                <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
+              </Link>
+            </div>
+            <button
+              type="button"
+              onClick={handleDismiss}
+              className="p-1 text-slate-400 hover:text-white hover:bg-sky-500/20 rounded-md transition-colors shrink-0 cursor-pointer"
+              aria-label="Dismiss banner"
+              id="banner-impactiq-dismiss"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      <section className="relative bg-[#060D1A] text-white pt-10 sm:pt-16 md:pt-20 lg:pt-24 pb-12 sm:pb-16 md:pb-20 overflow-hidden border-b border-[#102447]" id="hero">
       {/* Subtle Sovereign Mesh Pattern */}
       <div className="absolute inset-0 opacity-[0.07] bg-[radial-gradient(#1D5BD8_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
       
@@ -99,5 +171,6 @@ export default function Hero({ t, isRtl }: HeroProps) {
 
       </div>
     </section>
+    </>
   );
 }

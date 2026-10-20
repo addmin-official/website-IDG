@@ -21,6 +21,10 @@ export interface TranslationData {
     insights: string;
     news: string;
   };
+  home: {
+    impactiqBannerTitle: string;
+    impactiqBannerCta: string;
+  };
   hero: {
     headline: string;
     subhead: string;
@@ -452,6 +456,10 @@ export const translations: Record<Language, TranslationData> = {
       blog: 'بلۆگ',
       insights: 'تێڕوانینەکان',
       news: 'هەواڵەکان',
+    },
+    home: {
+      impactiqBannerTitle: '⭐ نوێ: ImpactIQ لایڤە — پێوانەکردنی سەروەرانەی کاریگەریی نیشتمانی',
+      impactiqBannerCta: 'بینینی بەرهەم',
     },
     hero: {
       headline: 'ئاڵۆزی دەگۆڕین بۆ توانایەکی کارپێکردنی متمانەپێکراو.',
@@ -1493,6 +1501,10 @@ export const translations: Record<Language, TranslationData> = {
       insights: 'الرؤى والتحليلات',
       news: 'الأخبار',
     },
+    home: {
+      impactiqBannerTitle: '⭐ جديد: منصة ImpactIQ متاحة الآن — قياس الأثر الوطني السيادي',
+      impactiqBannerCta: 'عرض المنتج',
+    },
     hero: {
       headline: 'نحوّل التعقيد إلى قدرة تشغيلية موثوقة.',
       subhead:
@@ -2531,6 +2543,10 @@ export const translations: Record<Language, TranslationData> = {
       blog: 'Blog',
       insights: 'Insights',
       news: 'News',
+    },
+    home: {
+      impactiqBannerTitle: '⭐ NEW: ImpactIQ is live — Sovereign National Impact Measurement',
+      impactiqBannerCta: 'Explore Product',
     },
     hero: {
       headline: 'Transforming complexity into reliable operational capability.',
