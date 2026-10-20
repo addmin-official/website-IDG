@@ -89,17 +89,17 @@ export interface TranslationData {
       numBadge: string;
       title: string;
       subtitle: string;
-      problem: string;
-      owner: string;
+      problem?: string;
+      owner?: string;
       description: string;
-      detailedDescription: string;
-      keyFeatures: string[];
-      targetAudience: string[];
-      technologies: string[];
-      impact: string;
+      detailedDescription?: string;
+      keyFeatures?: string[];
+      targetAudience?: string[];
+      technologies?: string[];
+      impact?: string;
       status: string;
-      url: string;
-      mockupType: 'aigate' | 'zana' | 'greenbelt' | 'nsw';
+      url?: string;
+      mockupType?: 'aigate' | 'zana' | 'greenbelt' | 'nsw';
       code?: string;
       name?: string;
       tagline?: string;
@@ -753,6 +753,30 @@ export const translations: Record<Language, TranslationData> = {
           ctaType: 'internal',
           url: '/products/impactiq',
           mockupType: 'aigate',
+        },
+        {
+          code: 'IDG-PRD-005',
+          id: 'gatewayai',
+          name: 'Gateway AI',
+          title: 'Gateway AI',
+          subtitle: 'هۆشمەندی سنوور و گومرک',
+          numBadge: '5️⃣',
+          tagline: 'دەروازەی زیرەکی نیشتمانی — هۆشمەندی سنوور و گومرک',
+          description: 'سیستەمی زیرەکی نیشتمانی بۆ بەڕێوەبردنی سنووری و گومرک، پێکدەنێت لەگەڵ AI Gate Iraq، ڕێگاشاری سنوور، بیرۆکەی دیجیتاڵی نیشتمانی و تەکنەلۆژیای زیرەکی. پاڵپشتی ١٠٠% مانەوەی داتاکان لە ناوخۆی وڵات لە بنەی ISO 27001.',
+          status: 'active',
+          badge: 'پێشەنگای ستراتیژی',
+          features: [
+            'مۆتۆری سکۆرینگی ریسکی AI',
+            'دیدی کۆمپیوتەری و AI شێنزا',
+            'جووتەی دیجیتاڵی سنووری',
+            'دەقی بیرۆکەی نەگۆڕاو (ISO 27001)',
+            'هاوکاری گومرکی فێدراڵی-هلێمی',
+            'تێبینی تێڕانووسی ڕاستەقینە',
+            'پەنجەرەی یەکتا بۆ کاسیری'
+          ],
+          link: '/ku/products/gateway-ai',
+          external: false,
+          ctaType: 'internal'
         },
       ],
       nsw: {
@@ -1797,6 +1821,30 @@ export const translations: Record<Language, TranslationData> = {
           ctaType: 'internal',
           url: '/ar/products/impactiq',
           mockupType: 'aigate',
+        },
+        {
+          code: 'IDG-PRD-005',
+          id: 'gatewayai',
+          name: 'Gateway AI',
+          title: 'Gateway AI',
+          subtitle: 'ذكاء الحدود والجمارك',
+          numBadge: '5️⃣',
+          tagline: 'البوابة الذكية الوطنية — ذكاء الحدود والجمارك',
+          description: 'نظام ذكي وطني لإدارة الحدود والجمارك، يتكامل مع Gateway AI Iraq، والممرات الحدودية، والهوية الرقمية الوطنية، وتقنيات الذكاء الاصطناعي. يضمن 100% إقامة البيانات داخل الحدود الوطنية وفقاً لمعايير ISO 27001.',
+          status: 'active',
+          badge: 'مبادرة استراتيجية',
+          features: [
+            'محرك تقييم المخاطر بالذكاء الاصطناعي',
+            'الرؤية الحاسوبية والذكاء الاصطناعي للأشعة',
+            'التوأم الرقمي للمنافذ الحدودية',
+            'سجل تدقيق غير قابل للتعديل (ISO 27001)',
+            'التوافق الجمركي الفيدرالي-الإقليمي',
+            'المراقبة والتقارير في الوقت الفعلي',
+            'نافذة موحدة للتجار'
+          ],
+          link: '/ar/products/gateway-ai',
+          external: false,
+          ctaType: 'internal'
         },
       ],
       nsw: {
@@ -2847,6 +2895,30 @@ export const translations: Record<Language, TranslationData> = {
           ctaType: 'internal',
           url: '/en/products/impactiq',
           mockupType: 'aigate',
+        },
+        {
+          code: 'IDG-PRD-005',
+          id: 'gatewayai',
+          name: 'Gateway AI',
+          title: 'Gateway AI',
+          subtitle: 'Customs & Border Intelligence',
+          numBadge: '5️⃣',
+          tagline: 'The Sovereign Intelligent Gateway — Customs & Border Intelligence',
+          description: 'National intelligent system for customs and border management, integrated with AI Gate Iraq, border corridors, national digital identity, and advanced AI technologies. Guarantees 100% in-country data residency compliant with ISO 27001 standards.',
+          status: 'active',
+          badge: 'Strategic Initiative',
+          features: [
+            'AI Risk Scoring Engine',
+            'Computer Vision & X-Ray AI',
+            'Border Crossing Digital Twin',
+            'Immutable Audit Ledger (ISO 27001)',
+            'Federal-Regional Customs Alignment',
+            'Real-Time Monitoring & Reporting',
+            'Unified Window for Traders'
+          ],
+          link: '/en/products/gateway-ai',
+          external: false,
+          ctaType: 'internal'
         },
       ],
       nsw: {

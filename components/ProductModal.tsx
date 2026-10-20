@@ -299,106 +299,122 @@ export default function ProductModal({
             </span>
             <span className="text-[11px] font-mono text-slate-400">IDG-PORTAL-SYS</span>
           </div>
-          <ProductMockups type={product.mockupType} lang={lang} />
+          <ProductMockups type={product.mockupType || 'aigate'} lang={lang} />
         </div>
 
         {/* Detailed Operational Description */}
-        <div className="mb-6 p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200">
-          <h3 className="text-sm font-bold text-slate-900 mb-2 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-blue-600" />
-            <span>{labels.detailedDescription}</span>
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-            {product.detailedDescription}
-          </p>
-        </div>
+        {(product.detailedDescription || product.description) && (
+          <div className="mb-6 p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200">
+            <h3 className="text-sm font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <FileText className="w-4 h-4 text-blue-600" />
+              <span>{labels.detailedDescription}</span>
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              {product.detailedDescription || product.description}
+            </p>
+          </div>
+        )}
 
         {/* Key Features & Target Audience Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {/* Key Features */}
-          <div className="p-4 rounded-xl border border-slate-200 bg-white">
-            <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-emerald-600" />
-              <span>{labels.keyFeatures}</span>
-            </h3>
-            <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
-              {product.keyFeatures.map((feat, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span className="leading-snug">{feat}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {(product.keyFeatures || product.features) && (
+            <div className="p-4 rounded-xl border border-slate-200 bg-white">
+              <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-emerald-600" />
+                <span>{labels.keyFeatures}</span>
+              </h3>
+              <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                {(product.keyFeatures || product.features || []).map((feat, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="leading-snug">{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Target Audience */}
-          <div className="p-4 rounded-xl border border-slate-200 bg-white">
-            <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <Users className="w-4 h-4 text-blue-600" />
-              <span>{labels.targetAudience}</span>
-            </h3>
-            <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
-              {product.targetAudience.map((aud, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0 mt-2" />
-                  <span className="leading-snug">{aud}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {product.targetAudience && product.targetAudience.length > 0 && (
+            <div className="p-4 rounded-xl border border-slate-200 bg-white">
+              <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+                <Users className="w-4 h-4 text-blue-600" />
+                <span>{labels.targetAudience}</span>
+              </h3>
+              <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                {product.targetAudience.map((aud, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0 mt-2" />
+                    <span className="leading-snug">{aud}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Technologies Used */}
-        <div className="mb-6 p-4 rounded-xl border border-slate-200 bg-white">
-          <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
-            <Cpu className="w-4 h-4 text-purple-600" />
-            <span>{labels.technologies}</span>
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {product.technologies.map((tech, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg text-xs font-mono font-medium border border-slate-200/80 transition"
-              >
-                {tech}
-              </span>
-            ))}
+        {product.technologies && product.technologies.length > 0 && (
+          <div className="mb-6 p-4 rounded-xl border border-slate-200 bg-white">
+            <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <Cpu className="w-4 h-4 text-purple-600" />
+              <span>{labels.technologies}</span>
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {product.technologies.map((tech, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg text-xs font-mono font-medium border border-slate-200/80 transition"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Problem, Owner, and Impact Cards */}
-        <div className="space-y-3 mb-6">
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm">
-            <span className="font-bold text-slate-900 block mb-1">
-              {labels.provenProblem}:
-            </span>
-            <p className="text-slate-600 leading-relaxed">{product.problem}</p>
-          </div>
+        {(product.problem || product.owner || product.impact) && (
+          <div className="space-y-3 mb-6">
+            {product.problem && (
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+                <span className="font-bold text-slate-900 block mb-1">
+                  {labels.provenProblem}:
+                </span>
+                <p className="text-slate-600 leading-relaxed">{product.problem}</p>
+              </div>
+            )}
 
-          <div className="p-4 rounded-xl bg-blue-50/80 border border-blue-200/80 text-xs sm:text-sm">
-            <span className="font-bold text-blue-900 block mb-1">
-              {labels.accountableOwner}:
-            </span>
-            <p className="text-blue-800 leading-relaxed">{product.owner}</p>
-          </div>
+            {product.owner && (
+              <div className="p-4 rounded-xl bg-blue-50/80 border border-blue-200/80 text-xs sm:text-sm">
+                <span className="font-bold text-blue-900 block mb-1">
+                  {labels.accountableOwner}:
+                </span>
+                <p className="text-blue-800 leading-relaxed">{product.owner}</p>
+              </div>
+            )}
 
-          <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200/80 text-xs sm:text-sm">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-emerald-900">
-                {labels.provenImpact}:
-              </span>
-              <EvidenceBadge status="verified" lang={lang} className="mt-2" />
-            </div>
-            <p className="text-emerald-800 leading-relaxed font-medium">{product.impact}</p>
+            {product.impact && (
+              <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-200/80 text-xs sm:text-sm">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-bold text-emerald-900">
+                    {labels.provenImpact}:
+                  </span>
+                  <EvidenceBadge status="verified" lang={lang} className="mt-2" />
+                </div>
+                <p className="text-emerald-800 leading-relaxed font-medium">{product.impact}</p>
+              </div>
+            )}
           </div>
-        </div>
+        )}
 
         {/* Actions Footer */}
         <div className="pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
           <a
-            href={product.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={product.link || product.url || '#'}
+            target={product.external ? '_blank' : undefined}
+            rel={product.external ? 'noopener noreferrer' : undefined}
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-5 rounded-lg text-xs sm:text-sm transition shadow-sm"
           >
             <span>{labels.visitLiveSite}</span>

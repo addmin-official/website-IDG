@@ -187,6 +187,7 @@ export default function Portfolio({
             {filteredProducts.map((prod) => {
               const isExternal = Boolean(prod.external);
               const isImpactIQ = prod.id === 'impactiq' || prod.code === 'IDG-PRD-004';
+              const isGatewayAI = prod.id === 'gatewayai' || prod.code === 'IDG-PRD-005';
 
               let badgeVariant: BadgeVariant = 'primary';
               if (prod.id === 'zana') {
@@ -195,15 +196,18 @@ export default function Portfolio({
                 badgeVariant = 'emerald';
               } else if (isImpactIQ) {
                 badgeVariant = 'primary';
+              } else if (isGatewayAI) {
+                badgeVariant = 'emerald';
               }
 
-              const productHref = prod.link
-                ? prod.link.startsWith(`/${lang}`)
-                  ? prod.link
-                  : prod.link.startsWith('/')
-                  ? `/${lang}${prod.link}`
-                  : prod.link
-                : prod.url;
+              const productHref =
+                (prod.link
+                  ? prod.link.startsWith(`/${lang}`)
+                    ? prod.link
+                    : prod.link.startsWith('/')
+                    ? `/${lang}${prod.link}`
+                    : prod.link
+                  : prod.url) || '#';
 
               return (
                 <div key={prod.id} className="w-full">
@@ -240,6 +244,8 @@ export default function Portfolio({
                         ? 'border-dashed border-2 border-amber-500/40 hover:border-amber-400/80 hover:bg-[#0B172E]/90'
                         : isImpactIQ
                         ? 'border border-sky-500/40 ring-1 ring-sky-500/30 shadow-lg shadow-sky-500/10 hover:border-sky-400 hover:ring-sky-500/50'
+                        : isGatewayAI
+                        ? 'border border-emerald-500/40 ring-1 ring-emerald-500/30 shadow-lg shadow-emerald-500/10 hover:border-emerald-400 hover:ring-emerald-500/50'
                         : 'border border-[#102447] hover:border-[#1D5BD8] hover:shadow-[0_0_0_1px_#1D5BD8]/20'
                     }`}
                     id={prod.id}
@@ -268,11 +274,22 @@ export default function Portfolio({
                             </span>
                           </>
                         )}
+                        {isGatewayAI && (
+                          <>
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-400">
+                              <Sparkles className="w-3 h-3 text-emerald-400" />
+                              <span>⭐ NEW</span>
+                            </span>
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300">
+                              {prod.badge || 'Strategic Initiative'}
+                            </span>
+                          </>
+                        )}
                       </div>
 
                       {/* Title and Subtitle */}
                       <h3 className={`text-lg sm:text-xl md:text-2xl font-bold text-slate-100 mb-1 transition-colors ${
-                        isExternal ? 'group-hover:text-amber-400' : 'group-hover:text-[#60A5FA]'
+                        isExternal ? 'group-hover:text-amber-400' : isImpactIQ ? 'group-hover:text-sky-400' : isGatewayAI ? 'group-hover:text-emerald-400' : 'group-hover:text-[#60A5FA]'
                       }`}>
                         {prod.title}{' '}
                         <span className="block md:inline text-xs md:text-sm font-normal text-slate-400 md:ms-2">
