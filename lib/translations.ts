@@ -135,6 +135,18 @@ export interface TranslationData {
       ctaType: string;
       audience: string;
     };
+    gatewayAI?: {
+      code: string;
+      name: string;
+      tagline: string;
+      description: string;
+      status: string;
+      badge: string;
+      features: string[];
+      link: string;
+      external: boolean;
+      ctaType: string;
+    };
     nsw: {
       badge: string;
       fullTitle: string;
@@ -558,6 +570,24 @@ export const translations: Record<Language, TranslationData> = {
         ctaType: 'external',
         audience: 'قوتابخانەکان • قوتابیان • مامۆستایان • دایک و باوکان',
       },
+      gatewayAI: {
+        code: 'IDG-PRD-005',
+        name: 'Gateway AI',
+        tagline: 'دەروازەی زیرەکی نیشتمانی — هۆشمەندی سنوور و گومرگ',
+        description:
+          'پلاتفۆرمێکی نیشتمانی سەروەرییە بۆ دەروازە سنوورییەکان و گومرگ (CBIP) کە بە مۆدێلی AI Gate Iraq، بینینی کۆمپیوتەری، و لێواری دەروازەکان پاڵپشتی دەکرێت. بە گرێدانی ڕاستەوخۆ لەگەڵ Iraq NSW و دەستەی گشتی گومرگ، خزمەت بە دەسەڵاتدارانی فیدراڵ و هەرێم دەکات لە ڕێگەی دەفتەرێکی تۆماری هاوبەش و نەپچڕاوەوە.',
+        status: 'active',
+        badge: 'پێشەنگای ستراتیژی',
+        features: [
+          'ماتۆڕی خاڵبەندی مەترسی بە ژیری دەستکرد',
+          'بینینی کۆمپیوتەری و ژیری دەستکرد بۆ تیشکی ئێکس',
+          'دوانەی دیجیتاڵی دەروازە سنوورییەکان',
+          'تۆماری دەستکاریپێنەکراو (ISO 27001)',
+        ],
+        link: '/ku/products/gateway-ai',
+        external: false,
+        ctaType: 'internal',
+      },
       governanceNote:
         'سەرنج: هەر بەرهەمێک خاوەنی کەسایەتیی بازاڕیی خۆیەتی، بەڵام خاوەندارێتیی داتا، ئاسایش و ئاراستەی ستراتیژی ١٠٠٪ لەژێر حوکمڕانیی سەروەریی IDG دایە.',
       cardInspectPrompt: 'کلیک بکە بۆ بینینی دۆسیەی تەلارسازی و مۆک-ئەپ',
@@ -759,24 +789,22 @@ export const translations: Record<Language, TranslationData> = {
           id: 'gatewayai',
           name: 'Gateway AI',
           title: 'Gateway AI',
-          subtitle: 'هۆشمەندی سنوور و گومرک',
+          subtitle: 'هۆشمەندی سنوور و گومرگ',
           numBadge: '5️⃣',
-          tagline: 'دەروازەی زیرەکی نیشتمانی — هۆشمەندی سنوور و گومرک',
-          description: 'سیستەمی زیرەکی نیشتمانی بۆ بەڕێوەبردنی سنووری و گومرک، پێکدەنێت لەگەڵ AI Gate Iraq، ڕێگاشاری سنوور، بیرۆکەی دیجیتاڵی نیشتمانی و تەکنەلۆژیای زیرەکی. پاڵپشتی ١٠٠% مانەوەی داتاکان لە ناوخۆی وڵات لە بنەی ISO 27001.',
+          tagline: 'دەروازەی زیرەکی نیشتمانی — هۆشمەندی سنوور و گومرگ',
+          description:
+            'پلاتفۆرمێکی نیشتمانی سەروەرییە بۆ دەروازە سنوورییەکان و گومرگ (CBIP) کە بە مۆدێلی AI Gate Iraq، بینینی کۆمپیوتەری، و لێواری دەروازەکان پاڵپشتی دەکرێت. بە گرێدانی ڕاستەوخۆ لەگەڵ Iraq NSW و دەستەی گشتی گومرگ، خزمەت بە دەسەڵاتدارانی فیدراڵ و هەرێم دەکات لە ڕێگەی دەفتەرێکی تۆماری هاوبەش و نەپچڕاوەوە.',
           status: 'active',
           badge: 'پێشەنگای ستراتیژی',
           features: [
-            'مۆتۆری سکۆرینگی ریسکی AI',
-            'دیدی کۆمپیوتەری و AI شێنزا',
-            'جووتەی دیجیتاڵی سنووری',
-            'دەقی بیرۆکەی نەگۆڕاو (ISO 27001)',
-            'هاوکاری گومرکی فێدراڵی-هلێمی',
-            'تێبینی تێڕانووسی ڕاستەقینە',
-            'پەنجەرەی یەکتا بۆ کاسیری'
+            'ماتۆڕی خاڵبەندی مەترسی بە ژیری دەستکرد',
+            'بینینی کۆمپیوتەری و ژیری دەستکرد بۆ تیشکی ئێکس',
+            'دوانەی دیجیتاڵی دەروازە سنوورییەکان',
+            'تۆماری دەستکاریپێنەکراو (ISO 27001)',
           ],
           link: '/ku/products/gateway-ai',
           external: false,
-          ctaType: 'internal'
+          ctaType: 'internal',
         },
       ],
       nsw: {
@@ -1626,6 +1654,24 @@ export const translations: Record<Language, TranslationData> = {
         ctaType: 'external',
         audience: 'المدارس • الطلاب • المعلمون • أولياء الأمور',
       },
+      gatewayAI: {
+        code: 'IDG-PRD-005',
+        name: 'Gateway AI',
+        tagline: 'البوابة الذكية الوطنية — ذكاء الحدود والجمارك',
+        description:
+          'منصة سيادية وطنية لذكاء المنافذ الحدودية والجمارك (CBIP) مدعومة بحزمة AI Gate Iraq والرؤية الحاسوبية ومعالجة الحافة. تتكامل أصلياً مع النافذة الوطنية الموحدة (Iraq NSW) والهيئة العامة للجمارك، وتخدم السلطات الاتحادية والإقليمية عبر سجل رقمي موحد غير قابل للازدواجية.',
+        status: 'active',
+        badge: 'مبادرة استراتيجية',
+        features: [
+          'محرك تقييم المخاطر بالذكاء الاصطناعي',
+          'الرؤية الحاسوبية والذكاء الاصطناعي للأشعة السينية',
+          'التوأم الرقمي للمنافذ الحدودية',
+          'سجل تدقيق غير قابل للتعديل (ISO 27001)',
+        ],
+        link: '/ar/products/gateway-ai',
+        external: false,
+        ctaType: 'internal',
+      },
       governanceNote:
         'ملاحظة: يتمتع كل منتج بهويته السوقية الخاصة، بينما تبقى ملكية البيانات والأمن والتوجه الاستراتيجي خاضعة بنسبة ١٠٠٪ لحوكمة IDG السيادية.',
       cardInspectPrompt: 'انقر لمعاينة الملف المعماري والمجسم التفاعلي',
@@ -1830,21 +1876,19 @@ export const translations: Record<Language, TranslationData> = {
           subtitle: 'ذكاء الحدود والجمارك',
           numBadge: '5️⃣',
           tagline: 'البوابة الذكية الوطنية — ذكاء الحدود والجمارك',
-          description: 'نظام ذكي وطني لإدارة الحدود والجمارك، يتكامل مع Gateway AI Iraq، والممرات الحدودية، والهوية الرقمية الوطنية، وتقنيات الذكاء الاصطناعي. يضمن 100% إقامة البيانات داخل الحدود الوطنية وفقاً لمعايير ISO 27001.',
+          description:
+            'منصة سيادية وطنية لذكاء المنافذ الحدودية والجمارك (CBIP) مدعومة بحزمة AI Gate Iraq والرؤية الحاسوبية ومعالجة الحافة. تتكامل أصلياً مع النافذة الوطنية الموحدة (Iraq NSW) والهيئة العامة للجمارك، وتخدم السلطات الاتحادية والإقليمية عبر سجل رقمي موحد غير قابل للازدواجية.',
           status: 'active',
           badge: 'مبادرة استراتيجية',
           features: [
             'محرك تقييم المخاطر بالذكاء الاصطناعي',
-            'الرؤية الحاسوبية والذكاء الاصطناعي للأشعة',
+            'الرؤية الحاسوبية والذكاء الاصطناعي للأشعة السينية',
             'التوأم الرقمي للمنافذ الحدودية',
             'سجل تدقيق غير قابل للتعديل (ISO 27001)',
-            'التوافق الجمركي الفيدرالي-الإقليمي',
-            'المراقبة والتقارير في الوقت الفعلي',
-            'نافذة موحدة للتجار'
           ],
           link: '/ar/products/gateway-ai',
           external: false,
-          ctaType: 'internal'
+          ctaType: 'internal',
         },
       ],
       nsw: {
@@ -2700,6 +2744,24 @@ export const translations: Record<Language, TranslationData> = {
         ctaType: 'external',
         audience: 'Schools • Students • Teachers • Parents',
       },
+      gatewayAI: {
+        code: 'IDG-PRD-005',
+        name: 'Gateway AI',
+        tagline: 'The Sovereign Intelligent Gateway — Customs & Border Intelligence',
+        description:
+          'A sovereign Customs & Border Intelligence Platform (CBIP) powered by the AI Gate Iraq stack, computer vision, and edge computing. Natively integrated with Iraq NSW and the General Commission of Customs, serving federal and regional customs authorities through a single, non-duplicative sovereign ledger.',
+        status: 'active',
+        badge: 'Strategic Initiative',
+        features: [
+          'AI-Driven Risk Scoring Engine',
+          'Computer Vision & X-Ray AI',
+          'Border Crossing Digital Twin',
+          'Immutable Audit Ledger (ISO 27001)',
+        ],
+        link: '/en/products/gateway-ai',
+        external: false,
+        ctaType: 'internal',
+      },
       governanceNote:
         'Governance Notice: Each product maintains its distinct market identity, while data ownership, security architecture, and strategic direction remain 100% governed by IDG.',
       cardInspectPrompt: 'Click to inspect architectural dossier & system mock-up',
@@ -2904,21 +2966,19 @@ export const translations: Record<Language, TranslationData> = {
           subtitle: 'Customs & Border Intelligence',
           numBadge: '5️⃣',
           tagline: 'The Sovereign Intelligent Gateway — Customs & Border Intelligence',
-          description: 'National intelligent system for customs and border management, integrated with AI Gate Iraq, border corridors, national digital identity, and advanced AI technologies. Guarantees 100% in-country data residency compliant with ISO 27001 standards.',
+          description:
+            'A sovereign Customs & Border Intelligence Platform (CBIP) powered by the AI Gate Iraq stack, computer vision, and edge computing. Natively integrated with Iraq NSW and the General Commission of Customs, serving federal and regional customs authorities through a single, non-duplicative sovereign ledger.',
           status: 'active',
           badge: 'Strategic Initiative',
           features: [
-            'AI Risk Scoring Engine',
+            'AI-Driven Risk Scoring Engine',
             'Computer Vision & X-Ray AI',
             'Border Crossing Digital Twin',
             'Immutable Audit Ledger (ISO 27001)',
-            'Federal-Regional Customs Alignment',
-            'Real-Time Monitoring & Reporting',
-            'Unified Window for Traders'
           ],
           link: '/en/products/gateway-ai',
           external: false,
-          ctaType: 'internal'
+          ctaType: 'internal',
         },
       ],
       nsw: {

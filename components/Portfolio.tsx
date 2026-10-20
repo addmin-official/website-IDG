@@ -210,151 +210,185 @@ export default function Portfolio({
                   : prod.url) || '#';
 
               return (
-                <div key={prod.id} className="w-full">
-                  {/* Standalone Platforms Section Header - renders above external platform cards */}
-                  {isExternal && (
-                    <div className="text-xs uppercase tracking-wider text-muted text-slate-400 font-semibold mb-3 pt-2">
-                      {p.standalonePlatforms}
+                <React.Fragment key={prod.id}>
+                  {isGatewayAI && showNSW && (
+                    <div
+                      onClick={onSelectNSW}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          onSelectNSW();
+                        }
+                      }}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`${p.nsw.title} - ${p.cardInspectPrompt}`}
+                      className="p-5 md:p-8 border-2 border-dashed border-[#102447] hover:border-[#1D5BD8]/60 rounded-xl bg-[#0B172E]/50 hover:bg-[#102447]/40 transition cursor-pointer group"
+                      id="spotlight-iraq-nsw"
+                    >
+                      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <div className="flex-1">
+                          <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2 group-hover:text-[#60A5FA] transition-colors">
+                            {p.nsw.fullTitle}
+                          </h3>
+                          <p className="text-sm md:text-base text-slate-400 leading-relaxed max-w-3xl">
+                            {p.nsw.architecture}
+                          </p>
+                        </div>
+                        <div className="w-full md:w-auto text-center bg-[#0B172E] hover:bg-[#102447] border border-[#102447] text-[#60A5FA] font-medium py-2 px-5 rounded-lg whitespace-nowrap transition text-xs sm:text-sm flex items-center justify-center gap-1.5 shrink-0 shadow-2xs">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                          <span>{p.cardInspectPrompt}</span>
+                        </div>
+                      </div>
                     </div>
                   )}
 
-                  <div
-                    onClick={() => {
-                      if (isExternal) {
-                        window.open(prod.externalUrl || prod.url, '_blank', 'noopener,noreferrer');
-                      } else {
-                        onSelectProduct(prod.id);
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
+                  <div className="w-full">
+                    {/* Standalone Platforms Section Header - renders above external platform cards */}
+                    {isExternal && (
+                      <div className="text-xs uppercase tracking-wider text-muted text-slate-400 font-semibold mb-3 pt-2">
+                        {p.standalonePlatforms}
+                      </div>
+                    )}
+
+                    <div
+                      onClick={() => {
                         if (isExternal) {
                           window.open(prod.externalUrl || prod.url, '_blank', 'noopener,noreferrer');
                         } else {
                           onSelectProduct(prod.id);
                         }
-                      }
-                    }}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`${prod.title} - ${p.cardInspectPrompt}`}
-                    className={`bg-[#0B172E] p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl transition cursor-pointer group flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 ${
-                      isExternal
-                        ? 'border-dashed border-2 border-amber-500/40 hover:border-amber-400/80 hover:bg-[#0B172E]/90'
-                        : isImpactIQ
-                        ? 'border border-sky-500/40 ring-1 ring-sky-500/30 shadow-lg shadow-sky-500/10 hover:border-sky-400 hover:ring-sky-500/50'
-                        : isGatewayAI
-                        ? 'border border-emerald-500/40 ring-1 ring-emerald-500/30 shadow-lg shadow-emerald-500/10 hover:border-emerald-400 hover:ring-emerald-500/50'
-                        : 'border border-[#102447] hover:border-[#1D5BD8] hover:shadow-[0_0_0_1px_#1D5BD8]/20'
-                    }`}
-                    id={prod.id}
-                  >
-                    <div className="w-full md:w-auto flex-1">
-                      {/* Badge Row */}
-                      <div className="flex flex-wrap items-center gap-2 mb-2 md:mb-3">
-                        <SovereignBadge
-                          label={prod.numBadge}
-                          variant={badgeVariant}
-                          size="md"
-                        />
-                        {isExternal && prod.badge && (
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-semibold">
-                            {prod.badge}
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          if (isExternal) {
+                            window.open(prod.externalUrl || prod.url, '_blank', 'noopener,noreferrer');
+                          } else {
+                            onSelectProduct(prod.id);
+                          }
+                        }
+                      }}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`${prod.title} - ${p.cardInspectPrompt}`}
+                      className={`bg-[#0B172E] p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl transition cursor-pointer group flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 ${
+                        isExternal
+                          ? 'border-dashed border-2 border-amber-500/40 hover:border-amber-400/80 hover:bg-[#0B172E]/90'
+                          : isImpactIQ
+                          ? 'border border-sky-500/40 ring-1 ring-sky-500/30 shadow-lg shadow-sky-500/10 hover:border-sky-400 hover:ring-sky-500/50'
+                          : isGatewayAI
+                          ? 'border border-emerald-500/40 ring-1 ring-emerald-500/30 shadow-lg shadow-emerald-500/10 hover:border-emerald-400 hover:ring-emerald-500/50'
+                          : 'border border-[#102447] hover:border-[#1D5BD8] hover:shadow-[0_0_0_1px_#1D5BD8]/20'
+                      }`}
+                      id={prod.id}
+                    >
+                      <div className="w-full md:w-auto flex-1">
+                        {/* Badge Row */}
+                        <div className="flex flex-wrap items-center gap-2 mb-2 md:mb-3">
+                          <SovereignBadge
+                            label={prod.numBadge}
+                            variant={badgeVariant}
+                            size="md"
+                          />
+                          {isExternal && prod.badge && (
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-semibold">
+                              {prod.badge}
+                            </span>
+                          )}
+                          {isImpactIQ && (
+                            <>
+                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-xs font-semibold text-sky-400">
+                                <Sparkles className="w-3 h-3 text-sky-400" />
+                                <span>⭐ NEW</span>
+                              </span>
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300">
+                                {prod.badge || 'Strategic Initiative'}
+                              </span>
+                            </>
+                          )}
+                          {isGatewayAI && (
+                            <>
+                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-400">
+                                <Sparkles className="w-3 h-3 text-emerald-400" />
+                                <span>⭐ NEW</span>
+                              </span>
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-400">
+                                {prod.badge || 'Strategic Initiative'}
+                              </span>
+                            </>
+                          )}
+                        </div>
+
+                        {/* Title and Subtitle */}
+                        <h3 className={`text-lg sm:text-xl md:text-2xl font-bold text-slate-100 mb-1 transition-colors ${
+                          isExternal ? 'group-hover:text-amber-400' : isImpactIQ ? 'group-hover:text-sky-400' : isGatewayAI ? 'group-hover:text-emerald-400' : 'group-hover:text-[#60A5FA]'
+                        }`}>
+                          {prod.title}{' '}
+                          <span className="block md:inline text-xs md:text-sm font-normal text-slate-400 md:ms-2">
+                            — {prod.subtitle}
                           </span>
+                        </h3>
+
+                        {/* Audience label for external platform */}
+                        {isExternal && prod.audience && (
+                          <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1 mb-2 font-normal">
+                            <Users className="w-3.5 h-3.5 text-amber-400/90 shrink-0" />
+                            <span>{prod.audience}</span>
+                          </div>
                         )}
-                        {isImpactIQ && (
-                          <>
-                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-xs font-semibold text-sky-400">
-                              <Sparkles className="w-3 h-3 text-sky-400" />
-                              <span>⭐ NEW</span>
-                            </span>
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300">
-                              {prod.badge || 'Strategic Initiative'}
-                            </span>
-                          </>
-                        )}
-                        {isGatewayAI && (
-                          <>
-                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-400">
-                              <Sparkles className="w-3 h-3 text-emerald-400" />
-                              <span>⭐ NEW</span>
-                            </span>
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300">
-                              {prod.badge || 'Strategic Initiative'}
-                            </span>
-                          </>
-                        )}
+
+                        {/* Description */}
+                        <p className="text-xs sm:text-sm md:text-base text-slate-400 max-w-3xl leading-relaxed mb-3">
+                          {prod.description}
+                        </p>
+
+                        {/* Technical Dossier & Mock-up Inspect Prompt */}
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectProduct(prod.id);
+                          }}
+                          className="inline-flex items-center gap-1.5 text-xs text-[#60A5FA] hover:text-[#93C5FD] font-medium transition-colors cursor-pointer"
+                        >
+                          <Maximize2 className="w-3.5 h-3.5" />
+                          <span>{p.cardInspectPrompt}</span>
+                        </button>
                       </div>
 
-                      {/* Title and Subtitle */}
-                      <h3 className={`text-lg sm:text-xl md:text-2xl font-bold text-slate-100 mb-1 transition-colors ${
-                        isExternal ? 'group-hover:text-amber-400' : isImpactIQ ? 'group-hover:text-sky-400' : isGatewayAI ? 'group-hover:text-emerald-400' : 'group-hover:text-[#60A5FA]'
-                      }`}>
-                        {prod.title}{' '}
-                        <span className="block md:inline text-xs md:text-sm font-normal text-slate-400 md:ms-2">
-                          — {prod.subtitle}
-                        </span>
-                      </h3>
-
-                      {/* Audience label for external platform */}
-                      {isExternal && prod.audience && (
-                        <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1 mb-2 font-normal">
-                          <Users className="w-3.5 h-3.5 text-amber-400/90 shrink-0" />
-                          <span>{prod.audience}</span>
-                        </div>
+                      {/* CTA Button */}
+                      {isExternal ? (
+                        <a
+                          href={prod.externalUrl || prod.url}
+                          target="_blank"
+                          rel="noopener nofollow external"
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-full md:w-auto text-center bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
+                          id={`btn-visit-site-${prod.id}`}
+                        >
+                          <span>{p.openExternalPlatform}</span>
+                          <ExternalLink className="w-4 h-4 shrink-0" />
+                        </a>
+                      ) : (
+                        <Link
+                          href={productHref}
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-full md:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
+                          id={`btn-visit-site-${prod.id}`}
+                        >
+                          <span>{p.visitWebsiteBtn}</span>
+                          <ArrowRight className="w-4 h-4 rtl:rotate-180 shrink-0" />
+                        </Link>
                       )}
-
-                      {/* Description */}
-                      <p className="text-xs sm:text-sm md:text-base text-slate-400 max-w-3xl leading-relaxed mb-3">
-                        {prod.description}
-                      </p>
-
-                      {/* Technical Dossier & Mock-up Inspect Prompt */}
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onSelectProduct(prod.id);
-                        }}
-                        className="inline-flex items-center gap-1.5 text-xs text-[#60A5FA] hover:text-[#93C5FD] font-medium transition-colors cursor-pointer"
-                      >
-                        <Maximize2 className="w-3.5 h-3.5" />
-                        <span>{p.cardInspectPrompt}</span>
-                      </button>
                     </div>
-
-                    {/* CTA Button */}
-                    {isExternal ? (
-                      <a
-                        href={prod.externalUrl || prod.url}
-                        target="_blank"
-                        rel="noopener nofollow external"
-                        onClick={(e) => e.stopPropagation()}
-                        className="w-full md:w-auto text-center bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
-                        id={`btn-visit-site-${prod.id}`}
-                      >
-                        <span>{p.openExternalPlatform}</span>
-                        <ExternalLink className="w-4 h-4 shrink-0" />
-                      </a>
-                    ) : (
-                      <Link
-                        href={productHref}
-                        onClick={(e) => e.stopPropagation()}
-                        className="w-full md:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
-                        id={`btn-visit-site-${prod.id}`}
-                      >
-                        <span>{p.visitWebsiteBtn}</span>
-                        <ArrowRight className="w-4 h-4 rtl:rotate-180 shrink-0" />
-                      </Link>
-                    )}
                   </div>
-                </div>
+                </React.Fragment>
               );
             })}
 
-            {/* Strategic Initiative NSW Card */}
-            {showNSW && (
+            {/* Strategic Initiative NSW Card if gatewayai not in list */}
+            {showNSW && !filteredProducts.some((p) => p.id === 'gatewayai') && (
               <div
                 onClick={onSelectNSW}
                 onKeyDown={(e) => {
@@ -366,7 +400,7 @@ export default function Portfolio({
                 role="button"
                 tabIndex={0}
                 aria-label={`${p.nsw.title} - ${p.cardInspectPrompt}`}
-                className="mt-8 md:mt-12 p-5 md:p-8 border-2 border-dashed border-[#102447] hover:border-[#1D5BD8]/60 rounded-xl bg-[#0B172E]/50 hover:bg-[#102447]/40 transition cursor-pointer group"
+                className="p-5 md:p-8 border-2 border-dashed border-[#102447] hover:border-[#1D5BD8]/60 rounded-xl bg-[#0B172E]/50 hover:bg-[#102447]/40 transition cursor-pointer group"
                 id="spotlight-iraq-nsw"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
