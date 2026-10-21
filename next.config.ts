@@ -29,7 +29,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/:locale(products/greenbelt|greenbelt)',
+        source: '/:locale(ku|ar|en)?/products/greenbelt',
+        destination: 'https://green-belt-platform.web.app/',
+        permanent: false,
+      },
+      {
+        source: '/:locale(ku|ar|en)?/greenbelt',
         destination: 'https://green-belt-platform.web.app/',
         permanent: false,
       },
