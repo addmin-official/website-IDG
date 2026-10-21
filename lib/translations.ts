@@ -79,6 +79,7 @@ export interface TranslationData {
       systemMockup: string;
       provenImpact: string;
       visitLiveSite: string;
+      enterPlatform?: string;
       close: string;
       governedBy: string;
       operationalStatus: string;
@@ -109,6 +110,7 @@ export interface TranslationData {
       external?: boolean;
       ctaType?: 'internal' | 'external';
       externalUrl?: string;
+      dashboardUrl?: string;
       audience?: string;
     }>;
     impactIQ?: {
@@ -635,6 +637,7 @@ export const translations: Record<Language, TranslationData> = {
         systemMockup: 'مۆک-ئەپی کارلێککاری ڕووکاری سیستم',
         provenImpact: 'کاریگەریی نیشتمانیی سەلمێنراو',
         visitLiveSite: 'سەردانی وێبسایتی فەرمیی بەرهەم',
+        enterPlatform: 'چوونە ناو پلاتفۆرم',
         close: 'داخستن',
         governedBy: 'حوکمڕانیکراو لەژێر دەسەڵاتی IDG',
         operationalStatus: 'باری کارپێکردن',
@@ -765,10 +768,12 @@ export const translations: Record<Language, TranslationData> = {
           ],
           impact: 'گۆڕینی هەزاران تەن لە پاشماوە بۆ سەرچاوەی بەسوود، چاندنی زیاتر لە ١٢٠،٠٠٠ درەخت و تۆمارکردنی داتای سەوزی نیشتمانی.',
           status: 'جێبەجێکردنی مەیدانیی بەردەوام',
-          url: 'https://greenbelt.iq',
-          link: '/products/greenbelt',
-          external: false,
-          ctaType: 'internal',
+          url: 'https://green-belt-platform.web.app/',
+          link: 'https://green-belt-platform.web.app/',
+          external: true,
+          externalUrl: 'https://green-belt-platform.web.app/',
+          dashboardUrl: 'https://green-belt-platform.web.app/dashboard',
+          ctaType: 'external',
           mockupType: 'greenbelt',
         },
         {
@@ -1736,6 +1741,7 @@ export const translations: Record<Language, TranslationData> = {
         systemMockup: 'المجسم التفاعلي لواجهة النظام',
         provenImpact: 'الأثر الوطني المحقق',
         visitLiveSite: 'زيارة البوابة الرسمية للمنتج',
+        enterPlatform: 'الدخول إلى المنصة',
         close: 'إغلاق',
         governedBy: 'خاضع لحوكمة وسيادة IDG',
         operationalStatus: 'الحالة التشغيلية',
@@ -1866,10 +1872,12 @@ export const translations: Record<Language, TranslationData> = {
           ],
           impact: 'تحويل أطنان النفايات إلى موارد حيوية وتوثيق البيانات البيئية الوطنية وزراعة ١٢٠ ألف شجرة.',
           status: 'تنفيذ ميداني مستمر',
-          url: 'https://greenbelt.iq',
-          link: '/ar/products/greenbelt',
-          external: false,
-          ctaType: 'internal',
+          url: 'https://green-belt-platform.web.app/',
+          link: 'https://green-belt-platform.web.app/',
+          external: true,
+          externalUrl: 'https://green-belt-platform.web.app/',
+          dashboardUrl: 'https://green-belt-platform.web.app/dashboard',
+          ctaType: 'external',
           mockupType: 'greenbelt',
         },
         {
@@ -2843,6 +2851,7 @@ export const translations: Record<Language, TranslationData> = {
         systemMockup: 'Interactive System Interface Mock-up',
         provenImpact: 'Verified Institutional Impact',
         visitLiveSite: 'Visit Official Product Portal',
+        enterPlatform: 'Enter Platform',
         close: 'Close',
         governedBy: 'Governed under IDG Sovereign Authority',
         operationalStatus: 'Operational Status',
@@ -2973,10 +2982,12 @@ export const translations: Record<Language, TranslationData> = {
           ],
           impact: 'Diverts tons of organic waste into sovereign compost resources with auditable environmental data and 120,000+ trees tracked.',
           status: 'Active Field Operations',
-          url: 'https://greenbelt.iq',
-          link: '/en/products/greenbelt',
-          external: false,
-          ctaType: 'internal',
+          url: 'https://green-belt-platform.web.app/',
+          link: 'https://green-belt-platform.web.app/',
+          external: true,
+          externalUrl: 'https://green-belt-platform.web.app/',
+          dashboardUrl: 'https://green-belt-platform.web.app/dashboard',
+          ctaType: 'external',
           mockupType: 'greenbelt',
         },
         {

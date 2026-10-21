@@ -388,6 +388,31 @@ export default function Portfolio({
                           <span>{p.openExternalPlatform}</span>
                           <ExternalLink className="w-4 h-4 shrink-0" />
                         </a>
+                      ) : prod.id === 'greenbelt' ? (
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto shrink-0">
+                          <a
+                            href="https://green-belt-platform.web.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="w-full sm:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-4 sm:px-5 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
+                            id={`btn-visit-site-${prod.id}`}
+                          >
+                            <span>{lang === 'ku' ? 'کردنەوە و بینینی وێبسایت' : lang === 'ar' ? 'عرض وزيارة الموقع' : 'View Website'}</span>
+                            <ExternalLink className="w-4 h-4 shrink-0" />
+                          </a>
+                          <a
+                            href="https://green-belt-platform.web.app/dashboard"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="w-full sm:w-auto text-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 sm:px-5 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-emerald-500/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
+                            id={`btn-dashboard-${prod.id}`}
+                          >
+                            <span>{lang === 'ku' ? 'چوونە ناو پلاتفۆرم' : lang === 'ar' ? 'الدخول إلى المنصة' : 'Enter Platform'}</span>
+                            <ArrowRight className="w-4 h-4 rtl:rotate-180 shrink-0" />
+                          </a>
+                        </div>
                       ) : productHref.startsWith('http') ? (
                         <a
                           href={productHref}

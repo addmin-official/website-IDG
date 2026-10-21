@@ -443,15 +443,31 @@ export default function ProductModal({
 
         {/* Actions Footer */}
         <div className="pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
-          <a
-            href={product.link || product.url || '#'}
-            target={product.external ? '_blank' : undefined}
-            rel={product.external ? 'noopener noreferrer' : undefined}
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-5 rounded-lg text-xs sm:text-sm transition shadow-sm"
-          >
-            <span>{labels.visitLiveSite}</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <a
+              href={product.link || product.url || '#'}
+              target={product.external ? '_blank' : undefined}
+              rel={product.external ? 'noopener noreferrer' : undefined}
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-5 rounded-lg text-xs sm:text-sm transition shadow-sm"
+              id="modal-btn-visit-site"
+            >
+              <span>{lang === 'ku' && product.id === 'greenbelt' ? 'کردنەوە و بینینی وێبسایت' : labels.visitLiveSite}</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+
+            {(product.dashboardUrl || product.id === 'greenbelt') && (
+              <a
+                href={product.dashboardUrl || 'https://green-belt-platform.web.app/dashboard'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-5 rounded-lg text-xs sm:text-sm transition shadow-sm"
+                id="modal-btn-enter-platform"
+              >
+                <span>{labels.enterPlatform || (lang === 'ku' ? 'چوونە ناو پلاتفۆرم' : lang === 'ar' ? 'الدخول إلى المنصة' : 'Enter Platform')}</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            )}
+          </div>
 
           <Button
             variant="secondary"

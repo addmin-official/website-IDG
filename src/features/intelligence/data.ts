@@ -286,5 +286,7 @@ export const SOVEREIGN_ECOSYSTEM_LINKS = {
   zanaAcademy: 'https://new-vs-zana.zana-platform.workers.dev/',
   aiGateIraq: 'https://www.aigateiraq.com',
   economicKnowledgeGraph: '/products/economic-knowledge-graph',
+  greenBelt: 'https://green-belt-platform.web.app/',
+  greenBeltDashboard: 'https://green-belt-platform.web.app/dashboard',
 };
 

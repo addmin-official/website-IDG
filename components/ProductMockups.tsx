@@ -30,6 +30,8 @@ import {
   ArrowLeft,
   Search,
   BadgeCheck,
+  ExternalLink,
+  ArrowUpRight,
 } from 'lucide-react';
 
 interface MockupProps {
@@ -448,11 +450,28 @@ export default function ProductMockups({ type, lang }: MockupProps) {
             <div className="w-3 h-3 rounded-full bg-red-500/80" />
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-            <span className="font-mono text-slate-400 ms-2 text-[11px]">
-              greenbelt.iq/telemetry-hub [IDG-SOV-03]
-            </span>
+            <a
+              href="https://green-belt-platform.web.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-slate-400 hover:text-emerald-400 transition-colors ms-2 text-[11px] inline-flex items-center gap-1"
+              title="green-belt-platform.web.app"
+            >
+              <span>green-belt-platform.web.app</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
           </div>
           <div className="flex items-center gap-2">
+            <a
+              href="https://green-belt-platform.web.app/dashboard"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded text-[11px] font-semibold transition shadow-xs"
+              id="mockup-btn-dashboard-greenbelt-top"
+            >
+              <span>{lang === 'ku' ? 'چوونە ناو پلاتفۆرم' : lang === 'ar' ? 'الدخول إلى المنصة' : 'Enter Platform'}</span>
+              <ArrowUpRight className="w-3 h-3" />
+            </a>
             <span className="inline-flex items-center gap-1 bg-emerald-950 text-emerald-400 border border-emerald-800 px-2.5 py-0.5 rounded text-[11px] font-mono">
               <Leaf className="w-3 h-3" />
               <span>{lang === 'ku' ? 'ئابووریی بازنەیی و چاودێریی ژینگە' : lang === 'ar' ? 'اقتصاد دائري ورصد بيئي' : 'Circular Economy Hub'}</span>
@@ -598,6 +617,19 @@ export default function ProductMockups({ type, lang }: MockupProps) {
                   ? 'القضاء على التخلص العشوائي من المخلفات وبناء درع بيئي ذكي يوثق جهود مكافحة التصحر.'
                   : 'Transforming urban organic waste into restorative carbon sinks backed by sovereign telemetry.'}
               </span>
+            </div>
+
+            <div className="pt-2">
+              <a
+                href="https://green-belt-platform.web.app/dashboard"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white py-2 px-3 rounded-lg text-xs font-bold transition shadow-sm"
+                id="mockup-btn-enter-greenbelt-dashboard"
+              >
+                <span>{lang === 'ku' ? 'چوونە ناو پلاتفۆرم (Dashboard)' : lang === 'ar' ? 'الدخول إلى المنصة (لوحة التحكم)' : 'Enter Platform (Dashboard)'}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
         </div>

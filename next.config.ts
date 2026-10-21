@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
         destination: 'https://zana.idggov.tech',
         permanent: true,
       },
+      {
+        source: '/:locale(products/greenbelt|greenbelt)',
+        destination: 'https://green-belt-platform.web.app/',
+        permanent: false,
+      },
     ];
   },
   async headers() {

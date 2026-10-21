@@ -67,7 +67,7 @@
 ### Product 003: Green Belt
 * **Classification:** Municipal Circular Economy & Urban Ecology Engine
 * **Identifier:** `IDG-PRD-003`
-* **Official URL:** [https://greenbelt.iq](https://greenbelt.iq)
+* **Official URL:** [https://green-belt-platform.web.app/](https://green-belt-platform.web.app/)
 * **Status:** Active / Continuous Field Implementation
 * **Problem Statement:**  
   Accelerating desertification, seasonal dust storm intensity, unmanaged urban waste accumulation, and inefficient coordination of the reforestation ring around Erbil metropolitan area.

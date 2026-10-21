@@ -25,4 +25,6 @@ export interface SovereignEcosystemLinks {
   zanaAcademy: string;
   aiGateIraq: string;
   economicKnowledgeGraph: string;
+  greenBelt?: string;
+  greenBeltDashboard?: string;
 }
