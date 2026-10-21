@@ -146,15 +146,11 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
         </div>
 
         {/* Governance Status Bar */}
-        <div className="py-3 border-t border-[#102447] flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[10px] font-mono text-slate-500 text-center" id="footer-governance-bar">
-          <span>Build IDG-2026.10-PROD</span>
-          <span className="text-slate-700">·</span>
-          <span className="inline-flex items-center gap-1">
-            <span>ISO-27001 Verified</span>
+        <div dir="ltr" className="py-3 border-t border-[#102447] flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[10px] font-mono text-slate-500 text-center" id="footer-governance-bar">
+          <p dir="ltr" className="font-mono text-xs text-start inline-flex items-center gap-2">
+            <bdi>Build IDG-2026.10-PROD · ISO-27001 Verified · Erbil Node 01</bdi>
             <HelpIcon tooltip={isRtl ? 'پابەندبوونی تەواو بە ستانداردی جیهانیی بەڕێوەبردنی ئاسایشی زانیاری (ISO/IEC 27001)' : 'Strict compliance with Information Security Management System standards (ISO/IEC 27001)'} />
-          </span>
-          <span className="text-slate-700">·</span>
-          <span>Erbil Node 01</span>
+          </p>
         </div>
 
         {/* Copyright & Sub-links */}

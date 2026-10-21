@@ -231,7 +231,8 @@ export default function Portfolio({
                       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div className="flex-1">
                           <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-100 mb-1 leading-tight group-hover:text-[#60A5FA] transition-colors">
-                            {p.nsw.fullTitle}
+                            <span aria-hidden="true" className="me-1.5">🇮🇶</span>
+                            <span>{p.nsw.fullTitle.replace('🇮🇶', '').trim()}</span>
                           </h3>
                           <p className="text-xs sm:text-sm text-slate-400 leading-relaxed line-clamp-3 max-w-xl">
                             {p.nsw.architecture}
@@ -338,7 +339,7 @@ export default function Portfolio({
                         <h3 className={`text-base sm:text-lg md:text-xl font-bold text-slate-100 mb-1 leading-tight transition-colors ${
                           isExternal ? 'group-hover:text-amber-400' : isImpactIQ ? 'group-hover:text-sky-400' : isGatewayAI ? 'group-hover:text-emerald-400' : 'group-hover:text-[#60A5FA]'
                         }`}>
-                          {prod.title}{' '}
+                          <span lang="en" dir="ltr">{prod.title}</span>{' '}
                           <span className="block md:inline text-xs md:text-sm font-normal text-slate-400 md:ms-2">
                             — {prod.subtitle}
                           </span>
@@ -390,6 +391,7 @@ export default function Portfolio({
                             href={prod.externalUrl || prod.url}
                             target="_blank"
                             rel="noopener nofollow external"
+                            aria-label={`${p.openExternalPlatform} — ${prod.title} (opens in new tab)`}
                             onClick={(e) => e.stopPropagation()}
                             className="w-full md:w-auto text-center bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
                             id={`btn-visit-site-${prod.id}`}
@@ -403,6 +405,7 @@ export default function Portfolio({
                               href="https://green-belt-platform.web.app/"
                               target="_blank"
                               rel="noopener noreferrer"
+                              aria-label={`${lang === 'ku' ? 'کردنەوە و بینینی وێبسایت' : lang === 'ar' ? 'عرض وزيارة الموقع' : 'View Website'} — ${prod.title} (opens in new tab)`}
                               onClick={(e) => e.stopPropagation()}
                               className="w-full sm:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-4 sm:px-5 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
                               id={`btn-visit-site-${prod.id}`}
@@ -414,6 +417,7 @@ export default function Portfolio({
                               href="https://green-belt-platform.web.app/dashboard"
                               target="_blank"
                               rel="noopener noreferrer"
+                              aria-label={`${lang === 'ku' ? 'چوونە ناو پلاتفۆرم' : lang === 'ar' ? 'الدخول إلى المنصة' : 'Enter Platform'} — ${prod.title} Dashboard (opens in new tab)`}
                               onClick={(e) => e.stopPropagation()}
                               className="w-full sm:w-auto text-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 sm:px-5 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-emerald-500/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
                               id={`btn-dashboard-${prod.id}`}
@@ -427,6 +431,7 @@ export default function Portfolio({
                             href={productHref}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={`${p.visitWebsiteBtn} — ${prod.title} (opens in new tab)`}
                             onClick={(e) => e.stopPropagation()}
                             className="w-full md:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
                             id={`btn-visit-site-${prod.id}`}
@@ -437,6 +442,7 @@ export default function Portfolio({
                         ) : (
                           <Link
                             href={productHref}
+                            aria-label={`${p.visitWebsiteBtn} — ${prod.title}`}
                             onClick={(e) => e.stopPropagation()}
                             className="w-full md:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
                             id={`btn-visit-site-${prod.id}`}
@@ -471,7 +477,8 @@ export default function Portfolio({
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                   <div className="flex-1">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-100 mb-1 leading-tight group-hover:text-[#60A5FA] transition-colors">
-                      {p.nsw.fullTitle}
+                      <span aria-hidden="true" className="me-1.5">🇮🇶</span>
+                      <span>{p.nsw.fullTitle.replace('🇮🇶', '').trim()}</span>
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-400 leading-relaxed line-clamp-3 max-w-xl">
                       {p.nsw.architecture}

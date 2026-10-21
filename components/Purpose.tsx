@@ -50,7 +50,7 @@ export default function Purpose({ t }: PurposeProps) {
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-[#102447] text-xs font-semibold text-slate-500 font-mono">
-                  0{idx + 1} / 04
+                  <span dir="ltr" className="font-mono tabular-nums"><bdi>0{idx + 1} / 04</bdi></span>
                 </div>
               </div>
             );

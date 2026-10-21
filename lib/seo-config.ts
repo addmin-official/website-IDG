@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-export const SITE_URL = 'https://idggov.tech';
+export const SITE_URL = 'https://www.idggov.tech';
 export const SITE_NAME = 'Iraq Digital Gateway (IDG)';
 
 export interface LocaleSEO {
@@ -94,10 +94,12 @@ export function generatePageMetadata({
     alternates: {
       canonical: pageUrl,
       languages: {
+        'ckb-IQ': `${SITE_URL}/ku${path ? `/${path.replace(/^\//, '')}` : ''}`,
         ku: `${SITE_URL}/ku${path ? `/${path.replace(/^\//, '')}` : ''}`,
+        'ar-IQ': `${SITE_URL}/ar${path ? `/${path.replace(/^\//, '')}` : ''}`,
         ar: `${SITE_URL}/ar${path ? `/${path.replace(/^\//, '')}` : ''}`,
         en: `${SITE_URL}/en${path ? `/${path.replace(/^\//, '')}` : ''}`,
-        'x-default': `${SITE_URL}/en${path ? `/${path.replace(/^\//, '')}` : ''}`,
+        'x-default': `${SITE_URL}/ku${path ? `/${path.replace(/^\//, '')}` : ''}`,
       },
     },
     openGraph: {

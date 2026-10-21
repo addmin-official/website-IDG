@@ -16,6 +16,7 @@ const ProductMockups = dynamic(
 import {
   X,
   ShieldCheck,
+  ArrowRight,
   ArrowUpRight,
   CheckCircle2,
   Lock,
@@ -314,11 +315,12 @@ export default function ProductModal({
             >
               <span>
                 {lang === 'ku'
-                  ? 'کردنەوەی تەلارسازی کارلێککار و تۆڕی زانیاری ➔'
+                  ? 'کردنەوەی تەلارسازی کارلێککار و تۆڕی زانیاری'
                   : lang === 'ar'
-                  ? 'استعراض المخطط التفاعلي والشبكة المعرفية ➔'
-                  : 'Open Interactive Knowledge Graph & Architecture ➔'}
+                  ? 'استعراض المخطط التفاعلي والشبكة المعرفية'
+                  : 'Open Interactive Knowledge Graph & Architecture'}
               </span>
+              <ArrowRight className="w-4 h-4 rtl:rotate-180 shrink-0" />
             </Link>
           </div>
         ) : (

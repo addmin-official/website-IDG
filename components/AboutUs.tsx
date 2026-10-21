@@ -52,11 +52,17 @@ export default function AboutUs({ t, isRtl = true, onOpenContact }: AboutUsProps
         {/* Vision 2035, Mission & Invariant Values Grid */}
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center mb-12 sm:mb-20 md:mb-28" id="about-vision-mission-values-grid">
           <div className="bg-[#0B172E] p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-[#102447]" id="about-vision-mission-card">
-            <h3 className="text-2xl font-bold text-slate-100 mb-4">{a.visionTitle}</h3>
+            <h3 className="text-2xl font-bold text-slate-100 mb-4">
+              <span aria-hidden="true" className="me-2">👁️</span>
+              <span>{a.visionTitle.replace(' 👁️', '').replace('👁️', '').trim()}</span>
+            </h3>
             <p className="text-slate-400 mb-6 leading-relaxed" id="about-vision-description">
               {a.visionDesc}
             </p>
-            <h3 className="text-2xl font-bold text-slate-100 mb-4">{a.missionTitle}</h3>
+            <h3 className="text-2xl font-bold text-slate-100 mb-4">
+              <span aria-hidden="true" className="me-2">🎯</span>
+              <span>{a.missionTitle.replace(' 🎯', '').replace('🎯', '').trim()}</span>
+            </h3>
             <p className="text-slate-400 leading-relaxed">
               {a.missionDesc}
             </p>

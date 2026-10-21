@@ -49,8 +49,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: route.priority,
         alternates: {
           languages: {
+            'ckb-IQ': `${BASE_URL}/ku${route.path}`,
             ku: `${BASE_URL}/ku${route.path}`,
-            ar: `${BASE_URL}/ar${route.path}`,
+            'ar-IQ': `${BASE_URL}/ar${route.path}`,
             en: `${BASE_URL}/en${route.path}`,
             'x-default': `${BASE_URL}/ku${route.path}`,
           },

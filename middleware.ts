@@ -6,6 +6,32 @@ type AppLocale = (typeof LOCALES)[number];
 const DEFAULT_LOCALE: AppLocale = 'ku';
 
 export function middleware(request: NextRequest) {
+  const hostname = request.headers.get('host') || '';
+  const isPreviewEnv =
+    process.env.VERCEL_ENV === 'preview' ||
+    (hostname.endsWith('.vercel.app') && !hostname.startsWith('www.'));
+
+  if (isPreviewEnv) {
+    const authHeader = request.headers.get('authorization');
+    const expectedUser = process.env.PREVIEW_AUTH_USER;
+    const expectedPass = process.env.PREVIEW_AUTH_PASSWORD;
+
+    if (!expectedUser || !expectedPass || !authHeader) {
+      return new NextResponse('Preview environment requires authentication.', {
+        status: 401,
+        headers: {
+          'WWW-Authenticate': 'Basic realm="IDG Secure Preview"',
+          'X-Robots-Tag': 'noindex, nofollow, noarchive',
+        },
+      });
+    }
+
+    const expected = `Basic ${Buffer.from(`${expectedUser}:${expectedPass}`).toString('base64')}`;
+    if (authHeader !== expected) {
+      return new NextResponse('Invalid credentials.', { status: 403 });
+    }
+  }
+
   const { pathname, search } = request.nextUrl;
 
   // If the pathname already starts with /ku, /ar, or /en (or /ku/..., etc.) -> pass through

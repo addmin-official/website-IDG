@@ -43,7 +43,7 @@ export default function Badge({
       {...props}
     >
       {icon}
-      {children || label}
+      <bdi>{children || label}</bdi>
     </span>
   );
 }

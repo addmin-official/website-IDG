@@ -560,7 +560,7 @@ export const translations: Record<Language, TranslationData> = {
       heading: 'سامانە حوکمڕانیکراوەکانی پۆرتفۆلیۆ',
       subheading:
         'دەروازەی دیجیتاڵیی عێراق (IDG) کۆمپانیای دایکی هەمیشەیی و براندی سەرەکییە. بەرهەمەکان سامانی پۆرتفۆلیۆن کە لەلایەن IDG حوکمڕانی دەکرێن، بەڵام ناسنامەی کارپێکردنی تایبەت بە خۆیان هەیە.',
-      visitWebsiteBtn: 'سەردانی وێبسایت ➔',
+      visitWebsiteBtn: 'سەردانی وێبسایت',
       openExternalPlatform: 'کردنەوەی پلاتفۆرمی سەربەخۆ',
       standalonePlatforms: 'پلاتفۆرمە سەربەخۆکان',
       schoolsStudentsAudience: 'بۆ قوتابخانە و قوتابیان',
@@ -1664,7 +1664,7 @@ export const translations: Record<Language, TranslationData> = {
       heading: 'أصول المحفظة الخاضعة للحوكمة',
       subheading:
         'بوابة العراق الرقمية (IDG) هي الشركة الأم الدائمة والعلامة التجارية السيادية. المنتجات هي أصول المحفظة المحكومة من قبل IDG وتتمتع بهوية تشغيلية مستقلة في السوق.',
-      visitWebsiteBtn: 'زيارة الموقع ➔',
+      visitWebsiteBtn: 'زيارة الموقع',
       openExternalPlatform: 'فتح المنصة المستقلة',
       standalonePlatforms: 'المنصات المستقلة',
       schoolsStudentsAudience: 'للمدارس والطلاب',
@@ -2767,7 +2767,7 @@ export const translations: Record<Language, TranslationData> = {
       heading: 'Governed Portfolio Assets',
       subheading:
         'Iraq Digital Gateway (IDG) is the perpetual parent company and sovereign brand. Portfolio products are governed assets held by IDG, each with an independent market and operational identity.',
-      visitWebsiteBtn: 'Visit Website ➔',
+      visitWebsiteBtn: 'Visit Website',
       openExternalPlatform: 'Open External Platform',
       standalonePlatforms: 'Standalone Platforms',
       schoolsStudentsAudience: 'For Schools & Students',

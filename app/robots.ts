@@ -1,15 +1,22 @@
 import type { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://www.idggov.tech';
-
 export default function robots(): MetadataRoute.Robots {
+  const isProd = process.env.VERCEL_ENV === 'production';
+
+  if (!isProd) {
+    return {
+      rules: { userAgent: '*', disallow: '/' },
+    };
+  }
+
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/_next/', '/admin/'],
+      disallow: ['/api/', '/_next/'],
     },
-    sitemap: `${BASE_URL}/sitemap.xml`,
-    host: BASE_URL,
+    sitemap: 'https://www.idggov.tech/sitemap.xml',
+    host: 'https://www.idggov.tech',
   };
 }
+

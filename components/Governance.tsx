@@ -113,7 +113,12 @@ export default function Governance({ t, isRtl }: GovernanceProps) {
                 className="p-5 sm:p-6 md:p-8 bg-[#0B172E] rounded-xl sm:rounded-2xl border border-[#102447] hover:border-[#1D5BD8] transition"
                 id={`gov-value-card-${idx}`}
               >
-                <h3 className="text-xl font-bold text-slate-100 mb-3">{val.title}</h3>
+                <h3 className="text-xl font-bold text-slate-100 mb-3">
+                  <span>{val.title.replace(/[\u{1F1E6}-\u{1F1FF}]{2}|[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '').trim()}</span>
+                  {val.title.match(/[\u{1F1E6}-\u{1F1FF}]{2}|[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu)?.map((emoji, eIdx) => (
+                    <span key={eIdx} aria-hidden="true" className="ms-1.5">{emoji}</span>
+                  ))}
+                </h3>
                 <p className="text-sm md:text-base text-slate-400 leading-relaxed">{val.desc}</p>
               </div>
             ))}
