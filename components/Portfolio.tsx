@@ -225,21 +225,23 @@ export default function Portfolio({
                       role="button"
                       tabIndex={0}
                       aria-label={`${p.nsw.title} - ${p.cardInspectPrompt}`}
-                      className="p-5 md:p-8 border-2 border-dashed border-[#102447] hover:border-[#1D5BD8]/60 rounded-xl bg-[#0B172E]/50 hover:bg-[#102447]/40 transition cursor-pointer group"
+                      className="p-5 md:p-8 border-2 border-dashed border-[#102447] hover:border-[#1D5BD8]/60 rounded-2xl min-h-[140px] md:min-h-[160px] ring-1 ring-indigo-500/20 shadow-sm shadow-indigo-500/10 bg-[#0B172E]/50 hover:bg-[#102447]/40 transition cursor-pointer group"
                       id="spotlight-iraq-nsw"
                     >
                       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div className="flex-1">
-                          <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2 group-hover:text-[#60A5FA] transition-colors">
+                          <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-100 mb-1 leading-tight group-hover:text-[#60A5FA] transition-colors">
                             {p.nsw.fullTitle}
                           </h3>
-                          <p className="text-sm md:text-base text-slate-400 leading-relaxed max-w-3xl">
+                          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed line-clamp-3 max-w-xl">
                             {p.nsw.architecture}
                           </p>
                         </div>
-                        <div className="w-full md:w-auto text-center bg-[#0B172E] hover:bg-[#102447] border border-[#102447] text-[#60A5FA] font-medium py-2 px-5 rounded-lg whitespace-nowrap transition text-xs sm:text-sm flex items-center justify-center gap-1.5 shrink-0 shadow-2xs">
-                          <Maximize2 className="w-3.5 h-3.5" />
-                          <span>{p.cardInspectPrompt}</span>
+                        <div className="flex items-center gap-2 mt-2 md:mt-0 self-end md:self-center flex-shrink-0">
+                          <div className="w-full md:w-auto text-center bg-[#0B172E] hover:bg-[#102447] border border-[#102447] text-[#60A5FA] font-medium py-2 px-5 rounded-lg whitespace-nowrap transition text-xs sm:text-sm flex items-center justify-center gap-1.5 shrink-0 shadow-2xs">
+                            <Maximize2 className="w-3.5 h-3.5" />
+                            <span>{p.cardInspectPrompt}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -247,7 +249,7 @@ export default function Portfolio({
 
                   <div className="w-full">
                     {/* Standalone Platforms Section Header - renders above external platform cards */}
-                    {isExternal && prod.id === 'zana' && (
+                    {isExternal && filteredProducts.findIndex(p => Boolean(p.external)) === filteredProducts.indexOf(prod) && (
                       <div className="text-xs uppercase tracking-wider text-muted text-slate-400 font-semibold mb-3 pt-2">
                         {p.standalonePlatforms}
                       </div>
@@ -257,6 +259,8 @@ export default function Portfolio({
                       onClick={() => {
                         if (isExternal && prod.id === 'zana') {
                           window.open(prod.externalUrl || prod.url, '_blank', 'noopener,noreferrer');
+                        } else if (prod.id === 'iraqnsw') {
+                          onSelectNSW();
                         } else if (isGatewayAI) {
                           router.push(`/${lang}/products/economic-knowledge-graph`);
                         } else {
@@ -268,6 +272,8 @@ export default function Portfolio({
                           e.preventDefault();
                           if (isExternal && prod.id === 'zana') {
                             window.open(prod.externalUrl || prod.url, '_blank', 'noopener,noreferrer');
+                          } else if (prod.id === 'iraqnsw') {
+                            onSelectNSW();
                           } else if (isGatewayAI) {
                             router.push(`/${lang}/products/economic-knowledge-graph`);
                           } else {
@@ -278,9 +284,11 @@ export default function Portfolio({
                       role="button"
                       tabIndex={0}
                       aria-label={`${prod.title} - ${p.cardInspectPrompt}`}
-                      className={`bg-[#0B172E] p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl transition cursor-pointer group flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 ${
+                      className={`bg-[#0B172E] p-4 sm:p-6 md:p-8 rounded-2xl min-h-[140px] md:min-h-[160px] transition cursor-pointer group flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 ${
                         isExternal && prod.id === 'zana'
                           ? 'border-dashed border-2 border-amber-500/40 hover:border-amber-400/80 hover:bg-[#0B172E]/90'
+                          : prod.id === 'iraqnsw'
+                          ? 'border border-indigo-500/40 ring-1 ring-indigo-500/20 shadow-sm shadow-indigo-500/10 hover:border-indigo-400 hover:ring-indigo-500/40'
                           : isImpactIQ
                           ? 'border border-sky-500/40 ring-1 ring-sky-500/30 shadow-lg shadow-sky-500/10 hover:border-sky-400 hover:ring-sky-500/50'
                           : isGatewayAI
@@ -291,7 +299,7 @@ export default function Portfolio({
                     >
                       <div className="w-full md:w-auto flex-1">
                         {/* Badge Row */}
-                        <div className="flex flex-wrap items-center gap-2 mb-2 md:mb-3">
+                        <div className="flex flex-wrap items-center gap-1.5 mb-2 md:mb-3">
                           <SovereignBadge
                             label={prod.numBadge}
                             variant={badgeVariant}
@@ -327,7 +335,7 @@ export default function Portfolio({
                         </div>
 
                         {/* Title and Subtitle */}
-                        <h3 className={`text-lg sm:text-xl md:text-2xl font-bold text-slate-100 mb-1 transition-colors ${
+                        <h3 className={`text-base sm:text-lg md:text-xl font-bold text-slate-100 mb-1 leading-tight transition-colors ${
                           isExternal ? 'group-hover:text-amber-400' : isImpactIQ ? 'group-hover:text-sky-400' : isGatewayAI ? 'group-hover:text-emerald-400' : 'group-hover:text-[#60A5FA]'
                         }`}>
                           {prod.title}{' '}
@@ -345,7 +353,7 @@ export default function Portfolio({
                         )}
 
                         {/* Description */}
-                        <p className="text-xs sm:text-sm md:text-base text-slate-400 max-w-3xl leading-relaxed mb-3">
+                        <p className="text-xs sm:text-sm text-slate-400 leading-relaxed line-clamp-3 max-w-xl mb-3">
                           {prod.description}
                         </p>
 
@@ -376,66 +384,68 @@ export default function Portfolio({
                       </div>
 
                       {/* CTA Button */}
-                      {isExternal && prod.id === 'zana' ? (
-                        <a
-                          href={prod.externalUrl || prod.url}
-                          target="_blank"
-                          rel="noopener nofollow external"
-                          onClick={(e) => e.stopPropagation()}
-                          className="w-full md:w-auto text-center bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
-                          id={`btn-visit-site-${prod.id}`}
-                        >
-                          <span>{p.openExternalPlatform}</span>
-                          <ExternalLink className="w-4 h-4 shrink-0" />
-                        </a>
-                      ) : prod.id === 'greenbelt' ? (
-                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto shrink-0">
+                      <div className="flex items-center gap-2 mt-2 md:mt-0 self-end md:self-center flex-shrink-0">
+                        {isExternal && prod.id === 'zana' ? (
                           <a
-                            href="https://green-belt-platform.web.app/"
+                            href={prod.externalUrl || prod.url}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener nofollow external"
                             onClick={(e) => e.stopPropagation()}
-                            className="w-full sm:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-4 sm:px-5 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
+                            className="w-full md:w-auto text-center bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
                             id={`btn-visit-site-${prod.id}`}
                           >
-                            <span>{lang === 'ku' ? 'کردنەوە و بینینی وێبسایت' : lang === 'ar' ? 'عرض وزيارة الموقع' : 'View Website'}</span>
+                            <span>{p.openExternalPlatform}</span>
                             <ExternalLink className="w-4 h-4 shrink-0" />
                           </a>
+                        ) : prod.id === 'greenbelt' ? (
+                          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto shrink-0">
+                            <a
+                              href="https://green-belt-platform.web.app/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="w-full sm:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-4 sm:px-5 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
+                              id={`btn-visit-site-${prod.id}`}
+                            >
+                              <span>{lang === 'ku' ? 'کردنەوە و بینینی وێبسایت' : lang === 'ar' ? 'عرض وزيارة الموقع' : 'View Website'}</span>
+                              <ExternalLink className="w-4 h-4 shrink-0" />
+                            </a>
+                            <a
+                              href="https://green-belt-platform.web.app/dashboard"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="w-full sm:w-auto text-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 sm:px-5 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-emerald-500/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
+                              id={`btn-dashboard-${prod.id}`}
+                            >
+                              <span>{lang === 'ku' ? 'چوونە ناو پلاتفۆرم' : lang === 'ar' ? 'الدخول إلى المنصة' : 'Enter Platform'}</span>
+                              <ArrowRight className="w-4 h-4 rtl:rotate-180 shrink-0" />
+                            </a>
+                          </div>
+                        ) : productHref.startsWith('http') ? (
                           <a
-                            href="https://green-belt-platform.web.app/dashboard"
+                            href={productHref}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="w-full sm:w-auto text-center bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 px-4 sm:px-5 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-emerald-500/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
-                            id={`btn-dashboard-${prod.id}`}
+                            className="w-full md:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
+                            id={`btn-visit-site-${prod.id}`}
                           >
-                            <span>{lang === 'ku' ? 'چوونە ناو پلاتفۆرم' : lang === 'ar' ? 'الدخول إلى المنصة' : 'Enter Platform'}</span>
-                            <ArrowRight className="w-4 h-4 rtl:rotate-180 shrink-0" />
+                            <span>{p.visitWebsiteBtn}</span>
+                            <ExternalLink className="w-4 h-4 shrink-0" />
                           </a>
-                        </div>
-                      ) : productHref.startsWith('http') ? (
-                        <a
-                          href={productHref}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="w-full md:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
-                          id={`btn-visit-site-${prod.id}`}
-                        >
-                          <span>{p.visitWebsiteBtn}</span>
-                          <ExternalLink className="w-4 h-4 shrink-0" />
-                        </a>
-                      ) : (
-                        <Link
-                          href={productHref}
-                          onClick={(e) => e.stopPropagation()}
-                          className="w-full md:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
-                          id={`btn-visit-site-${prod.id}`}
-                        >
-                          <span>{p.visitWebsiteBtn}</span>
-                          <ArrowRight className="w-4 h-4 rtl:rotate-180 shrink-0" />
-                        </Link>
-                      )}
+                        ) : (
+                          <Link
+                            href={productHref}
+                            onClick={(e) => e.stopPropagation()}
+                            className="w-full md:w-auto text-center bg-[#1D5BD8] hover:bg-[#193B73] text-white font-medium py-2.5 px-6 rounded-xl whitespace-nowrap transition shrink-0 shadow-xs border border-[#1D5BD8]/40 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm"
+                            id={`btn-visit-site-${prod.id}`}
+                          >
+                            <span>{p.visitWebsiteBtn}</span>
+                            <ArrowRight className="w-4 h-4 rtl:rotate-180 shrink-0" />
+                          </Link>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </React.Fragment>
@@ -455,21 +465,23 @@ export default function Portfolio({
                 role="button"
                 tabIndex={0}
                 aria-label={`${p.nsw.title} - ${p.cardInspectPrompt}`}
-                className="p-5 md:p-8 border-2 border-dashed border-[#102447] hover:border-[#1D5BD8]/60 rounded-xl bg-[#0B172E]/50 hover:bg-[#102447]/40 transition cursor-pointer group"
+                className="p-5 md:p-8 border-2 border-dashed border-[#102447] hover:border-[#1D5BD8]/60 rounded-2xl min-h-[140px] md:min-h-[160px] ring-1 ring-indigo-500/20 shadow-sm shadow-indigo-500/10 bg-[#0B172E]/50 hover:bg-[#102447]/40 transition cursor-pointer group"
                 id="spotlight-iraq-nsw"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                   <div className="flex-1">
-                    <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2 group-hover:text-[#60A5FA] transition-colors">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-slate-100 mb-1 leading-tight group-hover:text-[#60A5FA] transition-colors">
                       {p.nsw.fullTitle}
                     </h3>
-                    <p className="text-sm md:text-base text-slate-400 leading-relaxed max-w-3xl">
+                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed line-clamp-3 max-w-xl">
                       {p.nsw.architecture}
                     </p>
                   </div>
-                  <div className="w-full md:w-auto text-center bg-[#0B172E] hover:bg-[#102447] border border-[#102447] text-[#60A5FA] font-medium py-2 px-5 rounded-lg whitespace-nowrap transition text-xs sm:text-sm flex items-center justify-center gap-1.5 shrink-0 shadow-2xs">
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    <span>{p.cardInspectPrompt}</span>
+                  <div className="flex items-center gap-2 mt-2 md:mt-0 self-end md:self-center flex-shrink-0">
+                    <div className="w-full md:w-auto text-center bg-[#0B172E] hover:bg-[#102447] border border-[#102447] text-[#60A5FA] font-medium py-2 px-5 rounded-lg whitespace-nowrap transition text-xs sm:text-sm flex items-center justify-center gap-1.5 shrink-0 shadow-2xs">
+                      <Maximize2 className="w-3.5 h-3.5" />
+                      <span>{p.cardInspectPrompt}</span>
+                    </div>
                   </div>
                 </div>
               </div>
