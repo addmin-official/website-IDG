@@ -21,6 +21,7 @@ interface ProposalContent {
   ctaNotice: string;
   ctaButton: string;
   backToPortfolio: string;
+  homeLabel: string;
   printLabel: string;
 }
 
@@ -32,6 +33,7 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
     title: 'Gateway AI',
     subtitle: 'دەروازەی زیرەکی نیشتمانی — هۆشمەندی سنوور و گومرگ',
     backToPortfolio: 'گەڕانەوە بۆ پۆرتفۆلیۆ',
+    homeLabel: 'سەرەکی',
     printLabel: 'چاپکردنی بەڵگەنامە',
     ctaNotice: 'بۆ زانیاری زیاتر و داوای سەرمایە:',
     ctaButton: 'partnerships@idggov.tech',
@@ -127,6 +129,7 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
     title: 'Gateway AI',
     subtitle: 'البوابة الذكية الوطنية — ذكاء الحدود والجمارك',
     backToPortfolio: 'العودة إلى المحفظة',
+    homeLabel: 'الرئيسية',
     printLabel: 'طباعة الوثيقة',
     ctaNotice: 'للمزيد من المعلومات وطلبات الاستثمار والشراكة:',
     ctaButton: 'partnerships@idggov.tech',
@@ -222,6 +225,7 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
     title: 'Gateway AI',
     subtitle: 'The Sovereign Intelligent Gateway — Customs & Border Intelligence',
     backToPortfolio: 'Back to Portfolio',
+    homeLabel: 'Home',
     printLabel: 'Print Document',
     ctaNotice: 'For strategic briefings, technical dossiers, and partnership inquiries:',
     ctaButton: 'partnerships@idggov.tech',
@@ -353,6 +357,9 @@ export default function GatewayAIClient({ locale }: { locale: string }) {
             <span>{content.backToPortfolio}</span>
           </Link>
           <div className="flex items-center gap-3">
+            <span className="hidden md:inline font-mono text-xs text-slate-400 px-2.5 py-1 rounded bg-slate-900/80 border border-slate-800">
+              {content.docCode}
+            </span>
             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
               <Shield className="w-3.5 h-3.5" />
               <span>{content.securityBadge}</span>
@@ -360,6 +367,7 @@ export default function GatewayAIClient({ locale }: { locale: string }) {
             <button
               type="button"
               onClick={() => window.print()}
+              data-action="window.print"
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#0B172E] border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 hover:border-emerald-400 text-xs sm:text-sm font-medium transition-colors cursor-pointer"
               title={content.printLabel}
             >
@@ -438,13 +446,26 @@ export default function GatewayAIClient({ locale }: { locale: string }) {
           <p className="text-slate-300 text-sm sm:text-base font-medium">
             {content.ctaNotice}
           </p>
-          <div>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <a
               href={`mailto:${content.ctaButton}`}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-500/30 hover:border-emerald-400 transition-all font-semibold text-sm sm:text-base shadow-lg shadow-emerald-500/10"
             >
               <span>{content.ctaButton}</span>
             </a>
+            <Link
+              href={`/${locale}/portfolio`}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0B172E] border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 hover:border-emerald-400 transition-all font-semibold text-sm sm:text-base"
+            >
+              <span>{content.backToPortfolio}</span>
+              {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
+            </Link>
+            <Link
+              href={`/${locale}`}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0B172E] border border-slate-700 text-slate-300 hover:bg-slate-800 transition-all font-semibold text-sm sm:text-base"
+            >
+              <span>{content.homeLabel}</span>
+            </Link>
           </div>
           <p className="text-xs text-slate-500 font-mono">
             Iraq Digital Gateway (IDG) • Sovereign Intelligence Platform • ISO 27001
