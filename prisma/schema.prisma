@@ -30,6 +30,8 @@ model CareerApplication {
   position      String
   coverNote     String?
   resumeName    String?
+  resumeData    Bytes?
+  resumeBase64  String?
   applicationId String   @unique
   createdAt     DateTime @default(now())
 }

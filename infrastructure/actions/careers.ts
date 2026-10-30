@@ -29,6 +29,17 @@ export async function submitCareerApplication(formData: FormData) {
     return { success: true, applicationId };
   }
 
+  let resumeData: Uint8Array | null = null;
+  let resumeBase64: string | null = null;
+  try {
+    const arrayBuffer = await cvFile.arrayBuffer();
+    resumeData = new Uint8Array(arrayBuffer);
+    resumeBase64 = Buffer.from(arrayBuffer).toString('base64');
+  } catch (fileErr) {
+    console.error('Failed to process CV file bytes:', fileErr);
+    return { success: false, error: 'نەتوانرا فایلی سیڤییەکە بخوێندرێتەوە. تکایە دووبارە هەوڵبدەرەوە.' };
+  }
+
   try {
     await prisma.careerApplication.create({
       data: {
@@ -37,6 +48,8 @@ export async function submitCareerApplication(formData: FormData) {
         position,
         coverNote: coverNote || null,
         resumeName: cvFile.name,
+        resumeData: (resumeData as unknown as Uint8Array<ArrayBuffer>) || undefined,
+        resumeBase64: resumeBase64 || undefined,
         applicationId,
       },
     });

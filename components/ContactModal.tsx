@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { TranslationData } from '@/lib/translations';
-import { X, Send, CheckCircle2, ShieldCheck, Loader2, AlertCircle } from 'lucide-react';
+import { X, Send, CheckCircle2, ShieldCheck, Loader2, AlertCircle, Copy, Check } from 'lucide-react';
 import Button from '@/components/ui/Button';
+import { submitContactInquiry } from '@/infrastructure/actions/contact';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -14,10 +15,12 @@ interface ContactModalProps {
 export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) {
   const [name, setName] = useState('');
   const [entity, setEntity] = useState('');
+  const [email, setEmail] = useState('');
   const [sector, setSector] = useState(t.contactModal.sectorOptions[0] || '');
   const [inquiryType, setInquiryType] = useState(t.contactModal.inquiryOptions[0] || '');
   const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [referenceId, setReferenceId] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -26,8 +29,10 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
       if (e.key === 'Escape') {
         setName('');
         setEntity('');
+        setEmail('');
         setMessage('');
         setErrorMessage('');
+        setReferenceId('');
         setIsSubmitting(false);
         setSubmitted(false);
         onClose();
@@ -47,7 +52,28 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !entity.trim() || !message.trim()) return;
+    if (!name.trim() || !entity.trim() || !email.trim() || !message.trim()) {
+      setErrorMessage(
+        t.contactSection?.form?.submitBtn === 'إرسال الرسالة'
+          ? 'يرجى ملء جميع الحقول المطلوبة بما فيها البريد الإلكتروني.'
+          : t.contactSection?.form?.submitBtn === 'Send Message'
+          ? 'Please fill in all required fields including your email address.'
+          : 'تکایە هەموو خانە پێویستەکان پڕبکەرەوە لەگەڵ ئیمەیڵ.'
+      );
+      return;
+    }
+
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    if (!isValidEmail) {
+      setErrorMessage(
+        t.contactSection?.form?.submitBtn === 'إرسال الرسالة'
+          ? 'يرجى إدخال بريد إلكتروني صحيح.'
+          : t.contactSection?.form?.submitBtn === 'Send Message'
+          ? 'Please enter a valid email address.'
+          : 'تکایە ناونیشانی ئیمەیڵێکی دروست بنووسە.'
+      );
+      return;
+    }
 
     setIsSubmitting(true);
     setErrorMessage('');
@@ -88,22 +114,38 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
     }
 
     try {
-      if (token) {
-        const verifyRes = await fetch('/api/verify-recaptcha', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token }),
-        });
-        const verifyData = await verifyRes.json();
-        if (!verifyRes.ok || !verifyData.verified) {
-          setErrorMessage('سەلماندنی reCAPTCHA شکستی هێنا. تکایە دووبارە هەوڵ بدەرەوە.');
-          setIsSubmitting(false);
-          return;
+      const formData = new FormData();
+      formData.append('name', name.trim());
+      formData.append('email', email.trim());
+      formData.append('subject', `${inquiryType} (${entity.trim()})`);
+      formData.append('problem', sector);
+      formData.append('message', `[دامەزراوە: ${entity.trim()}]\n[کەرت: ${sector}]\n[بابەت: ${inquiryType}]\n\n${message.trim()}`);
+      formData.append('recaptchaToken', token || (process.env.NODE_ENV !== 'production' ? 'TEST_TOKEN' : ''));
+
+      const result = await submitContactInquiry(formData);
+      if (result.success) {
+        if (result.referenceId) {
+          setReferenceId(result.referenceId);
         }
+        setSubmitted(true);
+      } else {
+        setErrorMessage(
+          result.error ||
+          (t.contactSection?.form?.submitBtn === 'إرسال الرسالة'
+            ? 'فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.'
+            : t.contactSection?.form?.submitBtn === 'Send Message'
+            ? 'Failed to send message. Please try again.'
+            : 'هەڵەیەک لە ناردنی داواکارییەکەدا ڕوویدا. تکایە دووبارە هەوڵ بدەرەوە.')
+        );
       }
-      setSubmitted(true);
     } catch {
-      setErrorMessage('Verification failed. Please try again.');
+      setErrorMessage(
+        t.contactSection?.form?.submitBtn === 'إرسال الرسالة'
+          ? 'حدث خطأ في الاتصال بالخادم. يرجى المحاولة لاحقاً.'
+          : t.contactSection?.form?.submitBtn === 'Send Message'
+          ? 'Connection error with server. Please try again later.'
+          : 'پەیوەندی لەگەڵ ڕاژەکار سەرکەوتوو نەبوو. تکایە دووبارە هەوڵ بدەرەوە.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -112,8 +154,10 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
   const handleReset = () => {
     setName('');
     setEntity('');
+    setEmail('');
     setMessage('');
     setErrorMessage('');
+    setReferenceId('');
     setIsSubmitting(false);
     setSubmitted(false);
     onClose();
@@ -148,6 +192,12 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
             <h3 className="text-2xl font-bold text-slate-900">
               {t.contactModal.successTitle}
             </h3>
+            {referenceId && (
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50 text-emerald-800 rounded-lg text-xs font-mono font-bold border border-emerald-200 shadow-xs">
+                <span>کۆدی بەدواداچوون:</span>
+                <span className="text-emerald-950 font-black">{referenceId}</span>
+              </div>
+            )}
             <p className="text-slate-600 text-sm max-w-md mx-auto leading-relaxed">
               {t.contactModal.successMsg}
             </p>
@@ -196,22 +246,43 @@ export default function ContactModal({ isOpen, onClose, t }: ContactModalProps) 
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1" htmlFor="contact-entity">
-                  {t.contactModal.entityLabel} *
-                </label>
-                <input
-                  id="contact-entity"
-                  type="text"
-                  required
-                  autoComplete="organization"
-                  spellCheck={false}
-                  suppressHydrationWarning
-                  value={entity}
-                  onChange={(e) => setEntity(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-blue-600 text-slate-900 text-sm"
-                  placeholder="وەزارەت / دەستە / دامەزراوە"
-                />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1" htmlFor="contact-entity">
+                    {t.contactModal.entityLabel} *
+                  </label>
+                  <input
+                    id="contact-entity"
+                    type="text"
+                    required
+                    autoComplete="organization"
+                    spellCheck={false}
+                    suppressHydrationWarning
+                    value={entity}
+                    onChange={(e) => setEntity(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-blue-600 text-slate-900 text-sm"
+                    placeholder="وەزارەت / دەستە / دامەزراوە"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1" htmlFor="contact-email">
+                    {t.contactModal.emailLabel || 'ئیمەیڵی فەرمی بۆ پەیوەندی'} *
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    spellCheck={false}
+                    suppressHydrationWarning
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-blue-600 text-slate-900 text-sm"
+                    placeholder="name@organization.gov.iq"
+                    dir="ltr"
+                  />
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

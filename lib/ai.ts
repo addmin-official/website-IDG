@@ -6,10 +6,9 @@ const genAI = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 // Primary & fallback fast models
 const CANDIDATE_MODELS = [
-  'gemini-3.5-flash-lite',
-  'gemini-3-flash-preview',
   'gemini-3.8-flash',
-  'gemini-2.0-flash',
+  'gemini-3-flash-preview',
+  'gemini-3.5-flash-lite',
 ];
 
 /**

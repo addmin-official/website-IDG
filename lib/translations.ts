@@ -253,6 +253,7 @@ export interface TranslationData {
     subtitle: string;
     nameLabel: string;
     entityLabel: string;
+    emailLabel?: string;
     sectorLabel: string;
     inquiryTypeLabel: string;
     messageLabel: string;
@@ -1107,6 +1108,7 @@ export const translations: Record<Language, TranslationData> = {
         'دەروازەی دیجیتاڵیی عێراق تەنها بەدواداچوون بۆ داواکارییە فەرمییەکانی پەیوەست بە حوکمڕانی، وەبەرهێنان و یەکگرتنی سیستەمەکان دەکات.',
       nameLabel: 'ناوی تەواوی بەرپرسیار',
       entityLabel: 'ناوی دامەزراوە / کۆمپانیا',
+      emailLabel: 'ئیمەیڵی فەرمی بۆ پەیوەندی',
       sectorLabel: 'کەرتی پەیوەندیدار',
       inquiryTypeLabel: 'بابەتی پەیوەندی',
       messageLabel: 'پوختەی کێشەی سەلمێنراو یان داواکاری',
@@ -2211,6 +2213,7 @@ export const translations: Record<Language, TranslationData> = {
         'تتعامل بوابة العراق الرقمية حصراً مع الطلبات الرسمية المتعلقة بالحوكمة، الشراكات الاستراتيجية، وتكامل الأنظمة.',
       nameLabel: 'الاسم الكامل للمسؤول',
       entityLabel: 'اسم المؤسسة / الهيئة',
+      emailLabel: 'البريد الإلكتروني الرسمي',
       sectorLabel: 'القطاع المعني',
       inquiryTypeLabel: 'موضوع التواصل',
       messageLabel: 'ملخص المشكلة المثبتة أو الطلب المؤسسي',
@@ -3321,6 +3324,7 @@ export const translations: Record<Language, TranslationData> = {
         'Iraq Digital Gateway exclusively addresses formal inquiries pertaining to institutional governance, strategic partnerships, and systems integration.',
       nameLabel: 'Full Name of Official / Lead',
       entityLabel: 'Organization / Ministry / Enterprise',
+      emailLabel: 'Official Work Email',
       sectorLabel: 'Sector',
       inquiryTypeLabel: 'Nature of Inquiry',
       messageLabel: 'Summary of Proven Problem or Institutional Scope',
