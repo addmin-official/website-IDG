@@ -1,0 +1,176 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 4 0 R /Resources << /Font << /F1 7 0 R /F2 8 0 R /F3 9 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1882 >>
+stream
+0.5 w
+0.1 0.2 0.4 RG
+50 805 m 545 805 l S
+BT
+/F1 8 Tf
+50 812 Td
+(IRAQ DIGITAL GATEWAY \(IDG\) • SOVEREIGN ENGINEERING INFRASTRUCTURE) Tj
+330 0 Td
+(IDG-GOV-DATA-2026) Tj
+ET
+0.5 w
+0.1 0.2 0.4 RG
+50 45 m 545 45 l S
+BT
+/F2 8 Tf
+50 32 Td
+(OFFICIAL INSTITUTIONAL RELEASE • REPUBLIC OF IRAQ • CONFIDENTIAL LEVEL 3) Tj
+380 0 Td
+(PAGE 1 OF 2) Tj
+ET
+BT
+/F1 22 Tf
+50 730 Td
+(National Data Governance &) Tj
+0 -26 Td
+(Classification Charter) Tj
+/F3 11 Tf
+0 -22 Td
+(Mandatory Regulatory Framework for Public Sector Data Management in Iraq) Tj
+/F1 10 Tf
+0 -35 Td
+(CHARTER METADATA:) Tj
+/F2 9.5 Tf
+0 -15 Td
+(• Document Reference: IDG-GOV-DATA-2026) Tj
+0 -14 Td
+(• Classification: SOVEREIGN REGULATORY CHARTER) Tj
+0 -14 Td
+(• Effective Date: October 2026) Tj
+0 -14 Td
+(• Jurisdiction: Republic of Iraq \(Federal & Regional Agencies\)) Tj
+/F1 13 Tf
+0 -30 Td
+(1. The Four-Tier Data Classification Matrix) Tj
+/F2 9 Tf
+0 -16 Td
+(All institutional and governmental data is formally categorized into four strict tiers:) Tj
+0 -14 Td
+(• Tier 1 \(Public / مفتوح\): Public legislation, statistical aggregates, educational materials.) Tj
+0 -14 Td
+(• Tier 2 \(Confidential / سري\): Inter-agency correspondence, non-critical commercial filings.) Tj
+0 -14 Td
+(• Tier 3 \(Sovereign Critical / سيادي حساس\): Port manifests, tax revenue, banking RTGS logs.) Tj
+0 -14 Td
+(• Tier 4 \(Air-Gapped Sovereign / سيادي معزول\): National civil registry, defense telemetry.) Tj
+/F1 13 Tf
+0 -26 Td
+(2. Absolute Prohibition on Cross-Border Data Leakage) Tj
+/F2 9 Tf
+0 -16 Td
+(Under Section 4.2 of this Charter, any cloud architecture routing Tier 3 or Tier 4 records) Tj
+0 -13 Td
+(through foreign proxy servers, CDNs, or offshore databases constitutes a sovereign breach.) Tj
+0 -13 Td
+(All AI models trained on Iraqi institutional data must execute within sovereign nodes.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 6 0 R /Resources << /Font << /F1 7 0 R /F2 8 0 R /F3 9 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 1740 >>
+stream
+0.5 w
+0.1 0.2 0.4 RG
+50 805 m 545 805 l S
+BT
+/F1 8 Tf
+50 812 Td
+(IRAQ DIGITAL GATEWAY \(IDG\) • SOVEREIGN ENGINEERING INFRASTRUCTURE) Tj
+330 0 Td
+(IDG-GOV-DATA-2026) Tj
+ET
+0.5 w
+0.1 0.2 0.4 RG
+50 45 m 545 45 l S
+BT
+/F2 8 Tf
+50 32 Td
+(OFFICIAL INSTITUTIONAL RELEASE • REPUBLIC OF IRAQ • CONFIDENTIAL LEVEL 3) Tj
+380 0 Td
+(PAGE 2 OF 2) Tj
+ET
+BT
+/F1 13 Tf
+50 750 Td
+(3. Accountable Ownership & Evidentiary Chains) Tj
+/F2 9 Tf
+0 -16 Td
+(Every electronic registry and transactional pipeline must designate an Accountable Owner.) Tj
+0 -13 Td
+(The Accountable Owner bears personal operational and legal responsibility for data integrity,) Tj
+0 -13 Td
+(access controls, and disaster recovery readiness under IDG governance KPIs.) Tj
+/F1 13 Tf
+0 -28 Td
+(4. Cryptographic Hashing & Immutability Standards) Tj
+/F2 9 Tf
+0 -16 Td
+(To eliminate retro-active database tampering and corruption:) Tj
+0 -13 Td
+(• All record modifications must generate an immutable SHA-256 digest block.) Tj
+0 -13 Td
+(• Cryptographic audit chains must be inspectable by the Supreme Board of Auditing.) Tj
+0 -13 Td
+(• Retention periods for financial and customs logs are permanently set to 15 years minimum.) Tj
+/F1 13 Tf
+0 -28 Td
+(5. Regulatory Sanctions & Compliance Oversight) Tj
+/F2 9 Tf
+0 -16 Td
+(Non-compliance with this charter results in immediate revocation of sovereign gateway access) Tj
+0 -13 Td
+(and referral to the Federal Integrity Commission for institutional malpractice investigation.) Tj
+/F1 10 Tf
+0 -40 Td
+(RATIFICATION & ADOPTION SEAL:) Tj
+/F2 8.5 Tf
+0 -16 Td
+([SEALED] High Committee for National Digital Transformation - Prime Minister's Office) Tj
+0 -14 Td
+([CERTIFIED] Institutional Relations & Sovereign Governance Desk - IDG Group) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+8 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+9 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000019 00000 n 
+0000000068 00000 n 
+0000000131 00000 n 
+0000000283 00000 n 
+0000002217 00000 n 
+0000002369 00000 n 
+0000004161 00000 n 
+0000004236 00000 n 
+0000004306 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+4384
+%%EOF

@@ -1,0 +1,232 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 4 0 R /Resources << /Font << /F1 9 0 R /F2 10 0 R /F3 11 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1614 >>
+stream
+0.5 w
+0.1 0.2 0.4 RG
+50 805 m 545 805 l S
+BT
+/F1 8 Tf
+50 812 Td
+(IRAQ DIGITAL GATEWAY \(IDG\) • SOVEREIGN ENGINEERING INFRASTRUCTURE) Tj
+330 0 Td
+(IDG-NSW-INT-09) Tj
+ET
+0.5 w
+0.1 0.2 0.4 RG
+50 45 m 545 45 l S
+BT
+/F2 8 Tf
+50 32 Td
+(OFFICIAL INSTITUTIONAL RELEASE • REPUBLIC OF IRAQ • CONFIDENTIAL LEVEL 3) Tj
+380 0 Td
+(PAGE 1 OF 3) Tj
+ET
+BT
+/F1 22 Tf
+50 730 Td
+(Iraq National Single Window \(NSW\)) Tj
+0 -26 Td
+(Technical Integration Specifications) Tj
+/F3 11 Tf
+0 -22 Td
+(Interfacing Manual for Maritime Ports, Border Terminals, ASYCUDA & CBI) Tj
+/F1 10 Tf
+0 -35 Td
+(INTERFACE ARCHITECTURE REGISTER:) Tj
+/F2 9.5 Tf
+0 -15 Td
+(• Document Reference: IDG-NSW-INT-09) Tj
+0 -14 Td
+(• Target Corridors: Umm Qasr Port \(North/South\), Trebil, Ibrahim Khalil, Safwan) Tj
+0 -14 Td
+(• System Counterparts: ASYCUDA World \(Customs\), BUNA, CBI RTGS, Port Operating Systems) Tj
+0 -14 Td
+(• Protocol Version: REST / JSON / XML EDIFACT v4.2 & gRPC Streaming) Tj
+/F1 13 Tf
+0 -30 Td
+(1. End-to-End Corridor Flow Overview) Tj
+/F2 9 Tf
+0 -16 Td
+(The Iraq National Single Window streamlines international trade through five digital steps:) Tj
+0 -14 Td
+(Step 1: Manifest Pre-Arrival Declaration \(Shipping Line / Carrier to NSW Gateway\).) Tj
+0 -14 Td
+(Step 2: Automated Single Electronic Customs Declaration \(ASYCUDA World Interchange\).) Tj
+0 -14 Td
+(Step 3: Algorithmic Multi-Agency Risk Assessment \(Green, Yellow, Red Channeling\).) Tj
+0 -14 Td
+(Step 4: Instant Financial Clearance via Central Bank \(CBI\) Sovereign Gateway.) Tj
+0 -14 Td
+(Step 5: Digital Release Order with Holographic QR Gate Verification.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 6 0 R /Resources << /Font << /F1 9 0 R /F2 10 0 R /F3 11 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 1510 >>
+stream
+0.5 w
+0.1 0.2 0.4 RG
+50 805 m 545 805 l S
+BT
+/F1 8 Tf
+50 812 Td
+(IRAQ DIGITAL GATEWAY \(IDG\) • SOVEREIGN ENGINEERING INFRASTRUCTURE) Tj
+330 0 Td
+(IDG-NSW-INT-09) Tj
+ET
+0.5 w
+0.1 0.2 0.4 RG
+50 45 m 545 45 l S
+BT
+/F2 8 Tf
+50 32 Td
+(OFFICIAL INSTITUTIONAL RELEASE • REPUBLIC OF IRAQ • CONFIDENTIAL LEVEL 3) Tj
+380 0 Td
+(PAGE 2 OF 3) Tj
+ET
+BT
+/F1 13 Tf
+50 750 Td
+(2. Pre-Arrival Cargo Manifest Schema \(Endpoint: /api/v1/nsw/manifest\)) Tj
+/F2 8.5 Tf
+0 -16 Td
+(POST /api/v1/nsw/manifest - Headers: Authorization: Bearer <mTLS_JWT>) Tj
+0 -14 Td
+(Payload Structure:) Tj
+0 -13 Td
+(  {) Tj
+0 -11 Td
+(    "manifestId": "MNF-2026-BSR-008912",) Tj
+0 -11 Td
+(    "carrier": "National Iraqi Maritime Transport Co",) Tj
+0 -11 Td
+(    "portOfEntry": "IQ-UQR \(Umm Qasr South\)",) Tj
+0 -11 Td
+(    "eta": "2026-11-04T08:00:00Z",) Tj
+0 -11 Td
+(    "containersCount": 420,) Tj
+0 -11 Td
+(    "cargoItems": [) Tj
+0 -11 Td
+(      {"hsCode": "8471.30", "declaredValueUSD": 1420000, "weightKg": 18450}) Tj
+0 -11 Td
+(    ]) Tj
+0 -11 Td
+(  }) Tj
+/F1 13 Tf
+0 -24 Td
+(3. Central Bank RTGS Settlement Endpoint \(Endpoint: /api/v1/nsw/settle\)) Tj
+/F2 8.5 Tf
+0 -16 Td
+(Upon risk validation, tariffs and fees are deducted in Iraqi Dinars \(IQD\):) Tj
+0 -13 Td
+(• Automatic generation of Sadad institutional billing tokens.) Tj
+0 -13 Td
+(• Immediate credit acknowledgment to the General Directorate of Customs sub-treasury.) Tj
+0 -13 Td
+(• Cryptographic proof-of-payment token appended to digital container release order.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 8 0 R /Resources << /Font << /F1 9 0 R /F2 10 0 R /F3 11 0 R >> >> >>
+endobj
+8 0 obj
+<< /Length 1463 >>
+stream
+0.5 w
+0.1 0.2 0.4 RG
+50 805 m 545 805 l S
+BT
+/F1 8 Tf
+50 812 Td
+(IRAQ DIGITAL GATEWAY \(IDG\) • SOVEREIGN ENGINEERING INFRASTRUCTURE) Tj
+330 0 Td
+(IDG-NSW-INT-09) Tj
+ET
+0.5 w
+0.1 0.2 0.4 RG
+50 45 m 545 45 l S
+BT
+/F2 8 Tf
+50 32 Td
+(OFFICIAL INSTITUTIONAL RELEASE • REPUBLIC OF IRAQ • CONFIDENTIAL LEVEL 3) Tj
+380 0 Td
+(PAGE 3 OF 3) Tj
+ET
+BT
+/F1 13 Tf
+50 750 Td
+(4. Automated Risk Engine & AI Manifest Auditing) Tj
+/F2 9 Tf
+0 -16 Td
+(• Green Channel \(70-80%\): Instant clearance under 2 hours without physical inspection.) Tj
+0 -13 Td
+(• Yellow Channel \(15-20%\): Automated document verification and invoice price audit.) Tj
+0 -13 Td
+(• Red Channel \(5-10%\): Mandatory non-intrusive container scanner and physical inspection.) Tj
+/F1 13 Tf
+0 -28 Td
+(5. Terminal Gate-Out & Holographic QR Verification) Tj
+/F2 9 Tf
+0 -16 Td
+(The terminal exit gate utilizes encrypted, time-limited digital release tokens:) Tj
+0 -13 Td
+(• Handheld border guard scanners verify token authenticity offline against sovereign root cert.) Tj
+0 -13 Td
+(• Instant container gate-out status reported to Ministry of Transport real-time telemetry.) Tj
+0 -13 Td
+(• Overall port dwell time reduced from 18 days to under 48 hours nationwide.) Tj
+/F1 10 Tf
+0 -40 Td
+(INTERFACING CERTIFICATION:) Tj
+/F2 8.5 Tf
+0 -16 Td
+([APPROVED] Directorate General of Customs - Republic of Iraq) Tj
+0 -14 Td
+([CERTIFIED] Port & Border Corridors Taskforce - Iraq Digital Gateway \(IDG\)) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+10 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+11 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000019 00000 n 
+0000000068 00000 n 
+0000000137 00000 n 
+0000000291 00000 n 
+0000001957 00000 n 
+0000002111 00000 n 
+0000003673 00000 n 
+0000003827 00000 n 
+0000005342 00000 n 
+0000005417 00000 n 
+0000005488 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+5567
+%%EOF

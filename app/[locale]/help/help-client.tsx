@@ -281,11 +281,27 @@ export default function HelpClient({ locale }: { locale: string }) {
   }, [searchQuery]);
 
   const handleDownload = (guide: GuideItem) => {
+    const downloadUrl = `/documents/${guide.id}.pdf`;
+    const filename = `${guide.ref}.pdf`;
+
+    try {
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.setAttribute('download', filename);
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch {
+      window.open(downloadUrl, '_blank');
+    }
+
     const notice =
       lang === 'ku'
-        ? `داگرتنی «${guide.title[lang]}» دەستیپێکرد (${guide.size})`
+        ? `داگرتنی «${guide.title[lang]}» سەرکەوتووانە دەستیپێکرد (${guide.size})`
         : lang === 'ar'
-        ? `بدأ تنزيل «${guide.title[lang]}» (${guide.size})`
+        ? `بدأ تنزيل «${guide.title[lang]}» بنجاح (${guide.size})`
         : `Download started: ${guide.title[lang]} (${guide.size})`;
     setDownloadNotice(notice);
     setTimeout(() => {
@@ -574,13 +590,16 @@ export default function HelpClient({ locale }: { locale: string }) {
                       <span className="text-[11px] text-slate-500 font-medium">
                         {lang === 'ku' ? 'وەشانی فەرمی' : lang === 'ar' ? 'نسخة رسمية معتمدة' : 'Official release'}
                       </span>
-                      <button
+                      <a
+                        href={`/documents/${guide.id}.pdf`}
+                        download={`${guide.ref}.pdf`}
                         onClick={() => handleDownload(guide)}
                         className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#102447] hover:bg-[#193B73] text-emerald-300 text-xs font-bold rounded-lg border border-emerald-500/30 transition-colors cursor-pointer"
+                        title={lang === 'ku' ? 'داگرتنی ڕاستەوخۆ' : 'Direct Download'}
                       >
                         <Download className="w-3.5 h-3.5" />
                         <span>{lang === 'ku' ? 'داگرتن' : lang === 'ar' ? 'تنزيل' : 'Download'}</span>
-                      </button>
+                      </a>
                     </div>
                   </div>
                 ))}

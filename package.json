@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -p 3000",
-    "build": "prisma generate && next build && (rm -rf next. && cp -r .next next. 2>/dev/null || true)",
+    "build": "prisma generate && node scripts/build-official-guides.js && next build && (rm -rf next. && cp -r .next next. 2>/dev/null || true)",
     "start": "next start -p 3000",
     "lint": "eslint .",
     "postinstall": "prisma generate && node scripts/patch-next-devtools.js || true",
