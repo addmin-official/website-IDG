@@ -280,9 +280,9 @@ export default function HelpClient({ locale }: { locale: string }) {
     });
   }, [searchQuery]);
 
-  const handleDownload = (guide: GuideItem) => {
-    const downloadUrl = `/documents/${guide.id}.pdf`;
-    const filename = `${guide.ref}.pdf`;
+  const handleDownload = (guide: GuideItem, targetLang: Language = lang) => {
+    const downloadUrl = `/documents/${guide.id}-${targetLang}.pdf`;
+    const filename = `${guide.ref}-${targetLang}.pdf`;
 
     try {
       const link = document.createElement('a');
@@ -297,12 +297,13 @@ export default function HelpClient({ locale }: { locale: string }) {
       window.open(downloadUrl, '_blank');
     }
 
+    const langLabel = targetLang === 'ku' ? 'کوردی' : targetLang === 'ar' ? 'عربي' : 'English';
     const notice =
       lang === 'ku'
-        ? `داگرتنی «${guide.title[lang]}» سەرکەوتووانە دەستیپێکرد (${guide.size})`
+        ? `داگرتنی وەشانی (${langLabel})ی «${guide.title[targetLang] || guide.title[lang]}» دەستیپێکرد`
         : lang === 'ar'
-        ? `بدأ تنزيل «${guide.title[lang]}» بنجاح (${guide.size})`
-        : `Download started: ${guide.title[lang]} (${guide.size})`;
+        ? `بدأ تنزيل نسخة (${langLabel}) من «${guide.title[targetLang] || guide.title[lang]}» بنجاح`
+        : `Download started for (${langLabel}) edition of "${guide.title[targetLang] || guide.title[lang]}"`;
     setDownloadNotice(notice);
     setTimeout(() => {
       setDownloadNotice(null);
@@ -586,16 +587,58 @@ export default function HelpClient({ locale }: { locale: string }) {
                       </div>
                     </div>
 
-                    <div className="pt-4 mt-4 border-t border-[#102447] flex items-center justify-between">
-                      <span className="text-[11px] text-slate-500 font-medium">
-                        {lang === 'ku' ? 'وەشانی فەرمی' : lang === 'ar' ? 'نسخة رسمية معتمدة' : 'Official release'}
-                      </span>
+                    <div className="pt-4 mt-4 border-t border-[#102447] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="text-[11px] text-slate-500 font-medium me-1">
+                          {lang === 'ku' ? 'زمان:' : lang === 'ar' ? 'اللغة:' : 'Language:'}
+                        </span>
+                        <a
+                          href={`/documents/${guide.id}-ku.pdf`}
+                          download={`${guide.ref}-ku.pdf`}
+                          onClick={() => handleDownload(guide, 'ku')}
+                          className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
+                            lang === 'ku'
+                              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                              : 'bg-[#102447] text-slate-400 hover:text-white border border-transparent hover:border-slate-600'
+                          }`}
+                          title="داگرتن بە زمانی کوردی"
+                        >
+                          کوردی
+                        </a>
+                        <a
+                          href={`/documents/${guide.id}-ar.pdf`}
+                          download={`${guide.ref}-ar.pdf`}
+                          onClick={() => handleDownload(guide, 'ar')}
+                          className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
+                            lang === 'ar'
+                              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                              : 'bg-[#102447] text-slate-400 hover:text-white border border-transparent hover:border-slate-600'
+                          }`}
+                          title="تنزيل باللغة العربية"
+                        >
+                          عربي
+                        </a>
+                        <a
+                          href={`/documents/${guide.id}-en.pdf`}
+                          download={`${guide.ref}-en.pdf`}
+                          onClick={() => handleDownload(guide, 'en')}
+                          className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all cursor-pointer ${
+                            lang === 'en'
+                              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                              : 'bg-[#102447] text-slate-400 hover:text-white border border-transparent hover:border-slate-600'
+                          }`}
+                          title="Download in English"
+                        >
+                          EN
+                        </a>
+                      </div>
+
                       <a
-                        href={`/documents/${guide.id}.pdf`}
-                        download={`${guide.ref}.pdf`}
-                        onClick={() => handleDownload(guide)}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#102447] hover:bg-[#193B73] text-emerald-300 text-xs font-bold rounded-lg border border-emerald-500/30 transition-colors cursor-pointer"
-                        title={lang === 'ku' ? 'داگرتنی ڕاستەوخۆ' : 'Direct Download'}
+                        href={`/documents/${guide.id}-${lang}.pdf`}
+                        download={`${guide.ref}-${lang}.pdf`}
+                        onClick={() => handleDownload(guide, lang)}
+                        className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-[#102447] hover:bg-[#193B73] text-emerald-300 text-xs font-bold rounded-lg border border-emerald-500/30 transition-colors cursor-pointer"
+                        title={lang === 'ku' ? 'داگرتنی ڕاستەوخۆ' : lang === 'ar' ? 'تنزيل مباشر' : 'Direct Download'}
                       >
                         <Download className="w-3.5 h-3.5" />
                         <span>{lang === 'ku' ? 'داگرتن' : lang === 'ar' ? 'تنزيل' : 'Download'}</span>

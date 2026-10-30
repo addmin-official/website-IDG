@@ -12,7 +12,18 @@ export async function GET(
 
   // Sanitize filename to prevent directory traversal
   const safeId = docId.replace(/[^a-zA-Z0-9_-]/g, '');
-  const filePath = path.join(process.cwd(), 'public', 'documents', `${safeId}.pdf`);
+  const searchParams = _request.nextUrl.searchParams;
+  const lang = searchParams.get('lang')?.toLowerCase();
+
+  let targetFileName = `${safeId}.pdf`;
+  if (lang && ['ku', 'ar', 'en'].includes(lang)) {
+    const langSpecificName = `${safeId}-${lang}.pdf`;
+    if (fs.existsSync(path.join(process.cwd(), 'public', 'documents', langSpecificName))) {
+      targetFileName = langSpecificName;
+    }
+  }
+
+  const filePath = path.join(process.cwd(), 'public', 'documents', targetFileName);
 
   if (!fs.existsSync(filePath)) {
     return new NextResponse('Document not found', { status: 404 });
@@ -20,7 +31,7 @@ export async function GET(
 
   try {
     const fileBuffer = fs.readFileSync(filePath);
-    const filename = `${safeId}.pdf`;
+    const filename = targetFileName;
 
     return new NextResponse(new Uint8Array(fileBuffer), {
       status: 200,
