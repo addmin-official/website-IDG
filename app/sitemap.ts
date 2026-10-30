@@ -13,6 +13,7 @@ interface RouteConfig {
 const ROUTE_CONFIGS: RouteConfig[] = [
   { path: '', priority: 1.0, changeFrequency: 'weekly' },
   { path: '/services', priority: 0.9, changeFrequency: 'weekly' },
+  { path: '/products', priority: 0.95, changeFrequency: 'weekly', lastModified: new Date() },
   { path: '/products/impactiq', priority: 0.9, changeFrequency: 'weekly', lastModified: new Date() },
   { path: '/products/gateway-ai', priority: 0.9, changeFrequency: 'weekly', lastModified: new Date() },
   { path: '/products/economic-knowledge-graph', priority: 0.8, changeFrequency: 'weekly', lastModified: new Date() },

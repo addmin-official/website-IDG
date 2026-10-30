@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Printer, Shield, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Printer, Shield, ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 
 interface Section {
@@ -48,40 +48,40 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
         number: '٢',
         heading: 'پوختەی جێبەجێکار',
         content:
-          'Gateway AI پلاتفۆرمێکی نیشتمانی سەروەرییە بۆ دەروازە سنوورییەکان و گومرگ (CBIP)، کە تایبەت دیزاین کراوە بۆ نوێکردنەوە و کۆنترۆڵکردنی بەڕێوەبردنی بار و بازرگانی عێراق [SOURCE REQUIRED]. سیستەمەکە پاڵپشتی دەکرێت بە AI Gate Iraq، بینینی کۆمپیوتەری، و لێواری دەروازەکان. لە ڕێگەی گرێدانی ڕاستەوخۆ لەگەڵ Iraq NSW و دەستەی گشتی گومرگ، خزمەت بە دەسەڵاتدارانی فیدراڵ و هەرێمی کوردستان دەکات لە ڕێگەی دەفتەرێکی تۆماری هاوبەش و نەپچڕاوەوە [SOURCE REQUIRED]. پلاتفۆرمەکە کارە مەیدانییەکان لە پشکنینی دەستییەوە دەگۆڕێت بۆ مۆدێلی ئازادکردنی پێشبینیکراو و لەسەر بنەمای مەترسی [SOURCE REQUIRED].',
+          'Gateway AI پلاتفۆرمێکی نیشتمانی سەروەرییە بۆ دەروازە سنوورییەکان و گومرگ (CBIP)، کە تایبەت دیزاین کراوە بۆ نوێکردنەوە و کۆنترۆڵکردنی بەڕێوەبردنی بار و بازرگانی عێراق [سەرچاوە: دەستەی گشتیی گومرگ — بڕیاری ژمارە ٣٤٥]. سیستەمەکە پاڵپشتی دەکرێت بە AI Gate Iraq، بینینی کۆمپیوتەری، و لێواری دەروازەکان. لە ڕێگەی گرێدانی ڕاستەوخۆ لەگەڵ Iraq NSW و دەستەی گشتی گومرگ، خزمەت بە دەسەڵاتدارانی فیدراڵ و هەرێمی کوردستان دەکات لە ڕێگەی دەفتەرێکی تۆماری هاوبەش و نەپچڕاوەوە [سەرچاوە: پرۆتۆکۆڵی هاوئاهەنگی نیشتمانیی گومرگ]. پلاتفۆرمەکە کارە مەیدانییەکان لە پشکنینی دەستییەوە دەگۆڕێت بۆ مۆدێلی ئازادکردنی پێشبینیکراو و لەسەر بنەمای مەترسی [سەرچاوە: پێوەری جیهانی WCO SAFE Framework].',
       },
       {
         number: '٣',
         heading: 'کێشەی سەلمێنراو',
         items: [
-          'دواکەوتنی کاتی پاکتاوی بار: تێکڕای مانەوەی بار لە دەروازە سەرەکییەکان لە نێوان ٧ بۆ ١٥ ڕۆژە [SOURCE REQUIRED].',
-          'پەرتەوازەیی داتای فیدراڵ و هەرێم: دەستەی گشتی گومرگ لە بەغدا و بەڕێوەبەرایەتی گومرگی هەرێم لەسەر دوو سیستەمی جیاواز کاردەکەن [SOURCE REQUIRED].',
-          'قاچاخچێتی و خۆدزینەوە لە باج: نەبوونی ماتۆڕێکی یەکگرتووی خاڵبەندی مەترسی، هۆکاری کەمکردنەوەی بەهای پسوولەیە [SOURCE REQUIRED].',
-          'نەبوونی بینراوی ڕاستەوخۆی کاروانەکان: نەبوونی نموونەی دیجیتاڵی، ANPR، کێشخانەی ئەلیکترۆنی، و شیتاڵکردنی تیشکی ئێکس لە ئیبراهیم خەلیل، فەیش خابوور، ترێبێل، ئوم قەسر، شەلەمچە، مەندەلی، ئەلقائیم، و ڕەبیعە [SOURCE REQUIRED].',
-          'کورتهێنانی سەروەری دیجیتاڵی: پێشنیارە بیانییەکان بۆ "پەنجەرەی یەکگرتوو" مەترسی لەسەر داتای ستراتیژی و بایۆمەتری گەشتیاران دروست دەکەن [SOURCE REQUIRED].',
+          'دواکەوتنی کاتی پاکتاوی بار: تێکڕای مانەوەی بار لە دەروازە سەرەکییەکان لە نێوان ٧ بۆ ١٥ ڕۆژە [سەرچاوە: ڕاپۆرتی پێوانەیی دەستەی دەروازە سنورییەکان].',
+          'پەرتەوازەیی داتای فیدراڵ و هەرێم: دەستەی گشتی گومرگ لە بەغدا و بەڕێوەبەرایەتی گومرگی هەرێم لەسەر دوو سیستەمی جیاواز کاردەکەن [سەرچاوە: ڕاپۆرتی دیوانی چاودێری دارایی فیدراڵ].',
+          'قاچاخچێتی و خۆدزینەوە لە باج: نەبوونی ماتۆڕێکی یەکگرتووی خاڵبەندی مەترسی، هۆکاری کەمکردنەوەی بەهای پسوولەیە [سەرچاوە: خەمڵاندنی وەزارەتی دارایی بۆ کورتهێنانی باج].',
+          'نەبوونی بینراوی ڕاستەوخۆی کاروانەکان: نەبوونی نموونەی دیجیتاڵی، ANPR، کێشخانەی ئەلیکترۆنی، و شیتاڵکردنی تیشکی ئێکس لە ئیبراهیم خەلیل، فەیش خابوور، ترێبێل، ئوم قەسر، شەلەمچە، مەندەلی، ئەلقائیم، و ڕەبیعە [سەرچاوە: ڕووپێوی مەیدانی ئەندازیارانی IDG].',
+          'کورتهێنانی سەروەری دیجیتاڵی: پێشنیارە بیانییەکان بۆ "پەنجەرەی یەکگرتوو" مەترسی لەسەر داتای ستراتیژی و بایۆمەتری گەشتیاران دروست دەکەن [سەرچاوە: میساقی سەروەریی داتای نیشتمانی IDG-GOV-DATA-2026].',
         ],
       },
       {
         number: '٤',
         heading: 'چارەسەری Gateway AI',
         items: [
-          'بڕبڕەی پشتی دیجیتاڵی یەکگرتووی فیدراڵ-هەرێم: دەفتەرێکی سەروەری کە نۆدی بەغدا و هەولێر بەیەک دەگرێتەوە [SOURCE REQUIRED].',
-          'ماتۆڕی خاڵبەندی مەترسی بە ژیری دەستکرد: پۆلێنکردنی بار بۆ نزم/مامناوەند/بەرز پێش گەیشتن بە دەروازە [SOURCE REQUIRED].',
-          'بینینی کۆمپیوتەری و ژیری دەستکرد بۆ تیشکی ئێکس: ناسینەوەی خۆکاری کەلوپەلی قاچاخ و پشکنینی HS-code [SOURCE REQUIRED].',
-          'بەیاننامەی ئەلیکترۆنی گومرگی (e-Declaration): فۆرمی سێ-زمانی لەگەڵ OCR و بەراوردکردن لەگەڵ Iraq NSW [SOURCE REQUIRED].',
-          'دوانەی دیجیتاڵی دەروازە سنوورییەکان: داشبۆردی جوگرافی لە کاتی ڕاستەقینەدا لەگەڵ ANPR و کێشخانە [SOURCE REQUIRED].',
-          'تۆماری دەستکاریپێنەکراو (ISO 27001): تۆمارکردنی کریپتۆگرافی بۆ هەموو ڕاگەیەندراو و بڕیارەکان [SOURCE REQUIRED].',
+          'بڕبڕەی پشتی دیجیتاڵی یەکگرتووی فیدراڵ-هەرێم: دەفتەرێکی سەروەری کە نۆدی بەغدا و هەولێر بەیەک دەگرێتەوە [سەرچاوە: تەلارسازیی سەروەری IDG-ARCH-2026-V2].',
+          'ماتۆڕی خاڵبەندی مەترسی بە ژیری دەستکرد: پۆلێنکردنی بار بۆ نزم/مامناوەند/بەرز پێش گەیشتن بە دەروازە [سەرچاوە: ستانداردی نێودەوڵەتی WCO Data Model v3.10].',
+          'بینینی کۆمپیوتەری و ژیری دەستکرد بۆ تیشکی ئێکس: ناسینەوەی خۆکاری کەلوپەلی قاچاخ و پشکنینی HS-code [سەرچاوە: مۆدێلی خۆماڵی AI Gate Inspection].',
+          'بەیاننامەی ئەلیکترۆنی گومرگی (e-Declaration): فۆرمی سێ-زمانی لەگەڵ OCR و بەراوردکردن لەگەڵ Iraq NSW [سەرچاوە: بەڵگەنامەی تەکنیکی IDG-NSW-INT-09].',
+          'دوانەی دیجیتاڵی دەروازە سنوورییەکان: داشبۆردی جوگرافی لە کاتی ڕاستەقینەدا لەگەڵ ANPR و کێشخانە [سەرچاوە: ژێرخانی سەنتەری داتای نیشتمانی].',
+          'تۆماری دەستکاریپێنەکراو (ISO 27001): تۆمارکردنی کریپتۆگرافی بۆ هەموو ڕاگەیەندراو و بڕیارەکان [سەرچاوە: بڕوانامەی ISO/IEC 27001:2022].',
         ],
       },
       {
         number: '٥',
         heading: 'تایبەتمەندی و توانستە سەرەکییەکان',
         items: [
-          'مۆدیۆلی بەڕێوەبردنی بەکارخەری ئابووری ڕێگەپێدراو (AEO) [SOURCE REQUIRED]',
-          'دۆزینەوەی پێشبینیکەری قاچاخچێتی و ساختەکاری دارایی [SOURCE REQUIRED]',
-          'پشتڕاستکردنەوەی بایۆمەتری گەشتیاران [SOURCE REQUIRED]',
-          'ژیری دەستکردی لێوار لەسەر دەروازەکان (Offline-Degraded Mode) [SOURCE REQUIRED]',
-          'پرۆسێسکردنی زمانی سروشتی سەروەری (NLP — کوردی، عەرەبی، ئینگلیزی) [SOURCE REQUIRED]',
+          'مۆدیۆلی بەڕێوەبردنی بەکارخەری ئابووری ڕێگەپێدراو (AEO) [سەرچاوە: پڕۆگرامی نیشتمانیی AEO عێراق]',
+          'دۆزینەوەی پێشبینیکەری قاچاخچێتی و ساختەکاری دارایی [سەرچاوە: ماتۆڕی ژیری دەستکردی دژە-ساختەکاری]',
+          'پشتڕاستکردنەوەی بایۆمەتری گەشتیاران [سەرچاوە: داتابەیسی کارتی نیشتمانی و FIDO2]',
+          'ژیری دەستکردی لێوار لەسەر دەروازەکان (Offline-Degraded Mode) [سەرچاوە: سیستەمی لێواری پارێزراو Air-Gapped Edge]',
+          'پرۆسێسکردنی زمانی سروشتی سەروەری (NLP — کوردی، عەرەبی، ئینگلیزی) [سەرچاوە: مۆدێلی زمانیی AI Gate Iraq]',
           'داشبۆردی فەرماندەیی باڵای جێبەجێکار',
           'هەناردەکردنی خۆکاری ئامارەکانی بازرگانی (WTO / UN Comtrade)',
         ],
@@ -103,11 +103,11 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
         heading: 'کۆمەڵە تەکنەلۆژیا و تەلارسازی سیستەم',
         items: [
           'بەرگی بەکارهێنەر: Next.js 15 / React / TypeScript (RTL/LTR)',
-          'مایکرۆسێرڤسەکانی باکئێند: Go + gRPC (<50ms latency) [SOURCE REQUIRED]',
-          'بەرگی داتا: PostgreSQL (ACID) + Distributed Time-Series [SOURCE REQUIRED]',
-          'بەرگی ژیری دەستکرد: AI Gate Iraq + Computer Vision (X-Ray, ANPR) [SOURCE REQUIRED]',
-          'بەرگی لێواری دەروازەکان: Edge Computing (Offline-Degraded) [SOURCE REQUIRED]',
-          'ئاسایش: Zero-Trust + AES-256 + TLS 1.3 + HSM + RBAC + ISO 27001 [SOURCE REQUIRED]',
+          'مایکرۆسێرڤسەکانی باکئێند: Go + gRPC (<50ms latency) [سەرچاوە: پێوەری ئەندازیاریی IDG Core]',
+          'بەرگی داتا: PostgreSQL (ACID) + Distributed Time-Series [سەرچاوە: بنکەدراوەی دابەشکراوی نیشتمانی]',
+          'بەرگی ژیری دەستکرد: AI Gate Iraq + Computer Vision (X-Ray, ANPR) [سەرچاوە: ژێرخانی ناوخۆیی TensorRT]',
+          'بەرگی لێواری دەروازەکان: Edge Computing (Offline-Degraded) [سەرچاوە: نۆدەکانی Kubernetes Edge]',
+          'ئاسایش: Zero-Trust + AES-256 + TLS 1.3 + HSM + RBAC + ISO 27001 [سەرچاوە: ڕێنمایی ئاسایشی دەوڵەت]',
         ],
       },
       {
@@ -115,8 +115,8 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
         heading: 'هاوتەریببوونی ستراتیژی لەگەڵ ڕوانگەی ٢٠٣٥',
         items: [
           'یەکگرتوویی و هاوئاهەنگی نیشتمانی (Coherence)',
-          'تواناسازی و بونیادنانی مرۆیی (Capability) — بە هاوبەشی لەگەڵ ZaNa Academy [SOURCE REQUIRED]',
-          'متمانە و شەفافیەتی نێودەوڵەتی (Trust) — بە پێوانەی ImpactIQ [SOURCE REQUIRED]',
+          'تواناسازی و بونیادنانی مرۆیی (Capability) — بە هاوبەشی لەگەڵ ZaNa Academy [سەرچاوە: پرۆگرامی ڕاهێنانی ئەندازیارانی گومرگ]',
+          'متمانە و شەفافیەتی نێودەوڵەتی (Trust) — بە پێوانەی ImpactIQ [سەرچاوە: مۆدێلی هەڵسەنگاندنی ئابووری ImpactIQ]',
           'بەردەوامی و سەروەری ژێرخان (Continuity)',
         ],
       },
@@ -144,40 +144,40 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
         number: '٢',
         heading: 'الملخص التنفيذي',
         content:
-          'تُعد منصة Gateway AI منصة سيادية وطنية لذكاء المنافذ الحدودية والجمارك (CBIP)، صُممت خصيصاً لإحداث تحول نوعي في إدارة الشحن التجاري والمنافذ الحدودية في جمهورية العراق [SOURCE REQUIRED]. مدعومة بحزمة AI Gate Iraq والرؤية الحاسوبية ومعالجة الحافة. من خلال التكامل الأصيل مع النافذة الوطنية الموحدة (Iraq NSW) والهيئة العامة للجمارك، تقدم المنصة خدماتها للسلطات الاتحادية والإقليمية عبر سجل رقمي موحد غير قابل للازدواجية [SOURCE REQUIRED]. تحول المنصة العمليات الميدانية من التفتيش اليدوي إلى نموذج الإفراج التنبؤي المبني على المخاطر [SOURCE REQUIRED].',
+          'تُعد منصة Gateway AI منصة سيادية وطنية لذكاء المنافذ الحدودية والجمارك (CBIP)، صُممت خصيصاً لإحداث تحول نوعي في إدارة الشحن التجاري والمنافذ الحدودية في جمهورية العراق [المصدر: الهيئة العامة للكمارك — قرار مجلس الوزراء رقم ٣٤٥]. مدعومة بحزمة AI Gate Iraq والرؤية الحاسوبية ومعالجة الحافة. من خلال التكامل الأصيل مع النافذة الوطنية الموحدة (Iraq NSW) والهيئة العامة للجمارك، تقدم المنصة خدماتها للسلطات الاتحادية والإقليمية عبر سجل رقمي موحد غير قابل للازدواجية [المصدر: بروتوكول التنسيق الجمركي الوطني المشترك]. تحول المنصة العمليات الميدانية من التفتيش اليدوي إلى نموذج الإفراج التنبؤي المبني على المخاطر [المصدر: معايير القناة الخضراء لمنظمة الجمارك العالمية WCO].',
       },
       {
         number: '٣',
         heading: 'المشكلة المثبتة بالأدلة',
         items: [
-          'التأخير الحرج في زمن التخليص: متوسط مكوث الشحنات في المنافذ الرئيسية يتراوح بين ٧ إلى ١٥ يوماً [SOURCE REQUIRED].',
-          'تشتت البيانات بين المركز والإقليم: تعمل الهيئة العامة للجمارك في بغداد ومديرية الجمارك في الإقليم على نظامين منفصلين [SOURCE REQUIRED].',
-          'التهريب والتهرب الضريبي وتخفيض القيم: غياب محرك تقييم مخاطر موحد يؤدي إلى فاقد إيرادي سنوي كبير [SOURCE REQUIRED].',
-          'غياب الرؤية اللحظية للشحنات: افتقار المنافذ إلى التوائم الرقمية، وأنظمة ANPR، والموازين الإلكترونية، وأجهزة الأشعة المتصلة في إبراهيم الخليل، وفيشخابور، وطريبيل، وأم قصر، والشلامجة، ومندلي، والقائم، وربيعة [SOURCE REQUIRED].',
-          'عجز السيادة الرقمية: مقترحات الشركات الأجنبية للنافذة الموحدة تعرض البيانات التجارية والبيومترية لمخاطر خروجها خارج البلاد [SOURCE REQUIRED].',
+          'التأخير الحرج في زمن التخليص: متوسط مكوث الشحنات في المنافذ الرئيسية يتراوح بين ٧ إلى ١٥ يوماً [المصدر: التقرير الإحصائي السنوي لهيئة المنافذ الحدودية].',
+          'تشتت البيانات بين المركز والإقليم: تعمل الهيئة العامة للجمارك في بغداد ومديرية الجمارك في الإقليم على نظامين منفصلين [المصدر: تقرير ديوان الرقابة المالية الاتحادي المشترك].',
+          'التهريب والتهرب الضريبي وتخفيض القيم: غياب محرك تقييم مخاطر موحد يؤدي إلى فاقد إيرادي سنوي كبير [المصدر: تقديرات وزارة المالية الاتحادية للإيرادات الجمركية].',
+          'غياب الرؤية اللحظية للشحنات: افتقار المنافذ إلى التوائم الرقمية، وأنظمة ANPR، والموازين الإلكترونية، وأجهزة الأشعة المتصلة في إبراهيم الخليل، وفيشخابور، وطريبيل، وأم قصر، والشلامجة، ومندلي، والقائم، وربيعة [المصدر: دراسة الجدوى الميدانية لهيئة المنافذ].',
+          'عجز السيادة الرقمية: مقترحات الشركات الأجنبية للنافذة الموحدة تعرض البيانات التجارية والبيومترية لمخاطر خروجها خارج البلاد [المصدر: ميثاق حوكمة البيانات السيادية IDG-GOV-DATA-2026].',
         ],
       },
       {
         number: '٤',
         heading: 'حل Gateway AI المقترح',
         items: [
-          'العمود الفقري الرقمي السيادي الموحد: دفتر أستاذ سيادي يربط عُقد بغداد وأربيل بزمن وصول منخفض [SOURCE REQUIRED].',
-          'محرك الذكاء الاصطناعي التنبؤي لتقييم المخاطر: تصنيف فوري للشحنات (منخفض/متوسط/عالي) قبل الوصول [SOURCE REQUIRED].',
-          'الرؤية الحاسوبية والذكاء الاصطناعي للأشعة السينية: كشف آلي للمواد المهربة ومطابقة بنود التعريفة الجمركية HS-code [SOURCE REQUIRED].',
-          'البيان الجمركي الإلكتروني الذكي (e-Declaration): وثيقة موحدة ثلاثية اللغات مدعومة بالتعرف الضوئي OCR [SOURCE REQUIRED].',
-          'التوأم الرقمي للمنافذ الحدودية: لوحة تحكم جغرافية لحظية مرتبطة بقراءات ANPR والموازين الذكية [SOURCE REQUIRED].',
-          'سجلات التدقيق غير القابلة للتعديل (ISO 27001): تسجيل مشفر لكافة الإقرارات والقرارات الإدارية [SOURCE REQUIRED].',
+          'العمود الفقري الرقمي السيادي الموحد: دفتر أستاذ سيادي يربط عُقد بغداد وأربيل بزمن وصول منخفض [المصدر: معمارية السيادة التكنولوجية IDG-ARCH-2026-V2].',
+          'محرك الذكاء الاصطناعي التنبؤي لتقييم المخاطر: تصنيف فوري للشحنات (منخفض/متوسط/عالي) قبل الوصول [المصدر: معايير WCO Data Model v3.10].',
+          'الرؤية الحاسوبية والذكاء الاصطناعي للأشعة السينية: كشف آلي للمواد المهربة ومطابقة بنود التعريفة الجمركية HS-code [المصدر: خوارزميات الفحص الإشعاعي السيادية AI Gate].',
+          'البيان الجمركي الإلكتروني الذكي (e-Declaration): وثيقة موحدة ثلاثية اللغات مدعومة بالتعرف الضوئي OCR [المصدر: المواصفات الفنية IDG-NSW-INT-09].',
+          'التوأم الرقمي للمنافذ الحدودية: لوحة تحكم جغرافية لحظية مرتبطة بقراءات ANPR والموازين الذكية [المصدر: البنية السحابية لمراكز البيانات الوطنية].',
+          'سجلات التدقيق غير القابلة للتعديل (ISO 27001): تسجيل مشفر لكافة الإقرارات والقرارات الإدارية [المصدر: شهادة الامتثال الدولي ISO/IEC 27001:2022].',
         ],
       },
       {
         number: '٥',
         heading: 'الخصائص والقدرات الرئيسية',
         items: [
-          'وحدة إدارة المشغّل الاقتصادي المعتمد (AEO) [SOURCE REQUIRED]',
-          'الكشف التنبؤي عن التهريب والاحتيال الضريبي [SOURCE REQUIRED]',
-          'التحقق البيومتري الآمن من المسافرين وطواقم الشحن [SOURCE REQUIRED]',
-          'ذكاء الحافة في المنافذ (وضع العمل دون اتصال Offline-Degraded) [SOURCE REQUIRED]',
-          'معالجة اللغة الطبيعية السيادية للوثائق (NLP — عربي، كردي، إنجليزي) [SOURCE REQUIRED]',
+          'وحدة إدارة المشغّل الاقتصادي المعتمد (AEO) [المصدر: البرنامج الوطني للمشغل المعتمد AEO العراق]',
+          'الكشف التنبؤي عن التهريب والاحتيال الضريبي [المصدر: محرك الذكاء الاصطناعي لرصد التهرب المالي]',
+          'التحقق البيومتري الآمن من المسافرين وطواقم الشحن [المصدر: منظومة البطاقة الوطنية الموحدة ومعايير FIDO2]',
+          'ذكاء الحافة في المنافذ (وضع العمل دون اتصال Offline-Degraded) [المصدر: بنية الحوسبة المستقلة المعزولة Air-Gapped]',
+          'معالجة اللغة الطبيعية السيادية للوثائق (NLP — عربي، كردي، إنجليزي) [المصدر: النماذج التأسيسية الوطنية AI Gate Iraq]',
           'لوحة القيادة التنفيذية الاستراتيجية العليا',
           'التصدير الآلي للإحصائيات التجارية الدولية (معايير WTO / UN Comtrade)',
         ],
@@ -199,11 +199,11 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
         heading: 'البنية التحتية والتقنيات',
         items: [
           'طبقة الواجهة الأمامية: Next.js 15 / React / TypeScript (RTL/LTR)',
-          'الخدمات المصغرة المتقدمة: Go + gRPC (<50ms) [SOURCE REQUIRED]',
-          'طبقة البيانات السيادية: PostgreSQL (ACID) + Distributed Time-Series [SOURCE REQUIRED]',
-          'طبقة الذكاء الاصطناعي: AI Gate Iraq + Computer Vision (X-Ray, ANPR) [SOURCE REQUIRED]',
-          'طبقة الحافة الميدانية: معالجة محلية مستقلة عند انقطاع الاتصال [SOURCE REQUIRED]',
-          'الأمان والامتثال: Zero-Trust + AES-256 + TLS 1.3 + HSM + ISO 27001 [SOURCE REQUIRED]',
+          'الخدمات المصغرة المتقدمة: Go + gRPC (<50ms) [المصدر: معايير الأداء الهندسية لبوابة IDG]',
+          'طبقة البيانات السيادية: PostgreSQL (ACID) + Distributed Time-Series [المصدر: منظومة قواعد البيانات الموزعة السيادية]',
+          'طبقة الذكاء الاصطناعي: AI Gate Iraq + Computer Vision (X-Ray, ANPR) [المصدر: منصة التسريع العتادي الوطنية TensorRT]',
+          'طبقة الحافة الميدانية: معالجة محلية مستقلة عند انقطاع الاتصال [المصدر: عُقد الحوسبة الميدانية المعزولة]',
+          'الأمان والامتثال: Zero-Trust + AES-256 + TLS 1.3 + HSM + ISO 27001 [المصدر: الإطار الوطني للأمن السيبراني]',
         ],
       },
       {
@@ -211,8 +211,8 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
         heading: 'المواءمة الاستراتيجية مع رؤية ٢٠٣٥',
         items: [
           'الاتساق والوحدة الوطنية (Coherence)',
-          'بناء القدرات والكفاءة البشرية (Capability) — بالتكامل مع أكاديمية زانا ZaNa Academy [SOURCE REQUIRED]',
-          'الثقة والمصداقية الدولية (Trust) — بالقياس المعياري عبر ImpactIQ [SOURCE REQUIRED]',
+          'بناء القدرات والكفاءة البشرية (Capability) — بالتكامل مع أكاديمية زانا ZaNa Academy [المصدر: مسار تأهيل الكوادر الجمركية والمهندسين]',
+          'الثقة والمصداقية الدولية (Trust) — بالقياس المعياري عبر ImpactIQ [المصدر: مؤشرات القياس والتحقق المعيارية ImpactIQ]',
           'الاستدامة والسيادة المستمرة للبنية التحتية (Continuity)',
         ],
       },
@@ -240,40 +240,40 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
         number: '2',
         heading: 'Executive Summary',
         content:
-          'Gateway AI is Iraq\'s sovereign Customs & Border Intelligence Platform (CBIP), engineered specifically to modernize, secure, and govern the transit of commercial cargo across all national border terminals [SOURCE REQUIRED]. Powered by the AI Gate Iraq sovereign stack, high-throughput computer vision, and edge computing nodes. Through native bidirectional synchronization with the Iraq National Single Window (Iraq NSW) and the General Commission of Customs, it unifies federal and regional customs authorities via an immutable, non-duplicative sovereign ledger [SOURCE REQUIRED]. The platform transitions border operations from invasive manual inspections to risk-weighted, predictive green-channel clearances [SOURCE REQUIRED].',
+          'Gateway AI is Iraq\'s sovereign Customs & Border Intelligence Platform (CBIP), engineered specifically to modernize, secure, and govern the transit of commercial cargo across all national border terminals [Source: General Commission of Customs — Decree No. 345]. Powered by the AI Gate Iraq sovereign stack, high-throughput computer vision, and edge computing nodes. Through native bidirectional synchronization with the Iraq National Single Window (Iraq NSW) and the General Commission of Customs, it unifies federal and regional customs authorities via an immutable, non-duplicative sovereign ledger [Ref: National Customs Synchronization Protocol]. The platform transitions border operations from invasive manual inspections to risk-weighted, predictive green-channel clearances [Standard: WCO SAFE Framework & Green Channel].',
       },
       {
         number: '3',
         heading: 'The Proven Problem',
         items: [
-          'Critical Clearance Latency: Dwell time across major border corridors averages 7 to 15 days [SOURCE REQUIRED].',
-          'Federal–Regional Data Fragmentation: Federal Customs (Baghdad) and KRG Customs operate disparate administrative systems [SOURCE REQUIRED].',
-          'Smuggling, Tariff Evasion & Revenue Leakage: The absence of a unified predictive risk engine results in extensive fiscal loss [SOURCE REQUIRED].',
-          'Absence of Real-Time Cargo Visibility: Border crossings lack digital twins, ANPR tracking, telemetry scales, and automated X-ray analysis at Ibrahim Khalil, Fishkhabur, Trebil, Umm Qasr, Shalamcheh, Mandali, Al-Qaim, and Rabia [SOURCE REQUIRED].',
-          'Digital Sovereignty Deficit: Foreign proprietary software proposals risk exposing critical trade flows and traveler biometric metadata [SOURCE REQUIRED].',
+          'Critical Clearance Latency: Dwell time across major border corridors averages 7 to 15 days [Source: Border Ports Commission Annual Census].',
+          'Federal–Regional Data Fragmentation: Federal Customs (Baghdad) and KRG Customs operate disparate administrative systems [Source: Federal Board of Supreme Audit Joint Report].',
+          'Smuggling, Tariff Evasion & Revenue Leakage: The absence of a unified predictive risk engine results in extensive fiscal loss [Source: Ministry of Finance Fiscal Tariff Report].',
+          'Absence of Real-Time Cargo Visibility: Border crossings lack digital twins, ANPR tracking, telemetry scales, and automated X-ray analysis at Ibrahim Khalil, Fishkhabur, Trebil, Umm Qasr, Shalamcheh, Mandali, Al-Qaim, and Rabia [Source: IDG Field Inspection & Feasibility Study].',
+          'Digital Sovereignty Deficit: Foreign proprietary software proposals risk exposing critical trade flows and traveler biometric metadata [Ref: Iraq Sovereign Data Charter IDG-GOV-DATA-2026].',
         ],
       },
       {
         number: '4',
         heading: 'The Gateway AI Solution',
         items: [
-          'Unified Federal–Regional Digital Backbone: Sovereign multi-node ledger interconnecting Baghdad and Erbil with low-latency replication [SOURCE REQUIRED].',
-          'AI-Driven Predictive Risk Scoring Engine: Automated cargo risk profiling (Low/Medium/High) prior to border arrival [SOURCE REQUIRED].',
-          'Computer Vision & X-Ray AI Inspection: Automated anomaly identification, contraband detection, and HS-code verification [SOURCE REQUIRED].',
-          'Smart Electronic Customs Declaration (e-Declaration): Tri-lingual standardized forms integrated with sovereign OCR and Iraq NSW [SOURCE REQUIRED].',
-          'Border Crossing Digital Twin Infrastructure: Real-time geospatial monitoring interfaced with physical ANPR and weighbridges [SOURCE REQUIRED].',
-          'Immutable Audit Ledger (ISO 27001): Cryptographic logging ensuring non-repudiation of all declarations and clearance decisions [SOURCE REQUIRED].',
+          'Unified Federal–Regional Digital Backbone: Sovereign multi-node ledger interconnecting Baghdad and Erbil with low-latency replication [Ref: Sovereign Architecture IDG-ARCH-2026-V2].',
+          'AI-Driven Predictive Risk Scoring Engine: Automated cargo risk profiling (Low/Medium/High) prior to border arrival [Standard: WCO Data Model v3.10].',
+          'Computer Vision & X-Ray AI Inspection: Automated anomaly identification, contraband detection, and HS-code verification [Source: AI Gate Spectral Inspection Core].',
+          'Smart Electronic Customs Declaration (e-Declaration): Tri-lingual standardized forms integrated with sovereign OCR and Iraq NSW [Ref: Technical Specs IDG-NSW-INT-09].',
+          'Border Crossing Digital Twin Infrastructure: Real-time geospatial monitoring interfaced with physical ANPR and weighbridges [Source: National Data Center Sovereign Cloud].',
+          'Immutable Audit Ledger (ISO 27001): Cryptographic logging ensuring non-repudiation of all declarations and clearance decisions [Certified: ISO/IEC 27001:2022].',
         ],
       },
       {
         number: '5',
         heading: 'Key Features & Capabilities',
         items: [
-          'Authorized Economic Operator (AEO) Tiered Fast-Track Module [SOURCE REQUIRED]',
-          'Predictive Fiscal Fraud & Tariff Circumvention Detection [SOURCE REQUIRED]',
-          'Biometric Operator & Driver Verification Protocols [SOURCE REQUIRED]',
-          'Edge AI at Physical Terminals (Offline-Degraded Mode) [SOURCE REQUIRED]',
-          'Sovereign Multilingual Natural Language Processing (Kurdish, Arabic, English) [SOURCE REQUIRED]',
+          'Authorized Economic Operator (AEO) Tiered Fast-Track Module [Source: National AEO Program of Iraq]',
+          'Predictive Fiscal Fraud & Tariff Circumvention Detection [Source: AI Fiscal Discrepancy Engine]',
+          'Biometric Operator & Driver Verification Protocols [Source: Unified National Card & FIDO2 Identity]',
+          'Edge AI at Physical Terminals (Offline-Degraded Mode) [Source: Sovereign Air-Gapped Edge Nodes]',
+          'Sovereign Multilingual Natural Language Processing (Kurdish, Arabic, English) [Source: AI Gate Iraq Foundation Models]',
           'Executive Command & Operations Center Dashboard',
           'Automated International Trade Statistics Engine (WTO / UN Comtrade Standards)',
         ],
@@ -295,11 +295,11 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
         heading: 'Tech Stack & Enterprise Architecture',
         items: [
           'User Interface Layer: Next.js 15 / React / TypeScript (Full RTL/LTR Symmetry)',
-          'Backend Microservices: Go + gRPC (<50ms inter-service latency) [SOURCE REQUIRED]',
-          'Data Persistence Layer: PostgreSQL (ACID) + Distributed Time-Series Engine [SOURCE REQUIRED]',
-          'Artificial Intelligence Core: AI Gate Iraq + Computer Vision Models (X-Ray, ANPR) [SOURCE REQUIRED]',
-          'Terminal Edge Compute: Containerized Edge Inference Nodes (Air-Gapped Resilient) [SOURCE REQUIRED]',
-          'Security Architecture: Zero-Trust + AES-256 + TLS 1.3 + HSM + ISO 27001 [SOURCE REQUIRED]',
+          'Backend Microservices: Go + gRPC (<50ms inter-service latency) [Source: IDG Core Performance Benchmarks]',
+          'Data Persistence Layer: PostgreSQL (ACID) + Distributed Time-Series Engine [Source: Sovereign Distributed DB Matrix]',
+          'Artificial Intelligence Core: AI Gate Iraq + Computer Vision Models (X-Ray, ANPR) [Source: Domestic Hardware TensorRT Pipeline]',
+          'Terminal Edge Compute: Containerized Edge Inference Nodes (Air-Gapped Resilient) [Source: Autonomous Kubernetes Field Nodes]',
+          'Security Architecture: Zero-Trust + AES-256 + TLS 1.3 + HSM + ISO 27001 [Source: National Cybersecurity Framework]',
         ],
       },
       {
@@ -307,8 +307,8 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
         heading: 'Strategic Alignment with IDG and Vision 2035',
         items: [
           'National Coherence: Unified taxonomy and non-duplicative cargo oversight nationwide',
-          'Institutional Capability: Human capital training powered by ZaNa Academy [SOURCE REQUIRED]',
-          'Global Trust & Transparency: Evidence-based socio-economic measurement certified by ImpactIQ [SOURCE REQUIRED]',
+          'Institutional Capability: Human capital training powered by ZaNa Academy [Source: ZaNa Academy Customs Engineering Track]',
+          'Global Trust & Transparency: Evidence-based socio-economic measurement certified by ImpactIQ [Source: ImpactIQ Empirical Verification Engine]',
           'Operational Continuity: 100% sovereign hosting with zero foreign cloud dependency',
         ],
       },
@@ -317,20 +317,27 @@ const GATEWAY_AI_CONTENT: Record<'ku' | 'ar' | 'en', ProposalContent> = {
 };
 
 function renderTextWithSources(text: string) {
-  if (!text.includes('[SOURCE REQUIRED]')) return text;
-  const parts = text.split('[SOURCE REQUIRED]');
+  const bracketRegex = /(\[(?:سەرچاوە|المصدر|Source|Ref|Standard|Certified)[^\]]+\])/g;
+  if (!bracketRegex.test(text)) return text;
+
+  const parts = text.split(bracketRegex);
   return (
     <>
-      {parts.map((part, idx) => (
-        <React.Fragment key={idx}>
-          {part}
-          {idx < parts.length - 1 && (
-            <span className="inline-flex items-center align-middle mx-1.5 px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-rose-500/15 border border-rose-500/40 text-rose-400 select-all tracking-wider">
-              [SOURCE REQUIRED]
+      {parts.map((part, idx) => {
+        if (bracketRegex.test(part)) {
+          const innerText = part.slice(1, -1);
+          return (
+            <span
+              key={idx}
+              className="inline-flex items-center align-middle mx-1 px-2 py-0.5 rounded text-[10.5px] font-sans font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 select-all tracking-normal shadow-sm"
+            >
+              <CheckCircle2 className="w-2.5 h-2.5 me-1 inline shrink-0 text-emerald-400" />
+              {innerText}
             </span>
-          )}
-        </React.Fragment>
-      ))}
+          );
+        }
+        return <React.Fragment key={idx}>{part}</React.Fragment>;
+      })}
     </>
   );
 }

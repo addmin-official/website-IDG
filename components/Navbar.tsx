@@ -35,6 +35,7 @@ export default function Navbar(_props?: NavbarProps) {
 
   const mobileNavLinks = [
     ...primaryNav,
+    { href: `/${lang}/products`, label: { ku: 'بەرهەمەکان', ar: 'المنتجات', en: 'Products' } },
     { href: `/${lang}/blog`, label: { ku: t.nav.blog, ar: t.nav.blog, en: t.nav.blog } },
     { href: `/${lang}/insights`, label: { ku: t.nav.insights, ar: t.nav.insights, en: t.nav.insights } },
     { href: `/${lang}/news`, label: { ku: t.nav.news, ar: t.nav.news, en: t.nav.news } },
