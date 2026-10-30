@@ -245,7 +245,14 @@ export default function HelpClient({ locale }: { locale: string }) {
   const [downloadNotice, setDownloadNotice] = useState<string | null>(null);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [selectedVideo, setSelectedVideo] = useState<{ videoUrl: string; title: string } | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<{
+    id?: string;
+    videoUrl: string;
+    title: string;
+    badge?: string;
+    duration?: string;
+    description?: string;
+  } | null>(null);
 
   const lang: Language = locale === 'ar' || locale === 'en' ? locale : 'ku';
   const isRtl = lang === 'ku' || lang === 'ar';
@@ -611,14 +618,30 @@ export default function HelpClient({ locale }: { locale: string }) {
               {(t.help?.tutorials?.items || []).map((video) => (
                 <div
                   key={video.id}
-                  onClick={() => setSelectedVideo({ videoUrl: video.videoUrl, title: video.title })}
+                  onClick={() =>
+                    setSelectedVideo({
+                      id: video.id,
+                      videoUrl: video.videoUrl,
+                      title: video.title,
+                      badge: video.badge,
+                      duration: video.duration,
+                      description: video.description,
+                    })
+                  }
                   className="bg-[#0B172E] border border-[#102447] rounded-2xl overflow-hidden flex flex-col group hover:border-[#1D5BD8]/50 transition-all cursor-pointer"
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      setSelectedVideo({ videoUrl: video.videoUrl, title: video.title });
+                      setSelectedVideo({
+                        id: video.id,
+                        videoUrl: video.videoUrl,
+                        title: video.title,
+                        badge: video.badge,
+                        duration: video.duration,
+                        description: video.description,
+                      });
                     }
                   }}
                   aria-label={video.title}
@@ -937,6 +960,11 @@ export default function HelpClient({ locale }: { locale: string }) {
         onClose={() => setSelectedVideo(null)}
         videoUrl={selectedVideo?.videoUrl || ''}
         title={selectedVideo?.title || ''}
+        id={selectedVideo?.id || 'intro'}
+        badge={selectedVideo?.badge || ''}
+        duration={selectedVideo?.duration || ''}
+        description={selectedVideo?.description || ''}
+        lang={lang}
       />
     </div>
   );
