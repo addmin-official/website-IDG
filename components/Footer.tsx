@@ -108,16 +108,38 @@ export default function Footer({ t, isRtl = true, onOpenContact }: FooterProps =
                 </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (onOpenContact) onOpenContact();
-                  }}
-                  className="hover:text-blue-400 transition text-start cursor-pointer"
+                <Link
+                  href={`/${currentLang}/contact`}
+                  className="hover:text-blue-400 transition text-start inline-block"
                   id="footer-link-contact"
                 >
                   {t?.footer?.links?.contact || 'پەیوەندیی فەرمی'}
-                </button>
+                </Link>
+              </li>
+              <li className="pt-2 border-t border-slate-800/60 text-[11px] font-mono text-slate-400 space-y-1">
+                <div className="text-slate-500 font-sans text-xs mb-1 font-semibold">
+                  {currentLang === 'ku' ? 'کەناڵە فەرمییەکان:' : currentLang === 'ar' ? 'القنوات الرسمية:' : 'Official Inboxes:'}
+                </div>
+                <div>
+                  <a href="mailto:partnerships@idggov.tech" className="hover:text-blue-400 transition block truncate" title="Partnerships">
+                    partnerships@idggov.tech
+                  </a>
+                </div>
+                <div>
+                  <a href="mailto:careers@idggov.tech" className="hover:text-emerald-400 transition block truncate" title="Careers">
+                    careers@idggov.tech
+                  </a>
+                </div>
+                <div>
+                  <a href="mailto:security@idggov.tech" className="hover:text-amber-400 transition block truncate" title="Security & Sovereign Data">
+                    security@idggov.tech
+                  </a>
+                </div>
+                <div>
+                  <a href="mailto:press@idggov.tech" className="hover:text-purple-400 transition block truncate" title="Press Office">
+                    press@idggov.tech
+                  </a>
+                </div>
               </li>
               <li className="pt-2 border-t border-slate-800/80">
                 <button

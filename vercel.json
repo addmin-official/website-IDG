@@ -4,7 +4,7 @@
   "installCommand": "npm install --include=dev",
   "framework": "nextjs",
   "outputDirectory": ".next",
-  "regions": ["fra1"],
+  "regions": ["dxb1", "bah1", "fra1"],
   "redirects": [
     {
       "source": "/:locale(zana|zana-academy|products/zana)",
