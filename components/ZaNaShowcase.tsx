@@ -29,7 +29,7 @@ export default function ZaNaShowcase({
   const { lang, isRtl } = useLocale();
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
-  const ZANA_LIVE_URL = 'https://new-vs-zana.zana-platform.workers.dev/';
+  const ZANA_LIVE_URL = 'https://zana.idggov.tech';
 
   // Localized copy based on locale
   const copy = {
@@ -346,7 +346,7 @@ export default function ZaNaShowcase({
                 {/* Live Platform Quick Launch Footer */}
                 <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
                   <span className="text-[11px] text-slate-400 font-medium">
-                    new-vs-zana.zana-platform.workers.dev
+                    zana.idggov.tech
                   </span>
                   <a
                     href={ZANA_LIVE_URL}

@@ -283,10 +283,10 @@ export function getLinkLabel(link: GraphLink, locale: Locale): string {
 }
 
 export const SOVEREIGN_ECOSYSTEM_LINKS = {
-  zanaAcademy: 'https://new-vs-zana.zana-platform.workers.dev/',
+  zanaAcademy: 'https://zana.idggov.tech',
   aiGateIraq: 'https://www.aigateiraq.com',
   economicKnowledgeGraph: '/products/economic-knowledge-graph',
-  greenBelt: 'https://green-belt-platform.web.app/',
-  greenBeltDashboard: 'https://green-belt-platform.web.app/dashboard',
+  greenBelt: 'https://greenbelt.idggov.tech',
+  greenBeltDashboard: 'https://greenbelt.idggov.tech/dashboard',
 };
 

@@ -191,8 +191,8 @@ const PRODUCTS_DATA: ProductItem[] = [
     ],
     primaryLink: 'https://zana.idggov.tech',
     isExternal: true,
-    secondaryLink: 'https://new-vs-zana.zana-platform.workers.dev/',
-    secondaryLabel: { ku: 'تێست سرڤەر', ar: 'سيرفر الاختبار', en: 'Direct Mirror' },
+    secondaryLink: 'https://zana.idggov.tech',
+    secondaryLabel: { ku: 'پلاتفۆرمی لایڤ', ar: 'المنصة المباشرة', en: 'Live Platform' },
     icon: GraduationCap,
   },
   {
@@ -232,8 +232,8 @@ const PRODUCTS_DATA: ProductItem[] = [
     ],
     primaryLink: 'https://greenbelt.idggov.tech',
     isExternal: true,
-    secondaryLink: 'https://green-belt-platform.web.app/dashboard',
-    secondaryLabel: { ku: 'داشبۆردی تاقیگە', ar: 'لوحة التحكم', en: 'Live Dashboard' },
+    secondaryLink: 'https://greenbelt.idggov.tech/dashboard',
+    secondaryLabel: { ku: 'داشبۆردی لایڤ', ar: 'لوحة التحكم', en: 'Live Dashboard' },
     icon: Trees,
   },
   {

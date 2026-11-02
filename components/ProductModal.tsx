@@ -459,7 +459,7 @@ export default function ProductModal({
 
             {(product.dashboardUrl || product.id === 'greenbelt') && (
               <a
-                href={product.dashboardUrl || 'https://green-belt-platform.web.app/dashboard'}
+                href={product.dashboardUrl || 'https://greenbelt.idggov.tech/dashboard'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-5 rounded-lg text-xs sm:text-sm transition shadow-sm"

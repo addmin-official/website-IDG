@@ -21,7 +21,7 @@ Detailed architectural specifications, product breakdown, and strategic pillars 
 
 * **[AI Gate Iraq](https://aigateiraq.com)** (`IDG-PRD-001`): Sovereign trade, logistics, and container clearance facilitation platform.
 * **[ZaNa Academy](https://zana.academy)** (`IDG-PRD-002`): Certified K-12 Kurdish digital curriculum and localized AI tutoring ecosystem.
-* **[Green Belt](https://green-belt-platform.web.app/)** (`IDG-PRD-003`): Municipal circular economy and reforestation tracking for Erbil.
+* **[Green Belt](https://greenbelt.idggov.tech/)** (`IDG-PRD-003`): Municipal circular economy and reforestation tracking for Erbil.
 * **[Iraq NSW (National Single Window)](docs/BLUEPRINT.md#strategic-national-initiative-iraq-nsw-national-single-window)** (`IDG-NAT-NSW-V1`): Unified single window connecting all 10 national border crossings and KRG.
 
 ---

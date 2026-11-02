@@ -245,7 +245,7 @@ export default function ProductMockups({ type, lang }: MockupProps) {
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                 <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
                 <span className="font-mono text-slate-400 ms-2 text-[11px]">
-                  new-vs-zana.zana-platform.workers.dev [IDG-SOV-02]
+                  zana.idggov.tech [IDG-SOV-02]
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -451,19 +451,19 @@ export default function ProductMockups({ type, lang }: MockupProps) {
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
             <a
-              href="https://green-belt-platform.web.app/"
+              href="https://greenbelt.idggov.tech"
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-slate-400 hover:text-emerald-400 transition-colors ms-2 text-[11px] inline-flex items-center gap-1"
-              title="green-belt-platform.web.app"
+              title="greenbelt.idggov.tech"
             >
-              <span>green-belt-platform.web.app</span>
+              <span>greenbelt.idggov.tech</span>
               <ExternalLink className="w-3 h-3" />
             </a>
           </div>
           <div className="flex items-center gap-2">
             <a
-              href="https://green-belt-platform.web.app/dashboard"
+              href="https://greenbelt.idggov.tech/dashboard"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded text-[11px] font-semibold transition shadow-xs"
@@ -621,7 +621,7 @@ export default function ProductMockups({ type, lang }: MockupProps) {
 
             <div className="pt-2">
               <a
-                href="https://green-belt-platform.web.app/dashboard"
+                href="https://greenbelt.idggov.tech/dashboard"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white py-2 px-3 rounded-lg text-xs font-bold transition shadow-sm"

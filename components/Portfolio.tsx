@@ -402,7 +402,7 @@ export default function Portfolio({
                         ) : prod.id === 'greenbelt' ? (
                           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto shrink-0">
                             <a
-                              href="https://green-belt-platform.web.app/"
+                              href="https://greenbelt.idggov.tech"
                               target="_blank"
                               rel="noopener noreferrer"
                               aria-label={`${lang === 'ku' ? 'کردنەوە و بینینی وێبسایت' : lang === 'ar' ? 'عرض وزيارة الموقع' : 'View Website'} — ${prod.title} (opens in new tab)`}
@@ -414,7 +414,7 @@ export default function Portfolio({
                               <ExternalLink className="w-4 h-4 shrink-0" />
                             </a>
                             <a
-                              href="https://green-belt-platform.web.app/dashboard"
+                              href="https://greenbelt.idggov.tech/dashboard"
                               target="_blank"
                               rel="noopener noreferrer"
                               aria-label={`${lang === 'ku' ? 'چوونە ناو پلاتفۆرم' : lang === 'ar' ? 'الدخول إلى المنصة' : 'Enter Platform'} — ${prod.title} Dashboard (opens in new tab)`}
