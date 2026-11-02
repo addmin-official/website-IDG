@@ -11,12 +11,13 @@ export function middleware(request: NextRequest) {
     process.env.VERCEL_ENV === 'preview' ||
     (hostname.endsWith('.vercel.app') && !hostname.startsWith('www.'));
 
-  if (isPreviewEnv) {
+  // Only enforce Preview Basic Auth if explicit credentials have been configured in environment variables
+  if (isPreviewEnv && process.env.PREVIEW_AUTH_USER && process.env.PREVIEW_AUTH_PASSWORD) {
     const authHeader = request.headers.get('authorization');
     const expectedUser = process.env.PREVIEW_AUTH_USER;
     const expectedPass = process.env.PREVIEW_AUTH_PASSWORD;
 
-    if (!expectedUser || !expectedPass || !authHeader) {
+    if (!authHeader) {
       return new NextResponse('Preview environment requires authentication.', {
         status: 401,
         headers: {
